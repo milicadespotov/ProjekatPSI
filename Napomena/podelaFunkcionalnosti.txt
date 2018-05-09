@@ -1,0 +1,24 @@
+Registracija - Tijana
+Prijava - Aleksa
+Promena statusa naloga - Milica
+Azuriranje informacija - Tijana
+Pretraga serija - Aleksa
+Uklanjanje naloga - Filip
+Ocenjivanje serija - Tijana
+Dodavanje komentara - Milica
+Uklanjanje komentara - Milica
+Uklanjanje komentara admin - Aleksa
+--Pravljenje listi - Aleksa(?)
+Dodavanje informacija vezanih za epizode - Aleksa
+Oznacavanje serije kao odgledane - Milica
+--Pregled listi koje je kreirao drugi korisnik - Aleksa(?)
+Pregled istorije odgledanih serija - Milica
+Resetovanje lozinke - Filip
+Promena lozinke - Aleksa
+--Dodavanje serije u listu - Tijana(?)
+Dodavanje serije - Filip
+Ocenjivanje epizode - Tijana
+Ocenjivanje sezone - Tijana
+Dodavanje epizode - Filip
+Odjava korisnika - Filip
+A5 T5 M5 F5
