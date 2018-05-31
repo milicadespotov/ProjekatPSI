@@ -15,15 +15,26 @@ class GuestController extends Controller
         $series = TvShow::find($id);
         $content=Content::find($id);
         $seasons = $series->seasons;
+        $type = 'series';
         $contents = DB::table('contents')->join('seasons')->where('seasons.tvshow_id', '=', $series->content_id)->where('contents.id', '=', 'seasons.content_id')->select('contents.*')->orderBy('contents.id');
-        return view('content.tvshow', compact(['series', 'content', 'seasons', 'contents']));
+        return view('content.tvshow', compact(['series', 'content', 'seasons', 'contents', 'type']));
     }
 
     public function showSeason($id){
         $season = Season::find($id);
         $content = Content::find($id);
         $episodes = $season->episodes;
+        $type = 'season';
         $contents = DB::table('contents')->join('episodes')->where('episodes.season_id','=', $season->content_id)->where('contents.id','=','episodes.content_id')->select('contents.*')->orderBy('contents.id');
-        return view('content.season', compact(['season', 'content', 'episodes', 'contents']));
+        return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
+    }
+
+    public function showEpisode($id){
+        $episode = Episode::find($id);
+        $content = Content::find($id);
+        $comments = $episode->comments;
+        $path = DB::table('pictures')->where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.path');
+        $type = 'episode';
+        return view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type']));
     }
 }
