@@ -83,7 +83,12 @@ class AdminController extends Controller
     }
 
     public function showUsers(){
-        $users = DB::table('users')->all();
+        $users = User::paginate(10);
         return view('home.users', compact('users'));
+    }
+
+    public function makeAdmin($id){
+        $user = User::find($id);
+        DB::table('users')->where('username','=',$id)->update(['is_admin'=>true]);
     }
 }

@@ -110,6 +110,7 @@ class UserController extends Controller
         }
 
 
+
         $_SESSION['username'] = $user->username;
         $_SESSION['name'] = $user->name;
         $_SESSION['last_name'] = $user->surname;
@@ -134,6 +135,7 @@ class UserController extends Controller
         Auth::login($userForLogin);
 
         return 1;
+
 
     }
 }
