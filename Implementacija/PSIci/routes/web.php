@@ -48,7 +48,7 @@ Auth::routes();
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/h ome', 'HomeController@index')->name('home');
 
 
 Route::get('/adminProfile', [
