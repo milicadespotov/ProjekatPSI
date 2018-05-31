@@ -14,25 +14,48 @@
 Route::get('/', function () {
     return view('home.index');
 });
+//PODELJENO JE PO IMENIMA KOJE SU CIJE RUTE
+// KAKO SE NE BISMO POGUBILI, PISITE SAMO ISPOD SVOJE:
+
+
+
+//TIJANA
 
 Route::get('/series/{id}', 'GuestController@showSeries');
 
+//TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
+Route::get('episode/{content_id}','');
+
+
+Route::get('/season/{id}', 'GuestController@showSeason');
+
+Route::post('/removeAccount/{id}', 'UserController@remove');
+// END TIJANA
+
+
+// MILICA
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+// END MILICA
 
-<<<<<<< HEAD
+
+
+// ALEKSA
+
+
+
+
+
+
+//END ALEKSA
+
+// FILIP
 Route::post('/addComment','EpisodeController@comment');
 Route::get('deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
 Route::get('updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
 Route::get('updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
 
+// END FILIP
 
 
-//TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
-Route::get('episode/{content_id}','');
-=======
-Route::get('/season/{id}', 'GuestController@showSeason');
-
-Route::post('/removeAccount/{id}', 'UserController@remove');
->>>>>>> e17a842a86b4b6ad35da60f4417fb19efe41b4af
