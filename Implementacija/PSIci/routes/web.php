@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::get('/series/{id}', 'GuestController@showSeries');
 
 //TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
-Route::get('episode/{content_id}','');
+//Route::get('episode/{content_id}','');
 
 
 Route::get('/season/{id}', 'GuestController@showSeason');
@@ -34,9 +34,15 @@ Route::post('/removeAccount/{id}', 'UserController@remove');
 
 
 // MILICA
+
 Auth::routes();
+//Route::post('/login','UserController@loginCheck')->name('login');
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::get('/adminProfile', [
     'uses' => 'AdminController@adminProfile',
     'as' => 'adminProfile'
