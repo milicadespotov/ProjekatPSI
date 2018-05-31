@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Tvshow extends Model
 {
     public function seasons(){
-        return $this->hasMany('App\Season', 'tvshow_id');
+        return $this->hasMany('App\Season', 'tvshow_id')->orderBy('season_number');
     }
+
 
     public function actings(){
         return $this->hasMany('App\Acting', 'tvshow_id');
