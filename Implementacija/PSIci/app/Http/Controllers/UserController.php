@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use App\Rating;
+use App\Content;
 
 class UserController extends Controller
 {
@@ -40,9 +42,6 @@ class UserController extends Controller
 
     public function SignIn(Request $request)
     {
-
-
-
 
         $result = app('App\Http\Controller\UserController')->UserSignIn(); // vraca jedan ako postoji user, nula ako ne postoji
         if ($result == 0) {
@@ -80,9 +79,6 @@ class UserController extends Controller
                     session_start();
                 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
                 $_SESSION['username'] = $user->username;
                 $_SESSION['name'] = $user->name;
                 $_SESSION['last_name'] = $user->surname;
@@ -111,14 +107,30 @@ class UserController extends Controller
             }
             return 0;
         }
-=======
->>>>>>> 2b24d4ae7a01115fdf26155643aa95836e0b8262
->>>>>>> f33a6e7cdd2b6acbb5a5ef6d5967b3dc4548c1c2
->>>>>>> f7ee4aecb2e70d364ea16116f59077820ea03dee
+    }
+
+    public function rateSeries(Content $content) {
+        if ($content==null) return view('home.index');
+        $rate=Rating::find($_SESSION['username'],$content->id);
+        $ratingScore = request('ratedNum');
+        $ratingScore = intval($ratingScore);
+        if ($ratingScore<=0 || $ratingScore>10) return view('home.index');
+        if ($rate==null) {
+            DB::table('rating')->insert(array('user_id'=>$_SESSION['username'],'content_id'=>$content->id,'rate'=>$ratingScore));
+            $sum = $content->number_of_rates*$content->rating+$ratingScore;
+            $content->number_of_rates=$content->number_of_rates+1;
+            $content->rating = $sum / $content->number_of_rates;
+            $content->save();
+        } else {
+            $oldRate = $rate->rate;
+            $sum = $content->number_of_rates*$content->rating-$oldRate+$ratingScore;
+            $content->rating = $sum / $content->number_of_rates;
+            $rate->rate = $ratingScore;
+            $content->save();
+            $rate->save();
+        }
+
     }
 
 
-
-
-
-    }
+}
