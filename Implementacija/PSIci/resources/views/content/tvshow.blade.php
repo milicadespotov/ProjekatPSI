@@ -31,35 +31,68 @@
             <div class="col-md-5">
                 <!--Glavna slika	-->
                 <center>
-                    <img src="{{ asset('img/got.jpg') }}" style="width:100%;height:auto">
+                    @foreach($content->pictures as $picture)
+                        @if($picture->main_picture==true)
+                    <img src="{{ $picture->path }}" style="width:100%;height:auto">
+                        @endif
+                        @endforeach
                 </center>
                 <br>
                 <!--Glavna slika serije-->
                 <div class="col-md-12">
-                    <b>Glumci: </b> Ovaj Onaj, Stiven Tulovic, Aleksa Simovic
+                    <b>Glumci: </b>
+                    @foreach($series->actings as $acting)
+                        $actor = Category::find($acting->actor_id);
+                        {{$actor->name}},
+                        @endforeach
                 </div>
             </div>
             <div class="col-md-2">
                 <table style="border-collapse: separate;border-spacing:25px">
                     <tr>
                         <td>
-                            <b> TV Serija: </b> 2011-</td>
+                            <b> TV Serija: </b>
+                            @if($contents->release_date!=null)
+                            {{$contents->release_date}}
+                                @endif
+                            -
+                            @if ($series->end_date!=null)
+                            {{$series->end_date}}
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <td>
-                            <b>Žanr: </b>Akcija, drama </td>
+                            <b>Žanr: </b>
+                            @foreach($series->type_ofs as $typeof)
+                                $genre = Category::find($typeof->genre_id);
+                                {{$genre->name}},
+                                @endforeach
+                        </td>
                     </tr>
                     <tr>
                         <td>
-                            <b>Zemlja: </b> SAD</td>
+                            <b>Zemlja: </b>
+                            @if ($series->country!=null)
+                                {{$series->country}}
+                                @endif
+                        </td>
                     </tr>
                     <tr>
                         <td>
-                            <b>Trajanje: </b> 57min</td>
+                            <b>Trajanje: </b>
+                            @if($series->length!=null)
+                                {{$series->length}}
+                                @endif
+                        </td>
                     </tr>
                     <tr>
                         <td>
-                            <b>Jezik: </b> engleski</td>
+                            <b>Jezik: </b>
+                            @if($series->language!=null)
+                                {{$series->language}}
+                                @endif
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -82,17 +115,29 @@
                     <th colspan="3" style="text-align: center">
                         <h3>Sezone</h3>
                     </th>
+                    @for($i=0;$i<count($seasons);$i++)
                     <tr>
-                        <td style="width:30%">Ime sezone:</td>
+                        <td style="width:30%"><a href="/season/{{$contents[i]->id}}">{{$contents[i]->name}}</a></td>
                         <td style="padding-top:16px">
+                            @if(Auth::check())
                             <div class="progress">
-                                <div class="progress-bar" style="width:70%">70%</div>
+                                <div class="progress-bar" style="width:{{$seasons[i]->watchingPercentage/$seasons[i]->number_of_episodes}}%">{{$seasons[i]->watchingPercentage/$seasons[i]->number_of_episodes}}%</div>
                             </div>
+                                @else
+                                <div class="progress">
+                                    <div class="progress-bar" style="width:0%">0%</div>
+                                </div>
+                            @endif
                         </td>
                         <td style="width:15%;padding-left:5px">
-                            4/22
+                            @if(Auth::check())
+                           {{ $seasons[i]->watchedPercentage}}/{{$seasons[i]->number_of_episodes}}
+                                @else
+                            0/{{$seasons[i]->number_of_episodes}}
+                            @endif
                         </td>
                     </tr>
+                        @endfor
                 </table>
                 @if (Auth::check() && Auth::user()->is_admin==true)
                 <center>
@@ -113,13 +158,7 @@
                     <h2>Opis:</h2>
                 </center>
                 <!--Opis-->
-                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-                ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-                ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-                ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-                ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-                ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-                ipsum v Lorem ipsum
+                {{$content->description}}
 
             </div>
             <div class="col-md-6">
@@ -147,18 +186,11 @@
             <!--Galerija-->
             <div class="col-md-12">
                 <center>
-                    <a href="{{ asset('img/favicon.png') }}" data-lightbox="movie">
-                        <img src="{{ asset('img/favicon.png') }}">
+                    @foreach($content->pictures as $picture)
+                    <a href="{{ $picture->path }}" data-lightbox="movie">
+                        <img src="{{ $picture->path }}">
                     </a>
-                    <a href="{{ asset('img/got.jpg') }}" data-lightbox="movie">
-                        <img src="{{ asset('img/got.jpg') }}" style="width:100px">
-                    </a>
-                    <a href="{{ asset('img/logo-meghna.png') }}" data-lightbox="movie">
-                        <img src="{{ asset('img/logo-meghna.png') }}">
-                    </a>
-                    <a href="{{ asset('img/meghna.png') }}" data-lightbox="movie">
-                        <img src="{{ asset('img/meghna.png') }}">
-                    </a>
+                  @endforeach
                 </center>
                 @if (Auth::check() && Auth::user()->is_admin==true)
                 <center>

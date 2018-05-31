@@ -97,8 +97,9 @@
 
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-item">
-                                        <a href="#"> UKLONI NALOG </a>
+                                        <a href="#myModal" data-toggle="modal"> UKLONI NALOG </a>
                                     </li>
+
                                     <li class="dropdown-item">
                                         <a href="#"> IZLOGUJ SE </a>
                                     </li>
@@ -149,3 +150,29 @@
         </nav>
     </div>      <!-- /main nav -->
 </header>
+
+<div class="container-fluid">
+
+<div class="modal" id="myModal" style="margin-top:15%;color:black;">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color:#2B2C30;color:white">
+            <div class="modal-header">
+                <h5 class="modal-title" style="font-size:20px">Uklanjanje naloga
+                    <button style="margin-bottom:10px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button></h5>
+            </div>
+            <div class="modal-body">
+                <p>Da li ste sigurni da želite da uklonite svoj nalog?</p>
+            </div>
+            <div class="modal-footer">
+                <form method="post" action="/removeAccount/{{Auth::user()->username}}">
+                <input type="submit" class="btn btn-transparent">Potvrdi</input>
+                <button type="button" class="btn btn-transparent" data-dismiss="modal">Odustani</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -20,3 +20,7 @@ Route::get('/series/{id}', 'GuestController@showSeries');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/season/{id}', 'GuestController@showSeason');
+
+Route::post('/removeAccount/{id}', 'UserController@remove');
