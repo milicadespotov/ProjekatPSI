@@ -24,12 +24,14 @@ Route::get('/', function () {
 Route::get('/series/{id}', 'GuestController@showSeries');
 
 //TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
-Route::get('episode/{content_id}','');
+Route::get('episode/{id}','GuestController@showEpisode');
 
 
 Route::get('/season/{id}', 'GuestController@showSeason');
 
 Route::post('/removeAccount/{id}', 'UserController@remove');
+
+Route::get('/accountManager', 'AdminController@showUsers');
 // END TIJANA
 
 
