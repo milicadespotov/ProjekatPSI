@@ -37,6 +37,20 @@ Route::post('/removeAccount/{id}', 'UserController@remove');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/adminProfile', [
+    'uses' => 'AdminController@adminProfile',
+    'as' => 'adminProfile'
+] );
+
+Route::get('/userProfile', [
+    'uses' => 'UserController@userProfile',
+    'as' => 'userProfile'
+
+]);
+
+
+
+
 // END MILICA
 
 
