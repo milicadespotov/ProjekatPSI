@@ -7,6 +7,7 @@ use App\Comment;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class GuestController extends Controller
 {

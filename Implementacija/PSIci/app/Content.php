@@ -25,4 +25,26 @@ class Content extends Model
     public function ratings(){
         return $this->hasMany('App\Rating', 'content_id');
     }
+
+    public function averageRate(){
+        $ratings = $this->ratings;
+        $sum = 0;
+        foreach($ratings as $rating){
+            $sum = $sum + $rating->rate;
+        }
+        return $sum/count($ratings);
+    }
+
+    public function numberOfRates(){
+        $ratings = $this->ratings;
+        return count($ratings);
+    }
+
+    public function setRating(){
+        $avgRate = $this->averageRate;
+        $number = $this->numberOfRates;
+        DB::beginTransaction();
+        DB::table('contents')->where('contents.id','=', $this->id)->update(['number_of_rates'=>$number, 'rating'=>$avgRate]);
+        DB::commit();
+    }
 }
