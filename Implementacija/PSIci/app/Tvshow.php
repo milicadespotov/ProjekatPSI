@@ -22,4 +22,6 @@ class Tvshow extends Model
     public function directings(){
         return $this->hasMany('App\Directing', 'tvshow_id');
     }
+
+
 }

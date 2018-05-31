@@ -14,7 +14,6 @@ class UserController extends Controller
 {
 
 
-
     public function remove($id)
     {
         $user = User::find($id);
@@ -42,27 +41,18 @@ class UserController extends Controller
     {
 
 
-
-
         $result = app('App\Http\Controller\UserController')->UserSignIn(); // vraca jedan ako postoji user, nula ako ne postoji
         if ($result == 0) {
 
             return redirect()->back()->withInput()->withErrors(['success' => 'Korisnicko ime ili lozinka nisu u redu. Pokusajte ponovo. ']);
-        }
-        else if ($_SESSION['is_admin'] == 1)
-        {
+        } else if ($_SESSION['is_admin'] == 1) {
             return redirect()->route('adminProfile');
-        }
-        else
-        {
+        } else {
             return redirect()->route('userProfile');
         }
 
 
-
     }
-
-
 
 
     public function userSignIn(Request $request)
@@ -80,9 +70,7 @@ class UserController extends Controller
                     session_start();
                 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
                 $_SESSION['username'] = $user->username;
                 $_SESSION['name'] = $user->name;
                 $_SESSION['last_name'] = $user->surname;
@@ -111,14 +99,40 @@ class UserController extends Controller
             }
             return 0;
         }
-=======
->>>>>>> 2b24d4ae7a01115fdf26155643aa95836e0b8262
->>>>>>> f33a6e7cdd2b6acbb5a5ef6d5967b3dc4548c1c2
->>>>>>> f7ee4aecb2e70d364ea16116f59077820ea03dee
-    }
-
-
-
 
 
     }
+
+    public function userProfile(){
+        //dovlacenje user-a
+        $user = DB::table('users')->where('username',$_SESSION['username'])->first();
+
+
+        //dovlacenje posljednje ocijenjenih serija(tj. epizoda serija)
+        //promjenljiva ce se zvati $lastRated
+        $lastRated = DB::table('tvshows')
+                    ->join('ratings', 'content_id', '=', 'ratings.content_id')
+                    ->select('tvshows.*')
+                    ->orderBy('ratings.updated_at','asc')
+                    ->limit(3)
+                    ->get();
+
+        //dovlacenje posljednje odgledanih serije(tj epizoda serija)
+        //promjenljiva ce se zvati $lastWatched
+        $lastWatched = DB::table('episodes')
+                        ->join('watched_episodes', 'content_id', '=', 'watched_episodes.episode_id')
+                        ->select('episodes.*')
+                        ->orderBy('watched_episodes.created_at','asc')
+                        ->limit(3)
+                        ->get();
+
+
+        return view('profile.user', ['user' => $user, 'lastRated' => $lastRated,'lastWatched'=>$lastWatched]);
+
+    }
+
+
+    public function updateInfo(){
+        
+    }
+}

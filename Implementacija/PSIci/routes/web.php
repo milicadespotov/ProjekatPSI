@@ -21,14 +21,13 @@ Route::get('/', function () {
 
 //TIJANA
 
-Route::get('/series/{id}', 'GuestController@showSeries');
+Route::get('/series/{id}', 'GuestController@showSeries')->name('showseries');
 
 //TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
-<<<<<<< HEAD
+
 //Route::get('episode/{content_id}','');
-=======
+
 Route::get('episode/{id}','GuestController@showEpisode');
->>>>>>> f2c9d2c288acb4f9de32beceb32e1076fa2fd74c
 
 
 Route::get('/season/{id}', 'GuestController@showSeason');
@@ -74,10 +73,10 @@ Route::post('/episode/{id}/rate');
 
 // FILIP
 Route::post('/addComment','EpisodeController@comment');
-Route::get('deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
-Route::get('updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
-Route::get('updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
-
+Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
+Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
+Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
+Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate');
 // END FILIP
 
 
