@@ -7,13 +7,13 @@
             <div class="col-lg-4 ">
 
                 <div class="blog-title">
-                    <h1>Naziv epizode</h1>
+                    <h1>{{$content->name}}</h1>
                 </div>
 
             </div>
             <div class="col-lg-8">
                 <div class="blog-title">
-                    <h1>Ocjenjivanje</h1>
+                   @include('rating.rate')
                 </div>
 
             </div>
@@ -29,14 +29,14 @@
             <div class="col-md-4">
                 <!--Glavna slika	-->
                 <center>
-                    <img src="img/got.jpg" style="width:100%;height:auto">
+                    <img src="{{$path}}" style="width:100%;height:auto">
                     @if(Auth::check() && Auth::user()->is_admin==true)
                         <a href="#">
                             <input type="submit" value="Izmeni informacije" class="btn btn-transparent">
                         </a>
                     @endif
                     @if(Auth::check() && Auth::user()->is_admin==false)
-                        <a href="{{route('updatewatched',['id'=>$comment->id])}}">
+                        <a href="{{route('updatewatched',['id'=>$episode->content_id])}}">
                             <input type="submit" value="Označi kao odgledano" class="btn btn-transparent">
                         </a>
                     @endif
@@ -47,9 +47,9 @@
             </div>
             <div class="col-md-4">
                 <h4>Opis: </h4>
-                Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem
-                ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem
-                ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum
+                <p>
+                    {{$content->description}}
+                </p>
             </div>
 
 
@@ -58,22 +58,12 @@
                     <h3>Slike</h3>
                 </center>
                 <center>
-                    <a href="img/favicon.png" data-lightbox="movie">
-                        <img src="img/favicon.png">
+                    @foreach($content->pictures as $picture)
+                    <a href="{{$picture->path}}" data-lightbox="movie">
+                        <img src="{{$picture->path}}">
                     </a>
                     <br>
-                    <a href="img/got.jpg" data-lightbox="movie">
-                        <img src="img/got.jpg" style="width:100px">
-                    </a>
-                    <br>
-                    <a href="img/logo-meghna.png" data-lightbox="movie">
-                        <img src="img/logo-meghna.png">
-                    </a>
-                    <br>
-                    <a href="img/meghna.png" data-lightbox="movie">
-                        <img src="img/meghna.png">
-                    </a>
-                    <br>
+                    @endforeach
                 </center>
                 @if(Auth::check() && Auth::user()->is_admin==true)
                     <center>
@@ -109,13 +99,13 @@
                                     <a href="#">{{ $comment->user_id}}</a>
                                 </cite>
                                 @if(Auth::check() && Auth::user()->is_admin==true)
-                                    <!-- DODATI DA LINKOVI VODE KA RUTAMA ZA UKLANJANJE I MIJENJANJE KOMENTARA(da sadrzi spojler) -->
+
                                     <a href="{{ route('deletecomment',['id'=>$comment->id]) }}" class="replay pull-right">Ukloni komentar</a><br>
                                     <a href="{{ route('updatespoiler',['id'=>$comment->id]) }}" class="replay pull-right">Sadrzi spojlere</a>
                                 @endif
                                 <!-- PRIAKZI MU KOMENTAR AKO JE ON NJEGOV KREATOR-->
                                 @if(Auth::check() && Auth::user()->is_admin==false && Auth::user()->username==$comment->user_id)
-                                    <!-- DODATI DA LINKOVI VODE KA RUTAMA ZA UKLANJANJE I MIJENJANJE KOMENTARA(da sadrzi spojler) -->
+
                                     <a href="{{ route('deletecomment',['id'=>$comment->id]) }}" class="replay pull-right">Ukloni komentar</a>
                                 @endif
 
@@ -142,8 +132,8 @@
             <!-- Forma za postavljanje komentara-->
             <div class="col-md-8">
                 <h3>Ostavi komentar</h3>
-                <form id="comment-form" method="post" action="addComment">
-                    <input type="hidden" name="episode_id" value=<?php echo $episode->content_id; ?>  lenght="30"/><!--Id epizode-->
+                <form id="comment-form" method="post" action="addcomment">
+                    <input type="hidden" name="episode_id" value={{$episode->content_id}}  lenght="30"/><!--Id epizode-->
                     @csrf
                     <!-- End .form-group -->
                     <div class="form-group">

@@ -24,12 +24,22 @@ Route::get('/', function () {
 Route::get('/series/{id}', 'GuestController@showSeries');
 
 //TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
+<<<<<<< HEAD
 //Route::get('episode/{content_id}','');
+=======
+<<<<<<< HEAD
+//Route::get('episode/{content_id}','');
+=======
+Route::get('episode/{id}','GuestController@showEpisode');
+>>>>>>> f2c9d2c288acb4f9de32beceb32e1076fa2fd74c
+>>>>>>> d86cd7564713b1b7b12dbcc6ed2544e2a9737ff1
 
 
 Route::get('/season/{id}', 'GuestController@showSeason');
 
 Route::post('/removeAccount/{id}', 'UserController@remove');
+
+Route::get('/accountManager', 'AdminController@showUsers');
 // END TIJANA
 
 
@@ -63,7 +73,9 @@ Route::get('/userProfile', [
 
 // ALEKSA
 
-
+Route::post('/series/{id}/rate');
+Route::post('/season/{id}/rate');
+Route::post('/episode/{id}/rate');
 
 
 

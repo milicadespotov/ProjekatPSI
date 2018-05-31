@@ -80,7 +80,7 @@
                                     <a href="#"> IZLOGUJ SE </a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a href="#"> UPRAVLJANJE NALOZIMA </a>
+                                    <a href="/accountManager"> UPRAVLJANJE NALOZIMA </a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a href="#"> PROMENI LOZINKU </a>

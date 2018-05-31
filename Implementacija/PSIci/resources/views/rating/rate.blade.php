@@ -7,94 +7,108 @@
 </style>
 <script>
     $(document).ready(function(){
-        var startRate = 4; //promeni iz rejtina
+        var startRate =
+                @if ($content->currentRate==null) {{0}};
+        @else {{$content->currentRate}}
+        @endif;
+
+        if (startRate==0) {
+            for (i=1;i<=10;i++)
+                $("#"+i).removeClass("checked");
+        } else {
+            for (i=1;i<=startRate;i++)
+                $("#"+i).addClass("checked");
+            for (i=startRate+1;i<=10;i++)
+                $("#"+i).removeClass("checked");
+        }
+
         $("#1").mouseenter(function(){
-            var broj=1;
-            for (i=1;i<=broj;i++) {
+            var num=1;
+            for (i=1;i<=num;i++) {
                 $("#"+i).addClass("checked");
             }
-            for (i=broj+1;i<=10;i++) {
+            for (i=num+1;i<=10;i++) {
                 $("#"+i).removeClass("checked");
             }
         });
         $("#2").mouseenter(function(){
-            var broj=2;
-            for (i=1;i<=broj;i++) {
+            var num=2;
+            for (i=1;i<=num;i++) {
                 $("#"+i).addClass("checked");
             }
-            for (i=broj+1;i<=10;i++) {
+            for (i=num+1;i<=10;i++) {
                 $("#"+i).removeClass("checked");
             }
         });
         $("#3").mouseenter(function(){
-            var broj=3;
-            for (i=1;i<=broj;i++) {
+            var num=3;
+            for (i=1;i<=num;i++) {
                 $("#"+i).addClass("checked");
             }
-            for (i=broj+1;i<=10;i++) {
+            for (i=num+1;i<=10;i++) {
                 $("#"+i).removeClass("checked");
             }
         });
         $("#4").mouseenter(function(){
-            var broj=4;
-            for (i=1;i<=broj;i++) {
+            var num=4;
+            for (i=1;i<=num;i++) {
                 $("#"+i).addClass("checked");
             }
-            for (i=broj+1;i<=10;i++) {
+            for (i=num+1;i<=10;i++) {
                 $("#"+i).removeClass("checked");
             }
         });
         $("#5").mouseenter(function(){
-            var broj=5;
-            for (i=1;i<=broj;i++) {
+            var num=5;
+            for (i=1;i<=num;i++) {
                 $("#"+i).addClass("checked");
             }
-            for (i=broj+1;i<=10;i++) {
+            for (i=num+1;i<=10;i++) {
                 $("#"+i).removeClass("checked");
             }
         });
         $("#6").mouseenter(function(){
-            var broj=6;
-            for (i=1;i<=broj;i++) {
+            var num=6;
+            for (i=1;i<=num;i++) {
                 $("#"+i).addClass("checked");
             }
-            for (i=broj+1;i<=10;i++) {
+            for (i=num+1;i<=10;i++) {
                 $("#"+i).removeClass("checked");
             }
         });
         $("#7").mouseenter(function(){
-            var broj=7;
-            for (i=1;i<=broj;i++) {
+            var num=7;
+            for (i=1;i<=num;i++) {
                 $("#"+i).addClass("checked");
             }
-            for (i=broj+1;i<=10;i++) {
+            for (i=num+1;i<=10;i++) {
                 $("#"+i).removeClass("checked");
             }
         });
         $("#8").mouseenter(function(){
-            var broj=8;
-            for (i=1;i<=broj;i++) {
+            var num=8;
+            for (i=1;i<=num;i++) {
                 $("#"+i).addClass("checked");
             }
-            for (i=broj+1;i<=10;i++) {
+            for (i=num+1;i<=10;i++) {
                 $("#"+i).removeClass("checked");
             }
         });
         $("#9").mouseenter(function(){
-            var broj=9;
-            for (i=1;i<=broj;i++) {
+            var num=9;
+            for (i=1;i<=num;i++) {
                 $("#"+i).addClass("checked");
             }
-            for (i=broj+1;i<=10;i++) {
+            for (i=num+1;i<=10;i++) {
                 $("#"+i).removeClass("checked");
             }
         });
         $("#10").mouseenter(function(){
-            var broj=10;
-            for (i=1;i<=broj;i++) {
+            var num=10;
+            for (i=1;i<=num;i++) {
                 $("#"+i).addClass("checked");
             }
-            for (i=broj+1;i<=10;i++) {
+            for (i=num+1;i<=10;i++) {
                 $("#"+i).removeClass("checked");
             }
         });
@@ -160,7 +174,8 @@
         });
     });
 </script>
-
+Broj glasova:&nbsp;{{$content->number_of_rates}}&nbsp;Prosecna ocena:{{$content->rating}} Ocenite:
+@if (Auth::check())
 <form action="{{$type}}/{{$content->id}}/rate" method="post" id="rateForm">
     <div id="stars_data">
         <li class="fa fa-star" id="1"></li>&nbsp;
@@ -177,3 +192,4 @@
     <input type="text" id="rating-num" name="ratedNum" hidden>
     <input type="submit" id="submit-button" hidden>
 </form>
+@endif
