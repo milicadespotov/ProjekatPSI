@@ -1,3 +1,16 @@
+.forgot a.btn.btn-link:hover
+{
+	bg-color: #8A2BE2 !important;
+	color: #8A2BE2 !important;
+}
+
+.backgroundLogin
+{
+    background-image: url("../img/background1.jpg");
+}
+
+
+
 #og-grid > .mix{
 	display: none;
 }
