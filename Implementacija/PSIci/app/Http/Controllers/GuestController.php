@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use App\Tvshow;
+use App\Content;
+use App\Season;
 
 class GuestController extends Controller
 {

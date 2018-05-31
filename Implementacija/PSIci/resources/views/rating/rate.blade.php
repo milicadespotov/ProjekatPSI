@@ -177,6 +177,7 @@
 Broj glasova:&nbsp;{{$content->number_of_rates}}&nbsp;Prosecna ocena:{{$content->rating}} Ocenite:
 @if (Auth::check())
 <form action="{{$type}}/{{$content->id}}/rate" method="post" id="rateForm">
+
     <div id="stars_data">
         <li class="fa fa-star" id="1"></li>&nbsp;
         <li class="fa fa-star" id="2"></li>&nbsp;

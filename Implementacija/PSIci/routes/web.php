@@ -21,16 +21,34 @@ Route::get('/', function () {
 
 //TIJANA
 
-Route::get('/series/{id}', 'GuestController@showSeries');
+Route::get('/series/{id}', 'GuestController@showSeries')->name('showseries');
+
+
+Route::get('episode/{id}','GuestController@showEpisode');
+
 
 //TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
 
+<<<<<<< HEAD
+Route::get('episode/{content_id}','');
+
+Route::get('episode/{id}','GuestController@showEpisode');
+
+=======
+<<<<<<< HEAD
+//Route::get('episode/{content_id}','');
+
+Route::get('episode/{id}','GuestController@showEpisode');
+=======
 //Route::get('episode/{content_id}','');
 
 
 //Route::get('episode/{content_id}','');
 
 Route::get('episode/{id}','GuestController@showEpisode');
+
+>>>>>>> e5f924f466b55314e00b08ba527185a98cf5e276
+>>>>>>> 7d240f4b72e2033c3339ab38521ef220b13f244b
 
 
 Route::get('/season/{id}', 'GuestController@showSeason');
@@ -73,7 +91,7 @@ Route::get('/userProfile', [
 
 // ALEKSA
 
-Route::post('/series/{id}/rate');
+Route::post('/series/{tvshow}/rate','UserController@rateSeries');
 Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
 
@@ -84,10 +102,14 @@ Route::post('/episode/{id}/rate');
 
 // FILIP
 Route::post('/addComment','EpisodeController@comment');
-Route::get('deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
-Route::get('updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
-Route::get('updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
+Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
+Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
+Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
+<<<<<<< HEAD
+Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate');
+=======
 
+>>>>>>> e5f924f466b55314e00b08ba527185a98cf5e276
 // END FILIP
 
 

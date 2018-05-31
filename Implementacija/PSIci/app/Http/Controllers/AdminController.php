@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comment;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -83,12 +89,13 @@ class AdminController extends Controller
     }
 
     public function showUsers(){
-        $users = User::paginate(10);
+        $users = DB::table('users')->where('is_admin','=',false)->paginate(10);
         return view('home.users', compact('users'));
     }
 
     public function makeAdmin($id){
         $user = User::find($id);
         DB::table('users')->where('username','=',$id)->update(['is_admin'=>true]);
+        redirect()->route('accountManager');
     }
 }
