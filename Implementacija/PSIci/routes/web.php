@@ -20,3 +20,13 @@ Route::get('/series/{id}', 'GuestController@showSeries');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/addComment','EpisodeController@comment');
+Route::get('deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
+Route::get('updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
+Route::get('updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
+
+
+
+//TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
+Route::get('episode/{content_id}','');
