@@ -32,6 +32,8 @@ Route::get('/season/{id}', 'GuestController@showSeason');
 Route::post('/removeAccount/{id}', 'UserController@remove');
 
 Route::get('/accountManager', 'AdminController@showUsers');
+
+Route::post('/userToAdmin/{id}', 'AdminController@makeAdmin');
 // END TIJANA
 
 

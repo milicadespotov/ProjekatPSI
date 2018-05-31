@@ -80,9 +80,7 @@ class UserController extends Controller
                     session_start();
                 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
                 $_SESSION['username'] = $user->username;
                 $_SESSION['name'] = $user->name;
                 $_SESSION['last_name'] = $user->surname;
@@ -111,10 +109,7 @@ class UserController extends Controller
             }
             return 0;
         }
-=======
->>>>>>> 2b24d4ae7a01115fdf26155643aa95836e0b8262
->>>>>>> f33a6e7cdd2b6acbb5a5ef6d5967b3dc4548c1c2
->>>>>>> f7ee4aecb2e70d364ea16116f59077820ea03dee
+
     }
 
 
