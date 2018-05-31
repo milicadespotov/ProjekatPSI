@@ -13,7 +13,7 @@
             </div>
             <div class="col-lg-8">
                 <div class="blog-title">
-                    <h1>Ocjenjivanje</h1>
+                   @include('rating.rate')
                 </div>
 
             </div>
