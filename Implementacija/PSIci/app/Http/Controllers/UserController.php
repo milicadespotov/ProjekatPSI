@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Comment;
 use Illuminate\Support\Facades\Input;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+<<<<<<< HEAD
     public function remove($id){
         $user = User::find($id);
         DB::beginTransaction();
@@ -30,5 +32,35 @@ class UserController extends Controller
         Auth::logout();
         DB::table('users')->where('username', '=',$id)->delete();
         return view('home.index');
+=======
+    public function remove($id)
+    {
+
     }
+
+    public function SignIn(Request $request)
+    {
+        $user_type = "";
+
+        if (isset($_POST['selected_text']))
+        {
+            $user_type = $_POST['selected_text'];
+        }
+
+        if (strcmp($user_type, "Korisnik") == 0)
+        {
+            echo "user";
+            $result = app('');
+        }
+
+
+    }
+
+    public function create()
+    {
+
+
+>>>>>>> 2b24d4ae7a01115fdf26155643aa95836e0b8262
+    }
+
 }

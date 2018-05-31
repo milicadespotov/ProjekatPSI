@@ -74,7 +74,7 @@
                                     <a href="#"> DODAVANJE NOVIH SERIJA </a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a href="#"> UKLONI NALOG </a>
+                                    <a href="#myModal" data-toggle="modal"> UKLONI NALOG </a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a href="#"> IZLOGUJ SE </a>
@@ -103,9 +103,7 @@
                                     <li class="dropdown-item">
                                         <a href="#"> IZLOGUJ SE </a>
                                     </li>
-                                    <li class="dropdown-item">
-                                        <a href="#"> UPRAVLJANJE NALOZIMA </a>
-                                    </li>
+
                                     <li class="dropdown-item">
                                         <a href="#"> PROMENI LOZINKU </a>
                                     </li>
