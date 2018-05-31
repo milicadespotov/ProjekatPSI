@@ -23,6 +23,8 @@ class Content extends Model
         return $this->hasMany('App\Picture', 'picture_id');
     }
 
+
+
     public function ratings(){
         return $this->hasMany('App\Rating', 'content_id');
     }
