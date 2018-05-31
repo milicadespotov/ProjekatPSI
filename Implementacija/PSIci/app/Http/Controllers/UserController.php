@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class UserController extends Controller
 {
@@ -34,10 +35,11 @@ class UserController extends Controller
         Auth::logout();
         DB::table('users')->where('username', '=', $id)->delete();
         return view('home.index');
+
     }
 
 
-    public function SignIn(Request $request)
+    public function loginCheck(Request $request)
     {
 
 
@@ -48,14 +50,35 @@ class UserController extends Controller
         } else if ($_SESSION['is_admin'] == 1) {
             return redirect()->route('adminProfile');
         } else {
+<<<<<<< HEAD
             return redirect()->route('userProfile');
         }
 
 
     }
+=======
 
 
+            $result = app('App\Http\Controller\UserController')->UserLogin(); // vraca jedan ako postoji user, nula ako ne postoji
+            if ($result == 0) {
+>>>>>>> e5f924f466b55314e00b08ba527185a98cf5e276
+
+                return redirect()->back()->withInput()->withErrors(['success' => 'Korisnicko ime ili lozinka nisu u redu. Pokusajte ponovo. ']);
+            } else if ($_SESSION['is_admin'] == 1) {
+                return redirect()->route('adminProfile');
+            } else {
+                return redirect()->route('userProfile');
+            }
+
+<<<<<<< HEAD
     public function userSignIn(Request $request)
+=======
+
+        }
+    }
+
+    public function userLogin(Request $request)
+>>>>>>> e5f924f466b55314e00b08ba527185a98cf5e276
     {
         $user = DB::table('users')
             ->where('username', $request->username)
@@ -73,8 +96,7 @@ class UserController extends Controller
 
                 $_SESSION['username'] = $user->username;
                 $_SESSION['name'] = $user->name;
-                $_SESSION['last_name'] = $user->surname;
-                $_SESSION['gender'] = $user->gender;
+                $_SESSION['surname'] = $user->surname;
                 $_SESSION['email'] = $user->email;
                 $_SESSION['is_admin'] = $user->is_admin;
 
@@ -99,9 +121,12 @@ class UserController extends Controller
             }
             return 0;
         }
+<<<<<<< HEAD
 
 
     }
+=======
+>>>>>>> e5f924f466b55314e00b08ba527185a98cf5e276
 
     public function userProfile(){
         //dovlacenje user-a
@@ -117,6 +142,7 @@ class UserController extends Controller
                     ->limit(3)
                     ->get();
 
+<<<<<<< HEAD
         //dovlacenje posljednje odgledanih serije(tj epizoda serija)
         //promjenljiva ce se zvati $lastWatched
         $lastWatched = DB::table('episodes')
@@ -130,9 +156,44 @@ class UserController extends Controller
         return view('profile.user', ['user' => $user, 'lastRated' => $lastRated,'lastWatched'=>$lastWatched]);
 
     }
+=======
+        $_SESSION['username'] = $user->username;
+        $_SESSION['name'] = $user->name;
+        $_SESSION['last_name'] = $user->surname;
+        $_SESSION['gender'] = $user->gender;
+        $_SESSION['email'] = $user->email;
+        $_SESSION['is_admin'] = $user->is_admin;
+
+        $userForLogin = new User();
+        $userForLogin->username = $user->username;
+        $userForLogin->name = $user->name;
+        $userForLogin->surname = $user->surname;
+        $userForLogin->email = $user->email;
+        $userForLogin->gender = $user->gender;
+        $userForLogin->password = $user->paswword;
+        $userForLogin->birth_date = $user->birth_date;
+        $userForLogin->security_question = $user->security_question;
+        $userForLogin->answer = $user->answer;
+        $userForLogin->is_admin = $user->is_admin;
+        $userForLogin->picture_path = $user->picture_path;
+        $userForLogin->admin_since = $user->admin_since;
+        $userForLogin->registration_date = $user->registration_date;
+        Auth::login($userForLogin);
+
+        return 1;
+>>>>>>> e5f924f466b55314e00b08ba527185a98cf5e276
 
 
     public function updateInfo(){
         
     }
 }
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+>>>>>>> e5f924f466b55314e00b08ba527185a98cf5e276

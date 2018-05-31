@@ -23,11 +23,25 @@ Route::get('/', function () {
 
 Route::get('/series/{id}', 'GuestController@showSeries')->name('showseries');
 
+
+Route::get('episode/{id}','GuestController@showEpisode');
+
+
 //TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
+
+<<<<<<< HEAD
+//Route::get('episode/{content_id}','');
+
+Route::get('episode/{id}','GuestController@showEpisode');
+=======
+//Route::get('episode/{content_id}','');
+
 
 //Route::get('episode/{content_id}','');
 
 Route::get('episode/{id}','GuestController@showEpisode');
+
+>>>>>>> e5f924f466b55314e00b08ba527185a98cf5e276
 
 
 Route::get('/season/{id}', 'GuestController@showSeason');
@@ -35,13 +49,21 @@ Route::get('/season/{id}', 'GuestController@showSeason');
 Route::post('/removeAccount/{id}', 'UserController@remove');
 
 Route::get('/accountManager', 'AdminController@showUsers');
+
+Route::post('/userToAdmin/{id}', 'AdminController@makeAdmin');
 // END TIJANA
 
 
 // MILICA
+
 Auth::routes();
+//Route::post('/login','UserController@loginCheck')->name('login');
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::get('/adminProfile', [
     'uses' => 'AdminController@adminProfile',
     'as' => 'adminProfile'
@@ -76,7 +98,11 @@ Route::post('/addComment','EpisodeController@comment');
 Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
 Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
 Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
+<<<<<<< HEAD
 Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate');
+=======
+
+>>>>>>> e5f924f466b55314e00b08ba527185a98cf5e276
 // END FILIP
 
 
