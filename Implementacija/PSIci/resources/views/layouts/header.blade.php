@@ -53,12 +53,68 @@
 
                     </ul>
                 </li>
+                @if(!Auth::check())
                 <li>
                     <a href="#">Uloguj se</a>
                 </li>
                 <li>
                     <a href="#">Prijavi se</a>
                 </li>
+                @endif
+                @if(Auth::check())
+                    @if(Auth::user()->is_admin==true)
+
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown">{{Auth::user()->name}} {{Auth::user()->surname}}
+                                <span class="fa fa-caret-down"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item">
+                                    <a href="#"> DODAVANJE NOVIH SERIJA </a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="#"> UKLONI NALOG </a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="#"> IZLOGUJ SE </a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="#"> UPRAVLJANJE NALOZIMA </a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="#"> PROMENI LOZINKU </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        @endif
+                    @if(Auth::user()->is_admin==false)
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown">{{Auth::user()->name}} {{Auth::user()->surname}}
+                                    <span class="fa fa-caret-down"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item">
+                                        <a href="#"> UKLONI NALOG </a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a href="#"> IZLOGUJ SE </a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a href="#"> UPRAVLJANJE NALOZIMA </a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a href="#"> PROMENI LOZINKU </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                    @endif
+                    @endif
                 <li style="padding-top:15px;margin-left:20px">
                     <div class="widget-content">
 
