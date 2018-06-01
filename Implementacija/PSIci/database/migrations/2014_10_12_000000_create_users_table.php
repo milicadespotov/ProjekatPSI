@@ -14,14 +14,15 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('username', 20);
+            $table->increments('id');
+            $table->string('username', 20)->unique();
             $table->string('name',20)->nullable();
             $table->string('surname', 30)->nullable();
             $table->char('gender', 1)->nullable();
             $table->string('email', 30)->unique();
             $table->string('password');
             $table->timestamp('birth_date')->nullable();
-            $table->boolean('is_admin');
+            $table->boolean('is_admin')->default(false);
             $table->string('security_question', 100);
             $table->string('answer', 100);
             $table->string('picture_path')->nullable();
@@ -29,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('admin_since')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->primary('username');
+
         });
     }
 

@@ -14,9 +14,13 @@
             </div>
             <div class="col-lg-4">
                 @if(Auth::check() && Auth::user()->is_admin==true)
-                <a href="#">
-                    <input type="submit" value="Dodaj epizodu" class="btn btn-transparent">
-                </a>
+                    <center>
+                        <form method="post" action="/addEpisode/{{$content->id}}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @csrf
+                            <input type="submit" value="Dodaj epizodu" class="btn btn-transparent">
+                        </form>
+                    </center>
                     @endif
 
             </div>

@@ -15,7 +15,7 @@ class Season extends Model
     }
 
     public function watchedPercentage(){
-        $array = DB::table('episodes')->join('watched_episodes')->where('episodes.season_id', '=', $this->content_id)->where('episodes.content_id', '=', 'watched_episodes.episode_id', '=', 'episodes.content_id');
+        $array = DB::table('episodes')->join('watched_episodes','episodes.content_id','=','watched_episodes.episode_id')->where('episodes.season_id', '=', $this->content_id)->where('episodes.content_id', '=', 'watched_episodes.episode_id');
         $count = count($array);
         return $count;
     }

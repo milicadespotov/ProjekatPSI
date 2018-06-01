@@ -55,10 +55,10 @@
                 </li>
                 @if(!Auth::check())
                 <li>
-                    <a href="#">Uloguj se</a>
+                    <a href="{{route('login')}}">Uloguj se</a>
                 </li>
                 <li>
-                    <a href="#">Prijavi se</a>
+                    <a href="{{route('register')}}">Prijavi se</a>
                 </li>
                 @endif
                 @if(Auth::check())
@@ -71,13 +71,13 @@
 
                             <ul class="dropdown-menu">
                                 <li class="dropdown-item">
-                                    <a href="#"> DODAVANJE NOVIH SERIJA </a>
+                                    <a href="/addSeries"> DODAVANJE NOVIH SERIJA </a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a href="#myModal" data-toggle="modal"> UKLONI NALOG </a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a href="#"> IZLOGUJ SE </a>
+                                    <a href="{{route('logout')}}"> IZLOGUJ SE </a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a href="/accountManager"> UPRAVLJANJE NALOZIMA </a>
@@ -101,7 +101,7 @@
                                     </li>
 
                                     <li class="dropdown-item">
-                                        <a href="#"> IZLOGUJ SE </a>
+                                            <a href="{{ route('logout') }}" class = "btn" type = "submit"> IZLOGUJ SE </a>
                                     </li>
 
                                     <li class="dropdown-item">

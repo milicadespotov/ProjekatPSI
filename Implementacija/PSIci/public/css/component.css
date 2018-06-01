@@ -4,13 +4,21 @@
 	color: #8A2BE2 !important;
 }
 
+
+
 .backgroundLogin
 {
-    background-image: url("../img/background1.jpg");
+    background-image: url("../img/background2.jpg");
     opacity: 0.5;
 }
 
 
+.backgroundLoginI
+{
+    background-image: url("../img/background2.jpg");
+
+
+}
 
 
 #og-grid > .mix{
@@ -216,3 +224,4 @@
 	.og-details { float: none; width: 100%; }
 	
 }
+

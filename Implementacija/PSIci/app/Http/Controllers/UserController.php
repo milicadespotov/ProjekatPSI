@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-
 use App\Rating;
 use App\Content;
 
@@ -79,11 +78,17 @@ class UserController extends Controller
     public function userProfile()
     {
         //dovlacenje user-a
-             $user = DB::table('users')->where('username', $_SESSION['username'])->first();
+
+
+             //$user = DB::table('users')->where('username', session()->get('username'))->first();
+
+        $user = Auth::user();
+
+
             //dovlacenje posljednje ocijenjenih serija(tj. epizoda serija)
             //promjenljiva ce se zvati $lastRated
             $lastRated = DB::table('tvshows')
-                ->join('ratings', 'content_id', '=', 'ratings.content_id')
+                ->join('ratings', 'tvshows.content_id', '=', 'ratings.content_id')
                 ->select('tvshows.*')
                 ->orderBy('ratings.updated_at', 'asc')
                 ->limit(3)
@@ -91,7 +96,7 @@ class UserController extends Controller
             //dovlacenje posljednje odgledanih serije(tj epizoda serija)
             //promjenljiva ce se zvati $lastWatched
             $lastWatched = DB::table('episodes')
-                ->join('watched_episodes', 'content_id', '=', 'watched_episodes.episode_id')
+                ->join('watched_episodes', 'episodes.content_id', '=', 'watched_episodes.episode_id')
                 ->select('episodes.*')
                 ->orderBy('watched_episodes.created_at', 'asc')
                 ->limit(3)
@@ -108,8 +113,70 @@ class UserController extends Controller
 
 
     public function updateInfo(){
-        
+        return view('profile.user_update',['user'=>Auth::user()]);
     }
 
+    public function postUpdateInfo(Request $request){
+        $user = Auth::user();
+        //stare vrijednosti za polja
+        $oldusername = $user->username;
+        $oldname = $user->name;
+        $oldsurname = $user->surname;
+        $oldemail = $user->email;
+        $oldgender = $user->gender;
+        $oldbdate = $user->birth_date;
+
+
+        $newname = $request['name'];
+        $newsurname = $request['surname'];
+        $newemail = $request['email'];
+        $newgender = $request['gender'];
+        $newbdate = $request['birth_date'];
+
+
+
+        //provjera da li je email jedinstven
+        if($oldemail != $newemail){
+            $existingMailUser = DB::table('users') //user sa istim e-mailom kao novi
+                ->where('email',$newemail)
+                ->get();
+
+            if(count($existingMailUser)!=0){
+                return redirect()->back()->withInput()->withErrors(array('email' => 'Ovaj email je vec zauzet!'));
+            }
+
+            $this->validate($request, [
+
+                'name' => 'max:20',
+                'surname' => 'max:30',
+                'email' => 'email|max:30'
+            ]);
+
+
+            //polja koja ne smiju biti prazna
+
+            if ($newname != '') {
+                $user->name = $newname;
+            }
+            if ($newsurname != '') {
+                $user->surname = $newsurname;
+            }
+            if ($newemail != '') {
+                $user->email = $newemail;
+            }
+
+            $user->gender = $newgender;
+            $user->birth_date = $newbdate;
+
+            $user->save();//PROBATI I SA $user->update() !!!!!!
+
+            return redirect()->route('userProfile');
+
+
+
+        }
+
+
+    }
 }
 

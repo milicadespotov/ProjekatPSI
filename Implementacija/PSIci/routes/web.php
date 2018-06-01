@@ -30,9 +30,25 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
+<<<<<<< HEAD
+=======
 //Route::get('episode/{content_id}','');
 
-Route::get('episode/{id}','GuestController@showEpisode');
+
+///Route::get('episode/{content_id}','');
+
+
+>>>>>>> 2f7f5d8b4b24ab07848d18564501b2f599543894
+//Route::get('episode/{content_id}','');
+
+///Route::get('episode/{content_id}','');
+
+
+
+
+//Route::get('episode/{content_id}','');
+
+//Route::get('episode/{id}','GuestController@showEpisode');
 
 //Route::get('episode/{content_id}','');
 
@@ -49,6 +65,23 @@ Route::post('/removeAccount/{id}', 'UserController@remove');
 Route::get('/accountManager', 'AdminController@showUsers');
 
 Route::post('/userToAdmin/{id}', 'AdminController@makeAdmin');
+
+Route::get('/addSeries','AdminController@seriesInput');
+
+Route::post('/confirmSeries', 'AdminController@makeSeries');
+
+Route::post('/addActor/{id}', 'AdminController@addActor');
+
+Route::post('/addDirector/{id}','AdminController@addDirector');
+
+Route::post('/addSeason/{id}', 'AdminController@seasonInput');
+
+Route::post('/confirmSeason/{id}','AdminController@makeSeason');
+
+Route::post('/addEpisode/{id}', 'AdminController@episodeInput');
+
+Route::post('/confirmEpisode/{id}','AdminController@makeEpisode');
+
 // END TIJANA
 
 
@@ -73,6 +106,12 @@ Route::get('/userProfile', [
 
 ]);
 
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+Route::get('/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
+
+Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
+
 
 
 
@@ -82,22 +121,28 @@ Route::get('/userProfile', [
 
 // ALEKSA
 
+<<<<<<< HEAD
 Route::post('/series/{tvshow}/rate','UserController@rateContent');
 Route::post('/season/{id}/rate','UserController@rateContent');
 Route::post('/episode/{id}/rate','UserController@rateContent');
 Route::get('/search','GuestController@search');
 
 
+=======
+Route::post('/series/{tvshow}/rate','UserController@rateSeries');
+Route::post('/season/{id}/rate');
+Route::post('/episode/{id}/rate');
+>>>>>>> 2f7f5d8b4b24ab07848d18564501b2f599543894
 
 //END ALEKSA
 
 // FILIP
-Route::post('/addComment','EpisodeController@comment');
+Route::post('/addComment','EpisodeController@comment')->name('addcomment');
 Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
 Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
 Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
-
 Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate');
+Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoupdate');
 
 // END FILIP
 
