@@ -19,4 +19,7 @@ class Episode extends Model
         $picture = DB::table('pictures')->where('pictures.content_id','=',$this->content_id)->where('pictures.main_picture','=',true);
         return $picture;
     }
+
+
+     
 }

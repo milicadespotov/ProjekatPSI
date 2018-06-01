@@ -36,10 +36,10 @@
                 </center>
                 <br>
                 <div>
-                    <center>
+                    <center><!--Sve ocijenjene serije-->
                         @foreach($lastRated as $show)
-                             <a href="{{route('showseries',['id'=>$show->content_id])}}" data-lightbox="movie">
-                                 <img src="{{$show->mainPicture}}" style="width:300px">
+                             <a href="{{route('showseries',['id'=>$show->content_id])}}" >
+                                 <img src="{{$show->mainPicture}}" style="width:300px;height:auto;">
                              </a>
                         @endforeach
                     </center>
@@ -53,10 +53,10 @@
                 </center>
                 <br>
                 <div>
-                    <center>
+                    <center><!--Sve odgledane epizode-->
                         @foreach($lastWatched as $episode)
-                            <a href="{{route('showepisode',['id'=>$episode->content_id])}}" data-lightbox="movie">
-                                <img src="{{$episode->mainPicture}}" style="width:300px">
+                            <a href="{{route('showepisode',['id'=>$episode->content_id])}}" >
+                                <img src="{{$episode->mainPicture}}" style="width:300px;height:auto;">
                             </a>
                         @endforeach
                     </center>

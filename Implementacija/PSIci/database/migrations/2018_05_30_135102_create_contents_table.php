@@ -21,6 +21,7 @@ class CreateContentsTable extends Migration
             $table->string('description')->nullable();
             $table->integer('number_of_rates')->default(0);
             $table->float('rating',4, 2 )->default(0);
+            $table->integer('number_of_pictures')->default(0);
             $table->timestamps();
 
         });

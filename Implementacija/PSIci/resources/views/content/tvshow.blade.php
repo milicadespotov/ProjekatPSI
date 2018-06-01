@@ -141,9 +141,11 @@
                 </table>
                 @if (Auth::check() && Auth::user()->is_admin==true)
                 <center>
-                    <a href="#">
+                    <form method="post" action="/addSeason/{{$content->id}}">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @csrf
                         <input type="submit" value="Dodaj sezonu" class="btn btn-transparent">
-                    </a>
+                    </form>
                 </center>
                     @endif
             </div>
