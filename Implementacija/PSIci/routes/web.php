@@ -103,6 +103,12 @@ Route::get('/userProfile', [
 
 ]);
 
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+Route::get('/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
+
+Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
+
 
 
 
