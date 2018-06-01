@@ -33,7 +33,7 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 ///Route::get('episode/{content_id}','');
-
+ 
 
 
 
@@ -110,9 +110,6 @@ Route::get('/userProfile', [
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
 Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
-
-
-
 
 //END ALEKSA
 
