@@ -5,8 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\File;
+use \Crypt;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class RegisterController extends Controller
 {
@@ -61,12 +67,40 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+
+    public function register(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $request->validate( [
+            'username' => 'required|unique:users|max:20',
+            'name' => 'max:20',
+            'surname' => 'max:30',
+            'password' => 'required|min:6|alpha_dash',
+            'password_confirm' => 'required_with:password|same:password',
+            'email' => 'required|email|unique:users|max:40',
+            'security_question' => 'required',
+            'answer' => 'required',
+            'gender' => 'required'
         ]);
+
+        $user = new User();
+
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->password =  Crypt::encryptString($request->password);
+        $user->email = $request->email;
+        $user->security_question = $request->security_question;
+        $user->answer  = $request->answer;
+        $user->gender = $request->gender;
+        $user->birth_date = $request->birth_date;
+        if (Input::has('picture')) {
+            $file = $request->file('picture')->store('img');
+            $filename = $request->name . '-' . $user->username . '.jpg';
+            $user->picture_path = $filename;
+        }
+        $user->save();
+        return redirect()->route('login');
+
     }
+
 }

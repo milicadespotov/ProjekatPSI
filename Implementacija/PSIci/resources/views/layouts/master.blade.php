@@ -38,11 +38,11 @@
     <link rel="stylesheet" href="{{ asset('css/component.css') }}">
     <!-- Slit Slider css -->
     <link rel="stylesheet" href="{{ asset('css/slit-slider.css') }}">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <!-- Media Queries -->
     <link rel="stylesheet" href="{{ asset('css/media-queries.css') }}">
 
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <!--
         Google Font
         =========================== -->

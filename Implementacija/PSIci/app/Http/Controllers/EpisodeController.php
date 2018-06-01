@@ -58,7 +58,7 @@ class EpisodeController extends Controller
         }
 
 
-        $comment->save();
+        $comment->update();//update-ovanje
         return redirect()->back();
     }
 
@@ -83,7 +83,7 @@ class EpisodeController extends Controller
         //PROVJERITI DA LI SU ODGLEDANE SVE EPIZODE TE SEZONE I UPDATE U SEZONU!!!
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+        //ostavljeno za kasnije---->DORADITI!!!!
 
 
 

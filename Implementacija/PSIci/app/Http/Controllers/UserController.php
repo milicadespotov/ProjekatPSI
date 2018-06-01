@@ -78,7 +78,7 @@ class UserController extends Controller
     public function userProfile()
     {
         //dovlacenje user-a
-             $user = DB::table('users')->where('username', $_SESSION['username'])->first();
+             $user = DB::table('users')->where('username', session()->get('username'))->first();
             //dovlacenje posljednje ocijenjenih serija(tj. epizoda serija)
             //promjenljiva ce se zvati $lastRated
             $lastRated = DB::table('tvshows')
@@ -107,8 +107,52 @@ class UserController extends Controller
 
 
     public function updateInfo(){
-        
+        return view('profile.user_update',['user'=>Auth::user()]);
     }
 
+    public function postUpdateInfo(Request $request){
+        $user = Auth::user();
+        //stare vrijednosti za polja
+        $oldusername = $user->username;
+        $oldname = $user->name;
+        $oldsurname = $user->surname;
+        $oldemail = $user->email;
+        $oldgender = $user->gender;
+        $oldbdate = $user->birth_date;
+
+
+        $newname = $request['name'];
+        $newsurname = $request['surname'];
+        $newemail = $request['email'];
+        $newgender = $request['gender'];
+        $newbdate = $request['birth_date'];
+
+
+
+        //provjera da li je email jedinstven
+        if($oldemail != $newemail){
+            $existingMailUser = DB::table('users') //user sa istim e-mailom kao novi
+                ->where('email',$newemail)
+                ->get();
+
+            if(count($existingMailUser)!=0){
+                return redirect()->back()->withInput()->withErrors(array('email' => 'Ovaj email je vec zauzet!'));
+            }
+
+            $this->validate($request, [
+
+                'name' => 'max:20',
+                'surname' => 'max:30',
+
+
+                'email' => 'email|max:30',
+
+                
+            ]);
+
+        }
+
+
+    }
 }
 
