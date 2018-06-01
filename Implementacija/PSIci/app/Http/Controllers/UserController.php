@@ -49,30 +49,31 @@ class UserController extends Controller
 
 
 
-        public function rateSeries(Content $content)
-        {
-            if ($content == null) return view('home.index');
-            $rate = Rating::find($_SESSION['username'], $content->id);
-            $ratingScore = request('ratedNum');
-            $ratingScore = intval($ratingScore);
-            if ($ratingScore <= 0 || $ratingScore > 10) return view('home.index');
-            if ($rate == null) {
-                DB::table('rating')->insert(array('user_id' => $_SESSION['username'], 'content_id' => $content->id, 'rate' => $ratingScore));
-                $sum = $content->number_of_rates * $content->rating + $ratingScore;
-                $content->number_of_rates = $content->number_of_rates + 1;
-                $content->rating = $sum / $content->number_of_rates;
-                $content->save();
-            } else {
-                $oldRate = $rate->rate;
-                $sum = $content->number_of_rates * $content->rating - $oldRate + $ratingScore;
-                $content->rating = $sum / $content->number_of_rates;
-                $rate->rate = $ratingScore;
-                $content->save();
-                $rate->save();
-            }
-
-
+    public function rateContent(Content $content)
+    {
+        if ($content == null) return view('home.index');
+        $rate = Rating::find($_SESSION['username'], $content->id);
+        $ratingScore = request('ratedNum');
+        if ($ratingScore==null) return view('home.index');
+        $ratingScore = intval($ratingScore);
+        if ($ratingScore <= 0 || $ratingScore > 10) return view('home.index');
+        if ($rate == null) {
+            DB::table('rating')->insert(array('user_id' => $_SESSION['username'], 'content_id' => $content->id, 'rate' => $ratingScore));
+            $sum = $content->number_of_rates * $content->rating + $ratingScore;
+            $content->number_of_rates = $content->number_of_rates + 1;
+            $content->rating = $sum / $content->number_of_rates;
+            $content->save();
+        } else {
+            $oldRate = $rate->rate;
+            $sum = $content->number_of_rates * $content->rating - $oldRate + $ratingScore;
+            $content->rating = $sum / $content->number_of_rates;
+            $rate->rate = $ratingScore;
+            $content->update();
+            $rate->update();
         }
+
+
+    }
 
 
     public function userProfile()
