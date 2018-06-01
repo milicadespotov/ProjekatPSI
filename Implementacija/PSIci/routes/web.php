@@ -30,14 +30,14 @@ Route::get('episode/{id}','GuestController@showEpisode');
 //TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
 
 
-Route::get('episode/{content_id}','');
+
 
 
 
 
 //Route::get('episode/{content_id}','');
 
-Route::get('episode/{id}','GuestController@showEpisode');
+//Route::get('episode/{id}','GuestController@showEpisode');
 
 //Route::get('episode/{content_id}','');
 
@@ -54,6 +54,23 @@ Route::post('/removeAccount/{id}', 'UserController@remove');
 Route::get('/accountManager', 'AdminController@showUsers');
 
 Route::post('/userToAdmin/{id}', 'AdminController@makeAdmin');
+
+Route::get('/addSeries','AdminController@seriesInput');
+
+Route::post('/confirmSeries', 'AdminController@makeSeries');
+
+Route::post('/addActor/{id}', 'AdminController@addActor');
+
+Route::post('/addDirector/{id}','AdminController@addDirector');
+
+Route::post('/addSeason/{id}', 'AdminController@seasonInput');
+
+Route::post('/confirmSeason/{id}','AdminController@makeSeason');
+
+Route::post('/addEpisode/{id}', 'AdminController@episodeInput');
+
+Route::post('/confirmEpisode/{id}','AdminController@makeEpisode');
+
 // END TIJANA
 
 
