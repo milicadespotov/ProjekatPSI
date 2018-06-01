@@ -56,9 +56,7 @@ class LoginController extends Controller
         if ($result == 0) {
 
             return redirect()->back()->withInput()->withErrors(['success' => 'Korisnicko ime ili lozinka nisu u redu. Pokusajte ponovo. ']);
-        } else if ($_SESSION['is_admin'] == 1) {
-            return redirect()->route('adminProfile');
-        } else if ($_SESSION['is_admin'] == 1) {
+        } else if (session()->get('is_admin') == 1) {
             return redirect()->route('adminProfile');
         } else {
             return redirect()->route('userProfile');
@@ -79,16 +77,16 @@ class LoginController extends Controller
             return 0;
         } else {
             $is_admin = $user->is_admin;
-                if ($user->password == $request->password) {
+                if (Crypt::decryptString($user->password) == $request->password) {
                     if (session_status() == PHP_SESSION_NONE) {
                         session_start();
 
 
-                        $_SESSION['username'] = $user->username;
-                        $_SESSION['name'] = $user->name;
-                        $_SESSION['surname'] = $user->surname;
-                        $_SESSION['email'] = $user->email;
-                        $_SESSION['is_admin'] = $user->is_admin;
+                        session(['username' => $user->username]);
+                        session(['name' => $user->name]);
+                        session(['surname' => $user->surname]);
+                        session(['email' => $user->email]);
+                        session(['is_admin' => $user->is_admin]);
 
                         $userForLogin = new User();
                         $userForLogin->username = $user->username;
@@ -119,7 +117,7 @@ class LoginController extends Controller
 
 
 
-        $_SESSION['username'] = $user->username;
+       /* $_SESSION['username'] = $user->username;
         $_SESSION['name'] = $user->name;
         $_SESSION['last_name'] = $user->surname;
         $_SESSION['gender'] = $user->gender;
@@ -142,7 +140,7 @@ class LoginController extends Controller
         $userForLogin->registration_date = $user->registration_date;
         Auth::login($userForLogin);
 
-        return 1;
+        return 1;*/
 
 
     }

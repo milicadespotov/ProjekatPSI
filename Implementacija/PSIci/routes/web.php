@@ -30,7 +30,7 @@ Route::get('episode/{id}','GuestController@showEpisode');
 //TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
 
 
-Route::get('episode/{content_id}','');
+///Route::get('episode/{content_id}','');
 
 
 
