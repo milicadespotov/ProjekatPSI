@@ -55,10 +55,10 @@
                 </li>
                 @if(!Auth::check())
                 <li>
-                    <a href="#">Uloguj se</a>
+                    <a href="/login">Uloguj se</a>
                 </li>
                 <li>
-                    <a href="#">Prijavi se</a>
+                    <a href="/register">Prijavi se</a>
                 </li>
                 @endif
                 @if(Auth::check())

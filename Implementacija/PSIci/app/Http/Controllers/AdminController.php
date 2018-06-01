@@ -136,22 +136,20 @@ class AdminController extends Controller
         $tvshow->number_of_episodes = $request->episodes;
         $tvshow->save();
         $content->save();
-        $mainPicture = new Picture();
-        $file = $request->file('mainImage');
-        $filename = $content->id . '-' . $mainPicture->id . '.jpg';
-        if ($file) {
-            Storage::disk('local')->put($filename, File::get($file));
+        if (Input::has('mainImage')) {
+            $picture = new Picture();
+            $filename = $content->id . '-' . $picture->id . '.jpg';
+            $file = $request->file('mainImage')->storeAs('img/content_pictures', $filename);
+
+            $picture->path = $filename;
+            $picture->main_picture = true;
+            $picture->content_id = $content->id;
+            $picture->save();
         }
-        $mainPicture->path = $filename;
-        $mainPicture->main_picture = true;
-        $mainPicture->content_id = $content->id;
-        $mainPicture->save();
         foreach ($request->file('pictures') as $file) {
             $picture = new Picture();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            if ($file) {
-                Storage::disk('local')->put($filename, File::get($file));
-            }
+           $file=$file->storeAs('img/content_pictures', $filename);
             $picture->path = $filename;
             $picture->main_picture = false;
             $picture->content_id = $content->id;
@@ -262,22 +260,20 @@ class AdminController extends Controller
         $season->number_of_episodes = $request->episodes;
         $season->save();
         $content->save();
-        $mainPicture = new Picture();
-        $file = $request->file('mainImage');
-        $filename = $content->id . '-' . $mainPicture->id . '.jpg';
-        if ($file) {
-            Storage::disk('local')->put($filename, File::get($file));
+        if (Input::has('mainImage')) {
+            $picture = new Picture();
+            $filename = $content->id . '-' . $picture->id . '.jpg';
+            $file = $request->file('mainImage')->storeAs('img/content_pictures', $filename);
+
+            $picture->path = $filename;
+            $picture->main_picture = true;
+            $picture->content_id = $content->id;
+            $picture->save();
         }
-        $mainPicture->path = $filename;
-        $mainPicture->main_picture = true;
-        $mainPicture->content_id = $content->id;
-        $mainPicture->save();
         foreach ($request->file('pictures') as $file) {
             $picture = new Picture();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            if ($file) {
-                Storage::disk('local')->put($filename, File::get($file));
-            }
+            $file=$file->storeAs('img/content_pictures', $filename);
             $picture->path = $filename;
             $picture->main_picture = false;
             $picture->content_id = $content->id;
@@ -314,22 +310,20 @@ class AdminController extends Controller
         $episode->length = $request->duration;
         $episode->save();
         $content->save();
-        $mainPicture = new Picture();
-        $file = $request->file('mainImage');
-        $filename = $content->id . '-' . $mainPicture->id . '.jpg';
-        if ($file) {
-            Storage::disk('local')->put($filename, File::get($file));
+        if (Input::has('mainImage')) {
+            $picture = new Picture();
+            $filename = $content->id . '-' . $picture->id . '.jpg';
+            $file = $request->file('mainImage')->storeAs('img/content_pictures', $filename);
+
+            $picture->path = $filename;
+            $picture->main_picture = true;
+            $picture->content_id = $content->id;
+            $picture->save();
         }
-        $mainPicture->path = $filename;
-        $mainPicture->main_picture = true;
-        $mainPicture->content_id = $content->id;
-        $mainPicture->save();
         foreach ($request->file('pictures') as $file) {
             $picture = new Picture();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            if ($file) {
-                Storage::disk('local')->put($filename, File::get($file));
-            }
+            $file=$file->storeAs('img/content_pictures', $filename);
             $picture->path = $filename;
             $picture->main_picture = false;
             $picture->content_id = $content->id;
