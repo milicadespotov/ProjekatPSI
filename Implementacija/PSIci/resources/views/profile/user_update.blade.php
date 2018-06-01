@@ -49,7 +49,7 @@
                         <br>
                         <div class="form-group ">
                             <label class="control-label" for="gender">Pol:</label>  <br>
-                                <input type="radio" name="gender" value="m" >Muski &nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="gender" value="m" checked>Muski &nbsp;&nbsp;&nbsp;
                                 <input type="radio" name="gender" value="z" >Zenski
                                 <div class ="text-danger">  {{ $errors->first('gender') }}</div>
 
