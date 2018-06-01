@@ -39,7 +39,7 @@ Route::get('episode/{id}','GuestController@showEpisode');
 //Route::get('episode/{content_id}','');
 
 ///Route::get('episode/{content_id}','');
- 
+
 
 
 
