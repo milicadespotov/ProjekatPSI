@@ -29,17 +29,21 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
+<<<<<<< HEAD
+
+=======
 //Route::get('episode/{content_id}','');
 
 
 ///Route::get('episode/{content_id}','');
+>>>>>>> 3eb5809f5f428c4faca6ca83ed10da19b1d8f44a
 
 
 
 
 //Route::get('episode/{content_id}','');
 
-Route::get('episode/{id}','GuestController@showEpisode');
+//Route::get('episode/{id}','GuestController@showEpisode');
 
 //Route::get('episode/{content_id}','');
 
@@ -56,6 +60,23 @@ Route::post('/removeAccount/{id}', 'UserController@remove');
 Route::get('/accountManager', 'AdminController@showUsers');
 
 Route::post('/userToAdmin/{id}', 'AdminController@makeAdmin');
+
+Route::get('/addSeries','AdminController@seriesInput');
+
+Route::post('/confirmSeries', 'AdminController@makeSeries');
+
+Route::post('/addActor/{id}', 'AdminController@addActor');
+
+Route::post('/addDirector/{id}','AdminController@addDirector');
+
+Route::post('/addSeason/{id}', 'AdminController@seasonInput');
+
+Route::post('/confirmSeason/{id}','AdminController@makeSeason');
+
+Route::post('/addEpisode/{id}', 'AdminController@episodeInput');
+
+Route::post('/confirmEpisode/{id}','AdminController@makeEpisode');
+
 // END TIJANA
 
 

@@ -71,7 +71,7 @@
 
                             <ul class="dropdown-menu">
                                 <li class="dropdown-item">
-                                    <a href="#"> DODAVANJE NOVIH SERIJA </a>
+                                    <a href="/addSeries"> DODAVANJE NOVIH SERIJA </a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a href="#myModal" data-toggle="modal"> UKLONI NALOG </a>
