@@ -29,15 +29,17 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
-<<<<<<< HEAD
 
-=======
 //Route::get('episode/{content_id}','');
 
 
 ///Route::get('episode/{content_id}','');
->>>>>>> 3eb5809f5f428c4faca6ca83ed10da19b1d8f44a
 
+
+//Route::get('episode/{content_id}','');
+
+///Route::get('episode/{content_id}','');
+ 
 
 
 
@@ -113,9 +115,6 @@ Route::get('/userProfile', [
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
 Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
-
-
-
 
 //END ALEKSA
 

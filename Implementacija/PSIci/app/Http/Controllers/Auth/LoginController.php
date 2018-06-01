@@ -47,6 +47,17 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function logout()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        session_destroy();
+        Auth::logout();
+        return redirect()->route('home');
+
+    }
+
 
     public function login(Request $request)
     {
