@@ -47,6 +47,17 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function logout()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        session_destroy();
+        Auth::logout();
+        return redirect()->route('home');
+
+    }
+
 
     public function login(Request $request)
     {
@@ -102,7 +113,7 @@ class LoginController extends Controller
                         $userForLogin->picture_path = $user->picture_path;
                         $userForLogin->admin_since = $user->admin_since;
                         $userForLogin->registration_date = $user->registration_date;
-                        Auth::login($userForLogin);
+                        Auth::attempt($userForLogin);
 
                         return 1;
                     }
