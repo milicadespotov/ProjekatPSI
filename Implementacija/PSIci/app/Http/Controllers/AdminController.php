@@ -95,7 +95,7 @@ class AdminController extends Controller
 
     public function makeAdmin($id){
         $user = User::find($id);
-        DB::table('users')->where('username','=',$id)->update(['is_admin'=>true]);
+        DB::table('users')->where('username','=',$id)->update(array('is_admin'=>true));
         redirect()->route('accountManager');
     }
 }
