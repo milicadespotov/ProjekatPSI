@@ -29,20 +29,17 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
-<<<<<<< HEAD
+
 //Route::get('episode/{content_id}','');
 
 
 ///Route::get('episode/{content_id}','');
-        
-=======
+
 
 //Route::get('episode/{content_id}','');
 
 ///Route::get('episode/{content_id}','');
-
->>>>>>> 8af9603b1c877e07d3e973d55cf7e2ba6deeda4a
-
+ 
 
 
 
