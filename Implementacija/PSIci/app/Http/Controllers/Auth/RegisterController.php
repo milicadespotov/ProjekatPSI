@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\File;
 use \Crypt;
+
+
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class RegisterController extends Controller
@@ -87,7 +89,7 @@ class RegisterController extends Controller
         $user->username = $request->username;
         $user->name = $request->name;
         $user->surname = $request->surname;
-        $user->password =  Crypt::encryptString($request->password);
+        $user->password =  Hash::make($request->password);
         $user->email = $request->email;
         $user->security_question = $request->security_question;
         $user->answer  = $request->answer;
