@@ -49,6 +49,7 @@ class UserController extends Controller
 
 
 
+<<<<<<< HEAD
         public function rateSeries(Content $content)
         {
             if ($content == null) return view('home.index');
@@ -73,6 +74,33 @@ class UserController extends Controller
 
         return view('home.index');
         }
+=======
+    public function rateContent(Content $content)
+    {
+        if ($content == null) return view('home.index');
+        $rate = Rating::find($_SESSION['username'], $content->id);
+        $ratingScore = request('ratedNum');
+        if ($ratingScore==null) return view('home.index');
+        $ratingScore = intval($ratingScore);
+        if ($ratingScore <= 0 || $ratingScore > 10) return view('home.index');
+        if ($rate == null) {
+            DB::table('rating')->insert(array('user_id' => $_SESSION['username'], 'content_id' => $content->id, 'rate' => $ratingScore));
+            $sum = $content->number_of_rates * $content->rating + $ratingScore;
+            $content->number_of_rates = $content->number_of_rates + 1;
+            $content->rating = $sum / $content->number_of_rates;
+            $content->save();
+        } else {
+            $oldRate = $rate->rate;
+            $sum = $content->number_of_rates * $content->rating - $oldRate + $ratingScore;
+            $content->rating = $sum / $content->number_of_rates;
+            $rate->rate = $ratingScore;
+            $content->update();
+            $rate->update();
+        }
+
+
+    }
+>>>>>>> 8a3f26af1344c7a0eeb6e16970f83999513b6625
 
 
     public function userProfile()
@@ -113,11 +141,12 @@ class UserController extends Controller
 
 
     public function updateInfo(){
-        return view('profile.user_update',['user'=>Auth::user()]);
+        $user = DB::table('users')->where('username',session()->get('username'))->first();
+        return view('profile.user_update',['user'=>$user]);
     }
 
     public function postUpdateInfo(Request $request){
-        $user = Auth::user();
+        $user =  User::where('username', '=', session()->get('username'))->first();
         //stare vrijednosti za polja
         $oldusername = $user->username;
         $oldname = $user->name;
@@ -136,21 +165,24 @@ class UserController extends Controller
 
 
         //provjera da li je email jedinstven
-        if($oldemail != $newemail){
-            $existingMailUser = DB::table('users') //user sa istim e-mailom kao novi
-                ->where('email',$newemail)
+        if($oldemail != $newemail) {
+            $existingMailUser = DB::table('users')//user sa istim e-mailom kao novi
+            ->where('email', $newemail)
                 ->get();
 
-            if(count($existingMailUser)!=0){
+            if (count($existingMailUser) != 0) {
                 return redirect()->back()->withInput()->withErrors(array('email' => 'Ovaj email je vec zauzet!'));
             }
-
+        }
             $this->validate($request, [
 
                 'name' => 'max:20',
                 'surname' => 'max:30',
                 'email' => 'email|max:30'
             ]);
+
+
+
 
 
             //polja koja ne smiju biti prazna
@@ -168,7 +200,12 @@ class UserController extends Controller
             $user->gender = $newgender;
             $user->birth_date = $newbdate;
 
-            $user->save();//PROBATI I SA $user->update() !!!!!!
+            DB::table('users')
+                ->where('username',session()->get('username'))
+                ->update(['name' => $newname,'surname'=>$newsurname,'email'=>$newemail,'birth_date'=>$newbdate]);
+            
+            
+           // $user->save();//PROBATI I SA $user->update() !!!!!!
 
             return redirect()->route('userProfile');
 
@@ -177,6 +214,6 @@ class UserController extends Controller
         }
 
 
-    }
+
 }
 

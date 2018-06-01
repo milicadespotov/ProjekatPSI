@@ -118,22 +118,32 @@
                     <div class="widget-content">
 
                         <form action="#" id="search-form" method="get" role="search">
+                            {{ csrf_field() }}
                             <table>
                                 <tr>
                                     <td>
                                         &nbsp;
                                     </td>
                                     <td>
-                                        <select class="form-control">
-                                            <option>Prva</option>
-                                            <option>Druga</option>
+                                        <select class="form-control" name="selectionForm">
+                                            <option value="na">Odaberite</option>
+                                            <option value="serija">Serije</option>
+                                            <option value="glumci">Glumci</option>
+                                            <option value="reziseri">Režiseri</option>
+                                            <option value="dokumentarna">Dokumentarna</option>
+                                            <option value="komedija">Komedija</option>
+                                            <option value="horor">Horor</option>
+                                            <option value="akcija">Akcija</option>
+                                            <option value="triler">Triler</option>
+                                            <option value="drama">Drama</option>
+                                            <option value="romansa">Romansa</option>
                                         </select>
                                     </td>
                                     <td>
                                         &nbsp;
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="Pretraga..." autocomplete="on" name="seach">
+                                        <input type="text" class="form-control" placeholder="Pretraga..." autocomplete="on" name="search">
                                         <button type="submit" title="Search" id="search-submit">
                                             <i class="fa fa-search"></i>
                                         </button>
