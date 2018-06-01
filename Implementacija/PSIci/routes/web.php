@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 //TIJANA
 
-Route::get('/series/{id}', 'GuestController@showSeries')->name('showseries');
+Route::get('/series/{content_id}', 'GuestController@showSeries')->name('showseries');
 
 
 Route::get('episode/{id}','GuestController@showEpisode');
@@ -30,13 +30,19 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ae5fcee8bbfe622ff817ee71f6e6b673ddbbe83a
 //Route::get('episode/{content_id}','');
 
 
 ///Route::get('episode/{content_id}','');
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ae5fcee8bbfe622ff817ee71f6e6b673ddbbe83a
 //Route::get('episode/{content_id}','');
 
 ///Route::get('episode/{content_id}','');
@@ -130,7 +136,10 @@ Route::get('/search','GuestController@search');
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
 Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
+<<<<<<< HEAD
 
+=======
+>>>>>>> ae5fcee8bbfe622ff817ee71f6e6b673ddbbe83a
 
 //END ALEKSA
 

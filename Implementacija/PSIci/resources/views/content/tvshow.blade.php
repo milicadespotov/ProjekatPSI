@@ -52,8 +52,8 @@
                     <tr>
                         <td>
                             <b> TV Serija: </b>
-                            @if($contents->release_date!=null)
-                            {{$contents->release_date}}
+                            @if($content->release_date!=null)
+                            {{$content->release_date}}
                                 @endif
                             -
                             @if ($series->end_date!=null)

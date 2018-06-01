@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Episode extends Model
 {
+    public $PrimaryKey = 'content_id';
     public function watched_episodes(){
         return $this->hasMany('App\WatchedEpisode', 'episode_id');
     }

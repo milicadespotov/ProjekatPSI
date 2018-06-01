@@ -177,7 +177,9 @@
                 </div>
                 <div class="modal-footer">
                     <form method="post" action="/removeAccount/{{Auth::user()->username}}">
-                        <input type="submit" class="btn btn-transparent">Potvrdi</input>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @csrf
+                        <input type="submit" class="btn btn-transparent" value="Potvrdi">
                         <button type="button" class="btn btn-transparent" data-dismiss="modal">Odustani</button>
                     </form>
                 </div>
