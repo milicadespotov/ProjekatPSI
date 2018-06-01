@@ -77,7 +77,13 @@ class UserController extends Controller
     public function userProfile()
     {
         //dovlacenje user-a
-             $user = DB::table('users')->where('username', session()->get('username'))->first();
+
+
+             //$user = DB::table('users')->where('username', session()->get('username'))->first();
+
+        $user = Auth::user();
+
+
             //dovlacenje posljednje ocijenjenih serija(tj. epizoda serija)
             //promjenljiva ce se zvati $lastRated
             $lastRated = DB::table('tvshows')

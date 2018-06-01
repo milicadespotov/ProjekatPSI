@@ -49,10 +49,6 @@ class LoginController extends Controller
 
     public function logout()
     {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        session_destroy();
         Auth::logout();
         return redirect()->route('home');
 
@@ -67,7 +63,7 @@ class LoginController extends Controller
         if ($result == 0) {
 
             return redirect()->back()->withInput()->withErrors(['success' => 'Korisnicko ime ili lozinka nisu u redu. Pokusajte ponovo. ']);
-        } else if (session()->get('is_admin') == 1) {
+        } else if (Auth::user()->is_admin == 1) {
             return redirect()->route('adminProfile');
         } else {
             return redirect()->route('userProfile');
@@ -77,9 +73,9 @@ class LoginController extends Controller
     }
 
 
-
     public function userLogin(Request $request)
     {
+
         $user = DB::table('users')
             ->where('username', $request->username)
             ->first();
@@ -88,71 +84,16 @@ class LoginController extends Controller
             return 0;
         } else {
             $is_admin = $user->is_admin;
-                if (Crypt::decryptString($user->password) == $request->password) {
-                    if (session_status() == PHP_SESSION_NONE) {
-                        session_start();
+            $array = array('username' => $request->username, 'password' => $request->password);
+            if (Auth::attempt(request(['username', 'password']))) {
 
 
-                        session(['username' => $user->username]);
-                        session(['name' => $user->name]);
-                        session(['surname' => $user->surname]);
-                        session(['email' => $user->email]);
-                        session(['is_admin' => $user->is_admin]);
-
-                        $userForLogin = new User();
-                        $userForLogin->username = $user->username;
-                        $userForLogin->name = $user->name;
-                        $userForLogin->surname = $user->surname;
-                        $userForLogin->email = $user->email;
-                        $userForLogin->gender = $user->gender;
-                        $userForLogin->password = $user->password;
-                        $userForLogin->birth_date = $user->birth_date;
-                        $userForLogin->security_question = $user->security_question;
-                        $userForLogin->answer = $user->answer;
-                        $userForLogin->is_admin = $user->is_admin;
-                        $userForLogin->picture_path = $user->picture_path;
-                        $userForLogin->admin_since = $user->admin_since;
-                        $userForLogin->registration_date = $user->registration_date;
-                        Auth::login($userForLogin);
-
-                        return 1;
-                    }
-                }
-                else
-                {
-                    return 0;
-                }
+                return 1;
+            } else {
+                return 0;
+            }
 
 
         }
-
-
-
-       /* $_SESSION['username'] = $user->username;
-        $_SESSION['name'] = $user->name;
-        $_SESSION['last_name'] = $user->surname;
-        $_SESSION['gender'] = $user->gender;
-        $_SESSION['email'] = $user->email;
-        $_SESSION['is_admin'] = $user->is_admin;
-
-        $userForLogin = new User();
-        $userForLogin->username = $user->username;
-        $userForLogin->name = $user->name;
-        $userForLogin->surname = $user->surname;
-        $userForLogin->email = $user->email;
-        $userForLogin->gender = $user->gender;
-        $userForLogin->password = $user->paswword;
-        $userForLogin->birth_date = $user->birth_date;
-        $userForLogin->security_question = $user->security_question;
-        $userForLogin->answer = $user->answer;
-        $userForLogin->is_admin = $user->is_admin;
-        $userForLogin->picture_path = $user->picture_path;
-        $userForLogin->admin_since = $user->admin_since;
-        $userForLogin->registration_date = $user->registration_date;
-        Auth::login($userForLogin);
-
-        return 1;*/
-
-
     }
 }
