@@ -25,9 +25,9 @@
                 <div class="col-md-6">
                     <h2>{{$user->name.' '.$user->surname}}</h2>
                     <h4>Email adresa: {{$user->email}}</h4>
-                    <h4>Datum rodjenja: {{date('d-m-Y',$user->birth_date)}}</h4>
+                    <h4>Datum rodjenja:  @if (!is_null($user->birth_date)) echo Carbon::parse($user->birth_date)->format('d/m/Y'); @endif </h4>
                     <h4>Pol: {{$user->gender}}</h4>
-                    <h4>Clan od: {{date('d-m-Y',$user->created_at)}}</h4>
+                    <h4>Clan od: {{ \Carbon\Carbon::parse($user->registration_date)->format('d/m/Y')}}</h4>
                 </div>
             </div>
             <div class="col-md-8 ">

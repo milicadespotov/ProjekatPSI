@@ -30,7 +30,7 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 //Route::get('episode/{content_id}','');
-=======
+
 
 ///Route::get('episode/{content_id}','');
 
@@ -99,7 +99,7 @@ Route::post('/episode/{id}/rate');
 //END ALEKSA
 
 // FILIP
-Route::post('/addComment','EpisodeController@comment');
+Route::post('/addComment','EpisodeController@comment')->name('addcomment');
 Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
 Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
 Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
