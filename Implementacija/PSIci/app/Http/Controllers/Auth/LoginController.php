@@ -113,7 +113,7 @@ class LoginController extends Controller
                         $userForLogin->picture_path = $user->picture_path;
                         $userForLogin->admin_since = $user->admin_since;
                         $userForLogin->registration_date = $user->registration_date;
-                        Auth::attempt($userForLogin);
+                        Auth::login($userForLogin);
 
                         return 1;
                     }
