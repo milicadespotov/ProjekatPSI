@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 //TIJANA
 
-Route::get('/series/{id}', 'GuestController@showSeries')->name('showseries');
+Route::get('/series/{content_id}', 'GuestController@showSeries')->name('showseries');
 
 
 Route::get('episode/{id}','GuestController@showEpisode');

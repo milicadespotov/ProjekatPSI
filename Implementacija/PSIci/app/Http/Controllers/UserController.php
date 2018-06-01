@@ -21,12 +21,13 @@ class UserController extends Controller
 
     public function remove($id)
     {
-        $user = User::find($id);
+        $user = User::where('username','=',$id);
         DB::beginTransaction();
         DB::table('comments')->where('user_id', '=', $id)->delete();
         DB::table('watched_seasons')->where('user_id', '=', $id)->delete();
         DB::table('watched_episodes')->where('user_id', '=', $id)->delete();
         DB::commit();
+        $user = $user->first();
         $ratings = $user->ratings;
         foreach ($ratings as $rating) {
             $content_id = $rating->content_id;
@@ -51,7 +52,7 @@ class UserController extends Controller
         public function rateSeries(Content $content)
         {
             if ($content == null) return view('home.index');
-            $rate = Rating::find($_SESSION['username'], $content->id);
+            $rate = Rating::find(Auth::user()->id, $content->id);
             $ratingScore = request('ratedNum');
             $ratingScore = intval($ratingScore);
             if ($ratingScore <= 0 || $ratingScore > 10) return view('home.index');
@@ -70,7 +71,7 @@ class UserController extends Controller
                 $rate->save();
             }
 
-
+        return view('home.index');
         }
 
 

@@ -14,8 +14,10 @@ use App\Season;
 
 class GuestController extends Controller
 {
-    public function showSeries($id){
-        $series = Tvshow::find($id);
+    public function showSeries($content_id){
+        $series = Tvshow::where('content_id', '=',$content_id);
+        $series = $series->first();
+        $id=$content_id;
         $content=Content::find($id);
         $seasons = $series->seasons;
         $type = 'series';

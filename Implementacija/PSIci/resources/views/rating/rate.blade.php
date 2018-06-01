@@ -8,10 +8,12 @@
 <script>
     $(document).ready(function(){
         var startRate =
-                @if ($content->currentRate==null) {{0}};
-        @else {{$content->currentRate}}
-        @endif;
+        <?php
+               // dd($content->currentRate());
+            if ($content->currentRate()==null) echo 0;
+            else echo $content->currentRate()->rate;
 
+        ?>;
         if (startRate==0) {
             for (i=1;i<=10;i++)
                 $("#"+i).removeClass("checked");
@@ -176,8 +178,9 @@
 </script>
 Broj glasova:&nbsp;{{$content->number_of_rates}}&nbsp;Prosecna ocena:{{$content->rating}} Ocenite:
 @if (Auth::check())
-<form action="{{$type}}/{{$content->id}}/rate" method="post" id="rateForm">
-
+<form action="/{{$type}}/{{$content->id}}/rate" method="post" id="rateForm">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    @csrf
     <div id="stars_data">
         <li class="fa fa-star" id="1"></li>&nbsp;
         <li class="fa fa-star" id="2"></li>&nbsp;

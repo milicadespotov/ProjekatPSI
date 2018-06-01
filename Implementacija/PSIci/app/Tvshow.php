@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Tvshow extends Model
 {
+
+    public $PrimaryKey = 'content_id';
     public function seasons(){
         return $this->hasMany('App\Season', 'tvshow_id')->orderBy('season_number');
     }
