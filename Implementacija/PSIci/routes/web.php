@@ -29,8 +29,7 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 //TIJANA DODAJ NAZIV KONTROLERA KOJI PRIKAZUJE EPIZODU!!!!!
 
-
-Route::get('episode/{content_id}','');
+//Route::get('episode/{content_id}','');
 
 
 
@@ -101,8 +100,8 @@ Route::post('/addComment','EpisodeController@comment');
 Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
 Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
 Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
-
 Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate');
+Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoupdate');
 
 // END FILIP
 
