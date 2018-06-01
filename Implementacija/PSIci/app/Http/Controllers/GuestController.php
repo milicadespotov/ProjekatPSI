@@ -45,13 +45,12 @@ class GuestController extends Controller
         return view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type']));
     }
 
-    public function search() {
+    public function search(Request $request) {
         $this->validate(request(), [
-            'selectionForm'=>'required',
-            'search'=>'required'
+            'selectionForm'=>'required'
         ]);
-        $text = validate('search');
-        $type = validate('selectionForm');
+        $text = $request->search;
+        $type = $request->selectionForm;
         switch($type) {
             case "na": {
                 return view('home.index');
@@ -80,10 +79,12 @@ class GuestController extends Controller
         $actors = array();
         $genres = array();
         $directors = array();
+
         foreach($tvshows as $tvshow) {
             array_push($actors,Actor::getActorsNames($tvshow->content_id));
             array_push($genres,Genre::getGenresNames($tvshow->content_id));
             array_push($directors,Director::getDirectorsNames($tvshow->content_id));
         }
+        return;
     }
 }

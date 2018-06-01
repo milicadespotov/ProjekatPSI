@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Director extends Model
 {
@@ -13,7 +14,7 @@ class Director extends Model
         return DB::table('directings')->where('directings.tvshow_id','=',$id)
             ->join('directors','directings.tvshow_id','=','directors.category_id')
             ->join('categories','categories.id','=','directors.category_id')
-            ->select('categories.name');
+            ->select('categories.name')->get();
     }
     public static function getTVShowsSearch($text) {
         return DB::table('categories')->where('categories.name','like', $text)
@@ -22,7 +23,7 @@ class Director extends Model
             ->join('directings','directings.tvshow_id','=','tvshows.content_id')
             ->orderby('tvshows.content_id','desc')
             ->select('tvshows.*')
-            ->distinct('tvshows.*');
+            ->distinct('tvshows.*')->get();
     }
     public static function getContentSearch($text) {
         return DB::table('categories')->where('categories.name','like', $text)
@@ -32,6 +33,6 @@ class Director extends Model
             ->join('contents','contents.id','=','tvshows.content_id')
             ->orderby('content.id','desc')
             ->select('contents.*')
-            ->distinct('contents.*');
+            ->distinct('contents.*')->get();
     }
 }

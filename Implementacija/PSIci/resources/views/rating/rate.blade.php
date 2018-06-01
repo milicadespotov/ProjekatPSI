@@ -9,7 +9,6 @@
     $(document).ready(function(){
         var startRate =
         <?php
-               // dd($content->currentRate());
             if ($content->currentRate()==null) echo 0;
             else echo $content->currentRate()->rate;
 
@@ -124,43 +123,53 @@
             $("#1").addClass("checked");
         });
         $("#1").click(function() {
-            document.getElementById("rating-num").innerHTML=1;
+            document.getElementById("rating-num").value="1";
+            startRate=1;
             document.getElementById("rateForm").submit();
         });
         $("#2").click(function() {
-            document.getElementById("rating-num").innerHTML=1;
+            document.getElementById("rating-num").value="2";
+            startRate=2;
             document.getElementById("rateForm").submit();
         });
         $("#3").click(function() {
-            document.getElementById("rating-num").innerHTML=1;
+            document.getElementById("rating-num").value=3;
+            startRate=3;
             document.getElementById("rateForm").submit();
         });
         $("#4").click(function() {
-            document.getElementById("rating-num").innerHTML=1;
+            document.getElementById("rating-num").value=4;
+            startRate=4;
             document.getElementById("rateForm").submit();
         });
         $("#5").click(function() {
-            document.getElementById("rating-num").innerHTML=1;
+            document.getElementById("rating-num").value=5;
+            startRate=5;
             document.getElementById("rateForm").submit();
         });
         $("#6").click(function() {
-            document.getElementById("rating-num").innerHTML=1;
+            document.getElementById("rating-num").value=6;
+            startRate=6;
             document.getElementById("rateForm").submit();
         });
         $("#7").click(function() {
-            document.getElementById("rating-num").innerHTML=1;
+            document.getElementById("rating-num").value=7;
+            startRate=7;
             document.getElementById("rateForm").submit();
         });
         $("#8").click(function() {
-            document.getElementById("rating-num").innerHTML=1;
+            document.getElementById("rating-num").value=8;
+            startRate=8;
             document.getElementById("rateForm").submit();
         });
         $("#9").click(function() {
-            document.getElementById("rating-num").innerHTML=1;
+            document.getElementById("rating-num").value=9;
+            startRate=9;
             document.getElementById("rateForm").submit();
         });
         $("#10").click(function() {
-            document.getElementById("rating-num").innerHTML=1;
+            document.getElementById("rating-num").value=10;
+            startRate=10;
             document.getElementById("rateForm").submit();
         });
         $("#stars_data").mouseleave(function(){
@@ -178,14 +187,9 @@
 </script>
 Broj glasova:&nbsp;{{$content->number_of_rates}}&nbsp;Prosecna ocena:{{$content->rating}} Ocenite:
 @if (Auth::check())
-<<<<<<< HEAD
 <form action="/{{$type}}/{{$content->id}}/rate" method="post" id="rateForm">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     @csrf
-=======
-<form action="{{$type}}/{{$content->id}}/rate" method="post" id="rateForm">
-    {{ csrf_field() }}
->>>>>>> 8a3f26af1344c7a0eeb6e16970f83999513b6625
     <div id="stars_data">
         <li class="fa fa-star" id="1"></li>&nbsp;
         <li class="fa fa-star" id="2"></li>&nbsp;
