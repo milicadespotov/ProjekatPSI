@@ -94,8 +94,8 @@ class RegisterController extends Controller
         $user->gender = $request->gender;
         $user->birth_date = $request->birth_date;
         if (Input::has('picture')) {
-            $file = $request->file('picture')->store('img');
             $filename = $request->name . '-' . $user->username . '.jpg';
+            $file = $request->file('picture')->storeAs('img\users', $filename);
             $user->picture_path = $filename;
         }
         $user->save();
