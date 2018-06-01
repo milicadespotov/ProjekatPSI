@@ -8,12 +8,12 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="main_picture" style = "font-size: 18px" class="col-form-label text-md-right color">Naslovna slika:</label><br>
-                            <input type="file" name="mainImage" class="form-control" id="mainImage">
+                            <label for="mainImage" style = "font-size: 18px" class="col-form-label text-md-right color">Naslovna slika:</label><br>
+                            <input type="file" name="mainImage" class="form-control input-file" id="mainImage">
                         </div>
                         <div class="form-group">
                             <label for="pictures" style = "font-size: 18px" class="col-form-label text-md-right color">Ostale slike:</label><br>
-                            <input type="file" name="pictures[]" multiple class="form-control" id="pictures">
+                            <input type="file" name="pictures[]" multiple class="form-control input-file" id="pictures">
                         </div>
                         <div class="form-group">
                             <label for="trailer" style="font-size:18px" class="col-form-label text-md-right color">Trejler:</label>

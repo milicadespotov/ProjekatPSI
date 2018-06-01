@@ -29,14 +29,11 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
-<<<<<<< HEAD
 
-=======
 //Route::get('episode/{content_id}','');
-=======
 
 ///Route::get('episode/{content_id}','');
->>>>>>> 3eb5809f5f428c4faca6ca83ed10da19b1d8f44a
+
 
 
 
