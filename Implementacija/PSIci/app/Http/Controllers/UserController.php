@@ -49,32 +49,35 @@ class UserController extends Controller
 
 
 
-<<<<<<< HEAD
+
         public function rateSeries(Content $content)
         {
-            if ($content == null) return view('home.index');
-            $rate = Rating::find(Auth::user()->id, $content->id);
+            if ($content == null)  return view('home.users');
+            $rate = Rating::where('user_id','=',Auth::user()->username)->where('content_id','=',$content->id);
+            $rate = $rate->first();
             $ratingScore = request('ratedNum');
             $ratingScore = intval($ratingScore);
             if ($ratingScore <= 0 || $ratingScore > 10) return view('home.index');
             if ($rate == null) {
-                DB::table('rating')->insert(array('user_id' => $_SESSION['username'], 'content_id' => $content->id, 'rate' => $ratingScore));
+                return view('home.users');
+                DB::table('rating')->insert(array('user_id' => Auth::user()->username, 'content_id' => $content->id, 'rate' => $ratingScore));
                 $sum = $content->number_of_rates * $content->rating + $ratingScore;
                 $content->number_of_rates = $content->number_of_rates + 1;
                 $content->rating = $sum / $content->number_of_rates;
-                $content->save();
+                $content->update();
             } else {
+                return view('home.users');
                 $oldRate = $rate->rate;
                 $sum = $content->number_of_rates * $content->rating - $oldRate + $ratingScore;
                 $content->rating = $sum / $content->number_of_rates;
                 $rate->rate = $ratingScore;
-                $content->save();
-                $rate->save();
+                $content->update();
+                $rate->update();
             }
 
-        return view('home.index');
+        return view('home.users');
         }
-=======
+
     public function rateContent(Content $content)
     {
         if ($content == null) return view('home.index');
@@ -100,7 +103,7 @@ class UserController extends Controller
 
 
     }
->>>>>>> 8a3f26af1344c7a0eeb6e16970f83999513b6625
+
 
 
     public function userProfile()
