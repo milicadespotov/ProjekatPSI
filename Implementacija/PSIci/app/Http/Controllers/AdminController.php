@@ -227,8 +227,8 @@ class AdminController extends Controller
         $directing->tvshow_id = $id;
         $directing->director_id = $content->id;
         $directing->save();
-        $actors = DB::table('categories')->join('actings')->where('categories.id', '=', 'actings.actor_id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name');
-        $directors = DB::table('categories')->join('directings')->where('categories.id', '=', 'directings.director_id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name');
+        $actors = DB::table('categories')->join('actings','categories.id','=','actings.tvshow_id')->where('categories.id', '=', 'actings.actor_id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name');
+        $directors = DB::table('categories')->join('directings','categories.id','=','directings.tvshow_id')->where('categories.id', '=', 'directings.director_id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name');
         return view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
 
     }

@@ -56,4 +56,11 @@ class Content extends Model
         if ($rate==null) return null;
         return $rate;
     }
+
+    public static function getContentsSearch($text) {
+        DB::table('contents')->join('tvshows','tvshows.content_id','=','contents.id')
+            ->where('contents.name','like',$text)
+            ->orderby('contents.id','desc')
+            ->select('contents.*');
+    }
 }
