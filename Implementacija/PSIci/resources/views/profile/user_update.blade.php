@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label class=" control-label" for="surname">Prezime:</label>
 
-                                <input id="surname" name="surname" placeholder="Unesite prezime" class="form-control input-md" type="text" value="{{ Request::old('surname') ? Request::old('surname') : $user->surname}}">>
+                                <input id="surname" name="surname" placeholder="Unesite prezime" class="form-control input-md" type="text" value="{{ Request::old('surname') ? Request::old('surname') : $user->surname}}">
                                 <div class ="text-danger">  {{ $errors->first('surname') }}</div>
 
                         </div>
