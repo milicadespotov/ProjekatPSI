@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Content extends Model
 {
@@ -23,7 +24,7 @@ class Content extends Model
     }
 
     public function pictures(){
-        return $this->hasMany('App\Picture', 'picture_id');
+        return $this->hasMany('App\Picture', 'content_id');
     }
 
 
@@ -55,15 +56,16 @@ class Content extends Model
     }
 
     public function currentRate(){
-        $rate = DB::table('ratings')->where('user_id','=',Auth::user()->username)->where('content_id','=',$this->id);
-        if ($rate==null) return null;
+        $rate = Rating::where('user_id','=',Auth::user()->username)->where('content_id','=',$this->id);
+        $rate = $rate->first();
+
         return $rate;
     }
 
     public static function getContentsSearch($text) {
-        DB::table('contents')->join('tvshows','tvshows.content_id','=','contents.id')
-            ->where('contents.name','like',$text)
+        return DB::table('contents')->join('tvshows','tvshows.content_id','=','contents.id')
+            ->where('contents.name','like','%'.$text.'%')
             ->orderby('contents.id','desc')
-            ->select('contents.*');
+            ->select('contents.*')->get();
     }
 }

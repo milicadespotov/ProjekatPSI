@@ -1,3 +1,6 @@
+
+<?php use Carbon\Carbon; ?>
+
 @extends('layouts.master')
 
 @section('content')
@@ -9,7 +12,7 @@
             <div class="col-lg-4 ">
 
                 <div class="blog-title">
-                    <h1>Naziv serije</h1>
+                    <h1>{{$content->name}}</h1>
                 </div>
 
             </div>
@@ -33,7 +36,7 @@
                 <center>
                     @foreach($content->pictures as $picture)
                         @if($picture->main_picture==true)
-                    <img src="{{ $picture->path }}" style="width:100%;height:auto">
+                    <img src="{{ asset($picture->path) }}" style="width:100%;height:auto">
                         @endif
                         @endforeach
                 </center>
@@ -52,21 +55,20 @@
                     <tr>
                         <td>
                             <b> TV Serija: </b>
-                            @if($contents->release_date!=null)
-                            {{$contents->release_date}}
-                                @endif
+                            @if($content->release_date!=null)
+                                {{Carbon::createFromFormat('Y-m-d H:i:s', $content->release_date)->year}}
+                            @endif
                             -
                             @if ($series->end_date!=null)
-                            {{$series->end_date}}
+                                {{Carbon::createFromFormat('Y-m-d H:i:s', $series->end_date)->year}}
                             @endif
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <b>Žanr: </b>
-                            @foreach($series->type_ofs as $typeof)
-                                $genre = Category::find($typeof->genre_id);
-                                {{$genre->name}},
+                            @foreach($genres as $genre)
+                                {{$genre->name}}<br>
                                 @endforeach
                         </td>
                     </tr>
@@ -115,29 +117,30 @@
                     <th colspan="3" style="text-align: center">
                         <h3>Sezone</h3>
                     </th>
+
                     @for($i=0;$i<count($seasons);$i++)
-                    <tr>
-                        <td style="width:30%"><a href="/season/{{$contents[i]->id}}">{{$contents[i]->name}}</a></td>
-                        <td style="padding-top:16px">
-                            @if(Auth::check())
-                            <div class="progress">
-                                <div class="progress-bar" style="width:{{$seasons[i]->watchingPercentage/$seasons[i]->number_of_episodes}}%">{{$seasons[i]->watchingPercentage/$seasons[i]->number_of_episodes}}%</div>
-                            </div>
+                        <tr>
+                            <td style="width:30%"><a href="/season/{{$contents[$i]->id}}">{{$contents[$i]->name}}</a></td>
+                            <td style="padding-top:16px">
+                                @if(Auth::check())
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:{{$seasons[$i]->watchedPercentage()/$seasons[$i]->number_of_episodes}}%"><font style="color:#2B2C30">{{$seasons[$i]->watchedPercentage()/$seasons[$i]->number_of_episodes}}%</font></div>
+                                    </div>
                                 @else
-                                <div class="progress">
-                                    <div class="progress-bar" style="width:0%">0%</div>
-                                </div>
-                            @endif
-                        </td>
-                        <td style="width:15%;padding-left:5px">
-                            @if(Auth::check())
-                           {{ $seasons[i]->watchedPercentage}}/{{$seasons[i]->number_of_episodes}}
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:0%">0%</div>
+                                    </div>
+                                @endif
+                            </td>
+                            <td style="width:15%;padding-left:5px">
+                                @if(Auth::check())
+                                    {{ $seasons[$i]->watchedPercentage()}}/{{$seasons[$i]->number_of_episodes}}
                                 @else
-                            0/{{$seasons[i]->number_of_episodes}}
-                            @endif
-                        </td>
-                    </tr>
-                        @endfor
+                                    0/{{$seasons[$i]->number_of_episodes}}
+                                @endif
+                            </td>
+                        </tr>
+                    @endfor
                 </table>
                 @if (Auth::check() && Auth::user()->is_admin==true)
                 <center>
@@ -189,8 +192,8 @@
             <div class="col-md-12">
                 <center>
                     @foreach($content->pictures as $picture)
-                    <a href="{{ $picture->path }}" data-lightbox="movie">
-                        <img src="{{ $picture->path }}">
+                    <a href="{{ asset($picture->path) }}" data-lightbox="movie">
+                        <img src="{{ asset($picture->path) }}">
                     </a>
                   @endforeach
                 </center>

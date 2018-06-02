@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Tvshow extends Model
 {
+
+    public $PrimaryKey = 'content_id';
     public function seasons(){
-        return $this->hasMany('App\Season', 'tvshow_id')->orderBy('season_number');
+        return Season::where('tvshow_id','=', $this->content_id)->get();
     }
 
 
@@ -24,8 +27,11 @@ class Tvshow extends Model
     }
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ee52f4570b2c057f696a909ec984cebf9e18a29a
     public function mainPicture(){
         $content = DB::table('contents')->where('contents.id','=',$this->content_id);
         $picture = DB::table('pictures')->where('pictures.content_id','=',$this->content_id)->where('pictures.main_picture','=',true);
@@ -34,10 +40,10 @@ class Tvshow extends Model
 
 
     public static function getTvShowsSearch($text) {
-        DB::table('contents')->join('tvshows','tvshows.content_id','=','contents.id')
-            ->where('contents.name','like',$text)
+        return DB::table('contents')->join('tvshows','tvshows.content_id','=','contents.id')
+            ->where('contents.name','like','%'.$text.'%')
             ->orderby('contents.id','desc')
-            ->select('tvshows.*');
+            ->select('tvshows.*')->get();
     }
 
 }

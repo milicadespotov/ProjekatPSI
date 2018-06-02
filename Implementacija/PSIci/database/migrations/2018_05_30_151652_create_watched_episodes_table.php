@@ -14,8 +14,8 @@ class CreateWatchedEpisodesTable extends Migration
     public function up()
     {
         Schema::create('watched_episodes', function (Blueprint $table) {
-            $table->string('user_id');
-            $table->foreign('user_id')->references('username')->on('users');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('episode_id')->unsigned();
             $table->foreign('episode_id')->references('content_id')->on('episodes');
             $table->primary(['user_id', 'episode_id']);

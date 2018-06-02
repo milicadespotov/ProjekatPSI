@@ -105,7 +105,7 @@
                                     </li>
 
                                     <li class="dropdown-item">
-                                        <a href="#"> PROMENI LOZINKU </a>
+                                        <a href="{{route('password_reset')}}"> PROMENI LOZINKU </a>
                                     </li>
 
                                 </ul>
@@ -117,8 +117,8 @@
                 <li style="padding-top:15px;margin-left:20px">
                     <div class="widget-content">
 
-                        <form action="#" id="search-form" method="get" role="search">
-                            {{ csrf_field() }}
+                        <form action="/search" id="search-form" method="get" role="search">
+
                             <table>
                                 <tr>
                                     <td>
@@ -143,7 +143,7 @@
                                         &nbsp;
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="Pretraga..." autocomplete="on" name="search">
+                                        <input type="text" class="form-control" placeholder="Pretraga..." autocomplete="on" name="search" value="">
                                         <button type="submit" title="Search" id="search-submit">
                                             <i class="fa fa-search"></i>
                                         </button>
@@ -177,7 +177,9 @@
                 </div>
                 <div class="modal-footer">
                     <form method="post" action="/removeAccount/{{Auth::user()->username}}">
-                        <input type="submit" class="btn btn-transparent">Potvrdi</input>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @csrf
+                        <input type="submit" class="btn btn-transparent" value="Potvrdi">
                         <button type="button" class="btn btn-transparent" data-dismiss="modal">Odustani</button>
                     </form>
                 </div>

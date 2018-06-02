@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Season extends Model
 {
+
+    public $PrimaryKey = 'content_id';
     public function episodes(){
         return $this->hasMany('App\Episode', 'season_id');
     }
@@ -15,7 +19,7 @@ class Season extends Model
     }
 
     public function watchedPercentage(){
-        $array = DB::table('episodes')->join('watched_episodes','episodes.content_id','=','watched_episodes.episode_id')->where('episodes.season_id', '=', $this->content_id)->where('episodes.content_id', '=', 'watched_episodes.episode_id');
+        $array = DB::table('episodes')->join('watched_episodes','episodes.content_id','=','watched_episodes.episode_id')->where('episodes.season_id', '=', $this->content_id)->where('watched_episodes.user_id','=',Auth::user()->id)->get();
         $count = count($array);
         return $count;
     }

@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class = "">
-                                        <a class="btn replay" href="{{ route('password.request') }}">
+                                        <a class="btn replay" href="{{ route('password_request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                 </div>
