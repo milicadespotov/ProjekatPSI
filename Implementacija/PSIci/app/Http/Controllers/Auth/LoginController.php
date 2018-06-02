@@ -64,7 +64,7 @@ class LoginController extends Controller
 
             return redirect()->back()->withInput()->withErrors(['success' => 'Korisnicko ime ili lozinka nisu u redu. Pokusajte ponovo. ']);
         } else if (Auth::user()->is_admin == 1) {
-            return redirect()->route('adminProfile');
+            return redirect()->route('userProfile');
         } else {
             return redirect()->route('userProfile');
         }

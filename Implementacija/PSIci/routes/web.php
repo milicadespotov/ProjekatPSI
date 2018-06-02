@@ -115,7 +115,7 @@ Route::get('/userProfile', [
 
 Route::group(['middleware' => 'UserMiddleware'], function()
 {
-    Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout')->middleware('UserMiddleware');
+    Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
     Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm');
     Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset');
     Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request');
@@ -191,8 +191,8 @@ Route::group(['middleware' => 'AdminMiddleware'], function()
 
 Route::group(['middleware' => 'OnlyUserMiddleware'], function ()
 {
-Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
-Route::get('/watchedEpisodes','EpisodeController@watched')->name('watchedepisodes');
+    Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
+    Route::get('/watchedEpisodes','EpisodeController@watched')->name('watchedepisodes');
 });
 // END FILIP
 

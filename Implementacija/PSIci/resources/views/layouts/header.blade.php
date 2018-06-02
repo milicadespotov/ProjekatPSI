@@ -11,9 +11,9 @@
             <!-- /responsive nav button -->
 
             <!-- logo -->
-            <a class="navbar-brand" href="#body">
+            <a class="navbar-brand pull-left" href="#body">
                 <h1 id="logo">
-                    <img src="{{ asset('img/probni_logo.png') }}" style="width:100px;height:auto" alt="WSS" />
+                    <img src="{{ asset('img/probni_logo.png') }}" style="width:175px;height:auto" alt="WSS" />
                 </h1>
             </a>
             <!-- /logo -->

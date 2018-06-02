@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <br>
         <div class="row">
             <div class="col-md-12 ">
@@ -17,10 +17,10 @@
         </div>
             @foreach($watched as $episode)
                 <div class="row">
-                <div class="col-md-1">&nbsp;</div>
-                <div class="col-md-10">
 
-                <div class="row">
+                <div class="col-md-12">
+
+
                 <article class="entry wow fadeInDown"  data-wow-duration="1000ms" data-wow-delay="300ms">
                     <div class="col-md-4">
                     <div class="post-thumb" >
@@ -38,7 +38,7 @@
                        <br>
 
                         <blockquote>
-                            <p>
+                            <p style="word-wrap: break-word;">
                                 {{$episode->description}}
                             </p>
                         </blockquote>
@@ -60,15 +60,15 @@
                     </div>
                 </article>
 
+
+
+
+
                 </div>
 
-
-
-                </div>
-                <div class="col-md-1">&nbsp;</div>
                 </div>
                 <br><br>
-
+            <br><br>
             @endforeach
 
 
