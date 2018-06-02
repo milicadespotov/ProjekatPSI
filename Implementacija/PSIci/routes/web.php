@@ -118,9 +118,9 @@ Route::group(['middleware' => 'UserMiddleware'], function()
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
     Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm');
     Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset');
-    Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request');
 });
-
+Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request');
+Route::post('/password/email', '\App\Http\Controllers\Auth\ForgotPasswordController@sendEmailConfirm')->name('password_email');
 Route::get('/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
 Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 
@@ -185,7 +185,7 @@ Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoup
 Route::group(['middleware' => 'AdminMiddleware'], function()
 {
     Route::get('/updateSpoiler/{id}', 'EpisodeController@updateSpoiler')->name('updatespoiler');
-    Route::get('/updateSpoilerRemove/{id}', 'EpisodeController@updateSpoilerRemove');
+    Route::get('/updateSpoilerRemove/{id}', 'EpisodeController@updateSpoilerRemove')->name('updatespoilerremove');
 });
 
 

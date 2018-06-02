@@ -1620,3 +1620,9 @@ blockquote {
   margin: 0;
 }
 
+.page-link{
+	color:  rgb(27, 27, 29) !important;
+	background-color:  #97938f8a !important;
+	border-color: #bbb4b4;
+
+}

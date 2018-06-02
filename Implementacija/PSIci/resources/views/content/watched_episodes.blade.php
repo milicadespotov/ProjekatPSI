@@ -26,7 +26,9 @@
                     <div class="post-thumb" >
                         <a href="#">
                             <!-- PROVJERITI U KOM FOLDERU JE SLIKA I PROMIJENITI PUTANJU -->
+                            <a href=<?php $path = 'img/'.$episode->path; echo $path; ?> data-lightbox="movie">
                             <img src=<?php $path = 'img/'.$episode->path; echo $path; ?>  style="width:400px;height:auto" class="img-responsive">
+                            </a>
                         </a>
                     </div>
                     </div>
@@ -69,6 +71,7 @@
                 </div>
                 <br><br>
             <br><br>
+                <hr>
             @endforeach
 
 

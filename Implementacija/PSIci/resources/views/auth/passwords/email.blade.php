@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header"><h3>{{ __('Resetovanje password') }}</h3></div> <br> <br> <br>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,11 +15,11 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form method="POST" class = "color" action="{{ route('password_email') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail: ') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
@@ -32,10 +32,39 @@
                             </div>
                         </div>
 
+
+                        <div class="form-group row">
+                            <label for="security_question" class="col-md-4 col-form-label text-md-right">{{ __('Sigurnosno pitanje ') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="security_question" type="text" class="form-control{{ $errors->has('security_question') ? ' is-invalid' : '' }}" name="security_question" value="{{ old('security_question') }}" required>
+
+                                @if ($errors->has('security_question'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('security_question') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="answer" class="col-md-4 col-form-label text-md-right">{{ __('Sigurnosno pitanje ') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="answer" type="text" class="form-control{{ $errors->has('answer') ? ' is-invalid' : '' }}" name="answer" required>
+
+                                @if ($errors->has('answer'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('answer') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                                    {{ __('Posalji reset link') }}
                                 </button>
                             </div>
                         </div>
