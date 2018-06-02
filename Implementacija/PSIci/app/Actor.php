@@ -23,18 +23,19 @@ class Actor extends Model
             ->join('actors','actors.category_id','=','categories.id')
             ->join('actings','actings.actor_id','=','actors.category_id')
             ->join('tvshows','tvshows.content_id','=','actings.tvshow_id')
-            ->where('categories.name','like', $text)
+            ->where('categories.name','like', '%'.$text.'%')
             ->orderby('tvshows.content_id','desc')
             ->select('tvshows.*')->get();
     }
     public static function getContentSearch($text) {
-        return DB::table('categories')->where('categories.name','like', $text)
-            ->join('actors','actors.category_id','=','actors.id')
-            ->join('actings','actors.category_id','=','actings.actor_id')
-            ->join('tvshows','actings.tvshow_id','=','tvshows.content_id')
-            ->join('contents','contents.content_id')
-            ->orderby('content.content_id','desc')
+        return DB::table('categories')
+            ->join('actors','actors.category_id','=','categories.id')
+            ->join('actings','actings.actor_id','=','actors.category_id')
+            ->join('tvshows','tvshows.content_id','=','actings.tvshow_id')
+            ->join('contents','contents.id','=','tvshows.content_id')
+            ->where('categories.name','like', '%'.$text.'%')
+            ->orderby('contents.id','desc')
             ->select('contents.*')
-            ->distinct('contents.*')->get();
+            ->get();
     }
 }

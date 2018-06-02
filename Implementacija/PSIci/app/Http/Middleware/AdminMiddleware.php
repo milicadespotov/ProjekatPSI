@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Illuminate\Support\Facades\Auth;
 class AdminMiddleware
 {
     /**
@@ -15,6 +15,18 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (Auth::check() == false) {
+            return redirect()->back();
+        }
+        else if (Auth::user()->is_admin == false) {
+            return redirect()->back();
+        }
+        else {
+            return $next($request);
+        }
+
+
+
+
     }
 }

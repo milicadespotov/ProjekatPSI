@@ -16,6 +16,7 @@ use App\Actor;
 use App\Picture;
 use App\Director;
 use App\Genre;
+use App\Picture;
 use Carbon\Carbon;
 class GuestController extends Controller
 {
@@ -87,20 +88,22 @@ class GuestController extends Controller
                 break;
             }
             default: {
-                $tvshows = Genre::getTVShowsSearch($text);
-                $contents = Genre::getTVShowsSearch($text);
+                $tvshows = Genre::getTVShowsSearch($type, $text);
+                $contents = Genre::getContentsSearch($type, $text);
                 break;
             }
         }
         $actors = array();
+        $actors = array();
         $genres = array();
         $directors = array();
-
+        $pictures = array();
         foreach($tvshows as $tvshow) {
-            array_push($actors,Actor::getActorsNames($tvshow->content_id));
-            array_push($genres,Genre::getGenresNames($tvshow->content_id));
-            array_push($directors,Director::getDirectorsNames($tvshow->content_id));
+            array_push($actors, Actor::getActorsNames($tvshow->content_id));
+            array_push($genres, Genre::getGenresNames($tvshow->content_id));
+            array_push($directors, Director::getDirectorsNames($tvshow->content_id));
+            array_push($pictures, Picture::mainPicture($tvshow->content_id));
         }
-        return view('content.search',compact('tvshows','contents','genres','directors','actors'));
+        return view('content.search',compact('tvshows','contents','genres','directors','actors','pictures'));
     }
 }

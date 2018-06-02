@@ -113,17 +113,17 @@ Route::get('/userProfile', [
 
 ]);
 
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout')->middleware('UserMiddleware');
 
 Route::get('/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
 
 Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 
-Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset');
+Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset')->middleware('App\Http\Middleware\UserMiddleware');
 
-Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm');
+Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm')->middleware('UserMiddleware');
 
-Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request');
+Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request')->middleware('UserMiddleware');
 
 
 // END MILICA
@@ -170,14 +170,29 @@ Route::post('/episode/{id}/rate');
 //END ALEKSA
 
 // FILIP
+Route::group(['middleware' => 'UserMiddleware'], function () {
+
+    // any route here will only be accessible for logged in users
+
 Route::post('/addComment','EpisodeController@comment')->name('addcomment');
 Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
-Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
-Route::get('/updateSpoilerRemove/{id}','EpisodeController@updateSpoilerRemove')->name('updatespoilerremove');
-Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
 Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate');
 Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoupdate');
+});
+
+
+Route::group(['middleware' => 'AdminMiddleware'], function()
+{
+    Route::get('/updateSpoiler/{id}', 'EpisodeController@updateSpoiler')->name('updatespoiler');
+    Route::get('/updateSpoilerRemove/{id}', 'EpisodeController@updateSpoilerRemove');
+});
+
+
+Route::group(['middleware' => 'OnlyUser'], function ()
+{
+Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
 Route::get('/watchedEpisodes','EpisodeController@watched')->name('watchedepisodes');
+});
 // END FILIP
 
 

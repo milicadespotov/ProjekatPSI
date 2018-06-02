@@ -6,17 +6,23 @@
     <div class="row">
 
         <div class="col-md-4">
-
-            <img src="">
-
+            @if ($pictures[$i]==null)
+                <img style="width:100%" src="{{asset('img/content/favicon.png')}}">
+            @else
+                <img style="width:100%" src="{{asset('img/content/'.$pictures[$i]->path)}}">
+            @endif
         </div>
         <div class="col-md-8">
             <table>
                 <tr colspan="2">
-                    <a href="">{{$contents[$i]->name}}</a>
+                    <td>
+                        <a href="">{{$contents[$i]->name}}</a>
+                    </td>
                 </tr>
                 <tr>
+                    <td>
                     {{$contents[$i]->description}}
+                    </td>
                 </tr>
                 <tr>
                     <td>Glumci:</td>
