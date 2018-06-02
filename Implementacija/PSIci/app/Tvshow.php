@@ -14,16 +14,18 @@ class Tvshow extends Model
     }
 
 
-    public function actings(){
-        return $this->hasMany('App\Acting', 'tvshow_id');
+    public function actors(){
+        $actors = DB::table('actors')->join('categories','categories.id','=','actors.category_id')->join('actings','actors.category_id','=','actings.actor_id')->where('actings.tvshow_id','=',$this->content_id)->select('categories.*')->get();
+        return $actors;
     }
 
     public function type_ofs(){
         return $this->hasMany('App\TypeOf', 'tvshow_id');
     }
 
-    public function directings(){
-        return $this->hasMany('App\Directing', 'tvshow_id');
+    public function directors(){
+        $directors = DB::table('directors')->join('categories','categories.id','=','directors.category_id')->join('directings','directors.category_id','=','directings.director_id')->where('directings.tvshow_id','=',$this->content_id)->select('categories.*')->get();
+        return $directors;
     }
 
 

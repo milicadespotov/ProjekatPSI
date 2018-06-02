@@ -27,6 +27,14 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('AdminMiddleware');
+
+
+
+    }
     public function index()
     {
         //
@@ -139,7 +147,7 @@ class AdminController extends Controller
         if (Input::has('mainImage')) {
             $picture = new Picture();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img/content_pictures', $filename);
+            $file = $request->file('mainImage')->storeAs('img/content', $filename);
 
             $picture->path = $filename;
             $picture->main_picture = true;
