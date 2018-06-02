@@ -178,14 +178,13 @@
 </script>
 Broj glasova:&nbsp;{{$content->number_of_rates}}&nbsp;Prosecna ocena:{{$content->rating}} Ocenite:
 @if (Auth::check())
-<<<<<<< HEAD
+
 <form action="/{{$type}}/{{$content->id}}/rate" method="post" id="rateForm">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     @csrf
-=======
+
 <form action="{{$type}}/{{$content->id}}/rate" method="post" id="rateForm">
     {{ csrf_field() }}
->>>>>>> 8a3f26af1344c7a0eeb6e16970f83999513b6625
     <div id="stars_data">
         <li class="fa fa-star" id="1"></li>&nbsp;
         <li class="fa fa-star" id="2"></li>&nbsp;

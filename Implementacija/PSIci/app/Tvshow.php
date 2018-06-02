@@ -10,7 +10,7 @@ class Tvshow extends Model
 
     public $PrimaryKey = 'content_id';
     public function seasons(){
-        return $this->hasMany('App\Season', 'tvshow_id')->orderBy('season_number');
+        return Season::where('tvshow_id','=', $this->content_id)->get();
     }
 
 
