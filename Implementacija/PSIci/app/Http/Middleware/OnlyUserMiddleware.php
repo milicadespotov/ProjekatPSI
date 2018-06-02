@@ -15,6 +15,17 @@ class OnlyUserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (Auth::check() == false)
+        {
+            return redirect()->back();
+        }
+        else if (Auth::user()->is_admin)
+        {
+            return redirect()->back();
+
+        }
+        else {
+            return $next($request);
+        }
     }
 }
