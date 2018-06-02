@@ -20,6 +20,8 @@ use App\Director;
 use App\Acting;
 use App\Directing;
 use App\Category;
+use App\Season;
+use App\Episode;
 
 class AdminController extends Controller
 {
@@ -109,15 +111,15 @@ class AdminController extends Controller
 
     public function showUsers()
     {
-        $users = DB::table('users')->where('is_admin', '=', false)->paginate(10);
+        $users = DB::table('users')->where('is_admin', '=', 0)->paginate(10);
         return view('home.users', compact('users'));
     }
 
     public function makeAdmin($id)
     {
         $user = User::find($id);
-        DB::table('users')->where('username', '=', $id)->update(array('is_admin' => true));
-        redirect()->route('accountManager');
+        DB::table('users')->where('id', '=', $id)->update(array('is_admin' => true));
+        return redirect()->route('accountManager');
     }
 
     public function seriesInput()
@@ -148,23 +150,31 @@ class AdminController extends Controller
         $content->save();
         if (Input::has('mainImage')) {
             $picture = new Picture();
-            $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img/content', $filename);
-
-            $picture->path = $filename;
+            $picture->path = '1';
             $picture->main_picture = true;
             $picture->content_id = $content->id;
             $picture->save();
+            $filename = $content->id . '-' . $picture->id . '.jpg';
+            $file = $request->file('mainImage')->storeAs('img\content', $filename);
+
+            $picture->path = $filename;
+
+            $picture->update();
+
         }
         if ($request->pictures) {
             foreach ($request->file('pictures') as $file) {
                 $picture = new Picture();
-                $filename = $content->id . '-' . $picture->id . '.jpg';
-                $file = $file->storeAs('img/content', $filename);
-                $picture->path = $filename;
-                $picture->main_picture = false;
+                $picture->path = '1';
                 $picture->content_id = $content->id;
+                $picture->main_picture = false;
                 $picture->save();
+                $filename = $content->id . '-' . $picture->id . '.jpg';
+                $file = $file->storeAs('img\content', $filename);
+                $picture->path = $filename;
+
+
+                $picture->update();
             }
         }
 
@@ -282,26 +292,36 @@ class AdminController extends Controller
         $content->save();
         if (Input::has('mainImage')) {
             $picture = new Picture();
-            $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img/content_pictures', $filename);
-
-            $picture->path = $filename;
+            $picture->path = '1';
             $picture->main_picture = true;
             $picture->content_id = $content->id;
             $picture->save();
-        }
-        foreach ($request->file('pictures') as $file) {
-            $picture = new Picture();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file=$file->storeAs('img/content_pictures', $filename);
+            $file = $request->file('mainImage')->storeAs('img\content', $filename);
+
             $picture->path = $filename;
-            $picture->main_picture = false;
-            $picture->content_id = $content->id;
-            $picture->save();
+
+            $picture->update();
+
+        }
+        if ($request->pictures) {
+            foreach ($request->file('pictures') as $file) {
+                $picture = new Picture();
+                $picture->path = '1';
+                $picture->content_id = $content->id;
+                $picture->main_picture = false;
+                $picture->save();
+                $filename = $content->id . '-' . $picture->id . '.jpg';
+                $file = $file->storeAs('img\content', $filename);
+                $picture->path = $filename;
+
+
+                $picture->update();
+            }
         }
 
 
-        redirect()->route('season', $content->id);
+        return redirect()->route('season', $content->id);
 }
 
     public function episodeInput($id)
@@ -332,25 +352,35 @@ class AdminController extends Controller
         $content->save();
         if (Input::has('mainImage')) {
             $picture = new Picture();
-            $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img/content_pictures', $filename);
-
-            $picture->path = $filename;
+            $picture->path = '1';
             $picture->main_picture = true;
             $picture->content_id = $content->id;
             $picture->save();
-        }
-        foreach ($request->file('pictures') as $file) {
-            $picture = new Picture();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file=$file->storeAs('img/content_pictures', $filename);
+            $file = $request->file('mainImage')->storeAs('img\content', $filename);
+
             $picture->path = $filename;
-            $picture->main_picture = false;
-            $picture->content_id = $content->id;
-            $picture->save();
+
+            $picture->update();
+
+        }
+        if ($request->pictures) {
+            foreach ($request->file('pictures') as $file) {
+                $picture = new Picture();
+                $picture->path = '1';
+                $picture->content_id = $content->id;
+                $picture->main_picture = false;
+                $picture->save();
+                $filename = $content->id . '-' . $picture->id . '.jpg';
+                $file = $file->storeAs('img\content', $filename);
+                $picture->path = $filename;
+
+
+                $picture->update();
+            }
         }
 
 
-        redirect()->route('episode', $content->id);
+        return redirect()->route('showepisode', $content->id);
     }
 }
