@@ -85,7 +85,7 @@ Route::post('/addSeason/{id}', 'AdminController@seasonInput');
 
 Route::post('/confirmSeason/{id}','AdminController@makeSeason');
 
-Route::post('/addEpisode/{id}', 'AdminController@episodeInput');
+Route::post('/addEpisode/{id}', 'AdminController@episodeInput')->name('addepisode');
 
 Route::post('/confirmEpisode/{id}','AdminController@makeEpisode');
 

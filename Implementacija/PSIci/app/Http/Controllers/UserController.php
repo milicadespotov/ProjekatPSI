@@ -11,7 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Rating;
 use App\Content;
-
+use App\Episode;
 use App\User;
 
 
@@ -111,6 +111,7 @@ class UserController extends Controller
                 ->orderBy('ratings.updated_at', 'asc')
                 ->limit(3)
                 ->get();
+
             //dovlacenje posljednje odgledanih serije(tj epizoda serija)
             //promjenljiva ce se zvati $lastWatched
             $lastWatched = DB::table('episodes')
@@ -121,8 +122,13 @@ class UserController extends Controller
                 ->limit(3)
                 ->get();
 
+             $picturesLW = array();
 
-            return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched]);
+            foreach($lastWatched as $episode){
+                array_push($picturesLW, Episode::mainPictureId($episode->content_id));
+            }
+
+            return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW]);
 
         }
 
