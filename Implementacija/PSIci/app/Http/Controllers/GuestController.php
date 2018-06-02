@@ -85,6 +85,6 @@ class GuestController extends Controller
             array_push($genres,Genre::getGenresNames($tvshow->content_id));
             array_push($directors,Director::getDirectorsNames($tvshow->content_id));
         }
-        return;
+        return view('content.search',compact('tvshows','contents','genres','directors','actors'));
     }
 }

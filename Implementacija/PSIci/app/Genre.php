@@ -11,9 +11,10 @@ class Genre extends Model
         return $this->hasMany('App\TypeOf', 'genre_id');
     }
     public static function getGenresNames($id) {
-        return DB::table('type_ofs')->where('type_ofs.tvshow_id','=',$id)
-            ->join('genres','type_ofs.tvshow_id','=','genres.category_id')
+        return DB::table('type_ofs')
+            ->join('genres','type_ofs.genre_id','=','genres.category_id')
             ->join('categories','categories.id','=','genres.category_id')
+            ->where('type_ofs.tvshow_id','=',$id)
             ->select('categories.name')->get();
     }
 

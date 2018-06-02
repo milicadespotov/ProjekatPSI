@@ -52,16 +52,20 @@ class UserController extends Controller
 
     public function rateContent(Content $content,Request $request)
     {
-        $rate = Rating::where('user_id','=',Auth::user()->username)->where('content_id','=',$content->id);
-        $rate = $rate->first();
+        $rate = Rating::where('user_id','=',Auth::user()->username)
+            ->where('content_id','=',$content->id)->first();
         $ratingScore = $request->ratedNum;
         $ratingScore = intval($ratingScore);
         if ($ratingScore <= 0 || $ratingScore > 10) return view('home.index');
         if ($rate == null) {
-            DB::table('ratings')->insert(array('user_id' => Auth::user()->username, 'content_id' => $content->id, 'rate' => $ratingScore));
+            $rate = new Rating(['user_id'=>Auth::user()->username,
+                    'content_id'=>$content->id,
+                    'rate'=>$ratingScore
+                ]);
             $sum = $content->number_of_rates * $content->rating + $ratingScore;
             $content->number_of_rates = $content->number_of_rates + 1;
             $content->rating = $sum / $content->number_of_rates;
+            $rate->save();
             $content->update();
         } else {
             $oldRate = $rate->rate;
@@ -69,9 +73,11 @@ class UserController extends Controller
             $content->rating = $sum / $content->number_of_rates;
             $rate->rate = $ratingScore;
             $content->update();
-            DB::table('ratings')->where('ratings.content_id', '=', $content->id)
-                ->where('ratings.user_id', '=', Auth::user()->username)
-                ->update(['rate' => $ratingScore]);
+            DB::table('ratings')
+                ->where('user_id','=',Auth::user()->username)
+                ->where('content_id','=',$content->id)
+                ->update(['ratings.rate'=>$ratingScore,
+                    'updated_at'=>(new \Carbon\Carbon())::now()]);
 
         }
 

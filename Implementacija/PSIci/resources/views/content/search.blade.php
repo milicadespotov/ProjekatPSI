@@ -2,8 +2,7 @@
 
 @section('content')
 
-@for($i=0;$i<$tvshows.length;$i++)
-
+@for($i=0;$i<sizeof($tvshows);$i++)
     <div class="row">
 
         <div class="col-md-4">
@@ -14,16 +13,17 @@
         <div class="col-md-8">
             <table>
                 <tr colspan="2">
-                    <a href="">$contents[i]->name</a>
+                    <a href="">{{$contents[$i]->name}}</a>
                 </tr>
                 <tr>
-                    $contents[i]->description
+                    {{$contents[$i]->description}}
                 </tr>
                 <tr>
                     <td>Glumci:</td>
                     <td>
                         @foreach($actors[$i] as $actor)
-                        |{{$actor}}|
+
+                        |{{$actor->name}}|
                         @endforeach
                     </td>
                 </tr>
@@ -31,7 +31,7 @@
                     <td>Režiseri:</td>
                     <td>
                         @foreach($directors[$i] as $director)
-                            |{{$director}}
+                            |{{$director->name}}
                         @endforeach
                     </td>
                 </tr>
@@ -39,7 +39,7 @@
                     <td>Žanr:</td>
                     <td>
                         @foreach($genres[$i] as $genre)
-                        |{{$genre}}|
+                        |{{$genre->name}}|
                         @endforeach
                     </td>
                 </tr>
