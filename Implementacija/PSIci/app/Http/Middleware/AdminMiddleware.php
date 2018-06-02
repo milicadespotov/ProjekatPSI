@@ -16,10 +16,10 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         if (Auth::check() == false) {
-            return view('login');
+            return respose()->view('login');
         }
         else if (Auth::user()->is_admin == false) {
-            return view('user.profile');
+            return respose()->view('user.profile');
         }
         else {
             return $next($request);

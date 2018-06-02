@@ -15,6 +15,11 @@ class GuestMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if (Auth::check())
+        {
+            return response()->view('profile.user');
+        }
+
         return $next($request);
     }
 }
