@@ -30,15 +30,12 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
-<<<<<<< HEAD
-=======
+
 //Route::get('episode/{content_id}','');
 
 
 ///Route::get('episode/{content_id}','');
 
-
->>>>>>> 2f7f5d8b4b24ab07848d18564501b2f599543894
 //Route::get('episode/{content_id}','');
 
 ///Route::get('episode/{content_id}','');
@@ -112,27 +109,29 @@ Route::get('/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')
 
 Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 
+Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset');
 
+Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm');
 
-
+Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request');
 // END MILICA
 
 
 
 // ALEKSA
 
-<<<<<<< HEAD
+
 Route::post('/series/{tvshow}/rate','UserController@rateContent');
 Route::post('/season/{id}/rate','UserController@rateContent');
 Route::post('/episode/{id}/rate','UserController@rateContent');
 Route::get('/search','GuestController@search');
 
 
-=======
+
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
 Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
->>>>>>> 2f7f5d8b4b24ab07848d18564501b2f599543894
+
 
 //END ALEKSA
 
