@@ -16,8 +16,7 @@
 .backgroundLoginI
 {
     background-image: url("../img/background2.jpg");
-
-
+    opacity: 0.5;
 }
 
 

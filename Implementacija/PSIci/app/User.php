@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     use Notifiable;
 
-    public $PrimaryKey = 'username';
+
 
 
 
