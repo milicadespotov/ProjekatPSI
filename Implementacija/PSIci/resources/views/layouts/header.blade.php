@@ -137,6 +137,7 @@
                                             <option value="triler">Triler</option>
                                             <option value="drama">Drama</option>
                                             <option value="romansa">Romansa</option>
+                                            <option value="animirana">Animirana</option>
                                         </select>
                                     </td>
                                     <td>

@@ -5,7 +5,7 @@
         <form method="POST" enctype="multipart/form-data" action="/confirmSeries" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             @csrf
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="margin-top:20px;">
             <div class="col-lg-6">
                         <div class="form-group">
                             <label for="mainImage" style = "font-size: 18px" class="col-form-label text-md-right color">Naslovna slika:</label><br>
@@ -24,23 +24,52 @@
                             <input type="text" name="name" class="form-control">
                         </div>
                         <div class="form-group">
-                            <div class="sel">
-                                <div class="container">
+
+
                             <label for="genre" style = "font-size: 18px" class="col-form-label text-md-right color">Žanr:</label>
-                                    <div class="dropdown dropdown-dark">
-                                        <select name="two" class="dropdown-select form-control" multiple="multiple">
-                                            <option value="komedija">Komedija</option>
-                                            <option value="horor">Horor</option>
-                                            <option value="akcija">Akcija</option>
-                                            <option value="romansa">Romansa</option>
-                                            <option value="triler">Triler</option>
-                                            <option value="dokumentarna">Dokumentarna</option>
-                                            <option value="drama">Drama</option>
-                                        </select>
-                                    </div>
-                        </div>
+
+                                        <table cell-padding="20px">
+                                            <tr>
+                                                <td style="padding:10px">
+                                                    <label for="dokumentarna">Dokumentarna:</label></td><td style="padding:10px">
+                                                    <input type="checkbox" name="zanr[]" value="dokumentarna">
+                                                </td>
+                                                <td style="padding:10px">
+                                                    <label for="komedija">Komedija:</label></td><td style="padding:10px">
+                                                    <input type="checkbox" name="zanr[]" value="komedija">
+                                                </td>
+                                                <td style="padding:10px">
+                                                    <label for="akcija">Akcija:</label></td><td style="padding:10px">
+                                                    <input type="checkbox" name="zanr[]" value="akcija">
+                                                </td>
+                                                <td style="padding:10px">
+                                                    <label for="horor">Horor:</label></td><td style="padding:10px">
+                                                    <input type="checkbox" name="zanr[]" value="horor">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding:10px">
+                                                    <label for="triler">Triler:</label></td><td style="padding:10px">
+                                                    <input type="checkbox" name="zanr[]" value="triler">
+                                                </td>
+                                                <td style="padding:10px">
+                                                    <label for="drama">Drama:</label></td><td style="padding:10px">
+                                                    <input type="checkbox" name="zanr[]" value="drama">
+                                                </td>
+                                                <td style="padding:10px">
+                                                    <label for="romansa">Romansa:</label></td><td style="padding:10px">
+                                                    <input type="checkbox" name="zanr[]" value="romansa">
+                                                </td>
+                                                <td style="padding:10px">
+                                                    <label for="animirana">Animirana:</label></td><td style="padding:10px">
+                                                    <input type="checkbox" name="zanr[]" value="animirana">
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
                     </div>
-                </div>
+
                         <div class="form-group">
                            <label for="description" style = "font-size: 18px" class="col-form-label text-md-right color">Kratak opis:</label>
                             <textarea name="description" class="form-control"></textarea>
