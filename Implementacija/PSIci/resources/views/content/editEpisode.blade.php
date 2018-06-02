@@ -1,6 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
+<script>
+	
+function submitVal(num) {
+    document.getElementById("setPictureOption").value=num;
+    document.getElementById("changePictureForm").submit();
+}
+
+</script
     <div class="container-fluid">
             <div class="row justify-content-center" style="margin-top:20px;">
                 <div class="col-lg-6">
