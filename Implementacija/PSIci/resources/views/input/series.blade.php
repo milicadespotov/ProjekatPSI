@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group">
                             <label for="name" style = "font-size: 18px" class="col-form-label text-md-right color">Ime serije:</label>
-                            <input type="text" name="name" class="form-control">
+                            <input type="text" name="name" class="form-control" id="name">
                         </div>
                         <div class="form-group">
 
@@ -32,37 +32,37 @@
                                             <tr>
                                                 <td style="padding:10px">
                                                     <label for="dokumentarna">Dokumentarna:</label></td><td style="padding:10px">
-                                                    <input type="checkbox" name="zanr[]" value="dokumentarna">
+                                                    <input type="checkbox" name="zanr[]" value="dokumentarna" id="dokumentarna">
                                                 </td>
                                                 <td style="padding:10px">
                                                     <label for="komedija">Komedija:</label></td><td style="padding:10px">
-                                                    <input type="checkbox" name="zanr[]" value="komedija">
+                                                    <input type="checkbox" name="zanr[]" value="komedija" id="komedija">
                                                 </td>
                                                 <td style="padding:10px">
                                                     <label for="akcija">Akcija:</label></td><td style="padding:10px">
-                                                    <input type="checkbox" name="zanr[]" value="akcija">
+                                                    <input type="checkbox" name="zanr[]" value="akcija" id="akcija">
                                                 </td>
                                                 <td style="padding:10px">
                                                     <label for="horor">Horor:</label></td><td style="padding:10px">
-                                                    <input type="checkbox" name="zanr[]" value="horor">
+                                                    <input type="checkbox" name="zanr[]" value="horor" id="horor">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td style="padding:10px">
                                                     <label for="triler">Triler:</label></td><td style="padding:10px">
-                                                    <input type="checkbox" name="zanr[]" value="triler">
+                                                    <input type="checkbox" name="zanr[]" value="triler" id="triler">
                                                 </td>
                                                 <td style="padding:10px">
                                                     <label for="drama">Drama:</label></td><td style="padding:10px">
-                                                    <input type="checkbox" name="zanr[]" value="drama">
+                                                    <input type="checkbox" name="zanr[]" value="drama" id="drama">
                                                 </td>
                                                 <td style="padding:10px">
                                                     <label for="romansa">Romansa:</label></td><td style="padding:10px">
-                                                    <input type="checkbox" name="zanr[]" value="romansa">
+                                                    <input type="checkbox" name="zanr[]" value="romansa" id="romansa">
                                                 </td>
                                                 <td style="padding:10px">
                                                     <label for="animirana">Animirana:</label></td><td style="padding:10px">
-                                                    <input type="checkbox" name="zanr[]" value="animirana">
+                                                    <input type="checkbox" name="zanr[]" value="animirana" id="animirana">
                                                 </td>
                                             </tr>
                                         </table>
@@ -72,34 +72,34 @@
 
                         <div class="form-group">
                            <label for="description" style = "font-size: 18px" class="col-form-label text-md-right color">Kratak opis:</label>
-                            <textarea name="description" class="form-control"></textarea>
+                            <textarea name="description" class="form-control" id="description"></textarea>
                         </div>
 
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="releaseDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum izlaska:</label>
-                    <input type="date" name="releaseDate" class="form-control">
+                    <input type="date" name="releaseDate" class="form-control" id="releaseDate">
                 </div>
                 <div class="form-group">
                     <label for="country" style = "font-size: 18px" class="col-form-label text-md-right color">Zemlja porekla:</label>
-                    <input type="text" name="country" class="form-control">
+                    <input type="text" name="country" class="form-control" id="country">
                 </div>
                 <div class="form-group">
                     <label for="language" style = "font-size: 18px" class="col-form-label text-md-right color">Jezik:</label>
-                    <input type="text" name="language" class="form-control">
+                    <input type="text" name="language" class="form-control" id="language">
                 </div>
                 <div class="form-group">
                     <label for="duration" style = "font-size: 18px" class="col-form-label text-md-right color">Trajanje epizode: (u minutima)</label>
-                    <input type="text" name="duration" class="form-control">
+                    <input type="text" name="duration" class="form-control" id="duration">
                 </div>
                 <div class="form-group">
                     <label for="endDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum završetka:</label>
-                    <input type="date" name="endDate" class="form-control">
+                    <input type="date" name="endDate" class="form-control" id="endDate">
                 </div>
                 <div class="form-group">
                     <label for="episodes" style = "font-size: 18px" class="col-form-label text-md-right color">Broj epizoda:</label>
-                    <input type="text" name="episodes" class="form-control">
+                    <input type="text" name="episodes" class="form-control" id="episodes">
                 </div>
 
     </div>

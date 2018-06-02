@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <center><h1>Serija {{$content->name}}</h1></center>
         </div>
-    <form method="POST" enctype="multipart/form-data" action="/confirmSeason/{{$content->id}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+    <form method="POST" enctype="multipart/form-data" action="{{route('confirm_season', ['id'=>$content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         @csrf
         <div class="row justify-content-center">

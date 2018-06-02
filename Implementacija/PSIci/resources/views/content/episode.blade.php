@@ -34,7 +34,7 @@
 
                     @foreach($content->pictures as $picture)
                         @if($picture->main_picture==true)
-                            <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
+                            <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:100%;height:auto">
                         @else
                             <img src="{{ asset('img/avatar.png') }}" style="width:100%;height:auto">
                             @endif
@@ -74,8 +74,8 @@
 
                     @foreach($content->pictures as $picture)
                         <div class="col-md-3" style="margin-bottom:10px;">
-                            <a href="{{ asset('img/'.$picture->path) }}" data-lightbox="movie">
-                                <img src="{{ asset('img/'.$picture->path) }}" style="max-width:95%;height:auto;">
+                            <a href="{{ asset('img/img/content/'.$picture->path) }}" data-lightbox="movie">
+                                <img src="{{ asset('img/img/content'.$picture->path) }}" style="max-width:95%;height:auto;">
                             </a>
                         </div>
 
@@ -97,7 +97,7 @@
         <br>
         <div class="row">
             <div id="comments" class="comments-section col-md-8">
-                <h4>{{count($comments)}} komentara</h4>
+                <h4>{{$numcomments}} komentara</h4>
                 <ol class="comment-list">
                     <li id="comment-1">
 

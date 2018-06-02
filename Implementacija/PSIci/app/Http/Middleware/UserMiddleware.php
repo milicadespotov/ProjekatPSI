@@ -17,7 +17,7 @@ class UserMiddleware
     {
         if (Auth::check() == false)
         {
-            return redirect()->back();
+            return view('profile.user');
         }
 
         return $next($request);

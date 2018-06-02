@@ -11,7 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Rating;
 use App\Content;
-
+use App\Episode;
 use App\User;
 
 
@@ -27,13 +27,13 @@ class UserController extends Controller
 
     public function remove($id)
     {
-        $user = User::where('username','=',$id);
-        DB::beginTransaction();
-        DB::table('comments')->where('user_id', '=', $id)->get()->delete();
-        DB::table('watched_seasons')->where('user_id', '=', $id)->get()->delete();
-        DB::table('watched_episodes')->where('user_id', '=', $id)->get()->delete();
-        DB::commit();
+        $user = User::where('id','=',$id);
         $user = $user->first();
+        DB::beginTransaction();
+        DB::table('comments')->where('user_id', '=', $id)->delete();
+        DB::table('watched_seasons')->where('user_id', '=', $id)->delete();
+        DB::table('watched_episodes')->where('user_id', '=', $id)->delete();
+        DB::commit();
         $ratings = $user->ratings;
         foreach ($ratings as $rating) {
             $content_id = $rating->content_id;
@@ -44,7 +44,7 @@ class UserController extends Controller
             $content->setRating;
         }
         Auth::logout();
-        DB::table('users')->where('username', '=', $id)->delete();
+        DB::table('users')->where('id', '=', $id)->delete();
         return view('home.index');
 
     }
@@ -111,6 +111,17 @@ class UserController extends Controller
                 ->orderBy('ratings.updated_at', 'asc')
                 ->limit(3)
                 ->get();
+
+
+            $picturesLR = array();
+
+            foreach($lastRated as $episode){
+                array_push($picturesLR, Content::mainPictureId($episode->content_id));
+            }
+
+
+
+
             //dovlacenje posljednje odgledanih serije(tj epizoda serija)
             //promjenljiva ce se zvati $lastWatched
             $lastWatched = DB::table('episodes')
@@ -121,8 +132,13 @@ class UserController extends Controller
                 ->limit(3)
                 ->get();
 
+             $picturesLW = array();
 
-            return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched]);
+            foreach($lastWatched as $episode){
+                array_push($picturesLW, Episode::mainPictureId($episode->content_id));
+            }
+
+            return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR]);
 
         }
 

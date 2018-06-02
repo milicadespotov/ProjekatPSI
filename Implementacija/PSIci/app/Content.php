@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class Content extends Model
 {
+    public static function mainPictureId($id){
+        $picture = DB::table('pictures')->where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.*')->get()->first();
 
+        return $picture;
+    }
 
 
     public function tvshow(){

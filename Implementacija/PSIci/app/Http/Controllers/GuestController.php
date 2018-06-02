@@ -50,15 +50,16 @@ class GuestController extends Controller
         $episode = $episode->first();
         $content = Content::find($id);
 
-        $comments = $episode->comments();
+
         $path = DB::table('pictures')->where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.path');
 
         $comments = $episode->comments();
         $pictures = Picture::where('content_id',$id)->get();
         $path = Picture::where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.path');
 
+        $numcomments = count($comments);
         $type = 'episode';
-        return view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type','pictures']));
+        return view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type','pictures','numcomments']));
     }
 
     public function search(Request $request) {
