@@ -17,12 +17,11 @@ class OnlyUserMiddleware
     {
         if (Auth::check() == false)
         {
-            return redirect()->back();
+            return view('login');
         }
         else if (Auth::user()->is_admin)
         {
-            return redirect()->back();
-
+            return view('user.profile');
         }
         else {
             return $next($request);

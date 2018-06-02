@@ -3,6 +3,10 @@
 @section('content')
 
     <div class="container-fluid">
+        <br>
+        <br>
+        <br>
+
         <div class="row">
             <div class="col-lg-4 ">
 
@@ -15,7 +19,7 @@
             <div class="col-lg-4">
                 @if(Auth::check() && Auth::user()->is_admin==true)
                     <center>
-                        <form method="post" action="/addEpisode/{{$content->id}}">
+                        <form method="post" action="{{ route('addepisode',['id'=>$content->id]) }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             @csrf
                             <input type="submit" value="Dodaj epizodu" class="btn btn-transparent">
@@ -58,16 +62,13 @@
                             </center>
                         </div>
                         <div class="col-md-8">
-                            <h4>{{$contents[$i]->name}}</h4>
-                            {{$contents[$i]->description}}
+                            <a href="#"><h4>{{$contents[$i]->name}}</h4></a>
+                            <p style="width:100%;word-wrap: break-word;">
+                                {{$contents[$i]->description}}
+                            </p>
 
                         </div>
-
-
-
                     </div>
-
-
 
                 </div>
                     @endfor
