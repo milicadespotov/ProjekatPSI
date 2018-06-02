@@ -49,7 +49,7 @@
                     <div class="col-md-12" style="margin-bottom:10px">
                         <div class="col-md-4">
                             @if($episodes[$i]->mainPicture()->first()!=null)
-                                <img src="{{asset('img/'.$episodes[$i]->mainPicture()->first()->path)}}" style="width:100%">
+                                <img src="{{asset('img/img/content/'.$episodes[$i]->mainPicture()->first()->path)}}" style="width:100%">
                             @else
                                 <img src="{{asset('img/favicon.png')}}" style="width:100%">
                             @endif
@@ -98,8 +98,8 @@
             <div class="col-md-12">
                 @foreach($content->pictures as $picture)
                     <div class="col-md-3" style="margin-bottom:10px;">
-                        <a href="{{ asset('img/'.$picture->path) }}" data-lightbox="movie">
-                            <img src="{{ asset('img/'.$picture->path) }}" style="max-width:95%;height:auto;">
+                        <a href="{{ asset('img/img/content/'.$picture->path) }}" data-lightbox="movie">
+                            <img src="{{ asset('img/img/content/'.$picture->path) }}" style="max-width:95%;height:auto;">
                         </a>
                     </div>
                     @endforeach

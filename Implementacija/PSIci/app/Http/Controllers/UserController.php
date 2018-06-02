@@ -27,13 +27,13 @@ class UserController extends Controller
 
     public function remove($id)
     {
-        $user = User::where('username','=',$id);
-        DB::beginTransaction();
-        DB::table('comments')->where('user_id', '=', $id)->get()->delete();
-        DB::table('watched_seasons')->where('user_id', '=', $id)->get()->delete();
-        DB::table('watched_episodes')->where('user_id', '=', $id)->get()->delete();
-        DB::commit();
+        $user = User::where('id','=',$id);
         $user = $user->first();
+        DB::beginTransaction();
+        DB::table('comments')->where('user_id', '=', $id)->delete();
+        DB::table('watched_seasons')->where('user_id', '=', $id)->delete();
+        DB::table('watched_episodes')->where('user_id', '=', $id)->delete();
+        DB::commit();
         $ratings = $user->ratings;
         foreach ($ratings as $rating) {
             $content_id = $rating->content_id;
@@ -44,7 +44,7 @@ class UserController extends Controller
             $content->setRating;
         }
         Auth::logout();
-        DB::table('users')->where('username', '=', $id)->delete();
+        DB::table('users')->where('id', '=', $id)->delete();
         return view('home.index');
 
     }
