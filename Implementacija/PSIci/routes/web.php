@@ -30,10 +30,6 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 445a4824d3166cd5be8b49ff690e81c2c25f4f6e
 //Route::get('episode/{content_id}','');
 
 
@@ -125,7 +121,7 @@ Route::post('/season/{content}/rate','UserController@rateContent');
 Route::post('/episode/{content}/rate','UserController@rateContent');
 Route::get('/search','GuestController@search');
 
-<<<<<<< HEAD
+
 
 
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
@@ -133,8 +129,7 @@ Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
 
 
-=======
->>>>>>> 445a4824d3166cd5be8b49ff690e81c2c25f4f6e
+
 //END ALEKSA
 
 // FILIP

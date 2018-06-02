@@ -7,7 +7,7 @@
             <div class="col-lg-4 ">
 
                 <div class="blog-title">
-                    <h1>{{$content->name}}</h1>
+                    <h1>{{$episode->seriesName()}}-{{$episode->seasonName()}}-{{$content->name}}</h1>
                 </div>
 
             </div>
@@ -29,7 +29,11 @@
             <div class="col-md-4">
                 <!--Glavna slika	-->
                 <center>
-                    <img src="{{$path}}" style="width:100%;height:auto">
+                    @foreach($content->pictures as $picture)
+                        @if($picture->main_picture==true)
+                            <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
+                        @endif
+                    @endforeach
                     @if(Auth::check() && Auth::user()->is_admin==true)
                         <a href="#">
                             <input type="submit" value="Izmeni informacije" class="btn btn-transparent">
@@ -59,10 +63,11 @@
                 </center>
                 <center>
                     @foreach($content->pictures as $picture)
-                    <a href="{{$picture->path}}" data-lightbox="movie">
-                        <img src="{{$picture->path}}">
-                    </a>
-                    <br>
+                        <div class="col-md-3" style="margin-bottom:10px;">
+                            <a href="{{ asset('img/'.$picture->path) }}" data-lightbox="movie">
+                                <img src="{{ asset('img/'.$picture->path) }}" style="max-width:95%;height:auto;">
+                            </a>
+                        </div>
                     @endforeach
                 </center>
                 @if(Auth::check() && Auth::user()->is_admin==true)

@@ -11,7 +11,7 @@ class Season extends Model
 
     public $PrimaryKey = 'content_id';
     public function episodes(){
-        return $this->hasMany('App\Episode', 'season_id');
+        return Episode::where('season_id','=', $this->content_id)->get();
     }
 
     public function watched_seasons(){
