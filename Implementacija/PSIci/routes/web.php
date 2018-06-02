@@ -109,17 +109,17 @@ Route::get('/userProfile', [
 
 ]);
 
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout')->middleware('UserMiddleware');
 
 Route::get('/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
 
 Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 
-Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset');
+Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset')->middleware('App\Http\Middleware\UserMiddleware');
 
-Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm');
+Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm')->middleware('UserMiddleware');
 
-Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request');
+Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request')->middleware('UserMiddleware');
 
 
 // END MILICA
@@ -161,12 +161,12 @@ Route::post('/episode/{id}/rate');
 //END ALEKSA
 
 // FILIP
-Route::post('/addComment','EpisodeController@comment')->name('addcomment');
-Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
-Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
-Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
-Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate');
-Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoupdate');
+Route::post('/addComment','EpisodeController@comment')->name('addcomment')->middleware('UserMiddleware');
+Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment')->middleware('UserMiddleware');
+Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler')->middleware('AdminMiddleware');
+Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched')->middleware('UserMiddleware');
+Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate')->middleware('UserMiddleware');
+Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoupdate')->middleware('UserMiddleware');
 
 // END FILIP
 

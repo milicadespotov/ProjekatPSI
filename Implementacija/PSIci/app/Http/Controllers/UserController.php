@@ -19,6 +19,12 @@ class UserController extends Controller
 {
 
 
+
+    public function __construct()
+    {
+        $this->middleware('UserMiddleware');
+    }
+
     public function remove($id)
     {
         $user = User::where('username','=',$id);
