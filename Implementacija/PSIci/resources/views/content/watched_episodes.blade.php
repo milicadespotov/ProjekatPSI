@@ -14,10 +14,12 @@
                 <br>
                 <br>
             </div>
-            <div class="col-md-1">&nbsp;</div>
-            <div class="col-md-10">
 
-                @foreach($watched as $episode)
+            @foreach($watched as $episode)
+                <div class="col-md-1">&nbsp;</div>
+                <div class="col-md-10">
+
+
                 <article class="entry wow fadeInDown"  data-wow-duration="1000ms" data-wow-delay="300ms">
                     <div class="col-md-4">
                     <div class="post-thumb" style="margin-top:30px">
@@ -56,16 +58,25 @@
                     </div>
                     </div>
                 </article>
-                @endforeach
 
 
 
 
+
+                </div>
+                <div class="col-md-1">&nbsp;</div>
+            @endforeach
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <center>
+                    {{ $watched->links() }} 
+                </center>
             </div>
-            <div class="col-md-1">&nbsp;</div>
         </div>
     </div>
-    {{ $watched->links() }}
+
         <br>
         <br>
 @endsection

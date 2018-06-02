@@ -27,11 +27,7 @@ class Tvshow extends Model
     }
 
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> ee52f4570b2c057f696a909ec984cebf9e18a29a
     public function mainPicture(){
         $content = DB::table('contents')->where('contents.id','=',$this->content_id);
         $picture = DB::table('pictures')->where('pictures.content_id','=',$this->content_id)->where('pictures.main_picture','=',true);

@@ -115,7 +115,7 @@ class EpisodeController extends Controller
 
     public function watched(){
 
-        $watched =
+
 
 
         $watched = DB::table('episodes')

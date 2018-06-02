@@ -31,12 +31,11 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> ee52f4570b2c057f696a909ec984cebf9e18a29a
+
+
 //Route::get('episode/{content_id}','');
 
 
@@ -44,10 +43,9 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> ee52f4570b2c057f696a909ec984cebf9e18a29a
+
+
 //Route::get('episode/{content_id}','');
 
 ///Route::get('episode/{content_id}','');
@@ -135,10 +133,8 @@ Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordContro
 // ALEKSA
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> ee52f4570b2c057f696a909ec984cebf9e18a29a
+
 Route::post('/series/{tvshow}/rate','UserController@rateContent');
 Route::post('/season/{id}/rate','UserController@rateContent');
 Route::post('/episode/{id}/rate','UserController@rateContent');
@@ -151,8 +147,7 @@ Route::get('/search','GuestController@search');
 
 
 
-<<<<<<< HEAD
-=======
+
 
 
 
@@ -161,17 +156,15 @@ Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
 
 
->>>>>>> ee52f4570b2c057f696a909ec984cebf9e18a29a
+
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
 Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
 
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> ee52f4570b2c057f696a909ec984cebf9e18a29a
+
 
 //END ALEKSA
 

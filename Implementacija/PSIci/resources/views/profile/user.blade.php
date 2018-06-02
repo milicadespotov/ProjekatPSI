@@ -67,7 +67,7 @@
                             <h4>Nemate odgledanih epizoda!</h4>
                         @else
                         @foreach($lastWatched as $episode)
-                            <a href="{{route('showepisode',['id'=>$episode->content_id])}}" >
+                            <a href="#" >
                                 <img src="{{$episode->mainPicture}}" style="width:300px;height:auto;">
                             </a>
                         @endforeach
