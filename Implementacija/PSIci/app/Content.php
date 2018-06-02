@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class Content extends Model
 {
+
+
+
     public function tvshow(){
         return $this->hasOne('App\Tvshow', 'content_id');
     }

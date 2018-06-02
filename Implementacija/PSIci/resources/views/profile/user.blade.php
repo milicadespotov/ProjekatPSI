@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="col-md-6"><!--SREDITI DA SE UBACI DEAFULT PROFILNA SLIKA!!!!-->
-                    <img src=@if(is_null($user->picture_path)){{ asset('img/avatar.png') }} @else {{ asset($user->picture_path) }} @endif style="width:100%">
+                    <img src=<?php if(is_null($user->picture_path)){ echo 'img/avatar.png' ;} else {$path = 'img/img/users/'.$user->picture_path; echo $path; } ?> style="width:100%">
                     <h4>&nbsp;</h4>
                     <h4>Status: Korisnik</h4>
                     <p>
@@ -18,7 +18,7 @@
                         </a>
                     </p>
                     <p>
-                        <a href="#">
+                        <a href="{{route('watchedepisodes')}}">
                             <input type="submit" value="Odgledano" class="btn btn-transparent">
                         </a>
                     </p>

@@ -17,7 +17,7 @@ class CreateWatchedEpisodesTable extends Migration
             $table->string('user_id');
             $table->foreign('user_id')->references('username')->on('users');
             $table->integer('episode_id')->unsigned();
-            $table->foreign('episode_id')->references('content_id')->on('seasons');
+            $table->foreign('episode_id')->references('content_id')->on('episodes');
             $table->primary(['user_id', 'episode_id']);
             //dateAndTime je kolona created_at
             $table->timestamps();
