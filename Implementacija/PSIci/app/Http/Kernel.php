@@ -47,7 +47,11 @@ class Kernel extends HttpKernel
 
         'UserMiddleware' => [
             \App\Http\Middleware\UserMiddleware::class,
-        ]
+        ],
+
+        'OnlyUserMiddleware' => [
+            \App\Http\Middleware\OnlyUserMiddleware::class,
+        ],
 
     ];
 
