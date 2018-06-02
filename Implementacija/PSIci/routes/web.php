@@ -24,7 +24,9 @@ Route::get('/', function () {
 Route::get('/series/{content_id}', 'GuestController@showSeries')->name('showseries');
 
 
-Route::get('episode/{id}','GuestController@showEpisode');
+Route::get('episode/{id}','GuestController@showEpisode')->name('showepisode');
+
+
 
 
 
@@ -38,6 +40,8 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 ///Route::get('episode/{content_id}','');
+
+
 
 
 
@@ -130,6 +134,7 @@ Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordContro
 
 
 
+
 Route::post('/series/{tvshow}/rate','UserController@rateContent');
 Route::post('/season/{id}/rate','UserController@rateContent');
 Route::post('/episode/{id}/rate','UserController@rateContent');
@@ -145,14 +150,17 @@ Route::get('/search','GuestController@search');
 
 
 
+
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
 Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
 
 
+
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
 Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
+
 
 
 
@@ -164,10 +172,11 @@ Route::post('/episode/{id}/rate');
 Route::post('/addComment','EpisodeController@comment')->name('addcomment');
 Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
 Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
+Route::get('/updateSpoilerRemove/{id}','EpisodeController@updateSpoilerRemove')->name('updatespoilerremove');
 Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
 Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate');
 Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoupdate');
-
+Route::get('/watchedEpisodes','EpisodeController@watched')->name('watchedepisodes');
 // END FILIP
 
 
