@@ -49,6 +49,23 @@
                             {{$tvshow->number_of_episodes}}
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <b>Glumci:</b><br>
+                            @foreach($actors as $actor)
+                                {{$actor->name}}<br>
+                                @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Režiseri:</b><br>
+                            @foreach($directors as $director)
+                                {{$director->name}}<br>
+                            @endforeach
+                        </td>
+                    </tr>
+
 
                 </table>
             </div>
@@ -59,7 +76,7 @@
                     <div class="form-group">
                         <label for="actor">Glumac:</label>
                         <input type="text" name="actor" class="form-control">
-                        <input type="submit" class="btn btn-transparent" value="Dodaj glumca">
+                        <input style="margin-top:15px" type="submit" class="btn btn-transparent" value="Dodaj glumca">
                     </div>
 
                 </form>
@@ -70,7 +87,7 @@
                     <div class="form-group">
                         <label for="actor">Režiser:</label>
                         <input type="text" name="director" class="form-control">
-                        <input type="submit" class="btn btn-transparent" value="Dodaj režisera">
+                        <input style="margin-top:15px" type="submit" class="btn btn-transparent" value="Dodaj režisera">
                     </div>
 
                 </form>

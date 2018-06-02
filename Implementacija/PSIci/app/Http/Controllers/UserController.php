@@ -29,9 +29,9 @@ class UserController extends Controller
     {
         $user = User::where('username','=',$id);
         DB::beginTransaction();
-        DB::table('comments')->where('user_id', '=', $id)->delete();
-        DB::table('watched_seasons')->where('user_id', '=', $id)->delete();
-        DB::table('watched_episodes')->where('user_id', '=', $id)->delete();
+        DB::table('comments')->where('user_id', '=', $id)->get()->delete();
+        DB::table('watched_seasons')->where('user_id', '=', $id)->get()->delete();
+        DB::table('watched_episodes')->where('user_id', '=', $id)->get()->delete();
         DB::commit();
         $user = $user->first();
         $ratings = $user->ratings;
@@ -39,7 +39,7 @@ class UserController extends Controller
             $content_id = $rating->content_id;
             $content = Content::find($content_id);
             DB::beginTransaction();
-            DB::table('ratings')->where('user_id', '=', $id)->where('content_id', '=', $content_id)->delete();
+            DB::table('ratings')->where('user_id', '=', $id)->where('content_id', '=', $content_id)->get()->delete();
             DB::commit();
             $content->setRating;
         }

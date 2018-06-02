@@ -157,9 +157,6 @@ Route::get('/search','GuestController@search');
 
 
 
-Route::post('/series/{tvshow}/rate','UserController@rateSeries');
-Route::post('/season/{id}/rate');
-Route::post('/episode/{id}/rate');
 
 
 
