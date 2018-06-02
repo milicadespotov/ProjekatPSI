@@ -13,6 +13,12 @@ class Episode extends Model
      protected $primaryKey = 'content_id';
 
 
+    public static function mainPictureId($id){
+        $picture = DB::table('pictures')->where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.*')->get()->first();
+
+        return $picture;
+    }
+
     public $PrimaryKey = 'content_id';
 
     public function watched_episodes(){
@@ -26,7 +32,7 @@ class Episode extends Model
 
     public function mainPicture(){
 
-        $picture = DB::table('pictures')->where('pictures.content_id','=',$this->content_id)->where('pictures.main_picture','=','true')->select('pictures.*')->get();
+        $picture = DB::table('pictures')->where('pictures.content_id','=',$this->content_id)->where('pictures.main_picture','=',1)->select('pictures.*')->get();
        return $picture;
     }
 

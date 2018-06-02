@@ -15,4 +15,11 @@ class Picture extends Model
             ->get()
             ->first();
     }
+    public static function notMainPictures($id) {
+        return DB::table('pictures')
+            ->where('content_id','=',$id)
+            ->where('main_picture','=',0)
+            ->select('path')
+            ->get();
+    }
 }
