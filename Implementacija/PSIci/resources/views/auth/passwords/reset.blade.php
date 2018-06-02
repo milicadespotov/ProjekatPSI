@@ -1,34 +1,35 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
+    <div class = "backgroundLogin">
+<div class="container"> <br> <br> <br> <br> <br>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
+                <div class="card-header"> <h3> {{ __('Resetovanje Password') }} </h3></div>
+                <br> <br> <br>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('password.request') }}">
+                    <form method="POST" action="{{ route('password_reset_confirm') }}"  class = "contact-form fadeInUp color"  data-wow-duration="500ms" data-wow-delay="300ms">
                         @csrf
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="old_password" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px;">{{ __('Old password:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
+                                <input id="old_password" type="password" class="form-control{{ $errors->has('old_password') ? ' is-invalid' : '' }}" name="old_password" required autofocus>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('old_password'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('old_password') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px;">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -42,16 +43,16 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password_confirm" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password_confirm" type="password" class="form-control" name="password_confirm" required>
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-transparent">
                                     {{ __('Reset Password') }}
                                 </button>
                             </div>
@@ -62,4 +63,7 @@
         </div>
     </div>
 </div>
+        <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>  <br>
+        <br>
+    </div>
 @endsection

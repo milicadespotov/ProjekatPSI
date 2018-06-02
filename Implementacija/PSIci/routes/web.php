@@ -24,16 +24,29 @@ Route::get('/', function () {
 Route::get('/series/{content_id}', 'GuestController@showSeries')->name('showseries');
 
 
-Route::get('episode/{id}','GuestController@showEpisode');
+Route::get('episode/{id}','GuestController@showEpisode')->name('showepisode');
 
 
 
 
 
+
+
+
+
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
 //Route::get('episode/{content_id}','');
 
 
 ///Route::get('episode/{content_id}','');
+
+
+
+
 
 
 //Route::get('episode/{content_id}','');
@@ -109,6 +122,13 @@ Route::get('/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')
 
 Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 
+Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset');
+
+Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm');
+
+Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request');
+
+
 // END MILICA
 
 
@@ -116,10 +136,22 @@ Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegis
 // ALEKSA
 
 
+
+
+Route::post('/series/{tvshow}/rate','UserController@rateContent');
+Route::post('/season/{id}/rate','UserController@rateContent');
+Route::post('/episode/{id}/rate','UserController@rateContent');
+
 Route::post('/series/{content}/rate','UserController@rateContent');
 Route::post('/season/{content}/rate','UserController@rateContent');
 Route::post('/episode/{content}/rate','UserController@rateContent');
+
 Route::get('/search','GuestController@search');
+
+
+<<<<<<< HEAD
+=======
+
 
 
 
@@ -128,18 +160,32 @@ Route::post('/series/{tvshow}/rate','UserController@rateSeries');
 Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
 
+>>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
 
 
+Route::post('/series/{tvshow}/rate','UserController@rateSeries');
+Route::post('/season/{id}/rate');
+Route::post('/episode/{id}/rate');
+
+
+
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
 //END ALEKSA
 
 // FILIP
 Route::post('/addComment','EpisodeController@comment')->name('addcomment');
 Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
 Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
+Route::get('/updateSpoilerRemove/{id}','EpisodeController@updateSpoilerRemove')->name('updatespoilerremove');
 Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
 Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate');
 Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoupdate');
-
+Route::get('/watchedEpisodes','EpisodeController@watched')->name('watchedepisodes');
 // END FILIP
 
 

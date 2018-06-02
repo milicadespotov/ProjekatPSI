@@ -1,1 +1,1 @@
-php artisan migrate:refresh
+php artisan serve

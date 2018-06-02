@@ -12,9 +12,11 @@
 
             </div>
             <div class="col-lg-8">
+                <!--
                 <div class="blog-title">
-                   @include('rating.rate')
+                   include('rating.rate') ----||DODATI @ ispred
                 </div>
+                -->
 
             </div>
             <!-- End col-lg-12 -->
@@ -29,11 +31,16 @@
             <div class="col-md-4">
                 <!--Glavna slika	-->
                 <center>
+<<<<<<< HEAD
                     @foreach($content->pictures as $picture)
                         @if($picture->main_picture==true)
                             <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
                         @endif
                     @endforeach
+=======
+                    <!--treba da ide path do glavne slike -->
+                    <img src="{{ asset('img/avatar.png') }}" style="width:100%;height:auto">
+>>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
                     @if(Auth::check() && Auth::user()->is_admin==true)
                         <a href="#">
                             <input type="submit" value="Izmeni informacije" class="btn btn-transparent">
@@ -51,7 +58,7 @@
             </div>
             <div class="col-md-4">
                 <h4>Opis: </h4>
-                <p>
+                <p style="wisth:100%">
                     {{$content->description}}
                 </p>
             </div>
@@ -62,12 +69,21 @@
                     <h3>Slike</h3>
                 </center>
                 <center>
+<<<<<<< HEAD
                     @foreach($content->pictures as $picture)
                         <div class="col-md-3" style="margin-bottom:10px;">
                             <a href="{{ asset('img/'.$picture->path) }}" data-lightbox="movie">
                                 <img src="{{ asset('img/'.$picture->path) }}" style="max-width:95%;height:auto;">
                             </a>
                         </div>
+=======
+                    @foreach($pictures as $picture)
+                        <a href="" data-lightbox="movie"><!--Src ka slici zbog lightboxa!!!!-->
+                            <img src="{{ asset('img/avatar.png') }}" style="width:100%"><!--Src ka slici-->
+                            <br>
+                        </a>
+                        <br>
+>>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
                     @endforeach
                 </center>
                 @if(Auth::check() && Auth::user()->is_admin==true)
@@ -79,19 +95,22 @@
                 @endif
             </div>
 
-
-
         </div>
+
+
+
         <br>
         <div class="row">
             <div id="comments" class="comments-section col-md-8">
-                <h4>Broj komentara</h4>
+                <h4>{{count($comments)}} komentara</h4>
                 <ol class="comment-list">
                     <li id="comment-1">
 
                         <!-- Svaki komentar(foreach) ide u ovaj comment wrap-->
                         <!--Znaci ovdje ce ici foreach-->
                         @foreach($comments as $comment)
+
+                            @if($comment->contains_spoiler == 0)
                         <div class="comment-wrap">
                             <div class="author-avatar pull-left">
                                 <!--Slika korisnika-->
@@ -117,7 +136,7 @@
                                 <div style="clear:both"></div>
                                 <div class="comment-meta">
                                     <!--Datum komentara-->
-                                    <i class="fa fa-calendar"></i> {{date('d-m-Y',$comment->created_at)}}
+                                    <i class="fa fa-calendar"></i> {{$comment->created_at->format('m/d/Y')}}
                                 </div>
                             </div>
                             <div class="comment-content">
@@ -126,9 +145,54 @@
                                 </p>
                             </div>
                         </div>
+                                <br>
+                        @else
+                                <div class="comment-wrap">
+                                    <div class="author-avatar pull-left">
+                                        <!--Slika korisnika-->
+                                        <img src="img/blog/user.jpg" alt="">
+                                    </div>
+                                    <div class="author-comment">
+                                        <!--Ime korisnika-->
+                                        <cite class="pull-left">
+                                            <!-- DODATI LINK KA PROFILU KORISNIKA -->
+                                            <a href="#">{{ $comment->user_id}}</a>
+                                        </cite>
+                                        @if(Auth::check() && Auth::user()->is_admin==true)
 
-                        <br>
+                                            <a href="{{ route('deletecomment',['id'=>$comment->id]) }}" class="replay pull-right">Ukloni komentar</a>
+                                            <br>
+                                            <a href="{{ route('updatespoilerremove',['id'=>$comment->id]) }}" class="replay pull-right">Ne sadrzi spojlere</a>
+                                            <br>
+                                            <a href="#{{$comment->id}}" data-toggle="collapse" class="replay pull-right">Prikazi komentar</a>
+                                        @endif
+                                    <!-- PRIAKZI MU KOMENTAR AKO JE ON NJEGOV KREATOR-->
+                                        @if(Auth::check() && Auth::user()->is_admin==false && Auth::user()->username==$comment->user_id)
 
+                                            <a href="{{ route('deletecomment',['id'=>$comment->id]) }}" class="replay pull-right">Ukloni komentar</a>
+                                            <br>
+
+                                            <a href="#{{$comment->id}}" data-toggle="collapse" class="replay pull-right">Spoiler! Prikazi komentar</a>
+                                        @endif
+
+                                        <div style="clear:both"></div>
+                                        <div class="comment-meta">
+                                            <!--Datum komentara-->
+                                            <i class="fa fa-calendar"></i> {{$comment->created_at->format('m/d/Y')}}
+                                        </div>
+                                    </div>
+                                    <div class="comment-content">
+                                        <p id="{{$comment->id}}" class="collapse">
+                                            {{$comment->description}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <br>
+
+
+
+
+                        @endif
                         @endforeach
 
                     </li>
@@ -137,7 +201,7 @@
             <!-- Forma za postavljanje komentara-->
             <div class="col-md-8">
                 <h3>Ostavi komentar</h3>
-                <form id="comment-form" method="post" action="addcomment">
+                <form id="comment-form" method="post" action="{{route('addcomment')}}">
                     <input type="hidden" name="episode_id" value={{$episode->content_id}}  lenght="30"/><!--Id epizode-->
                     @csrf
                     <!-- End .form-group -->

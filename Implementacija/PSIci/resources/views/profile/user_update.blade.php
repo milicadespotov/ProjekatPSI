@@ -7,19 +7,19 @@
     <br>
     <div class="container-fluid">
         <div class="row">
-            <form id="info-form" method="post" action="{{ route('postinfoupdate')}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+            <form id="info-form" enctype= "multipart/form-data" method="post" action="{{ route('postinfoupdate')}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                 @csrf
                 <fieldset>
                     <div class="col-md-1">
                         &nbsp;
                     </div>
                     <div class="col-md-4">
-                        <img src="{{ asset('img/got.jpg') }}" style="width:100%">
-                        <center>
-                        <div class="input-group" style="margin-top: 20px">
-                            <input id="picture" name="picture" class="input-file" type="file" >
 
-                        </div>
+                        <img src=<?php if(is_null($user->picture_path)){ echo 'img/avatar.png' ;} else {$path = 'img/img/users/'.$user->picture_path; echo $path; } ?> style="width:400px;margin-bottom:25px;">
+
+                        <center>
+                            <input id="picture" name="picture" class="input-file" type="file" value="{{ Request::old('picture') }}">
+                            <div class ="text-danger">  {{ $errors->first('picture') }}</div>
                         </center>
                     </div>
                     <div class="col-md-1"> &nbsp; </div>

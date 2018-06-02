@@ -150,7 +150,7 @@
                         <div class = "form-group row">
                             <label for="picture" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px;">{{ __('Profilna fotografija: ') }}</label>
                             <div class="col-md-6">
-                                <input id="picture" name = "picture" type="file" class = "form-control input-file">
+                                <input id="picture" name = "picture" type="file" class = "form-control input-file"  value="{{ Request::old('picture') }}">
 
                             </div>
                         </div>

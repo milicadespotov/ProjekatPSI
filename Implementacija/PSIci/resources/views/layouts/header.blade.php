@@ -105,7 +105,7 @@
                                     </li>
 
                                     <li class="dropdown-item">
-                                        <a href="#"> PROMENI LOZINKU </a>
+                                        <a href="{{route('password_reset')}}"> PROMENI LOZINKU </a>
                                     </li>
 
                                 </ul>
@@ -143,7 +143,7 @@
                                         &nbsp;
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" placeholder="Pretraga..." autocomplete="on" name="search">
+                                        <input type="text" class="form-control" placeholder="Pretraga..." autocomplete="on" name="search" value="">
                                         <button type="submit" title="Search" id="search-submit">
                                             <i class="fa fa-search"></i>
                                         </button>

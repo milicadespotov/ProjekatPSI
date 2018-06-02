@@ -11,16 +11,17 @@ class Director extends Model
         return $this->hasMany('App\Directing', 'director_id');
     }
     public static function getDirectorsNames($id) {
-        return DB::table('directings')->where('directings.tvshow_id','=',$id)
-            ->join('directors','directings.tvshow_id','=','directors.category_id')
+        return DB::table('directings')
+            ->join('directors','directings.director_id','=','directors.category_id')
             ->join('categories','categories.id','=','directors.category_id')
+            ->where('directings.tvshow_id','=',$id)
             ->select('categories.name')->get();
     }
     public static function getTVShowsSearch($text) {
-        return DB::table('categories')->where('categories.name','like', $text)
-            ->join('directors','directors.category_id','=','categories.id')
+        return DB::table('categories')->join('directors','directors.category_id','=','categories.id')
             ->join('directings','directors.category_id','=','directings.director_id')
             ->join('directings','directings.tvshow_id','=','tvshows.content_id')
+            ->where('categories.name','like', $text)
             ->orderby('tvshows.content_id','desc')
             ->select('tvshows.*')
             ->distinct('tvshows.*')->get();

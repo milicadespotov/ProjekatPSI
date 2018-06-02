@@ -52,16 +52,20 @@ class UserController extends Controller
 
     public function rateContent(Content $content,Request $request)
     {
-        $rate = Rating::where('user_id','=',Auth::user()->username)->where('content_id','=',$content->id);
-        $rate = $rate->first();
+        $rate = Rating::where('user_id','=',Auth::user()->username)
+            ->where('content_id','=',$content->id)->first();
         $ratingScore = $request->ratedNum;
         $ratingScore = intval($ratingScore);
         if ($ratingScore <= 0 || $ratingScore > 10) return view('home.index');
         if ($rate == null) {
-            DB::table('ratings')->insert(array('user_id' => Auth::user()->username, 'content_id' => $content->id, 'rate' => $ratingScore));
+            $rate = new Rating(['user_id'=>Auth::user()->username,
+                    'content_id'=>$content->id,
+                    'rate'=>$ratingScore
+                ]);
             $sum = $content->number_of_rates * $content->rating + $ratingScore;
             $content->number_of_rates = $content->number_of_rates + 1;
             $content->rating = $sum / $content->number_of_rates;
+            $rate->save();
             $content->update();
         } else {
             $oldRate = $rate->rate;
@@ -69,9 +73,11 @@ class UserController extends Controller
             $content->rating = $sum / $content->number_of_rates;
             $rate->rate = $ratingScore;
             $content->update();
-            DB::table('ratings')->where('ratings.content_id', '=', $content->id)
-                ->where('ratings.user_id', '=', Auth::user()->username)
-                ->update(['rate' => $ratingScore]);
+            DB::table('ratings')
+                ->where('user_id','=',Auth::user()->username)
+                ->where('content_id','=',$content->id)
+                ->update(['ratings.rate'=>$ratingScore,
+                    'updated_at'=>(new \Carbon\Carbon())::now()]);
 
         }
 
@@ -87,13 +93,14 @@ class UserController extends Controller
 
              //$user = DB::table('users')->where('username', session()->get('username'))->first();
 
-        $user = Auth::user();
+            $user = Auth::user();
 
 
             //dovlacenje posljednje ocijenjenih serija(tj. epizoda serija)
             //promjenljiva ce se zvati $lastRated
             $lastRated = DB::table('tvshows')
                 ->join('ratings', 'tvshows.content_id', '=', 'ratings.content_id')
+                ->where('ratings.user_id','=',Auth::user()->username)
                 ->select('tvshows.*')
                 ->orderBy('ratings.updated_at', 'asc')
                 ->limit(3)
@@ -102,6 +109,7 @@ class UserController extends Controller
             //promjenljiva ce se zvati $lastWatched
             $lastWatched = DB::table('episodes')
                 ->join('watched_episodes', 'episodes.content_id', '=', 'watched_episodes.episode_id')
+                ->where('watched_episodes.user_id','=',Auth::user()->username)
                 ->select('episodes.*')
                 ->orderBy('watched_episodes.created_at', 'asc')
                 ->limit(3)
@@ -118,12 +126,12 @@ class UserController extends Controller
 
 
     public function updateInfo(){
-        $user = DB::table('users')->where('username',session()->get('username'))->first();
+        $user = Auth::user();
         return view('profile.user_update',['user'=>$user]);
     }
 
     public function postUpdateInfo(Request $request){
-        $user =  User::where('username', '=', session()->get('username'))->first();
+        $user =  Auth::user();
         //stare vrijednosti za polja
         $oldusername = $user->username;
         $oldname = $user->name;
@@ -177,12 +185,21 @@ class UserController extends Controller
             $user->gender = $newgender;
             $user->birth_date = $newbdate;
 
+
+            //cuvanje profilne slike
+            if (Input::has('picture')) {
+                $filename = $request->name . '-' . $user->username . '.jpg';
+                $file = $request->file('picture')->storeAs('img\users', $filename);
+                $user->picture_path = $filename;
+            }
+
+            /*
             DB::table('users')
                 ->where('username',session()->get('username'))
-                ->update(['name' => $newname,'surname'=>$newsurname,'email'=>$newemail,'birth_date'=>$newbdate]);
-            
-            
-           // $user->save();//PROBATI I SA $user->update() !!!!!!
+                ->update(['name' => $newname,'surname'=>$newsurname,'email'=>$newemail,'birth_date'=>$newbdate]);*/
+
+
+            $user->save();
 
             return redirect()->route('userProfile');
 
