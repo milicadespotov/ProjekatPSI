@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::get('/series/{content_id}', 'GuestController@showSeries')->name('showseries');
 
 
-Route::get('episode/{id}','GuestController@showEpisode');
+Route::get('episode/{id}','GuestController@showEpisode')->name('showepisode');
 
 
 

@@ -124,8 +124,8 @@ class EpisodeController extends Controller
                 ->join('pictures','pictures.content_id','=','contents.id')
                 ->where('pictures.main_picture','=','1')
                 ->where('watched_episodes.user_id','=',Auth::user()->username)
-                ->select('episodes.season_id','episodes.episode_number','contents.name','contents.release_date','contents.description','contents.rating','contents.number_of_pictures','pictures.path')
-                ->orderBy('watched_episodes.created_at', 'asc')
+                ->select('episodes.content_id','episodes.season_id','episodes.episode_number','contents.name','contents.release_date','contents.description','contents.rating','contents.number_of_pictures','pictures.path')
+                ->orderBy('episodes.episode_number', 'asc')
                 ->paginate(3);
 
 

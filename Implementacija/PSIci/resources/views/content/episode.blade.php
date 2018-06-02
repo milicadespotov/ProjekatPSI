@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-4">
                 <h4>Opis: </h4>
-                <p>
+                <p style="wisth:100%">
                     {{$content->description}}
                 </p>
             </div>
@@ -63,7 +63,7 @@
                 <center>
                     @foreach($pictures as $picture)
                         <a href="" data-lightbox="movie"><!--Src ka slici zbog lightboxa!!!!-->
-                            <img src="{{ asset('img/avatar.png') }}" style="width:200px"><!--Src ka slici-->
+                            <img src="{{ asset('img/avatar.png') }}" style="width:100%"><!--Src ka slici-->
                             <br>
                         </a>
                         <br>

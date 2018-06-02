@@ -14,15 +14,16 @@
                 <br>
                 <br>
             </div>
-
+        </div>
             @foreach($watched as $episode)
+                <div class="row">
                 <div class="col-md-1">&nbsp;</div>
                 <div class="col-md-10">
 
-
+                <div class="row">
                 <article class="entry wow fadeInDown"  data-wow-duration="1000ms" data-wow-delay="300ms">
                     <div class="col-md-4">
-                    <div class="post-thumb" style="margin-top:30px">
+                    <div class="post-thumb" >
                         <a href="#">
                             <!-- PROVJERITI U KOM FOLDERU JE SLIKA I PROMIJENITI PUTANJU -->
                             <img src=<?php $path = 'img/'.$episode->path; echo $path; ?>  style="width:400px;height:auto" class="img-responsive">
@@ -32,7 +33,7 @@
                     <div class="col-md-8">
                     <div class="post-excerpt">
                         <!-- DODATI RUTU KOJA VODI NA EPIZODU-->
-                        <h3><a href="#">{{$episode->name}}</a></h3>
+                        <h3><a href="{{route('showepisode',['id'=>$episode->content_id])}}">{{$episode->name}}</a></h3>
 
                        <br>
 
@@ -59,24 +60,25 @@
                     </div>
                 </article>
 
-
+                </div>
 
 
 
                 </div>
                 <div class="col-md-1">&nbsp;</div>
+                </div>
+                <br><br>
+
             @endforeach
 
-        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <center>
-                    {{ $watched->links() }} 
+                    {{ $watched->links() }}
                 </center>
             </div>
         </div>
     </div>
 
-        <br>
-        <br>
 @endsection
