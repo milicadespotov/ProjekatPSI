@@ -72,7 +72,8 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate( [
+
+        $rules = array(
             'username' => 'required|unique:users|max:20',
             'name' => 'max:20',
             'surname' => 'max:30',
@@ -81,8 +82,33 @@ class RegisterController extends Controller
             'email' => 'required|email|unique:users|max:40',
             'security_question' => 'required',
             'answer' => 'required',
-            'gender' => 'required'
-        ]);
+
+        );
+
+        $messages = array(
+            'username.required'=> 'Ovo polje je obavezno',
+            'username.unique' => 'Korisničko ime već postoji, izaberite drugo',
+            'username.max' => 'Korisnicko ime mora da bude manje od :max karaktera',
+            'email.required'=>' Ovo polje je obavezno',
+            'email.unique' => 'Već postoji korisnik sa ovim e-mailom',
+            'name.max' => 'Ime ne sme biti duže od :max slova',
+            'surname.max' => 'Prezime ne sme biti duže od :max slova',
+            'password.required' => 'Ovo polje je obavezno',
+            'password.min' => 'Lozinka ne sme biti manja od :min',
+            'password.alpha_dash' => 'Lozinka sme sadržati samo alpa_dash karaktere',
+            'password_confirm.required_with' => 'Ovo polje je obavezno',
+            'password_confirm.same' => 'Ponovljena lozinka mora biti ista kao inicijalno unesena',
+            'email.max'=>'E-mail ne sme biti duži od :max karaktera',
+            'security_question.required' => 'Ovo polje je obavezno',
+            'answer.required' => 'Ovo polje je obavezno',
+
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $user = new User();
 
