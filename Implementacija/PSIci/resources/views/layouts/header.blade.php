@@ -97,11 +97,11 @@
 
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-item">
-                                        <a href="#myModal" data-toggle="modal"> UKLONI NALOG </a>
+                                        <a href="{{route('accremove',['id'=>Auth::user()->username])}}"> UKLONI NALOG </a>
                                     </li>
 
                                     <li class="dropdown-item">
-                                            <a href="{{ route('logout') }}" class = "btn" type = "submit"> IZLOGUJ SE </a>
+                                            <a href="{{ route('logout') }}" > IZLOGUJ SE </a>
                                     </li>
 
                                     <li class="dropdown-item">

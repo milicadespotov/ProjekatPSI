@@ -112,6 +112,16 @@ class UserController extends Controller
                 ->limit(3)
                 ->get();
 
+
+            $picturesLR = array();
+
+            foreach($lastRated as $episode){
+                array_push($picturesLR, Content::mainPictureId($episode->content_id));
+            }
+
+
+
+
             //dovlacenje posljednje odgledanih serije(tj epizoda serija)
             //promjenljiva ce se zvati $lastWatched
             $lastWatched = DB::table('episodes')
@@ -128,7 +138,7 @@ class UserController extends Controller
                 array_push($picturesLW, Episode::mainPictureId($episode->content_id));
             }
 
-            return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW]);
+            return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR]);
 
         }
 

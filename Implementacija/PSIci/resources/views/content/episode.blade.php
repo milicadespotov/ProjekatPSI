@@ -97,7 +97,7 @@
         <br>
         <div class="row">
             <div id="comments" class="comments-section col-md-8">
-                <h4>{{count($comments)}} komentara</h4>
+                <h4>{{$numcomments}} komentara</h4>
                 <ol class="comment-list">
                     <li id="comment-1">
 

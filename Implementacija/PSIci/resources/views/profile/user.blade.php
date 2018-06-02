@@ -5,6 +5,8 @@
 
     <br>
     <br>
+    <br>
+    <br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
@@ -41,20 +43,18 @@
                         @if(count($lastRated)==0)
                             <h4>Nemate ocenjenih serija!</h4>
                         @else
-                        @foreach($lastRated as $show)
-                             <a href="{{route('showseries',['id'=>$show->content_id])}}" >
-                                 <img src="{{$show->mainPicture()->first()->path}}" style="width:300px;height:auto;">
+                            @for($i=0;$i<sizeof($lastRated);$i++)
+
+                             <a href="{{route('showseries',['id'=>$lastRated[$i]->content_id])}}" >
+                                 <img src="{{ asset('img/'.$picturesLR[$i]->path) }}" style="width: 300px;height:auto;margin-left:10px;margin-bottom:5px">
                              </a>
-                        @endforeach
+                            @endfor
                         @endif
                     </center>
                 </div>
                 <br>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
+
                 <br>
                 <br>
                 <center>
@@ -70,8 +70,9 @@
 
 
 
-                            <a href="{{route('deletecomment',['id'=>$comment->id])}}" >
-                                <img src="{{ asset('img/'.$picturesLW[$i]->path) }}" style="width:300px;height:auto;">
+                            <a href="{{route('showepisode',['id'=>$lastWatched[$i]->content_id])}}" >
+                                <img src="{{ asset('img/'.$picturesLW[$i]->path) }}" style="width:300px;height:auto;margin-left:10px;margin-bottom:5px">
+
                             </a>
                         @endfor
                         @endif
