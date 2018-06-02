@@ -116,7 +116,10 @@
 <!-- Custom Scrollbar -->
 <script src="{{ asset('js/jquery.nicescroll.min.js') }}"></script>
 <!-- Jappear js -->
+
 <script src="{{ asset('js/jquery.appear.js') }}"></script>
+
+<script src="{{ asset('js/editEpisode.js') }}"></script>
 <!-- Pie Chart -->
 <script src="{{ asset('js/easyPieChart.js') }}"></script>
 <!-- jQuery Easing -->
