@@ -7,7 +7,7 @@
             <div class="col-lg-4 ">
 
                 <div class="blog-title">
-                    <h1>{{$content->name}}</h1>
+                    <h1>{{$episode->seriesName()}}-{{$episode->seasonName()}}-{{$content->name}}</h1>
                 </div>
 
             </div>
@@ -31,8 +31,18 @@
             <div class="col-md-4">
                 <!--Glavna slika	-->
                 <center>
+
+                    @foreach($content->pictures as $picture)
+                        @if($picture->main_picture==true)
+                            <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
+                        @else
+                            <img src="{{ asset('img/avatar.png') }}" style="width:100%;height:auto">
+                            @endif
+                    @endforeach
+
                     <!--treba da ide path do glavne slike -->
-                    <img src="{{ asset('img/avatar.png') }}" style="width:100%;height:auto">
+
+
                     @if(Auth::check() && Auth::user()->is_admin==true)
                         <a href="#">
                             <input type="submit" value="Izmeni informacije" class="btn btn-transparent">
@@ -61,12 +71,14 @@
                     <h3>Slike</h3>
                 </center>
                 <center>
-                    @foreach($pictures as $picture)
-                        <a href="" data-lightbox="movie"><!--Src ka slici zbog lightboxa!!!!-->
-                            <img src="{{ asset('img/avatar.png') }}" style="width:100%"><!--Src ka slici-->
-                            <br>
-                        </a>
-                        <br>
+
+                    @foreach($content->pictures as $picture)
+                        <div class="col-md-3" style="margin-bottom:10px;">
+                            <a href="{{ asset('img/'.$picture->path) }}" data-lightbox="movie">
+                                <img src="{{ asset('img/'.$picture->path) }}" style="max-width:95%;height:auto;">
+                            </a>
+                        </div>
+
                     @endforeach
                 </center>
                 @if(Auth::check() && Auth::user()->is_admin==true)

@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use App\Comment;
 
 class Episode extends Model
 {
@@ -18,17 +20,35 @@ class Episode extends Model
     }
 
     public function comments(){
-        return $this->hasMany('App\Comment', 'episode_id');
+        $comments = Comment::where('episode_id','=',$this->content_id)->get();
+        return $comments;
     }
 
     public function mainPicture(){
-        $content = DB::table('contents')->where('contents.id','=',$this->content_id);
-        $picture = DB::table('pictures')->where('pictures.content_id','=',$this->content_id)->where('pictures.main_picture','=',true);
-        return $picture;
+
+        $picture = DB::table('pictures')->where('pictures.content_id','=',$this->content_id)->where('pictures.main_picture','=','true')->select('pictures.*')->get();
+       return $picture;
     }
 
     public function content(){
 
+    }
+
+    public function seriesName(){
+        $series = DB::table('contents')
+            ->join('tvshows', 'contents.id','=','tvshows.content_id')
+            ->join('seasons','seasons.tvshow_id','=','contents.id')
+            ->where('seasons.content_id','=',$this->season_id)
+            ->select('contents.name')->get();
+        return $series->first()->name;
+    }
+
+    public function seasonName(){
+        $season = DB::table('contents')
+            ->join('seasons','contents.id','=','seasons.content_id')
+            ->where('seasons.content_id','=',$this->season_id)
+            ->select('contents.name')->get();
+        return $season->first()->name;
     }
 
 

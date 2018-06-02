@@ -16,7 +16,6 @@ use App\Actor;
 use App\Picture;
 use App\Director;
 use App\Genre;
-use App\Picture;
 use Carbon\Carbon;
 class GuestController extends Controller
 {
@@ -36,18 +35,28 @@ class GuestController extends Controller
         $season = Season::where('content_id','=',$id);
         $season = $season->first();
         $content = Content::find($id);
+
+        $episodes = $season->episodes();
+
         //$episodes = $season->episodes;
+
         $type = 'season';
-        $contents = DB::table('contents')->join('episodes','contents.id','=','episodes.content_id')->where('episodes.season_id','=', $season->content_id)->where('contents.id','=','episodes.content_id')->select('contents.*')->orderBy('contents.id');
-        return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
+        $contents = DB::table('contents')->join('episodes','episodes.content_id','=','contents.id')->where('episodes.season_id','=',$id)->select('contents.*')->get();
+          return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
     }
 
     public function showEpisode($id){
-        $episode = Episode::find($id);
+        $episode = Episode::where('content_id','=',$id);
+        $episode = $episode->first();
         $content = Content::find($id);
-        $comments = $episode->comments;
+
+        $comments = $episode->comments();
+        $path = DB::table('pictures')->where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.path');
+
+        $comments = $episode->comments();
         $pictures = Picture::where('content_id',$id)->get();
         $path = Picture::where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.path');
+
         $type = 'episode';
         return view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type','pictures']));
     }
@@ -92,7 +101,7 @@ class GuestController extends Controller
             array_push($actors, Actor::getActorsNames($tvshow->content_id));
             array_push($genres, Genre::getGenresNames($tvshow->content_id));
             array_push($directors, Director::getDirectorsNames($tvshow->content_id));
-            array_push($pictures, Picture::mainPicture($tvshow->content_id));
+            array_push($pictures, \App\Picture::mainPicture($tvshow->content_id));
         }
         return view('content.search',compact('tvshows','contents','genres','directors','actors','pictures'));
     }

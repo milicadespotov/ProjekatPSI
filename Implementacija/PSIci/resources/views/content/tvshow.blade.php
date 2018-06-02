@@ -1,5 +1,7 @@
 
-<?php use Carbon\Carbon; ?>
+<?php use Carbon\Carbon;
+use App\Category;
+?>
 
 @extends('layouts.master')
 
@@ -36,18 +38,23 @@
                 <center>
                     @foreach($content->pictures as $picture)
                         @if($picture->main_picture==true)
-                    <img src="{{ asset($picture->path) }}" style="width:100%;height:auto">
+                    <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
                         @endif
                         @endforeach
                 </center>
                 <br>
                 <!--Glavna slika serije-->
                 <div class="col-md-12">
-                    <b>Glumci: </b>
-                    @foreach($series->actings as $acting)
-                        $actor = Category::find($acting->actor_id);
-                        {{$actor->name}},
+                    <b>Režiseri: </b><br>
+                    @foreach($series->directors() as $director)
+                        {{$director->name}}<br>
                         @endforeach
+                </div>
+                <div class="col-md-12">
+                    <b>Glumci: </b><br>
+                    @foreach($series->actors() as $actor)
+                        {{$actor->name}}<br>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-2">
@@ -124,7 +131,7 @@
                             <td style="padding-top:16px">
                                 @if(Auth::check())
                                     <div class="progress">
-                                        <div class="progress-bar" style="width:{{$seasons[$i]->watchedPercentage()/$seasons[$i]->number_of_episodes}}%"><font style="color:#2B2C30">{{$seasons[$i]->watchedPercentage()/$seasons[$i]->number_of_episodes}}%</font></div>
+                                        <div class="progress-bar" style="width:{{$seasons[$i]->watchedPercentage()/$seasons[$i]->number_of_episodes*100}}%"><font style="color:#2B2C30">{{$seasons[$i]->watchedPercentage()/$seasons[$i]->number_of_episodes*100}}%</font></div>
                                     </div>
                                 @else
                                     <div class="progress">
@@ -170,6 +177,7 @@
                 <!--Trejler-->
                 <center>
                     <h2>Trejler</h2>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$content->trailer}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     @if(Auth::check() && Auth::user()->is_admin==true)
                     <a href="#">
                         <input type="submit" value="Dodaj trejler" class="btn btn-transparent">
@@ -190,13 +198,16 @@
             </div>
             <!--Galerija-->
             <div class="col-md-12">
-                <center>
+
+
                     @foreach($content->pictures as $picture)
-                    <a href="{{ asset($picture->path) }}" data-lightbox="movie">
-                        <img src="{{ asset($picture->path) }}">
+                        <div class="col-md-3" style="margin-bottom:10px;">
+                    <a href="{{ asset('img/'.$picture->path) }}" data-lightbox="movie">
+                        <img src="{{ asset('img/'.$picture->path) }}" style="max-width:95%;height:auto;">
                     </a>
+                        </div>
                   @endforeach
-                </center>
+
                 @if (Auth::check() && Auth::user()->is_admin==true)
                 <center>
                     <a href="#">
