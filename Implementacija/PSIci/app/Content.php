@@ -66,6 +66,7 @@ class Content extends Model
         return DB::table('contents')->join('tvshows','tvshows.content_id','=','contents.id')
             ->where('contents.name','like','%'.$text.'%')
             ->orderby('contents.id','desc')
+            ->distinct()
             ->select('contents.*')->get();
     }
 }
