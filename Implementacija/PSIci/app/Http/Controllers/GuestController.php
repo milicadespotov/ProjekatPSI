@@ -16,7 +16,6 @@ use App\Actor;
 use App\Picture;
 use App\Director;
 use App\Genre;
-use App\Episode;
 use Carbon\Carbon;
 class GuestController extends Controller
 {
@@ -36,11 +35,11 @@ class GuestController extends Controller
         $season = Season::where('content_id','=',$id);
         $season = $season->first();
         $content = Content::find($id);
-<<<<<<< HEAD
+
         $episodes = $season->episodes();
-=======
+
         //$episodes = $season->episodes;
->>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
+
         $type = 'season';
         $contents = DB::table('contents')->join('episodes','episodes.content_id','=','contents.id')->where('episodes.season_id','=',$id)->select('contents.*')->get();
           return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
@@ -50,14 +49,14 @@ class GuestController extends Controller
         $episode = Episode::where('content_id','=',$id);
         $episode = $episode->first();
         $content = Content::find($id);
-<<<<<<< HEAD
+
         $comments = $episode->comments();
         $path = DB::table('pictures')->where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.path');
-=======
-        $comments = $episode->comments;
+
+        $comments = $episode->comments();
         $pictures = Picture::where('content_id',$id)->get();
         $path = Picture::where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.path');
->>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
+
         $type = 'episode';
         return view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type','pictures']));
     }

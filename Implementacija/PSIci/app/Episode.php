@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Comment;
 
 class Episode extends Model
 {
@@ -19,7 +20,7 @@ class Episode extends Model
     }
 
     public function comments(){
-        $comments = Comments::where('episode_id','=',$this->content_id)->get();
+        $comments = Comment::where('episode_id','=',$this->content_id)->get();
         return $comments;
     }
 
@@ -31,6 +32,23 @@ class Episode extends Model
 
     public function content(){
 
+    }
+
+    public function seriesName(){
+        $series = DB::table('contents')
+            ->join('tvshows', 'contents.id','=','tvshows.content_id')
+            ->join('seasons','seasons.tvshow_id','=','contents.id')
+            ->where('seasons.content_id','=',$this->season_id)
+            ->select('contents.name')->get();
+        return $series->first()->name;
+    }
+
+    public function seasonName(){
+        $season = DB::table('contents')
+            ->join('seasons','contents.id','=','seasons.content_id')
+            ->where('seasons.content_id','=',$this->season_id)
+            ->select('contents.name')->get();
+        return $season->first()->name;
     }
 
 

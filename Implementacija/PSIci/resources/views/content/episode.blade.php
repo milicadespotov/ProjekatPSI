@@ -31,16 +31,18 @@
             <div class="col-md-4">
                 <!--Glavna slika	-->
                 <center>
-<<<<<<< HEAD
+
                     @foreach($content->pictures as $picture)
                         @if($picture->main_picture==true)
                             <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
-                        @endif
+                        @else
+                            <img src="{{ asset('img/avatar.png') }}" style="width:100%;height:auto">
+                            @endif
                     @endforeach
-=======
+
                     <!--treba da ide path do glavne slike -->
-                    <img src="{{ asset('img/avatar.png') }}" style="width:100%;height:auto">
->>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
+
+
                     @if(Auth::check() && Auth::user()->is_admin==true)
                         <a href="#">
                             <input type="submit" value="Izmeni informacije" class="btn btn-transparent">
@@ -69,21 +71,14 @@
                     <h3>Slike</h3>
                 </center>
                 <center>
-<<<<<<< HEAD
+
                     @foreach($content->pictures as $picture)
                         <div class="col-md-3" style="margin-bottom:10px;">
                             <a href="{{ asset('img/'.$picture->path) }}" data-lightbox="movie">
                                 <img src="{{ asset('img/'.$picture->path) }}" style="max-width:95%;height:auto;">
                             </a>
                         </div>
-=======
-                    @foreach($pictures as $picture)
-                        <a href="" data-lightbox="movie"><!--Src ka slici zbog lightboxa!!!!-->
-                            <img src="{{ asset('img/avatar.png') }}" style="width:100%"><!--Src ka slici-->
-                            <br>
-                        </a>
-                        <br>
->>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
+
                     @endforeach
                 </center>
                 @if(Auth::check() && Auth::user()->is_admin==true)

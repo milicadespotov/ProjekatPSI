@@ -35,10 +35,7 @@ Route::get('episode/{id}','GuestController@showEpisode')->name('showepisode');
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
 //Route::get('episode/{content_id}','');
 
 
@@ -149,18 +146,11 @@ Route::post('/episode/{content}/rate','UserController@rateContent');
 Route::get('/search','GuestController@search');
 
 
-<<<<<<< HEAD
-=======
 
 
 
 
 
-Route::post('/series/{tvshow}/rate','UserController@rateSeries');
-Route::post('/season/{id}/rate');
-Route::post('/episode/{id}/rate');
-
->>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
 
 
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
@@ -169,12 +159,14 @@ Route::post('/episode/{id}/rate');
 
 
 
-<<<<<<< HEAD
-=======
+
+Route::post('/series/{tvshow}/rate','UserController@rateSeries');
+Route::post('/season/{id}/rate');
+Route::post('/episode/{id}/rate');
 
 
 
->>>>>>> 504c19f99ee3afedc0bb17d180c3829d4b47dc05
+
 //END ALEKSA
 
 // FILIP
