@@ -30,23 +30,18 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> 445a4824d3166cd5be8b49ff690e81c2c25f4f6e
->>>>>>> 99ce1014d74dc440a5d1ba93452ad9a647687a64
+
+
 //Route::get('episode/{content_id}','');
 
 
 ///Route::get('episode/{content_id}','');
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 99ce1014d74dc440a5d1ba93452ad9a647687a64
+
+
 //Route::get('episode/{content_id}','');
 
 ///Route::get('episode/{content_id}','');
@@ -120,14 +115,13 @@ Route::get('/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')
 
 Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 
-<<<<<<< HEAD
 Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset');
 
 Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm');
 
 Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request');
-=======
->>>>>>> 99ce1014d74dc440a5d1ba93452ad9a647687a64
+
+
 // END MILICA
 
 
@@ -135,35 +129,35 @@ Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordContro
 // ALEKSA
 
 
-<<<<<<< HEAD
+
 Route::post('/series/{tvshow}/rate','UserController@rateContent');
 Route::post('/season/{id}/rate','UserController@rateContent');
 Route::post('/episode/{id}/rate','UserController@rateContent');
-=======
+
 Route::post('/series/{content}/rate','UserController@rateContent');
 Route::post('/season/{content}/rate','UserController@rateContent');
 Route::post('/episode/{content}/rate','UserController@rateContent');
->>>>>>> 99ce1014d74dc440a5d1ba93452ad9a647687a64
+
 Route::get('/search','GuestController@search');
 
-<<<<<<< HEAD
 
 
-<<<<<<< HEAD
+
+
 
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
 Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
 
-=======
+
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
 Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
->>>>>>> 99ce1014d74dc440a5d1ba93452ad9a647687a64
 
 
-=======
->>>>>>> 445a4824d3166cd5be8b49ff690e81c2c25f4f6e
+
+
+
 //END ALEKSA
 
 // FILIP
