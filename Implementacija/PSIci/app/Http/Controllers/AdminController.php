@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use App\Episode;
 use App\User;
 use App\Tvshow;
 use App\Content;
@@ -352,5 +353,11 @@ class AdminController extends Controller
 
 
         redirect()->route('episode', $content->id);
+    }
+
+    public function editEpisode(Request $request, Episode $episode) {
+        $content = Content::find($episode->content_id);
+        $picturePaths = Picture::notMainPictures($episode->content_id);
+        return view('content.editEpisode',compact('episode','picturePaths','content'));
     }
 }

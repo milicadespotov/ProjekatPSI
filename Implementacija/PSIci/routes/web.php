@@ -138,17 +138,13 @@ Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegis
 
 
 
-
-Route::post('/series/{tvshow}/rate','UserController@rateContent');
-Route::post('/season/{id}/rate','UserController@rateContent');
-Route::post('/episode/{id}/rate','UserController@rateContent');
-
 Route::post('/series/{content}/rate','UserController@rateContent');
 Route::post('/season/{content}/rate','UserController@rateContent');
 Route::post('/episode/{content}/rate','UserController@rateContent');
 
 Route::get('/search','GuestController@search');
 
+Route::get('/episode/{episode}/edit','AdminController@editEpisode');
 
 
 
