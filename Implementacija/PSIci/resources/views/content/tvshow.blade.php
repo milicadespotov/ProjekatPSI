@@ -73,7 +73,7 @@ use App\Category;
                     </tr>
                     <tr>
                         <td>
-                            <b>Žanr: </b>
+                            <b>Žanr: </b><br>
                             @foreach($genres as $genre)
                                 {{$genre->name}}<br>
                                 @endforeach

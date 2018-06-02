@@ -25,6 +25,7 @@ class Director extends Model
             ->where('categories.name','like', '%'.$text.'%')
             ->orderby('tvshows.content_id','desc')
             ->select('tvshows.*')
+            ->distinct()
             ->get();
     }
     public static function getContentSearch($text) {
@@ -36,6 +37,7 @@ class Director extends Model
             ->where('categories.name','like', '%'.$text.'%')
             ->orderby('contents.id','desc')
             ->select('contents.*')
+            ->distinct()
             ->get();
     }
 }

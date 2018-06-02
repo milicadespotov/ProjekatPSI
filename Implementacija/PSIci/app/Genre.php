@@ -28,6 +28,7 @@ class Genre extends Model
             ->where('categories.name','like','%'.$cat.'%')
             ->orderby('tvshows.content_id','desc')
             ->select('tvshows.*')
+            ->distinct()
             ->get();
     }
 
@@ -41,6 +42,7 @@ class Genre extends Model
             ->where('categories.name','like','%'.$cat.'%')
             ->orderby('tvshows.content_id','desc')
             ->select('contents.*')
+            ->distinct()
             ->get();
     }
 }

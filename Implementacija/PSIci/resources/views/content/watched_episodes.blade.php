@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <br>
         <div class="row">
             <div class="col-md-12 ">
@@ -17,16 +17,18 @@
         </div>
             @foreach($watched as $episode)
                 <div class="row">
-                <div class="col-md-1">&nbsp;</div>
-                <div class="col-md-10">
 
-                <div class="row">
+                <div class="col-md-12">
+
+
                 <article class="entry wow fadeInDown"  data-wow-duration="1000ms" data-wow-delay="300ms">
                     <div class="col-md-4">
                     <div class="post-thumb" >
                         <a href="#">
                             <!-- PROVJERITI U KOM FOLDERU JE SLIKA I PROMIJENITI PUTANJU -->
+                            <a href=<?php $path = 'img/'.$episode->path; echo $path; ?> data-lightbox="movie">
                             <img src=<?php $path = 'img/'.$episode->path; echo $path; ?>  style="width:400px;height:auto" class="img-responsive">
+                            </a>
                         </a>
                     </div>
                     </div>
@@ -38,7 +40,7 @@
                        <br>
 
                         <blockquote>
-                            <p>
+                            <p style="word-wrap: break-word;">
                                 {{$episode->description}}
                             </p>
                         </blockquote>
@@ -60,15 +62,16 @@
                     </div>
                 </article>
 
+
+
+
+
                 </div>
 
-
-
-                </div>
-                <div class="col-md-1">&nbsp;</div>
                 </div>
                 <br><br>
-
+            <br><br>
+                <hr>
             @endforeach
 
 

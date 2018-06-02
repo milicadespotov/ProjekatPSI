@@ -60,7 +60,7 @@
             </div>
             <div class="col-md-4">
                 <h4>Opis: </h4>
-                <p style="wisth:100%">
+                <p style="width:100%;word-wrap: break-word;">
                     {{$content->description}}
                 </p>
             </div>
@@ -106,46 +106,48 @@
                         @foreach($comments as $comment)
 
                             @if($comment->contains_spoiler == 0)
-                        <div class="comment-wrap">
-                            <div class="author-avatar pull-left">
-                                <!--Slika korisnika-->
-                                <img src="img/blog/user.jpg" alt="">
-                            </div>
-                            <div class="author-comment">
-                                <!--Ime korisnika-->
-                                <cite class="pull-left">
-                                    <!-- DODATI LINK KA PROFILU KORISNIKA -->
-                                    <a href="#">{{ $comment->user_id}}</a>
-                                </cite>
-                                @if(Auth::check() && Auth::user()->is_admin==true)
+                                <div class="comment-wrap">
+                                    <div class="author-avatar pull-left">
+                                        <!--Slika korisnika-->
+                                        <img src="img/avatar.png" alt="">
+                                    </div>
+                                    <div class="author-comment">
+                                        <!--Ime korisnika-->
+                                        <cite class="pull-left">
+                                            <!-- DODATI LINK KA PROFILU KORISNIKA -->
+                                            <a href="#">{{ $comment->user_id}}</a>
+                                        </cite>
+                                        @if(Auth::check() && Auth::user()->is_admin==true)
 
-                                    <a href="{{ route('deletecomment',['id'=>$comment->id]) }}" class="replay pull-right">Ukloni komentar</a><br>
-                                    <a href="{{ route('updatespoiler',['id'=>$comment->id]) }}" class="replay pull-right">Sadrzi spojlere</a>
-                                @endif
-                                <!-- PRIAKZI MU KOMENTAR AKO JE ON NJEGOV KREATOR-->
-                                @if(Auth::check() && Auth::user()->is_admin==false && Auth::user()->username==$comment->user_id)
+                                            <a href="{{ route('deletecomment',['id'=>$comment->id]) }}" class="replay pull-right">Ukloni komentar</a><br>
+                                            <a href="{{ route('updatespoiler',['id'=>$comment->id]) }}" class="replay pull-right">Sadrzi spojlere</a>
+                                        @endif
+                                    <!-- PRIAKZI MU KOMENTAR AKO JE ON NJEGOV KREATOR-->
+                                        @if(Auth::check() && Auth::user()->is_admin==false && Auth::user()->username==$comment->user_id)
 
-                                    <a href="{{ route('deletecomment',['id'=>$comment->id]) }}" class="replay pull-right">Ukloni komentar</a>
-                                @endif
+                                            <a href="{{ route('deletecomment',['id'=>$comment->id]) }}" class="replay pull-right">Ukloni komentar</a>
+                                        @endif
 
-                                <div style="clear:both"></div>
-                                <div class="comment-meta">
-                                    <!--Datum komentara-->
-                                    <i class="fa fa-calendar"></i> {{$comment->created_at->format('m/d/Y')}}
+                                        <div style="clear:both"></div>
+                                        <div class="comment-meta">
+                                            <!--Datum komentara-->
+                                            <i class="fa fa-calendar"></i> {{$comment->created_at->format('m/d/Y')}}
+                                        </div>
+                                        <div class="comment-content">
+                                            <p style="width:100%;word-wrap: break-word;">
+                                                {{$comment->description}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-                            </div>
-                            <div class="comment-content">
-                                <p>
-                                    {{$comment->description}}
-                                </p>
-                            </div>
-                        </div>
                                 <br>
                         @else
                                 <div class="comment-wrap">
                                     <div class="author-avatar pull-left">
                                         <!--Slika korisnika-->
-                                        <img src="img/blog/user.jpg" alt="">
+                                        <img src="img/avatar.png" alt="">
                                     </div>
                                     <div class="author-comment">
                                         <!--Ime korisnika-->
@@ -177,7 +179,7 @@
                                         </div>
                                     </div>
                                     <div class="comment-content">
-                                        <p id="{{$comment->id}}" class="collapse">
+                                        <p id="{{$comment->id}}" class="collapse" style="width:100%;word-wrap: break-word;">
                                             {{$comment->description}}
                                         </p>
                                     </div>
@@ -192,6 +194,13 @@
 
                     </li>
                 </ol>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <center>
+                        {{ $comments->links() }}
+                    </center>
+                </div>
             </div>
             <!-- Forma za postavljanje komentara-->
             <div class="col-md-8">
@@ -214,11 +223,6 @@
                 </form>
             </div>
         </div>
-
-
-
-
-
         <br>
         <br>
     </div>

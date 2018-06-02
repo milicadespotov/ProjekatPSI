@@ -157,9 +157,6 @@ Route::get('/search','GuestController@search');
 
 
 
-Route::post('/series/{tvshow}/rate','UserController@rateSeries');
-Route::post('/season/{id}/rate');
-Route::post('/episode/{id}/rate');
 
 
 
@@ -188,7 +185,7 @@ Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoup
 Route::group(['middleware' => 'AdminMiddleware'], function()
 {
     Route::get('/updateSpoiler/{id}', 'EpisodeController@updateSpoiler')->name('updatespoiler');
-    Route::get('/updateSpoilerRemove/{id}', 'EpisodeController@updateSpoilerRemove');
+    Route::get('/updateSpoilerRemove/{id}', 'EpisodeController@updateSpoilerRemove')->name('updatespoilerremove');
 });
 
 

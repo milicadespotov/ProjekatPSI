@@ -38,10 +38,13 @@ class Tvshow extends Model
 
 
     public static function getTvShowsSearch($text) {
-        return DB::table('contents')->join('tvshows','tvshows.content_id','=','contents.id')
+        return DB::table('contents')
+            ->join('tvshows','tvshows.content_id','=','contents.id')
             ->where('contents.name','like','%'.$text.'%')
-            ->orderby('contents.id','desc')
-            ->select('tvshows.*')->get();
+            ->orderby('tvshows.content_id','desc')
+            ->select('tvshows.*')
+            ->distinct()
+            ->get();
     }
 
 }

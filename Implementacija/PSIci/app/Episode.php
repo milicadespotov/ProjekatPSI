@@ -20,7 +20,7 @@ class Episode extends Model
     }
 
     public function comments(){
-        $comments = Comment::where('episode_id','=',$this->content_id)->get();
+        $comments = Comment::where('episode_id','=',$this->content_id)->paginate(4);
         return $comments;
     }
 
