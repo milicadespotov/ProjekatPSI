@@ -12,41 +12,48 @@
                 <img style="width:100%" src="{{asset('img/content/'.$pictures[$i]->path)}}">
             @endif
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8" width="100%">
             <table>
                 <tr colspan="2">
                     <td>
-                        <a href="">{{$contents[$i]->name}}</a>
+                        <h2>
+                            <a href="/series/{{$contents[$i]->id}}">{{$contents[$i]->name}}
+                            </a>
+                        </h2>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                    {{$contents[$i]->description}}
+                        <div style="word-wrap: break-word;">
+                            {{$contents[$i]->description}}
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>Glumci:</td>
-                    <td>
+                    <td width="30%">
                         @foreach($actors[$i] as $actor)
-
-                        |{{$actor->name}}|
+                            |<a href="/search?selectionForm=serija&search={{$actor->name}}">{{$actor->name}}</a>
                         @endforeach
+                        |
                     </td>
                 </tr>
                 <tr>
                     <td>Režiseri:</td>
                     <td>
                         @foreach($directors[$i] as $director)
-                            |{{$director->name}}
+                            |<a href="/search?selectionForm=serija&search={{$director->name}}">{{$director->name}}</a>
                         @endforeach
+                        |
                     </td>
                 </tr>
                 <tr>
                     <td>Žanr:</td>
                     <td>
                         @foreach($genres[$i] as $genre)
-                        |{{$genre->name}}|
+                            |<a href="/search?selectionForm=serija&search={{$genre->name}}">{{$genre->name}}</a>
                         @endforeach
+                        |
                     </td>
                 </tr>
             </table>
