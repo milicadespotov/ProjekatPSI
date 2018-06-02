@@ -390,4 +390,9 @@ class AdminController extends Controller
         $avatarPath = Picture::mainPicture($episode->content_id);
         return view('content.editEpisode',compact('avatarPath', 'episode','picturePaths','content'));
     }
+
+    public function changeAvatar(Request $request, Episode $episode) {
+        dd($request);
+        return redirect()->back();
+    }
 }

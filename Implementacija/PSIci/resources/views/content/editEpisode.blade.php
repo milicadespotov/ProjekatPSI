@@ -1,26 +1,12 @@
 @extends('layouts.master')
-<<<<<<< HEAD
 @section('content')
     <script language="javascript">
         function submitVal(num) {
-            document.getElementById("setPictureOption").value=num;
+            document.getElementById("setPictureOption").value=""+num;
             document.getElementById("changePictureForm").submit();
         }
     </script>
     <div class="container">
-=======
-
-@section('content')
-<script>
-	
-function submitVal(num) {
-    document.getElementById("setPictureOption").value=num;
-    document.getElementById("changePictureForm").submit();
-}
-
-</script
-    <div class="container-fluid">
->>>>>>> 45859216fe1c542b98428d87c1bbd8fcc30e1d41
             <div class="row justify-content-center" style="margin-top:20px;">
                 <div class="col-lg-6">
                     <div class="row">
@@ -35,10 +21,12 @@ function submitVal(num) {
                     <div class="form-group">
                         <label for="mainImage" style = "font-size: 18px" class="col-form-label text-md-right color">Naslovna slika:</label><br>
                         <form method="post" id="changePictureForm" action="/episode/{{$episode->content_id}}/edit/changeAvatar" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @csrf
                             <input type="file" name="mainImage" class="form-control input-file" id="mainImage">
                             <input type="button" onclick="submitVal(1)" class="btn btn-transparent" value="Promeni">
                             <input type="button" onclick="submitVal(0)" class="btn btn-transparent" value="Resetuj">
-                            <input type="text" value="" id="setPictureOption" hidden>
+                            <input type="text" name="typeOfOperation" value="" id="setPictureOption" hidden>
                         </form>
                     </div>
                     <div class="form-group">
@@ -46,11 +34,15 @@ function submitVal(num) {
                             <label for="pictures" style = "font-size: 18px" class="col-form-label text-md-right color">Dodaj ostale slike:</label><br>
                             <input type="file" style="margin-top:3px;" name="pictures[]" multiple class="form-control input-file" id="pictures">
                             <input type="submit" class="btn btn-transparent" value="Dodaj slike">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @csrf
                         </form>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <form method="post" action="/episode/{{$episode->content_id}}/edit/changeData" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @csrf
                         <div class="form-group">
                             <label for="name" style = "font-size: 18px" class="col-form-label text-md-right color">Naziv epizode:</label>
                             <input type="text" id="name" name="name" class="form-control" value="{{$content->name}}">
@@ -78,7 +70,7 @@ function submitVal(num) {
                     <div class="row">
                         <?php $i=0; ?>
                         @foreach($picturePaths as $picPath)
-                            <div class="col-lg-4">
+                            <div class="col-lg-2">
                                 <center><input type="checkbox" id={{$picPath->path}} name="paths[]" value="{{$picPath->path}}"></center>
                                 <br>
                                 <label for="{{$picPath->path}}"><img style="width:100%" src="{{ asset('img/img/content/'.$picPath->path) }}"></label>
@@ -86,6 +78,8 @@ function submitVal(num) {
                         @endforeach
                     </div>
                     <input type="submit" class="btn btn-transparent" value="Obriši slike">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    @csrf
                 </form>
             </div>
         </div>
