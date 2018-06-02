@@ -11,7 +11,7 @@
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-lg-offset-4 col-lg-4">
-                        @if ($avatarPath==null)
+                        @if ($avatarPath!=null)
                             <img src="{{ asset('img/img/content/'.$avatarPath->path) }}" style="width:100%">
                         @else
                             <img src="{{asset('img/img/content/24-27.jpg')}}" style="width:100%">
