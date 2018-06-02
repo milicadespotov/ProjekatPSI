@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Genre extends Model
 {
@@ -13,7 +14,7 @@ class Genre extends Model
         return DB::table('type_ofs')->where('type_ofs.tvshow_id','=',$id)
             ->join('genres','type_ofs.tvshow_id','=','genres.category_id')
             ->join('categories','categories.id','=','genres.category_id')
-            ->select('categories.name');
+            ->select('categories.name')->get();
     }
 
     public static function getTVShowsSearch($text) {
@@ -23,7 +24,7 @@ class Genre extends Model
             ->join('tvshows','tvshows.content_id','=','type_ofs.tvshow_id')
             ->orderby('tvshows.content_id','desc')
             ->select('tvshows.*')
-            ->distinct('tvshows.*');
+            ->distinct('tvshows.*')->get();
     }
 
     public static function getContentsSearch($text) {
@@ -34,6 +35,6 @@ class Genre extends Model
             ->join('contents','contents.id','=','tvshows.content_id')
             ->orderby('content.id','desc')
             ->select('content.*')
-            ->distinct('content.*');
+            ->distinct('content.*')->get();
     }
 }
