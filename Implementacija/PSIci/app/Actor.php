@@ -25,7 +25,9 @@ class Actor extends Model
             ->join('tvshows','tvshows.content_id','=','actings.tvshow_id')
             ->where('categories.name','like', '%'.$text.'%')
             ->orderby('tvshows.content_id','desc')
-            ->select('tvshows.*')->get();
+            ->select('tvshows.*')
+            ->distinct()
+            ->get();
     }
     public static function getContentSearch($text) {
         return DB::table('categories')
@@ -36,6 +38,7 @@ class Actor extends Model
             ->where('categories.name','like', '%'.$text.'%')
             ->orderby('contents.id','desc')
             ->select('contents.*')
+            ->distinct()
             ->get();
     }
 }
