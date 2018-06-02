@@ -3,12 +3,12 @@
 @section('content')
 
     <div class="container-fluid">
-        <div class="row" style="margin-top:15px">
+        <div class="row" style="margin-top:15px;margin-bottom:15px;">
             <?php $i=0; ?>
         @foreach($users as $user)
                 <?php $i=$i+1;?>
             <div class="col-lg-6">
-                <div class="row">
+                <div class="row" style="margin-bottom:15px">
                     <div class="col-lg-4">
                         @if($user->picture_path!=null)
                             <img style="width:100%" src="{{ asset('img/img/users/'.$user->picture_path) }}">
