@@ -16,7 +16,6 @@ use App\Actor;
 use App\Picture;
 use App\Director;
 use App\Genre;
-use App\Picture;
 use Carbon\Carbon;
 class GuestController extends Controller
 {
@@ -92,7 +91,7 @@ class GuestController extends Controller
             array_push($actors, Actor::getActorsNames($tvshow->content_id));
             array_push($genres, Genre::getGenresNames($tvshow->content_id));
             array_push($directors, Director::getDirectorsNames($tvshow->content_id));
-            array_push($pictures, Picture::mainPicture($tvshow->content_id));
+            array_push($pictures, \App\Picture::mainPicture($tvshow->content_id));
         }
         return view('content.search',compact('tvshows','contents','genres','directors','actors','pictures'));
     }
