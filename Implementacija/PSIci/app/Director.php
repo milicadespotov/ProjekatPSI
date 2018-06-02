@@ -18,22 +18,24 @@ class Director extends Model
             ->select('categories.name')->get();
     }
     public static function getTVShowsSearch($text) {
-        return DB::table('categories')->join('directors','directors.category_id','=','categories.id')
+        return DB::table('categories')
+            ->join('directors','directors.category_id','=','categories.id')
             ->join('directings','directors.category_id','=','directings.director_id')
-            ->join('directings','directings.tvshow_id','=','tvshows.content_id')
-            ->where('categories.name','like', $text)
+            ->join('tvshows','directings.tvshow_id','=','tvshows.content_id')
+            ->where('categories.name','like', '%'.$text.'%')
             ->orderby('tvshows.content_id','desc')
             ->select('tvshows.*')
-            ->distinct('tvshows.*')->get();
+            ->get();
     }
     public static function getContentSearch($text) {
-        return DB::table('categories')->where('categories.name','like', $text)
-            ->join('actors','actors.category_id','=','categories.id')
-            ->join('actings','actors.category_id','=','actings.actor_id')
-            ->join('tvshows','actings.tvshow_id','=','tvshows.content_id')
+        return DB::table('categories')
+            ->join('directors','directors.category_id','=','categories.id')
+            ->join('directings','directors.category_id','=','directings.director_id')
+            ->join('tvshows','directings.tvshow_id','=','tvshows.content_id')
             ->join('contents','contents.id','=','tvshows.content_id')
-            ->orderby('content.id','desc')
+            ->where('categories.name','like', '%'.$text.'%')
+            ->orderby('contents.id','desc')
             ->select('contents.*')
-            ->distinct('contents.*')->get();
+            ->get();
     }
 }

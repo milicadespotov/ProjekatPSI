@@ -11,9 +11,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Tvshow;
 use App\Content;
 use App\Season;
+use App\Episode;
 use App\Actor;
+use App\Picture;
 use App\Director;
 use App\Genre;
+use App\Picture;
 use Carbon\Carbon;
 class GuestController extends Controller
 {
@@ -33,7 +36,7 @@ class GuestController extends Controller
         $season = Season::where('content_id','=',$id);
         $season = $season->first();
         $content = Content::find($id);
-        $episodes = $season->episodes;
+        //$episodes = $season->episodes;
         $type = 'season';
         $contents = DB::table('contents')->join('episodes','contents.id','=','episodes.content_id')->where('episodes.season_id','=', $season->content_id)->where('contents.id','=','episodes.content_id')->select('contents.*')->orderBy('contents.id');
         return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
@@ -43,9 +46,10 @@ class GuestController extends Controller
         $episode = Episode::find($id);
         $content = Content::find($id);
         $comments = $episode->comments;
-        $path = DB::table('pictures')->where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.path');
+        $pictures = Picture::where('content_id',$id)->get();
+        $path = Picture::where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.path');
         $type = 'episode';
-        return view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type']));
+        return view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type','pictures']));
     }
 
     public function search(Request $request) {
@@ -74,20 +78,22 @@ class GuestController extends Controller
                 break;
             }
             default: {
-                $tvshows = Genre::getTVShowsSearch($text);
-                $contents = Genre::getTVShowsSearch($text);
+                $tvshows = Genre::getTVShowsSearch($type, $text);
+                $contents = Genre::getContentsSearch($type, $text);
                 break;
             }
         }
         $actors = array();
+        $actors = array();
         $genres = array();
         $directors = array();
-
+        $pictures = array();
         foreach($tvshows as $tvshow) {
-            array_push($actors,Actor::getActorsNames($tvshow->content_id));
-            array_push($genres,Genre::getGenresNames($tvshow->content_id));
-            array_push($directors,Director::getDirectorsNames($tvshow->content_id));
+            array_push($actors, Actor::getActorsNames($tvshow->content_id));
+            array_push($genres, Genre::getGenresNames($tvshow->content_id));
+            array_push($directors, Director::getDirectorsNames($tvshow->content_id));
+            array_push($pictures, Picture::mainPicture($tvshow->content_id));
         }
-        return view('content.search',compact('tvshows','contents','genres','directors','actors'));
+        return view('content.search',compact('tvshows','contents','genres','directors','actors','pictures'));
     }
 }
