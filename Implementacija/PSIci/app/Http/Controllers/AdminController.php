@@ -22,7 +22,6 @@ use App\Acting;
 use App\Directing;
 use App\Category;
 use App\Season;
-use App\Episode;
 
 class AdminController extends Controller
 {
