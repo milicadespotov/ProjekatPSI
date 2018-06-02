@@ -1,4 +1,5 @@
 @extends('layouts.master')
+<<<<<<< HEAD
 @section('content')
     <script language="javascript">
         function submitVal(num) {
@@ -7,6 +8,19 @@
         }
     </script>
     <div class="container">
+=======
+
+@section('content')
+<script>
+	
+function submitVal(num) {
+    document.getElementById("setPictureOption").value=num;
+    document.getElementById("changePictureForm").submit();
+}
+
+</script
+    <div class="container-fluid">
+>>>>>>> 45859216fe1c542b98428d87c1bbd8fcc30e1d41
             <div class="row justify-content-center" style="margin-top:20px;">
                 <div class="col-lg-6">
                     <div class="row">
