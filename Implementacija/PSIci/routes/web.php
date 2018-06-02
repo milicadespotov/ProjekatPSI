@@ -30,7 +30,10 @@ Route::get('episode/{id}','GuestController@showEpisode');
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 445a4824d3166cd5be8b49ff690e81c2c25f4f6e
 //Route::get('episode/{content_id}','');
 
 
@@ -110,9 +113,6 @@ Route::get('/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')
 
 Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 
-
-
-
 // END MILICA
 
 
@@ -120,11 +120,12 @@ Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegis
 // ALEKSA
 
 
-Route::post('/series/{tvshow}/rate','UserController@rateContent');
-Route::post('/season/{id}/rate','UserController@rateContent');
-Route::post('/episode/{id}/rate','UserController@rateContent');
+Route::post('/series/{content}/rate','UserController@rateContent');
+Route::post('/season/{content}/rate','UserController@rateContent');
+Route::post('/episode/{content}/rate','UserController@rateContent');
 Route::get('/search','GuestController@search');
 
+<<<<<<< HEAD
 
 
 Route::post('/series/{tvshow}/rate','UserController@rateSeries');
@@ -132,6 +133,8 @@ Route::post('/season/{id}/rate');
 Route::post('/episode/{id}/rate');
 
 
+=======
+>>>>>>> 445a4824d3166cd5be8b49ff690e81c2c25f4f6e
 //END ALEKSA
 
 // FILIP

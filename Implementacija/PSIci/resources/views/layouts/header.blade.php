@@ -117,8 +117,8 @@
                 <li style="padding-top:15px;margin-left:20px">
                     <div class="widget-content">
 
-                        <form action="#" id="search-form" method="get" role="search">
-                            {{ csrf_field() }}
+                        <form action="/search" id="search-form" method="get" role="search">
+
                             <table>
                                 <tr>
                                     <td>

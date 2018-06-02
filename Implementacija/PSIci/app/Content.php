@@ -53,15 +53,16 @@ class Content extends Model
     }
 
     public function currentRate(){
-        $rate = Rating::where('user_id','=',Auth::user()->id)->where('content_id','=',$this->id);
+        $rate = Rating::where('user_id','=',Auth::user()->username)->where('content_id','=',$this->id);
         $rate = $rate->first();
-       return $rate;
+
+        return $rate;
     }
 
     public static function getContentsSearch($text) {
-        DB::table('contents')->join('tvshows','tvshows.content_id','=','contents.id')
-            ->where('contents.name','like',$text)
+        return DB::table('contents')->join('tvshows','tvshows.content_id','=','contents.id')
+            ->where('contents.name','like','%'.$text.'%')
             ->orderby('contents.id','desc')
-            ->select('contents.*');
+            ->select('contents.*')->get();
     }
 }
