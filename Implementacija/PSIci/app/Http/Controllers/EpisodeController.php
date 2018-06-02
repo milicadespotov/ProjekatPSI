@@ -22,8 +22,7 @@ use App\Episode;
 
 class EpisodeController extends Controller
 {
-    public function comment(){
-
+    public function comment(Request $request){
 
             $comment  = new Comment;
             $comment->user_id = Auth::user()->username;
@@ -39,6 +38,10 @@ class EpisodeController extends Controller
             $comment->save();
             $episode_id = Input::get('episode_id');
 
+            $this->validate($request, [
+
+                'comment' => 'max:255'
+            ]);
 
             $episode = Episode::find($episode_id);
 

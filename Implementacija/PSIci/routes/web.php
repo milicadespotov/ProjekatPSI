@@ -188,7 +188,7 @@ Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoup
 Route::group(['middleware' => 'AdminMiddleware'], function()
 {
     Route::get('/updateSpoiler/{id}', 'EpisodeController@updateSpoiler')->name('updatespoiler');
-    Route::get('/updateSpoilerRemove/{id}', 'EpisodeController@updateSpoilerRemove');
+    Route::get('/updateSpoilerRemove/{id}', 'EpisodeController@updateSpoilerRemove')->name('updatespoilerremove');
 });
 
 
