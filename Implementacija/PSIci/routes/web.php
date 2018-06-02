@@ -169,24 +169,29 @@ Route::post('/episode/{id}/rate');
 //END ALEKSA
 
 // FILIP
-<<<<<<< HEAD
-Route::post('/addComment','EpisodeController@comment')->name('addcomment')->middleware('UserMiddleware');
-Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment')->middleware('UserMiddleware');
-Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler')->middleware('AdminMiddleware');
-Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched')->middleware('UserMiddleware');
-Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate')->middleware('UserMiddleware');
-Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoupdate')->middleware('UserMiddleware');
+Route::group(['middleware' => 'UserMiddleware'], function () {
 
-=======
+    // any route here will only be accessible for logged in users
+
 Route::post('/addComment','EpisodeController@comment')->name('addcomment');
 Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
-Route::get('/updateSpoiler/{id}','EpisodeController@updateSpoiler')->name('updatespoiler');
-Route::get('/updateSpoilerRemove/{id}','EpisodeController@updateSpoilerRemove')->name('updatespoilerremove');
-Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
 Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate');
 Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoupdate');
+});
+
+
+Route::group(['middleware' => 'AdminMiddleware'], function()
+{
+    Route::get('/updateSpoiler/{id}', 'EpisodeController@updateSpoiler')->name('updatespoiler');
+    Route::get('/updateSpoilerRemove/{id}', 'EpisodeController@updateSpoilerRemove');
+});
+
+
+Route::group(['middleware' => 'OnlyUser'], function ()
+{
+Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
 Route::get('/watchedEpisodes','EpisodeController@watched')->name('watchedepisodes');
->>>>>>> 2378e7e6001c4d2bd9fed2698e6c1b41ad5d12aa
+});
 // END FILIP
 
 
