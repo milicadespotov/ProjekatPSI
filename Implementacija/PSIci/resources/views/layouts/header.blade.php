@@ -97,7 +97,7 @@
 
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-item">
-                                        <a href="{{route('accremove',['id'=>Auth::user()->username])}}"> UKLONI NALOG </a>
+                                        <a href="#myModal" data-toggle="modal"> UKLONI NALOG </a>
                                     </li>
 
                                     <li class="dropdown-item">
@@ -177,7 +177,7 @@
                     <p>Da li ste sigurni da želite da uklonite svoj nalog?</p>
                 </div>
                 <div class="modal-footer">
-                    <form method="post" action="/removeAccount/{{Auth::user()->id}}">
+                    <form method="post" action="{{ route('accremove',['id'=>Auth::user()->id]) }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @csrf
                         <input type="submit" class="btn btn-transparent" value="Potvrdi">

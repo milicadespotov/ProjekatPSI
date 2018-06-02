@@ -67,7 +67,7 @@ Route::get('/episode/{id}','GuestController@showEpisode')->name('showepisode');
 
 Route::get('/season/{id}', 'GuestController@showSeason')->name('season');
 
-Route::post('/removeAccount/{id}', 'UserController@remove');
+Route::post('/removeAccount/{id}', 'UserController@remove')->name('accremove');
 
 Route::get('/accountManager', 'AdminController@showUsers')->name('accountManager');
 
