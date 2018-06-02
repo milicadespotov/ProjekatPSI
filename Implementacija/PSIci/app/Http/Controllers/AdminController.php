@@ -160,7 +160,7 @@ class AdminController extends Controller
             foreach ($request->file('pictures') as $file) {
                 $picture = new Picture();
                 $filename = $content->id . '-' . $picture->id . '.jpg';
-                $file = $file->storeAs('img/content_pictures', $filename);
+                $file = $file->storeAs('img/content', $filename);
                 $picture->path = $filename;
                 $picture->main_picture = false;
                 $picture->content_id = $content->id;

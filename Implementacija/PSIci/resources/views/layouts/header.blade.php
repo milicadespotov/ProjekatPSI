@@ -177,7 +177,7 @@
                     <p>Da li ste sigurni da želite da uklonite svoj nalog?</p>
                 </div>
                 <div class="modal-footer">
-                    <form method="post" action="/removeAccount/{{Auth::user()->username}}">
+                    <form method="post" action="/removeAccount/{{Auth::user()->id}}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @csrf
                         <input type="submit" class="btn btn-transparent" value="Potvrdi">
