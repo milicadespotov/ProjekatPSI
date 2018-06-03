@@ -1,1 +1,1 @@
-php artisan make:middleware OnlyUserMiddleware
+php artisan serve
