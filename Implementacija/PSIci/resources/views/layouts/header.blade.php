@@ -83,7 +83,7 @@
                                     <a href="{{route('accountManager')}}"> UPRAVLJANJE NALOZIMA </a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a href="#"> PROMENI LOZINKU </a>
+                                    <a href="{{route('password_reset')}}"> PROMENI LOZINKU </a>
                                 </li>
 
                             </ul>

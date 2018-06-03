@@ -79,9 +79,9 @@ Route::get('/addSeries','AdminController@seriesInput')->name('addseries');
 
 Route::post('/confirmSeries', 'AdminController@makeSeries')->name('confirmSeries');
 
-Route::post('/addActor/{id}', 'AdminController@addActor')->name('addActor');
+Route::post('/addActor/{id}', 'AdminController@addActorWrapper')->name('addActor');
 
-Route::post('/addDirector/{id}','AdminController@addDirector')->name('addDirector');
+Route::post('/addDirector/{id}','AdminController@addDirectorWrapper')->name('addDirector');
 
 Route::post('/addSeason/{id}', 'AdminController@seasonInput')->name('addSeason');
 
@@ -121,11 +121,14 @@ Route::group(['middleware' => 'UserMiddleware'], function()
     Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm');
     Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset');
 });
-Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request');
-Route::post('/password/email', '\App\Http\Controllers\Auth\ForgotPasswordController@sendEmailConfirm')->name('password_email');
-Route::get('/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
-Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
 
+ROute::group(['middleware' => 'GuestMiddleware'], function()
+{
+    Route::get('/password/request', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password_request');
+    Route::post('/password/email', '\App\Http\Controllers\Auth\ForgotPasswordController@sendEmailConfirm')->name('password_email');
+    Route::get('/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
+    Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
+});
 
 
 

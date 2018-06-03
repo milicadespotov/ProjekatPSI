@@ -177,16 +177,25 @@ class UserController extends Controller
 
             }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1e87be95b7f3b43af6802bc9efdf0f0959dc4fea
 
 
 
 
 
 
-            return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR,'lastAdded'=>$lastAdded,'picturesLA'=>$picturesLA]);
-
+<<<<<<< HEAD
 
             return response()->view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR]);
+=======
+            return response()->view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR,'lastAdded'=>$lastAdded,'picturesLA'=>$picturesLA]);
+
+
+
+>>>>>>> 1e87be95b7f3b43af6802bc9efdf0f0959dc4fea
 
 
         }
