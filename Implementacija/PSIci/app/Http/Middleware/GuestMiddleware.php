@@ -17,7 +17,7 @@ class GuestMiddleware
     {
         if (Auth::check())
         {
-            return response()->view('profile.user');
+            return response()->view('home.index');
         }
 
         return $next($request);
