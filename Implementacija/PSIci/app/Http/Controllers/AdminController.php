@@ -392,11 +392,102 @@ class AdminController extends Controller
         return response()->view('content.editEpisode',compact('avatarPath', 'episode','picturePaths','content'));
     }
 
-    public function changeAvatar(Request $request, Episode $episode) {
-        dd($request);
+    public function changeAvatar(Request $request, Content $content) {
+
+        if ($request->typeOfOperation==0) {
+            $imageExists = Picture::mainPicture($content->id);
+            if ($imageExists!=null) {
+                DB::table('pictures')
+                    ->where('pictures.content_id','=',$content->id)
+                    ->where('pictures.main_picture','=',1)
+                    ->delete();
+                File::delete('img\img\content\\'.$imageExists->path);
+            }
+        } else if ($request->typeOfOperation==1) {
+            $this->validate(request(),[
+                'mainImage'=>'required'
+            ]);
+            $imageExists = Picture::mainPicture($content->id);
+            if ($imageExists==null) {
+                $picture = new Picture();
+                $picture->path = '1';
+                $picture->content_id = $content->id;
+                $picture->main_picture = true;
+                $picture->save();
+                $filename = $content->id . '-' . $picture->id . '.jpg';
+                $file=$request->file('mainImage')->storeAs('img\content', $filename);
+                $picture->path = $filename;
+                $picture->update();
+            } else {
+                $file=$request->file('mainImage')->storeAs('img\content', $imageExists->path);
+
+            }
+        }
+
+        return redirect()->back();
+    }
+    public function deletePictures(Request $request, Content $content){
+        $this->validate(request(),[
+            'paths'=>'required'
+        ]);
+
+        foreach($request->paths as $path) {
+            DB::table('pictures')
+                ->where('pictures.path','=',$path)
+                ->delete();
+            File::delete('img\img\content\\'.$path);
+        }
         return redirect()->back();
     }
 
+    public function addPictures(Request $request, Content $content) {
+        $this->validate(request(),[
+            'pictures'=>'required'
+        ]);
+        foreach ($request->file('pictures') as $file) {
+            $picture = new Picture();
+            $picture->path = '1';
+            $picture->content_id = $content->id;
+            $picture->main_picture = false;
+            $picture->save();
+            $filename = $content->id . '-' . $picture->id . '.jpg';
+            $file = $file->storeAs('img\content', $filename);
+            $picture->path = $filename;
+            $picture->update();
+        }
+        return redirect()->back();
+    }
+
+
+    public function changeEpisodeData(Request $request, Episode $episode)
+    {
+        $this->validate(request(), [
+            'name' => 'required|max:30',
+            'description' => 'max:255',
+            'trailer' => 'max:255'
+        ]);
+        if ($request->duration != null && is_numeric($request->duration) == false)
+            return redirect()->back();
+        $content = Content::find($episode->content_id);
+        if ($request->name != null) {
+            $content->name = $request->name;
+        }
+        if ($request->trailer != null) {
+            $content->name = $request->trailer;
+        }
+        if ($request->description != null) {
+            $content->description = $request->description;
+        }
+        if ($request->duration == null) {
+            $episode->length = intval($request->duration);
+        }
+        if ($request->releaseDate) {
+            $content->release_date = $request->releaseDate;
+        }
+        $episode->update();
+        $content->update();
+        return redirect()->route('showepisode', ['episode' => $episode->content_id]);
+    }
 
 
 
