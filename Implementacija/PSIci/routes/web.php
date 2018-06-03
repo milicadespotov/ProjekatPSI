@@ -146,20 +146,7 @@ Route::get('/search','GuestController@search');
 
 Route::get('/episode/{episode}/edit','AdminController@editEpisode');
 
-
-
-
-
-
-
-
-
-
-
-
-Route::post('/series/{tvshow}/rate','UserController@rateSeries');
-Route::post('/season/{id}/rate');
-Route::post('/episode/{id}/rate');
+Route::post('/episode/{episode}/edit/changeAvatar','AdminController@changeAvatar');
 
 
 
