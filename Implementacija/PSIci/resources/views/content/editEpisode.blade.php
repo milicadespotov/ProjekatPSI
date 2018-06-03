@@ -1,3 +1,4 @@
+
 @extends('layouts.master')
 @section('content')
     <script language="javascript">
@@ -20,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label for="mainImage" style = "font-size: 18px" class="col-form-label text-md-right color">Naslovna slika:</label><br>
-                        <form method="post" id="changePictureForm" action="/episode/{{$episode->content_id}}/edit/changeAvatar" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <form enctype="multipart/form-data" method="post" id="changePictureForm" action="/episode/{{$episode->content_id}}/edit/changeAvatar" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             @csrf
                             <input type="file" name="mainImage" class="form-control input-file" id="mainImage">
@@ -30,9 +31,10 @@
                         </form>
                     </div>
                     <div class="form-group">
-                        <form method="post" action="/episode/{{$episode->content_id}}/edit/addPictures" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <form enctype="multipart/form-data" method="post" action="/episode/{{$episode->content_id}}/edit/addPictures" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                             <label for="pictures" style = "font-size: 18px" class="col-form-label text-md-right color">Dodaj ostale slike:</label><br>
                             <input type="file" style="margin-top:3px;" name="pictures[]" multiple class="form-control input-file" id="pictures">
+                            <br>
                             <input type="submit" class="btn btn-transparent" value="Dodaj slike">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             @csrf
@@ -40,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <form method="post" action="/episode/{{$episode->content_id}}/edit/changeData" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                    <form enctype="multipart/form-data" method="post" action="/episode/{{$episode->content_id}}/edit/changeData" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @csrf
                         <div class="form-group">
@@ -59,28 +61,41 @@
                             <label for="duration" style = "font-size: 18px" class="col-form-label text-md-right color">Trajanje epizode: (u minutima)</label>
                             <input type="text" id="duration" name="duration" class="form-control">
                         </div>
+                        <div class="form-group">
+                            <label for="releaseDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum izlaska:</label>
+                            <input type="date" name="releaseDate" class="form-control" id="releaseDate">
+                        </div>
                         <input type="submit" class="btn btn-transparent" value="Izmeni detalje">
                     </form>
                 </div>
             </div>
         <div class="row justify-content-center" style="margin-top:20px;">
+            <div class="col-lg-12">
             <div class="form-group">
                 <label for="genre" style = "font-size: 18px" class="col-form-label text-md-right color">Odaberi slike za brisanje:</label>
-                <form method="post" action="/episode/{{$episode->content_id}}/edit/addPictures" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                <form method="post" enctype="multipart/form-data" action="/episode/{{$episode->content_id}}/edit/deletePictures" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                     <div class="row">
                         <?php $i=0; ?>
                         @foreach($picturePaths as $picPath)
+                            <?php
+                                if ($i%6==0) echo '<div class="row">';
+                            ?>
                             <div class="col-lg-2">
                                 <center><input type="checkbox" id={{$picPath->path}} name="paths[]" value="{{$picPath->path}}"></center>
                                 <br>
                                 <label for="{{$picPath->path}}"><img style="width:100%" src="{{ asset('img/img/content/'.$picPath->path) }}"></label>
                             </div>
+                            <?php
+                                $i=$i+1;
+                                if ($i%6==0) echo '</div>';
+                            ?>
                         @endforeach
                     </div>
                     <input type="submit" class="btn btn-transparent" value="Obriši slike">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     @csrf
                 </form>
+            </div>
             </div>
         </div>
     </div>

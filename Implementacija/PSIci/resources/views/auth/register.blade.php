@@ -81,7 +81,7 @@
                                 @if ($errors->has('security_question'))
                                     <span class="invalid-feedback" style = "color: pink">
                                                 {{ $errors->first('security_question') }}
-                                            </span>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -167,10 +167,11 @@
                     </div>
                     </center>
                 </form>
+                <p> Polja koja pored naziva imaju * su obavezna! </p>
 
 
             </div>
 
-        <br> <br> <br> <br> <br>
+        <br> <br> <br> <br>user
     </div>
 @endsection
