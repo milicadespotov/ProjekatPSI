@@ -70,7 +70,7 @@
                 </table>
             </div>
             <div class="col-lg-6">
-                <form method="POST" enctype="multipart/form-data" action="/addActor/{{$content->id}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                <form method="POST" enctype="multipart/form-data" action="{{route('addActor',['id' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     @csrf
                     <div class="form-group">
@@ -81,7 +81,7 @@
 
                 </form>
                 <br>
-                <form method="POST" enctype="multipart/form-data" action="/addDirector/{{$content->id}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                <form method="POST" enctype="multipart/form-data" action="{{route('addDirector',['id' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     @csrf
                     <div class="form-group">
@@ -92,7 +92,7 @@
 
                 </form>
                 <br>
-                <center>  <a href="/series/{{$content->id}}"><button class="btn btn-transparent">Potvrdi</button></a></center>
+                <center>  <a href="{{route('showseries',['content_id'=>$content->id])}}"><button class="btn btn-transparent">Potvrdi</button></a></center>
             </div>
         </div>
     </div>

@@ -43,7 +43,7 @@ class UserController extends Controller
         }
         Auth::logout();
         DB::table('users')->where('id', '=', $id)->delete();
-        return view('home.index');
+        return response()->view('home.index');
 
     }
 
@@ -102,6 +102,8 @@ class UserController extends Controller
 
             //dovlacenje posljednje ocijenjenih serija(tj. epizoda serija)
             //promjenljiva ce se zvati $lastRated
+            //ZA PROFIL ADMINA OVO CE PREDSTAVLJATI MODIFIKOVANE SERIJE
+            if(Auth::check() && Auth::user()->is_admin==false){
             $lastRated = DB::table('tvshows')
                 ->join('ratings', 'tvshows.content_id', '=', 'ratings.content_id')
                 ->where('ratings.user_id','=',Auth::user()->username)
@@ -109,12 +111,20 @@ class UserController extends Controller
                 ->orderBy('ratings.updated_at', 'asc')
                 ->limit(3)
                 ->get();
+            }else {
+                $lastRated = DB::table('tvshows')
+                    ->select('tvshows.*')
+                    ->orderBy('tvshows.updated_at', 'asc')
+                    ->limit(3)
+                    ->get();
+            }
 
+            //dd($lastRated);
 
             $picturesLR = array();
 
-            foreach($lastRated as $episode){
-                array_push($picturesLR, Content::mainPictureId($episode->content_id));
+            foreach($lastRated as $tvshow){
+                array_push($picturesLR, Content::mainPictureId($tvshow->content_id));
             }
 
 
@@ -122,6 +132,11 @@ class UserController extends Controller
 
             //dovlacenje posljednje odgledanih serije(tj epizoda serija)
             //promjenljiva ce se zvati $lastWatched
+
+            $lastWatched = null;
+            $picturesLW = null;
+
+            if(Auth::check() && Auth::user()->is_admin==false){
             $lastWatched = DB::table('episodes')
                 ->join('watched_episodes', 'episodes.content_id', '=', 'watched_episodes.episode_id')
                 ->where('watched_episodes.user_id','=',Auth::user()->username)
@@ -130,13 +145,45 @@ class UserController extends Controller
                 ->limit(3)
                 ->get();
 
-             $picturesLW = array();
+                $picturesLW = array();
 
-            foreach($lastWatched as $episode){
-                array_push($picturesLW, Episode::mainPictureId($episode->content_id));
+                foreach($lastWatched as $episode){
+                    array_push($picturesLW, Episode::mainPictureId($episode->content_id));
+                }
             }
 
-            return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR]);
+
+
+            //dovlacenje posljednje dodatih serija za PROFIL ADMINA
+
+            $lastAdded = null;
+            $picturesLA = null;
+
+            if(Auth::check() && Auth::user()->is_admin==true) {
+
+                $lastAdded = DB::table('tvshows')
+                    ->select('tvshows.*')
+                    ->orderBy('tvshows.created_at', 'asc')
+                    ->limit(3)
+                    ->get();
+
+                $picturesLA = array();
+
+                foreach($lastAdded as $tvshow){
+                    array_push($picturesLA, Episode::mainPictureId($tvshow->content_id));
+                }
+
+            }
+
+<<<<<<< HEAD
+
+
+
+
+            return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR,'lastAdded'=>$lastAdded,'picturesLA'=>$picturesLA]);
+=======
+            return response()->view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR]);
+>>>>>>> 289f6239104343f7212fc7b1071874eacc55eb53
 
         }
 
@@ -226,6 +273,7 @@ class UserController extends Controller
 
 
         }
+
 
 
 

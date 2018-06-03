@@ -28,7 +28,7 @@ class GuestController extends Controller
         $type = 'series';
         $genres = DB::table('genres')->join('categories', 'categories.id','=','genres.category_id')->join('type_ofs','type_ofs.genre_id','=','categories.id')->where('type_ofs.tvshow_id','=',$id)->select('categories.name')->get();
         $contents = DB::table('contents')->join('seasons','seasons.content_id','=','contents.id')->where('seasons.tvshow_id', '=', $series->content_id)->select('contents.*')->get();
-        return view('content.tvshow', compact(['series', 'content', 'seasons', 'contents', 'type','genres']));
+        return response()->view('content.tvshow', compact(['series', 'content', 'seasons', 'contents', 'type','genres']));
     }
 
     public function showSeason($id){
@@ -40,9 +40,15 @@ class GuestController extends Controller
 
         //$episodes = $season->episodes;
 
+
         $type = 'season';
         $contents = DB::table('contents')->join('episodes','episodes.content_id','=','contents.id')->where('episodes.season_id','=',$id)->select('contents.*')->get();
-          return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
+<<<<<<< HEAD
+        //dd($contents);
+        return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
+=======
+          return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
+>>>>>>> 289f6239104343f7212fc7b1071874eacc55eb53
     }
 
     public function showEpisode($id){
@@ -59,7 +65,7 @@ class GuestController extends Controller
 
         $numcomments = count($comments);
         $type = 'episode';
-        return view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type','pictures','numcomments']));
+        return response()->view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type','pictures','numcomments']));
     }
 
     public function search(Request $request) {
@@ -104,6 +110,6 @@ class GuestController extends Controller
             array_push($directors, Director::getDirectorsNames($tvshow->content_id));
             array_push($pictures, \App\Picture::mainPicture($tvshow->content_id));
         }
-        return view('content.search',compact('tvshows','contents','genres','directors','actors','pictures'));
+        return response()->view('content.search',compact('tvshows','contents','genres','directors','actors','pictures'));
     }
 }

@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 class Tvshow extends Model
 {
 
-    public $PrimaryKey = 'content_id';
+    protected $primaryKey = 'content_id';
+
     public function seasons(){
         return Season::where('tvshow_id','=', $this->content_id)->get();
     }

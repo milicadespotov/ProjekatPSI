@@ -18,14 +18,19 @@
             </div>
             <div class="col-lg-4">
                 @if(Auth::check() && Auth::user()->is_admin==true)
+
                     <center>
+                        <a href="#myModal2" data-toggle="modal">
+                            <input type="submit" value="Obrisi sezonu" class="btn btn-transparent">
+                        </a>
+
                         <form method="post" action="{{ route('addepisode',['id'=>$content->id]) }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             @csrf
                             <input type="submit" value="Dodaj epizodu" class="btn btn-transparent">
                         </form>
                     </center>
-                    @endif
+                @endif
 
             </div>
             <div class="col-lg-4">
@@ -49,7 +54,7 @@
                     <div class="col-md-12" style="margin-bottom:10px">
                         <div class="col-md-4">
                             @if($episodes[$i]->mainPicture()->first()!=null)
-                                <img src="{{asset('img/img/content/'.$episodes[$i]->mainPicture()->first()->path)}}" style="width:100%">
+                                <img src="{{asset('img/'.$episodes[$i]->mainPicture()->first()->path)}}" style="width:100%">
                             @else
                                 <img src="{{asset('img/favicon.png')}}" style="width:100%">
                             @endif
@@ -58,11 +63,12 @@
                                 <a href="#">
                                     <input type="submit" value="Izmeni" class="btn btn-transparent">
                                 </a>
+
                                     @endif
                             </center>
                         </div>
                         <div class="col-md-8">
-                            <a href="#"><h4>{{$contents[$i]->name}}</h4></a>
+                            <a href="{{ route('showepisode',['id'=>$contents[$i]->id]) }}"><h4>{{$contents[$i]->name}}</h4></a>
                             <p style="width:100%;word-wrap: break-word;">
                                 {{$contents[$i]->description}}
                             </p>
@@ -73,6 +79,34 @@
                 </div>
                     @endfor
             </div>
+
+            @if(Auth::check())
+
+                <div class="modal" id="myModal2" style="margin-top:15%;color:black;">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="background-color:#2B2C30;color:white">
+                            <div class="modal-header">
+                                <h5 class="modal-title" style="font-size:20px">Brisanje sezone
+                                    <button style="margin-bottom:10px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button></h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Da li ste sigurni da želite da uklonite ovu sezonu?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <form method="post" action="{{ route('seasonremove',['id'=>$season->content_id]) }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    @csrf
+                                    <input type="submit" class="btn btn-transparent" value="Potvrdi">
+                                    <button type="button" class="btn btn-transparent" data-dismiss="modal">Odustani</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <div class="col-md-4">
                 <!--Trejler-->
                 <center>

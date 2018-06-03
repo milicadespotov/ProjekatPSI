@@ -11,6 +11,7 @@
             <br> <br> <br>
 
                 <form method="POST" enctype= "multipart/form-data" class = "contact-form fadeInUp color" data-wow-duration="500ms" data-wow-delay="300ms" action="{{ route('register') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class = "col-md-12">
                     @csrf
                     <div class="col-md-6 pull-left">
@@ -80,7 +81,7 @@
                                 @if ($errors->has('security_question'))
                                     <span class="invalid-feedback" style = "color: pink">
                                                 {{ $errors->first('security_question') }}
-                                            </span>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -166,10 +167,11 @@
                     </div>
                     </center>
                 </form>
+                <p> Polja koja pored naziva imaju * su obavezna! </p>
 
 
             </div>
 
-        <br> <br> <br> <br> <br>
+        <br> <br> <br> <br>
     </div>
 @endsection
