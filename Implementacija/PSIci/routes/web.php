@@ -73,7 +73,7 @@ Route::get('/accountManager', 'AdminController@showUsers')->name('accountManager
 
 Route::post('/userToAdmin/{id}', 'AdminController@makeAdmin')->name('confirm_admin');
 
-Route::get('/addSeries','AdminController@seriesInput');
+Route::get('/addSeries','AdminController@seriesInput')->name('addseries');
 
 Route::post('/confirmSeries', 'AdminController@makeSeries');
 
@@ -169,6 +169,9 @@ Route::group(['middleware' => 'AdminMiddleware'], function()
 {
     Route::get('/updateSpoiler/{id}', 'EpisodeController@updateSpoiler')->name('updatespoiler');
     Route::get('/updateSpoilerRemove/{id}', 'EpisodeController@updateSpoilerRemove')->name('updatespoilerremove');
+    Route::post('/removeEpisode/{id}','EpisodeController@removeEpisode')->name('episoderemove');
+    Route::post('/removeSeason/{id}','AdminController@removeSeason')->name('seasonremove');
+    Route::post('/removeSeries/{id}','AdminController@removeSeries')->name('seriesremove');
 });
 
 

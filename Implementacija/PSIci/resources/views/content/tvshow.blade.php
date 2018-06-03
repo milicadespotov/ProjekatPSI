@@ -10,6 +10,9 @@ use App\Category;
 
 
     <div class="container-fluid">
+        <br>
+        <br>
+        <br>
         <div class="row">
             <div class="col-lg-4 ">
 
@@ -21,6 +24,11 @@ use App\Category;
             <div class="col-lg-8">
                 <div class="blog-title">
                     @include('rating.rate')
+                    @if(Auth::check() && Auth::user()->is_admin==true)
+                        <a href="#myModal3" data-toggle="modal">
+                            <input type="submit" value="Obrisi seriju" class="btn btn-transparent">
+                        </a>
+                    @endif
                 </div>
 
             </div>
@@ -29,7 +37,32 @@ use App\Category;
         <br>
         <br>
 
+        @if(Auth::check())
 
+            <div class="modal" id="myModal3" style="margin-top:15%;color:black;">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="background-color:#2B2C30;color:white">
+                        <div class="modal-header">
+                            <h5 class="modal-title" style="font-size:20px">Brisanje serije
+                                <button style="margin-bottom:10px;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button></h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>Da li ste sigurni da želite da uklonite ovu seriju?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form method="post" action="{{ route('seriesremove',['id'=>$content->id]) }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                @csrf
+                                <input type="submit" class="btn btn-transparent" value="Potvrdi">
+                                <button type="button" class="btn btn-transparent" data-dismiss="modal">Odustani</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
 
         <div class="row" style="font-size: 20px">
 
@@ -38,7 +71,7 @@ use App\Category;
                 <center>
                     @foreach($content->pictures as $picture)
                         @if($picture->main_picture==true)
-                    <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:100%;height:auto">
+                    <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
                         @endif
                         @endforeach
                 </center>

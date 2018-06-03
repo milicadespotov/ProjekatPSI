@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\WatchedEpisode;
 use App\Episode;
+use App\Content;
 
 
 class EpisodeController extends Controller
@@ -137,5 +138,58 @@ class EpisodeController extends Controller
         return view('content.watched_episodes',compact('watched'));
     }
 
+
+
+    public function removeEpisode($id){
+
+        $episode = Episode :: find($id);
+
+       // dd($episode);
+
+        //brisanje komentara
+        DB::table('comments')->where('comments.episode_id','=',$episode->content_id)->delete();
+        //brisanje iz watched_episodes
+        DB::table('watched_episodes')->where('watched_episodes.episode_id','=',$episode->content_id)->delete();
+        //brisanje iz pictures
+        $pictures =  DB::table('pictures')->where('pictures.content_id','=',$episode->content_id)->get();
+        AdminController::deletePictureFiles($pictures);
+
+        DB::table('pictures')->where('pictures.content_id','=',$episode->content_id)->delete();
+        //brisanje iz rating
+        DB::table('ratings')->where('content_id','=',$episode->content_id)->delete();
+
+        //brisanje iz episodes
+        Episode::where('content_id',$episode->content_id)->delete();
+        //brisanje iz content
+        Content::where('id',$episode->content_id)->delete();
+
+        return view('home.index');
+
+
+    }
+
+
+    public static function removeEpisodeForSeason($id){
+        $episode = Episode :: find($id);
+
+        // dd($episode);
+
+        //brisanje komentara
+        DB::table('comments')->where('comments.episode_id','=',$episode->content_id)->delete();
+        //brisanje iz watched_episodes
+        DB::table('watched_episodes')->where('watched_episodes.episode_id','=',$episode->content_id)->delete();
+        //brisanje iz pictures
+        $pictures =  DB::table('pictures')->where('pictures.content_id','=',$episode->content_id)->get();
+        AdminController::deletePictureFiles($pictures);
+
+        DB::table('pictures')->where('pictures.content_id','=',$episode->content_id)->delete();
+        //brisanje iz rating
+        DB::table('ratings')->where('content_id','=',$episode->content_id)->delete();
+
+        //brisanje iz episodes
+        Episode::where('content_id',$episode->content_id)->delete();
+        //brisanje iz content
+        Content::where('id',$episode->content_id)->delete();
+    }
 
 }

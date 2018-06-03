@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class Season extends Model
 {
 
-    public $PrimaryKey = 'content_id';
+    protected $primaryKey = 'content_id';
     public function episodes(){
         return Episode::where('season_id','=', $this->content_id)->get();
     }

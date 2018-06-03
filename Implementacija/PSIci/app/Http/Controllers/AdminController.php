@@ -395,4 +395,126 @@ class AdminController extends Controller
         dd($request);
         return redirect()->back();
     }
+
+
+
+
+    public function removeSeason($id){
+        $season = Season::find($id);
+
+
+
+        //sve epizode sezone
+        $episodes = DB::table('episodes')
+                    ->where('episodes.season_id','=',$id)
+                    ->select('episodes.content_id')
+                    ->get();
+
+
+        //brisanje svih epizoda
+        foreach($episodes as $episode){
+            EpisodeController::removeEpisodeForSeason($episode->content_id);
+        }
+        //brisanje pictures
+        $pictures =  DB::table('pictures')->where('pictures.content_id','=',$season->content_id)->get();
+        AdminController::deletePictureFiles($pictures);
+
+        DB::table('pictures')->where('pictures.content_id','=',$season->content_id)->delete();
+        //brisanje iz rating
+        DB::table('ratings')->where('content_id','=',$season->content_id)->delete();
+        //dd($season);
+
+        //brisanje iz seasons
+        Season::where('content_id',$season->content_id)->delete();
+        //brisanje iz content
+        Content::where('id',$season->content_id)->delete();
+
+        return view('home.index');
+    }
+
+
+
+    public static function removeSeasonForSeries($id){
+        $season = Season::find($id);
+
+
+
+        //sve epizode sezone
+        $episodes = DB::table('episodes')
+            ->where('episodes.season_id','=',$id)
+            ->select('episodes.content_id')
+            ->get();
+
+
+        //brisanje svih epizoda
+        foreach($episodes as $episode){
+            EpisodeController::removeEpisodeForSeason($episode->content_id);
+        }
+
+        //brisanje pictures
+        $pictures =  DB::table('pictures')->where('pictures.content_id','=',$season->content_id)->get();
+        AdminController::deletePictureFiles($pictures);
+
+        DB::table('pictures')->where('pictures.content_id','=',$season->content_id)->delete();
+        //brisanje iz rating
+        DB::table('ratings')->where('content_id','=',$season->content_id)->delete();
+        //dd($season);
+
+        //brisanje iz seasons
+        Season::where('content_id',$season->content_id)->delete();
+        //brisanje iz content
+        Content::where('id',$season->content_id)->delete();
+    }
+
+
+
+    public function removeSeries($id){
+
+        $series = Tvshow::find($id);
+
+        //brisanje svih sezona
+        $seasons = $series->seasons();
+
+
+        foreach($seasons as $season){
+            AdminController::removeSeasonForSeries($season->content_id);
+        }
+
+        //brisanje acting
+        DB::table('actings')->where('actings.tvshow_id','=',$series->content_id)->delete();
+
+        //brisanje directing
+        DB::table('directings')->where('directings.tvshow_id','=',$series->content_id)->delete();
+
+        //brisanje typeof
+        DB::table('type_ofs')->where('type_ofs.tvshow_id','=',$series->content_id)->delete();
+
+        //brisanje rating
+        DB::table('ratings')->where('ratings.content_id','=',$series->content_id)->delete();
+
+        //brisanje picture
+        $pictures =  DB::table('pictures')->where('pictures.content_id','=',$series->content_id)->get();
+        AdminController::deletePictureFiles($pictures);
+
+        DB::table('pictures')->where('pictures.content_id','=',$series->content_id)->delete();
+
+        //brisanje Tvshow
+        Tvshow::where('content_id',$series->content_id)->delete();
+
+        //brisanje content
+        Content::where('id',$series->content_id)->delete();
+
+
+        return view('home.index');
+    }
+
+
+
+
+    public static function deletePictureFiles($pictures){
+
+        foreach($pictures as $picture){
+            File::delete('img/img/content/'.$picture->path);
+        }
+    }
 }
