@@ -103,6 +103,8 @@ class UserController extends Controller
             //dovlacenje posljednje ocijenjenih serija(tj. epizoda serija)
             //promjenljiva ce se zvati $lastRated
             //ZA PROFIL ADMINA OVO CE PREDSTAVLJATI MODIFIKOVANE SERIJE
+            $lastRated = null;
+            $picturesLR = null;
             if(Auth::check() && Auth::user()->is_admin==false){
             $lastRated = DB::table('tvshows')
                 ->join('ratings', 'tvshows.content_id', '=', 'ratings.content_id')
@@ -175,15 +177,15 @@ class UserController extends Controller
 
             }
 
-<<<<<<< HEAD
+
 
 
 
 
             return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR,'lastAdded'=>$lastAdded,'picturesLA'=>$picturesLA]);
-=======
+
             return response()->view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR]);
->>>>>>> 289f6239104343f7212fc7b1071874eacc55eb53
+
 
         }
 

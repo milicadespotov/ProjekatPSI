@@ -73,11 +73,9 @@ Route::get('/accountManager', 'AdminController@showUsers')->name('accountManager
 
 Route::post('/userToAdmin/{id}', 'AdminController@makeAdmin')->name('confirm_admin');
 
-<<<<<<< HEAD
+
 Route::get('/addSeries','AdminController@seriesInput')->name('addseries');
-=======
-Route::get('/addSeries','AdminController@seriesInput')->name('addSeries');
->>>>>>> 289f6239104343f7212fc7b1071874eacc55eb53
+
 
 Route::post('/confirmSeries', 'AdminController@makeSeries')->name('confirmSeries');
 
@@ -142,9 +140,9 @@ Route::get('/register', '\App\Http\Controllers\Auth\RegisterController@showRegis
 
 
 
-Route::post('/series/{content}/rate','UserController@rateContent');
-Route::post('/season/{content}/rate','UserController@rateContent');
-Route::post('/episode/{content}/rate','UserController@rateContent');
+Route::post('/series/{content}/rate','UserController@rateContent')->name('rateseries');
+Route::post('/season/{content}/rate','UserController@rateContent')->name('rateseason');
+Route::post('/episode/{content}/rate','UserController@rateContent')->name('rateepisode');
 
 Route::get('/search','GuestController@search');
 
