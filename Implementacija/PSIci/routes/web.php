@@ -145,8 +145,11 @@ Route::post('/episode/{content}/rate','UserController@rateContent');
 Route::get('/search','GuestController@search');
 
 Route::get('/episode/{episode}/edit','AdminController@editEpisode');
+Route::post('/episode/{episode}/edit/changeData','AdminController@changeEpisodeData');
 
-Route::post('/episode/{episode}/edit/changeAvatar','AdminController@changeAvatar');
+Route::post('/episode/{content}/edit/changeAvatar','AdminController@changeAvatar');
+Route::post('/episode/{content}/edit/deletePictures','AdminController@deletePictures');
+Route::post('/episode/{content}/edit/addPictures','AdminController@addPictures');
 
 
 
