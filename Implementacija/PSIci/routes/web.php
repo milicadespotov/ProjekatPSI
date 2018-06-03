@@ -73,11 +73,9 @@ Route::get('/accountManager', 'AdminController@showUsers')->name('accountManager
 
 Route::post('/userToAdmin/{id}', 'AdminController@makeAdmin')->name('confirm_admin');
 
-<<<<<<< HEAD
+
 Route::get('/addSeries','AdminController@seriesInput')->name('addseries');
-=======
-Route::get('/addSeries','AdminController@seriesInput')->name('addSeries');
->>>>>>> 289f6239104343f7212fc7b1071874eacc55eb53
+
 
 Route::post('/confirmSeries', 'AdminController@makeSeries')->name('confirmSeries');
 
