@@ -79,9 +79,9 @@ Route::get('/addSeries','AdminController@seriesInput')->name('addseries');
 
 Route::post('/confirmSeries', 'AdminController@makeSeries')->name('confirmSeries');
 
-Route::post('/addActor/{id}', 'AdminController@addActor')->name('addActor');
+Route::post('/addActor/{id}', 'AdminController@addActorWrapper')->name('addActor');
 
-Route::post('/addDirector/{id}','AdminController@addDirector')->name('addDirector');
+Route::post('/addDirector/{id}','AdminController@addDirectorWrapper')->name('addDirector');
 
 Route::post('/addSeason/{id}', 'AdminController@seasonInput')->name('addSeason');
 

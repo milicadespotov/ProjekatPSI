@@ -196,6 +196,27 @@ class AdminController extends Controller
 
     }
 
+    public function addActorWrapper(Request $request, $id){
+        $this->addActor($request, $id);
+        $content = Content::find($id);
+        $tvshow = Tvshow::where('content_id','=',$id)->first();
+        $actors = DB::table('categories')->join('actings', 'actings.actor_id','=','categories.id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name')->get();
+        $directors = DB::table('categories')->join('directings','directings.director_id','=','categories.id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name')->get();
+
+        return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
+
+    }
+
+    public function addDirectorWrapper(Request $request, $id){
+        $this->addDirector($request, $id);
+        $content = Content::find($id);
+        $tvshow = Tvshow::where('content_id','=',$id)->first();
+        $actors = DB::table('categories')->join('actings', 'actings.actor_id','=','categories.id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name')->get();
+        $directors = DB::table('categories')->join('directings','directings.director_id','=','categories.id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name')->get();
+        return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
+
+    }
+
     public function addActor(Request $request, $id)
     {
         $content = Content::find($id);
@@ -208,11 +229,7 @@ class AdminController extends Controller
                 $acting->actor_id = $actor->id;
                 $acting->save();
             }
-            $actors = DB::table('categories')->join('actings', 'actings.actor_id','=','categories.id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name')->get();
-            $directors = DB::table('categories')->join('directings','directings.director_id','=','categories.id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name')->get();
-
-            return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
-        }
+             return;}
         $category = new Category();
         $category->name = $request->actor;
         $category->save();
@@ -225,9 +242,7 @@ class AdminController extends Controller
         $acting->tvshow_id = $id;
         $acting->actor_id = $category->id;
         $acting->save();
-        $actors = DB::table('categories')->join('actings', 'actings.actor_id','=','categories.id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name')->get();
-        $directors = DB::table('categories')->join('directings','directings.director_id','=','categories.id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name')->get();
-        return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
+
 
     }
 
@@ -243,11 +258,7 @@ class AdminController extends Controller
                 $directing->director_id = $director->id;
                 $directing->save();
             }
-            $actors = DB::table('categories')->join('actings', 'actings.actor_id','=','categories.id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name')->get();
-            $directors = DB::table('categories')->join('directings','directings.director_id','=','categories.id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name')->get();
-
-            return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
-        }
+            return;}
         $category = new Category();
         $director = new Director();
         $category->name = $request->director;
@@ -259,9 +270,6 @@ class AdminController extends Controller
         $directing->tvshow_id = $id;
         $directing->director_id = $category->id;
         $directing->save();
-        $actors = DB::table('categories')->join('actings', 'actings.actor_id','=','categories.id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name')->get();
-        $directors = DB::table('categories')->join('directings','directings.director_id','=','categories.id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name')->get();
-        return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
 
     }
 
