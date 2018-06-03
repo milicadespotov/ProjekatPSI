@@ -71,7 +71,7 @@
 
                             <ul class="dropdown-menu">
                                 <li class="dropdown-item">
-                                    <a href="/addSeries"> DODAVANJE NOVIH SERIJA </a>
+                                    <a href="{{route('addSeries')}}"> DODAVANJE NOVIH SERIJA </a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a href="#myModal" data-toggle="modal"> UKLONI NALOG </a>
@@ -80,7 +80,7 @@
                                     <a href="{{route('logout')}}"> IZLOGUJ SE </a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a href="/accountManager"> UPRAVLJANJE NALOZIMA </a>
+                                    <a href="{{route('accountManager')}}"> UPRAVLJANJE NALOZIMA </a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a href="#"> PROMENI LOZINKU </a>

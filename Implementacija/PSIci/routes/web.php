@@ -73,15 +73,15 @@ Route::get('/accountManager', 'AdminController@showUsers')->name('accountManager
 
 Route::post('/userToAdmin/{id}', 'AdminController@makeAdmin')->name('confirm_admin');
 
-Route::get('/addSeries','AdminController@seriesInput');
+Route::get('/addSeries','AdminController@seriesInput')->name('addSeries');
 
-Route::post('/confirmSeries', 'AdminController@makeSeries');
+Route::post('/confirmSeries', 'AdminController@makeSeries')->name('confirmSeries');
 
-Route::post('/addActor/{id}', 'AdminController@addActor');
+Route::post('/addActor/{id}', 'AdminController@addActor')->name('addActor');
 
-Route::post('/addDirector/{id}','AdminController@addDirector');
+Route::post('/addDirector/{id}','AdminController@addDirector')->name('addDirector');
 
-Route::post('/addSeason/{id}', 'AdminController@seasonInput');
+Route::post('/addSeason/{id}', 'AdminController@seasonInput')->name('addSeason');
 
 Route::post('/confirmSeason/{id}','AdminController@makeSeason')->name('confirm_season');
 

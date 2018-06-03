@@ -43,7 +43,7 @@ class UserController extends Controller
         }
         Auth::logout();
         DB::table('users')->where('id', '=', $id)->delete();
-        return view('home.index');
+        return response()->view('home.index');
 
     }
 
@@ -136,7 +136,7 @@ class UserController extends Controller
                 array_push($picturesLW, Episode::mainPictureId($episode->content_id));
             }
 
-            return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR]);
+            return response()->view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR]);
 
         }
 

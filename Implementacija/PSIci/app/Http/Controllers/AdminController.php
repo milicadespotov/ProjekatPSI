@@ -112,7 +112,7 @@ class AdminController extends Controller
     public function showUsers()
     {
         $users = DB::table('users')->where('is_admin', '=', 0)->paginate(10);
-        return view('home.users', compact('users'));
+        return response()->view('home.users', compact('users'));
     }
 
     public function makeAdmin($id)
@@ -124,7 +124,7 @@ class AdminController extends Controller
 
     public function seriesInput()
     {
-        return view('input.series');
+        return response()->view('input.series');
     }
 
     public function makeSeries(Request $request)
@@ -177,20 +177,21 @@ class AdminController extends Controller
                 $picture->update();
             }
         }
+        if ($request->zanr) {
+            foreach ($request->zanr as $genre) {
 
-        foreach ($request->zanr as $genre) {
+                $type = new TypeOf();
+                $type->tvshow_id = $content->id;
+                $g = Category::where('name', '=', $genre)->first();
 
-            $type = new TypeOf();
-            $type->tvshow_id = $content->id;
-            $g = Category::where('name','=',$genre)->first();
-
-            $type->genre_id = $g->id;
-            $type->save();
+                $type->genre_id = $g->id;
+                $type->save();
+            }
         }
         $actors = DB::table('categories')->join('actings', 'actings.actor_id','=','categories.id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name')->get();
         $directors = DB::table('categories')->join('directings','directings.director_id','=','categories.id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name')->get();
 
-        return view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
+        return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
 
 
     }
@@ -210,7 +211,7 @@ class AdminController extends Controller
             $actors = DB::table('categories')->join('actings', 'actings.actor_id','=','categories.id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name')->get();
             $directors = DB::table('categories')->join('directings','directings.director_id','=','categories.id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name')->get();
 
-            return view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
+            return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
         }
         $category = new Category();
         $category->name = $request->actor;
@@ -222,11 +223,11 @@ class AdminController extends Controller
         $actor->save();
         $acting = new Acting();
         $acting->tvshow_id = $id;
-        $acting->actor_id = $content->id;
+        $acting->actor_id = $category->id;
         $acting->save();
         $actors = DB::table('categories')->join('actings', 'actings.actor_id','=','categories.id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name')->get();
         $directors = DB::table('categories')->join('directings','directings.director_id','=','categories.id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name')->get();
-        return view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
+        return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
 
     }
 
@@ -245,7 +246,7 @@ class AdminController extends Controller
             $actors = DB::table('categories')->join('actings', 'actings.actor_id','=','categories.id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name')->get();
             $directors = DB::table('categories')->join('directings','directings.director_id','=','categories.id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name')->get();
 
-            return view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
+            return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
         }
         $category = new Category();
         $director = new Director();
@@ -256,18 +257,18 @@ class AdminController extends Controller
         $director->save();
         $directing = new Directing();
         $directing->tvshow_id = $id;
-        $directing->director_id = $content->id;
+        $directing->director_id = $category->id;
         $directing->save();
         $actors = DB::table('categories')->join('actings', 'actings.actor_id','=','categories.id')->where('actings.tvshow_id', '=', $content->id)->select('categories.name')->get();
         $directors = DB::table('categories')->join('directings','directings.director_id','=','categories.id')->where('directings.tvshow_id', '=', $content->id)->select('categories.name')->get();
-        return view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
+        return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
 
     }
 
     public function seasonInput($id)
     {
         $content = Content::find($id);
-        return view('input.season', compact('content'));
+        return response()->view('input.season', compact('content'));
 
     }
 
@@ -327,7 +328,7 @@ class AdminController extends Controller
     public function episodeInput($id)
     {
         $content = Content::find($id);
-        return view('input.episode', compact('content'));
+        return response()->view('input.episode', compact('content'));
 
     }
 
@@ -388,7 +389,7 @@ class AdminController extends Controller
         $content = Content::find($episode->content_id);
         $picturePaths = Picture::notMainPictures($episode->content_id);
         $avatarPath = Picture::mainPicture($episode->content_id);
-        return view('content.editEpisode',compact('avatarPath', 'episode','picturePaths','content'));
+        return response()->view('content.editEpisode',compact('avatarPath', 'episode','picturePaths','content'));
     }
 
     public function changeAvatar(Request $request, Episode $episode) {
