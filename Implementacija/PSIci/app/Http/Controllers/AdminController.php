@@ -458,35 +458,36 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-<<<<<<< HEAD
-    public function changeEpisodeData(Request $request, Episode $episode) {
-        $this->validate(request(),[
-            'name'=>'required|max:30',
-            'description'=>'max:255',
-            'trailer'=>'max:255'
+
+    public function changeEpisodeData(Request $request, Episode $episode)
+    {
+        $this->validate(request(), [
+            'name' => 'required|max:30',
+            'description' => 'max:255',
+            'trailer' => 'max:255'
         ]);
-        if ($request->duration!=null && is_numeric($request->duration)==false)
+        if ($request->duration != null && is_numeric($request->duration) == false)
             return redirect()->back();
         $content = Content::find($episode->content_id);
-        if ($request->name!=null) {
-            $content->name=$request->name;
+        if ($request->name != null) {
+            $content->name = $request->name;
         }
-        if ($request->trailer!=null) {
-            $content->name=$request->trailer;
+        if ($request->trailer != null) {
+            $content->name = $request->trailer;
         }
-        if ($request->description!=null) {
-            $content->description=$request->description;
+        if ($request->description != null) {
+            $content->description = $request->description;
         }
-        if ($request->duration==null) {
-            $episode->length=intval($request->duration);
+        if ($request->duration == null) {
+            $episode->length = intval($request->duration);
         }
         if ($request->releaseDate) {
             $content->release_date = $request->releaseDate;
         }
         $episode->update();
         $content->update();
-        return redirect()->route('showepisode',['episode'=>$episode->content_id]);
-=======
+        return redirect()->route('showepisode', ['episode' => $episode->content_id]);
+    }
 
 
 
@@ -607,6 +608,5 @@ class AdminController extends Controller
         foreach($pictures as $picture){
             File::delete('img/img/content/'.$picture->path);
         }
->>>>>>> 85bec71505d3a45edb74f4341b97c064d7221026
     }
 }
