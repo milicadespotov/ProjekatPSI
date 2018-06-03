@@ -34,12 +34,12 @@ class UserController extends Controller
         DB::table('watched_seasons')->where('user_id', '=', $id)->delete();
         DB::table('watched_episodes')->where('user_id', '=', $id)->delete();
         DB::commit();
-        $ratings = $user->ratings;
+        $ratings = $user->ratings();
         foreach ($ratings as $rating) {
             $content_id = $rating->content_id;
             $content = Content::find($content_id);
             DB::beginTransaction();
-            DB::table('ratings')->where('user_id', '=', $id)->where('content_id', '=', $content_id)->get()->delete();
+            DB::table('ratings')->where('user_id', '=', $id)->where('content_id', '=', $content_id)->delete();
             DB::commit();
             $content->setRating;
         }
