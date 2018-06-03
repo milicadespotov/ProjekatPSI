@@ -184,7 +184,7 @@ use App\Category;
                 </table>
                 @if (Auth::check() && Auth::user()->is_admin==true)
                 <center>
-                    <form method="post" action="/addSeason/{{$content->id}}">
+                    <form method="post" action="{{route('addSeason',['id'=>$content->id])}}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @csrf
                         <input type="submit" value="Dodaj sezonu" class="btn btn-transparent">

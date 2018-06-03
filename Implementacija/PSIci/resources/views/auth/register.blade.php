@@ -11,6 +11,7 @@
             <br> <br> <br>
 
                 <form method="POST" enctype= "multipart/form-data" class = "contact-form fadeInUp color" data-wow-duration="500ms" data-wow-delay="300ms" action="{{ route('register') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class = "col-md-12">
                     @csrf
                     <div class="col-md-6 pull-left">
