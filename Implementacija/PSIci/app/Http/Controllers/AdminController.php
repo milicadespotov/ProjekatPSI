@@ -112,6 +112,7 @@ class AdminController extends Controller
     public function showUsers()
     {
         $users = DB::table('users')->where('is_admin', '=', 0)->paginate(10);
+        return response()->view('home.users', compact('users'));
     }
 
     public function makeAdmin($id)
@@ -123,6 +124,7 @@ class AdminController extends Controller
 
     public function seriesInput()
     {
+        return response()->view('input.series');
     }
 
     public function makeSeries(Request $request)
@@ -175,8 +177,10 @@ class AdminController extends Controller
                 $picture->update();
             }
         }
+        if ($request->zanr) {
+            foreach ($request->zanr as $genre) {
 
-        foreach ($request->zanr as $genre) {
+                $type = new TypeOf();
                 $type->tvshow_id = $content->id;
                 $g = Category::where('name', '=', $genre)->first();
 
