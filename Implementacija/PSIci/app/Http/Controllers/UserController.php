@@ -38,10 +38,8 @@ class UserController extends Controller
         foreach ($ratings as $rating) {
             $content_id = $rating->content_id;
             $content = Content::find($content_id);
-            DB::beginTransaction();
-            DB::table('ratings')->where('user_id', '=', $id)->where('content_id', '=', $content_id)->delete();
-            DB::commit();
-            $content->setRating;
+            DB::table('ratings')->where('ratings.user_id','=',$id)->where('ratings.content_id','=',$content_id)->delete();
+            $content->setRating();
         }
         Auth::logout();
         DB::table('users')->where('id', '=', $id)->delete();

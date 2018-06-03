@@ -39,7 +39,7 @@ class Content extends Model
 
     public function averageRate()
     {
-        $ratings = $this->ratings;
+        $ratings = $this->ratings();
         $sum = 0;
         foreach ($ratings as $rating) {
             $sum = $sum + $rating->rate;
@@ -52,8 +52,8 @@ class Content extends Model
     }
 
     public function setRating(){
-        $avgRate = $this->averageRate;
-        $number = $this->numberOfRates;
+        $avgRate = $this->averageRate();
+        $number = $this->numberOfRates();
         DB::beginTransaction();
         DB::table('contents')->where('contents.id','=', $this->id)->update(['number_of_rates'=>$number, 'rating'=>$avgRate]);
         DB::commit();

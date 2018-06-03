@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -50,6 +51,6 @@ class User extends Authenticatable
     }
 
     public function ratings(){
-        return $this->hasMany('App\Rating', 'user_id');
+        return DB::table('ratings')->where('ratings.user_id','=',$this->id)->select('ratings.*')->get();
     }
 }
