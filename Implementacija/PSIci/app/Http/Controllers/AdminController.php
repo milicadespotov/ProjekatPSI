@@ -156,7 +156,7 @@ class AdminController extends Controller
             $picture->content_id = $content->id;
             $picture->save();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img\content', $filename);
+            $file = $request->file('mainImage')->storeAs('img/content', $filename);
 
             $picture->path = $filename;
 
@@ -171,7 +171,7 @@ class AdminController extends Controller
                 $picture->main_picture = false;
                 $picture->save();
                 $filename = $content->id . '-' . $picture->id . '.jpg';
-                $file = $file->storeAs('img\content', $filename);
+                $file = $file->storeAs('img/content', $filename);
                 $picture->path = $filename;
 
 
@@ -307,7 +307,7 @@ class AdminController extends Controller
             $picture->content_id = $content->id;
             $picture->save();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img\content', $filename);
+            $file = $request->file('mainImage')->storeAs('img/content', $filename);
 
             $picture->path = $filename;
 
@@ -322,7 +322,7 @@ class AdminController extends Controller
                 $picture->main_picture = false;
                 $picture->save();
                 $filename = $content->id . '-' . $picture->id . '.jpg';
-                $file = $file->storeAs('img\content', $filename);
+                $file = $file->storeAs('img/content', $filename);
                 $picture->path = $filename;
 
 
@@ -367,7 +367,7 @@ class AdminController extends Controller
             $picture->content_id = $content->id;
             $picture->save();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img\content', $filename);
+            $file = $request->file('mainImage')->storeAs('img/content', $filename);
 
             $picture->path = $filename;
 
@@ -382,7 +382,7 @@ class AdminController extends Controller
                 $picture->main_picture = false;
                 $picture->save();
                 $filename = $content->id . '-' . $picture->id . '.jpg';
-                $file = $file->storeAs('img\content', $filename);
+                $file = $file->storeAs('img/content', $filename);
                 $picture->path = $filename;
 
 
