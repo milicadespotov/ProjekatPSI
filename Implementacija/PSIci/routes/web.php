@@ -10,10 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
-    return view('home.index')->name('home');
+    return view('home.index');
 });
+*/
 //PODELJENO JE PO IMENIMA KOJE SU CIJE RUTE
 // KAKO SE NE BISMO POGUBILI, PISITE SAMO ISPOD SVOJE:
 
@@ -175,6 +176,8 @@ Route::post('/series/{content}/edit/addPictures','AdminController@addPictures');
 //END ALEKSA
 
 // FILIP
+Route::get('mostPopular','GuestController@mostPopular')->name('mostpopular');
+
 Route::group(['middleware' => 'UserMiddleware'], function () {
 
     // any route here will only be accessible for logged in users
