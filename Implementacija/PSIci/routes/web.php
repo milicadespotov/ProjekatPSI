@@ -176,7 +176,8 @@ Route::post('/series/{content}/edit/addPictures','AdminController@addPictures');
 //END ALEKSA
 
 // FILIP
-Route::get('mostPopular','GuestController@mostPopular')->name('mostpopular');
+Route::get('mostPopular','HomeController@mostPopular')->name('mostpopular');
+Route::get('upcoming','HomeController@upcoming')->name('upcoming');
 
 Route::group(['middleware' => 'UserMiddleware'], function () {
 
