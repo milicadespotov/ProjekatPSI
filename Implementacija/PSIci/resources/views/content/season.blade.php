@@ -11,7 +11,7 @@
             <div class="col-lg-4 ">
 
                 <div class="blog-title">
-                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{$season->seriesName()}}-{{$season->season_number}}.{{$content->name}}
+                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;<a href="{{route('showseries',['content_id'=>$season->seriesId()])}}">{{$season->seriesName()}}</a> - {{$season->season_number}}. {{$content->name}}
 
 
 

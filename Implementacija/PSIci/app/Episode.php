@@ -49,12 +49,29 @@ class Episode extends Model
         return $series->first()->name;
     }
 
+    public function seriesId(){
+        $series = DB::table('contents')
+            ->join('tvshows', 'contents.id','=','tvshows.content_id')
+            ->join('seasons','seasons.tvshow_id','=','contents.id')
+            ->where('seasons.content_id','=',$this->season_id)
+            ->select('contents.id')->get();
+        return $series->first()->id;
+    }
+
     public function seasonName(){
         $season = DB::table('contents')
             ->join('seasons','contents.id','=','seasons.content_id')
             ->where('seasons.content_id','=',$this->season_id)
             ->select('contents.name')->get();
         return $season->first()->name;
+    }
+
+    public function seasonId(){
+        $season = DB::table('contents')
+            ->join('seasons','contents.id','=','seasons.content_id')
+            ->where('seasons.content_id','=',$this->season_id)
+            ->select('contents.id')->get();
+        return $season->first()->id;
     }
 
 

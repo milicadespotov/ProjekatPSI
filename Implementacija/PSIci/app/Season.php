@@ -31,5 +31,12 @@ class Season extends Model
 
     }
 
+    public function seriesId(){
+        $series = DB::table('tvshows')->where('tvshows.content_id','=',$this->tvshow_id)->first();
+        $content = DB::table('contents')->where('contents.id','=',$series->content_id)->first();
+        return $content->id;
+
+    }
+
 
 }

@@ -11,7 +11,7 @@
 
                 <div class="blog-title">
                     <h1>
-                        {{$episode->seriesName()}}-{{$episode->seasonName()}}-{{$content->name}}
+                       <a href="{{route('showseries', ['content_id'=>$episode->seriesId()])}}" >{{$episode->seriesName()}}</a> - <a href="{{route('season', ['id'=>$episode->seasonId()])}}" >{{$episode->seasonName()}}</a> - {{$content->name}}
 
                     </h1>
                 </div>
