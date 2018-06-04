@@ -133,10 +133,16 @@ class AdminController extends Controller
     {
 
         $rules=array(
-            'name' => 'required'
+            'name' => 'required',
+            'duration' => 'integer|min:1',
+            'episodes' => 'integer|min:1'
         );
         $messages = array(
-          'name.required'=>'Ovo polje je obavezno!'
+            'name.required'=>'Ovo polje je obavezno!',
+            'duration.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'duration.min' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.min' => 'Ovo polje mora biti pozitivan ceo broj!'
         );
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -297,11 +303,16 @@ class AdminController extends Controller
     {
         $rules=array(
             'name' => 'required',
-            'numSeason' => 'required'
+            'numSeason' => 'required|integer|min:1',
+            'episodes' => 'integer|min:1'
         );
         $messages = array(
             'name.required'=>'Ovo polje je obavezno!',
-            'numSeason.required' => 'Ovo polje je obavezno!'
+            'numSeason.required' => 'Ovo polje je obavezno!',
+            'numSeason.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'numSeason.min' =>'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.min' => 'Ovo polje mora biti pozitivan ceo broj!'
         );
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -374,11 +385,17 @@ class AdminController extends Controller
     {
         $rules=array(
             'name' => 'required',
-            'numEpisode' => 'required'
+            'numEpisode' => 'required|integer|min:1',
+            'duration' =>'integer|min:1'
         );
         $messages = array(
             'name.required'=>'Ovo polje je obavezno!',
-            'numEpisode.required' => 'Ovo polje je obavezno!'
+            'numEpisode.required' => 'Ovo polje je obavezno!',
+            'numEpisode.integer' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'numEpisode.min' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'duration.integer' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'duration.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+
         );
 
         $validator = Validator::make($request->all(), $rules, $messages);

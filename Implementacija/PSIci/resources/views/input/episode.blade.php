@@ -21,13 +21,13 @@
                     </div>
                     <div class="form-group">
                         <label for="trailer" style="font-size:18px" class="col-form-label text-md-right color">Trejler:</label>
-                        <input type="text" name="trailer" class="form-control" id="trailer">
+                        <input type="text" name="trailer" class="form-control" id="trailer" value="{{ old('trailer') }}">
                     </div>
                     <div class="form-group">
                         <label for="name" style = "font-size: 18px" class="col-form-label text-md-right color">Ime epizode:</label>
-                        <input type="text" name="name" class="form-control" style = "{{$errors->has('name') ? 'border-color: pink' : ''}}">
+                        <input type="text" name="name" class="form-control" value="{{ old('name') }}" style = "{{$errors->has('name') ? 'border-color: deeppink' : ''}}">
                         @if ($errors->has('name'))
-                            <span class="invalid-feedback" style="color:pink">
+                            <span class="invalid-feedback" style="color:deeppink">
                                         {{ $errors->first('name') }}
                                     </span>
                         @endif
@@ -35,7 +35,7 @@
 
                     <div class="form-group">
                         <label for="description" style = "font-size: 18px" class="col-form-label text-md-right color">Kratak opis:</label>
-                        <textarea name="description" class="form-control"></textarea>
+                        <textarea name="description" class="form-control" value="{{ old('description') }}"></textarea>
                     </div>
 
                 </div>
@@ -47,13 +47,18 @@
 
                     <div class="form-group">
                         <label for="duration" style = "font-size: 18px" class="col-form-label text-md-right color">Duzina epizode:</label>
-                        <input type="text" name="duration" class="form-control">
+                        <input type="text" name="duration" class="form-control" value="{{ old('duration') }}" style = "{{$errors->has('duration') ? 'border-color: deeppink' : ''}}">
+                        @if ($errors->has('duration'))
+                            <span class="invalid-feedback" style="color:deeppink">
+                                        {{ $errors->first('duration') }}
+                                    </span>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="numEpisode" style = "font-size: 18px" class="col-form-label text-md-right color">Redni broj epizode:</label>
-                        <input type="text" name="numEpisode" class="form-control" style = "{{$errors->has('numEpisode') ? 'border-color: pink' : ''}}">
+                        <input type="text" name="numEpisode" value="{{ old('numEpisode') }}" class="form-control" style = "{{$errors->has('numEpisode') ? 'border-color: deeppink' : ''}}">
                         @if ($errors->has('numEpisode'))
-                            <span class="invalid-feedback" style="color:pink">
+                            <span class="invalid-feedback" style="color:deeppink">
                                         {{ $errors->first('numEpisode') }}
                                     </span>
                         @endif

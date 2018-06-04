@@ -21,13 +21,13 @@
                 </div>
                 <div class="form-group">
                     <label for="trailer" style="font-size:18px" class="col-form-label text-md-right color">Trejler:</label>
-                    <input type="text" name="trailer" class="form-control" id="trailer">
+                    <input type="text" name="trailer" class="form-control" id="trailer" value="{{ old('trailer') }}">
                 </div>
                 <div class="form-group">
                     <label for="name" style = "font-size: 18px" class="col-form-label text-md-right color">Ime sezone:</label>
-                    <input type="text" name="name" class="form-control" style = "{{$errors->has('name') ? 'border-color: pink' : ''}}">
+                    <input type="text" name="name" value="{{ old('name') }}" class="form-control" style = "{{$errors->has('name') ? 'border-color: deeppink' : ''}}">
                     @if ($errors->has('name'))
-                        <span class="invalid-feedback" style="color:pink">
+                        <span class="invalid-feedback" style="color:deeppink">
                                         {{ $errors->first('name') }}
                                     </span>
                     @endif
@@ -35,7 +35,7 @@
 
                 <div class="form-group">
                     <label for="description" style = "font-size: 18px" class="col-form-label text-md-right color">Kratak opis:</label>
-                    <textarea name="description" class="form-control"></textarea>
+                    <textarea name="description" class="form-control" value="{{ old('description') }}"></textarea>
                 </div>
 
             </div>
@@ -47,13 +47,18 @@
 
                 <div class="form-group">
                     <label for="episodes" style = "font-size: 18px" class="col-form-label text-md-right color">Broj epizoda:</label>
-                    <input type="text" name="episodes" class="form-control">
+                    <input type="text" name="episodes" class="form-control" value="{{ old('episodes') }}" style = "{{$errors->has('episodes') ? 'border-color: deeppink' : ''}}">
+                    @if ($errors->has('episodes'))
+                        <span class="invalid-feedback" style="color:deeppink">
+                                        {{ $errors->first('episodes') }}
+                                    </span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="numSeason"style = "font-size: 18px" class="col-form-label text-md-right color">Redni broj sezone:</label>
-                    <input type="text" name="numSeason" class="form-control" style = "{{$errors->has('numSeason') ? 'border-color: pink' : ''}}">
+                    <input type="text" name="numSeason" value="{{ old('numSeason') }}" class="form-control" style = "{{$errors->has('numSeason') ? 'border-color: deeppink' : ''}}">
                     @if ($errors->has('numSeason'))
-                        <span class="invalid-feedback" style="color:pink">
+                        <span class="invalid-feedback" style="color:deeppink">
                                         {{ $errors->first('numSeason') }}
                                     </span>
                     @endif

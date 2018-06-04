@@ -17,13 +17,13 @@
                         </div>
                         <div class="form-group">
                             <label for="trailer" style="font-size:18px" class="col-form-label text-md-right color">Trejler:</label>
-                            <input type="text" name="trailer" class="form-control" id="trailer">
+                            <input type="text" name="trailer" class="form-control" id="trailer" value="{{ old('trailer') }}">
                         </div>
                         <div class="form-group">
                             <label for="name" style = "font-size: 18px" class="col-form-label text-md-right color">Ime serije:</label>
-                            <input type="text" name="name" class="form-control" style="{{$errors->has('name')?'border-color: pink': ''}};" id="name">
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control" style="{{$errors->has('name')?'border-color: deeppink': ''}};" id="name">
                             @if ($errors->has('name'))
-                                <span class="invalid-feedback" style = "color: pink">
+                                <span class="invalid-feedback" style = "color: deeppink">
                                             {{ $errors->first('name') }}
                                     </span>
                             @endif
@@ -77,7 +77,7 @@
 
                         <div class="form-group">
                            <label for="description" style = "font-size: 18px" class="col-form-label text-md-right color">Kratak opis:</label>
-                            <textarea name="description" class="form-control" id="description"></textarea>
+                            <textarea value="{{ old('decription') }}" name="description" class="form-control" id="description"></textarea>
                         </div>
 
             </div>
@@ -88,15 +88,20 @@
                 </div>
                 <div class="form-group">
                     <label for="country" style = "font-size: 18px" class="col-form-label text-md-right color">Zemlja porekla:</label>
-                    <input type="text" name="country" class="form-control" id="country">
+                    <input type="text" name="country" class="form-control" id="country" value="{{ old('country') }}">
                 </div>
                 <div class="form-group">
                     <label for="language" style = "font-size: 18px" class="col-form-label text-md-right color">Jezik:</label>
-                    <input type="text" name="language" class="form-control" id="language">
+                    <input type="text" name="language" class="form-control" id="language" value="{{ old('language') }}">
                 </div>
                 <div class="form-group">
                     <label for="duration" style = "font-size: 18px" class="col-form-label text-md-right color">Trajanje epizode: (u minutima)</label>
-                    <input type="text" name="duration" class="form-control" id="duration">
+                    <input type="text" name="duration" value="{{ old('duration') }}" class="form-control" style="{{$errors->has('duration')?'border-color: deeppink': ''}}" id="duration">
+                    @if ($errors->has('duration'))
+                        <span class="invalid-feedback" style = "color: deeppink">
+                                            {{ $errors->first('duration') }}
+                                    </span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="endDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum završetka:</label>
@@ -104,7 +109,12 @@
                 </div>
                 <div class="form-group">
                     <label for="episodes" style = "font-size: 18px" class="col-form-label text-md-right color">Broj epizoda:</label>
-                    <input type="text" name="episodes" class="form-control" id="episodes">
+                    <input type="text" name="episodes" value="{{ old('episodes') }}" class="form-control" style="{{$errors->has('episodes')?'border-color: deeppink': ''}}" id="episodes">
+                    @if ($errors->has('episodes'))
+                        <span class="invalid-feedback" style = "color: deeppink">
+                                            {{ $errors->first('episodes') }}
+                                    </span>
+                    @endif
                 </div>
 
     </div>
