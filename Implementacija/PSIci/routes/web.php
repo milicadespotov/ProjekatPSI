@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('home.index');
+    return view('home.index')->name('home');
 });
 //PODELJENO JE PO IMENIMA KOJE SU CIJE RUTE
 // KAKO SE NE BISMO POGUBILI, PISITE SAMO ISPOD SVOJE:

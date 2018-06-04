@@ -117,7 +117,7 @@ class GuestController extends Controller
             }
         }
 
-        
+
         $actors = array();
         $actors = array();
         $genres = array();

@@ -23,7 +23,7 @@
         <nav class="collapse navbar-collapse navbar-right" role="Navigation">
             <ul id="nav" class="nav navbar-nav">
                 <li class="current">
-                    <a href="#">Početna</a>
+                    <a href="{{route('home')}}">Početna</a>
                 </li>
 
                 <li>
@@ -33,26 +33,7 @@
                     <a href="#">Predstojeće</a>
                 </li>
 
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown">Opcije
-                        <span class="fa fa-caret-down"></span>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-item">
-                            <a href="#"> MESTA PROJEKCIJE </a>
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="#"> FILMOVI </a>
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="#"> PRODAJNA MESTA </a>
-                        </li>
-
-
-
-                    </ul>
-                </li>
+                 <!--UKLONJEN DIO OPCIJE ODAVDE-->
                 @if(!Auth::check())
                 <li>
                     <a href="{{route('login')}}">Uloguj se</a>

@@ -74,7 +74,7 @@
                             @for($i=0;$i<sizeof($lastRated);$i++)
 
                              <a href="{{route('showseries',['id'=>$lastRated[$i]->content_id])}}" >
-                                 <img src=<?php if(is_null($picturesLR[$i])){ echo 'img/no_image.png' ;} else {$path = 'img/'.$picturesLR[$i]->path; echo $path; } ?> style="width:300px;height:auto;margin-left:10px;margin-bottom:5px">
+                                 <img src=<?php if(is_null($picturesLR[$i])){ echo 'img/no_image.png' ;} else {$path = 'img/img/content/'.$picturesLR[$i]->path; echo $path; } ?> style="width:300px;height:auto;margin-left:10px;margin-bottom:5px">
                              </a>
                             @endfor
                         @endif
@@ -110,7 +110,7 @@
 
 
                             <a href="{{route('showepisode',['id'=>$lastWatched[$i]->content_id])}}" >
-                                <img src=<?php if(is_null($picturesLW[$i])){ echo 'img/no_image.png' ;} else {$path = 'img/'.$picturesLW[$i]->path; echo $path; } ?> style="width:300px;height:auto;margin-left:10px;margin-bottom:5px">
+                                <img src=<?php if(is_null($picturesLW[$i])){ echo 'img/no_image.png' ;} else {$path = 'img/img/content/'.$picturesLW[$i]->path; echo $path; } ?> style="width:300px;height:auto;margin-left:10px;margin-bottom:5px">
 
                             </a>
                         @endfor
@@ -130,7 +130,7 @@
 
 
                                     <a href="{{route('showseries',['id'=>$lastAdded[$i]->content_id])}}" >
-                                        <img src=<?php if(is_null($picturesLA[$i])){ echo 'img/no_image.png' ;} else {$path = 'img/'.$picturesLA[$i]->path; echo $path; } ?> style="width:300px;height:auto;margin-left:10px;margin-bottom:5px">
+                                        <img src=<?php if(is_null($picturesLA[$i])){ echo 'img/no_image.png' ;} else {$path = 'img/img/content/'.$picturesLA[$i]->path; echo $path; } ?> style="width:300px;height:auto;margin-left:10px;margin-bottom:5px">
 
                                     </a>
                                 @endfor
