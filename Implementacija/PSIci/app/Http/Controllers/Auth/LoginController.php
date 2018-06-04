@@ -58,13 +58,13 @@ class LoginController extends Controller
     public function login(Request $request)
     {
 
-
         $result = app('App\Http\Controllers\Auth\LoginController')->UserLogin($request); // vraca jedan ako postoji user, nula ako ne postoji
         if ($result == 0) {
 
-            return redirect()->back()->withInput()->withErrors(['success' => 'Korisnicko ime ili lozinka nisu u redu. Pokusajte ponovo. ']);
+            return redirect()->back()->withInput()->withErrors(['username' => 'Korisnicko ime ili lozinka nisu u redu. Pokusajte ponovo. ']);
         } else if (Auth::user()->is_admin == 1) {
             return redirect()->route('userProfile');
+
         } else {
             return redirect()->route('userProfile');
         }

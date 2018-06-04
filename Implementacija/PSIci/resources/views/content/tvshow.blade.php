@@ -149,10 +149,10 @@ use App\Category;
                     <tr>
                         <td>
                             @if (Auth::check() && Auth::user()->is_admin==true)
-                            <a href="#">
+                            <a href="{{route('editseries',['tvshow'=>$series->content_id])}}">
                                 <input type="submit" value="Izmeni podatke" class="btn btn-transparent">
                             </a>
-                                @else
+
                             &nbsp;
                                 @endif
                         </td>
