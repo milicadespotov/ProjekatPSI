@@ -22,6 +22,7 @@ class CreateEpisodesTable extends Migration
             $table->integer('episode_number')->unsigned();
             $table->primary('content_id');
             $table->timestamps();
+            $table->unique(['season_id','episode_number']);
         });
     }
 

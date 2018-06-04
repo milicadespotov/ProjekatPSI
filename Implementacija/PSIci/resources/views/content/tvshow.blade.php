@@ -80,7 +80,7 @@ use App\Category;
                         @endforeach
                         <?php if(!$flag) { ?>
 
-                    <img src="{{ asset('img/no_image.png')}}" style="width:100%;height:auto">
+                  <img src="{{ asset('img/default_content.png')}}" style="width:60%;height:auto">
 
                             <?php } ?>
                 </center>
@@ -194,7 +194,7 @@ use App\Category;
                 </table>
                 @if (Auth::check() && Auth::user()->is_admin==true)
                 <center>
-                    <form method="post" action="{{route('addSeason',['id'=>$content->id])}}">
+                    <form method="get" action="{{route('addSeason',['id'=>$content->id])}}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @csrf
                         <input type="submit" value="Dodaj sezonu" class="btn btn-transparent">
@@ -214,7 +214,7 @@ use App\Category;
                     <br>
                 </center>
                 <!--Opis-->
-                <p style="width:100%;word-wrap: break-word;">
+                <p style="width:100%;word-wrap: break-word;font-size:16px;">
                     {{$content->description}}
                 </p>
 
@@ -222,7 +222,9 @@ use App\Category;
             <div class="col-md-6">
                 <!--Trejler-->
                 <center>
-                    <h2>Trejler</h2>
+
+                        <h2>Trejler</h2>
+
                     @if(Auth::check() && Auth::user()->is_admin==true)
                         <a href="#">
                             <input type="submit" value="Dodaj trejler" class="btn btn-transparent">
@@ -241,8 +243,9 @@ use App\Category;
         <div class="row">
             <div class="col-md-12">
                 <center>
+                    @if($content->pictures != null)
                     <h2>Slike</h2>
-
+                    @endif
                     @if (Auth::check() && Auth::user()->is_admin==true)
                         <center>
                             <a href="#">

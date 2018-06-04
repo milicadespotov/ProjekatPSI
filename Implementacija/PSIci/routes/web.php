@@ -84,11 +84,11 @@ Route::post('/addActor/{id}', 'AdminController@addActorWrapper')->name('addActor
 
 Route::post('/addDirector/{id}','AdminController@addDirectorWrapper')->name('addDirector');
 
-Route::post('/addSeason/{id}', 'AdminController@seasonInput')->name('addSeason');
+Route::get('/addSeason/{id}', 'AdminController@seasonInput')->name('addSeason');
 
 Route::post('/confirmSeason/{id}','AdminController@makeSeason')->name('confirm_season');
 
-Route::post('/addEpisode/{id}', 'AdminController@episodeInput')->name('addepisode');
+Route::get('/addEpisode/{id}', 'AdminController@episodeInput')->name('addepisode');
 
 Route::post('/confirmEpisode/{id}','AdminController@makeEpisode')->name('confirm_episode');
 

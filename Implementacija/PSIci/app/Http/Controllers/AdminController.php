@@ -287,6 +287,11 @@ class AdminController extends Controller
             'name' => 'required',
             'numSeason' => 'required'
         ]);
+        if (Season::where('tvshow_id','=',$id)->where('season_number','=',$request->numSeason)->get()->first()!=null) {
+            return redirect()->back()
+                ->withInput(['id'=> $id])
+                ->withErrors(['numSeason' => "Sezona sa ovim rednim brojem već postoji!"]);
+        }
         $season = new Season();
         $content = new Content();
         $content->name = $request->name;
@@ -347,6 +352,11 @@ class AdminController extends Controller
             'name' => 'required',
             'numEpisode' => 'required'
         ]);
+        if (Episode::where('season_id','=',$id)->where('episode_number','=',$request->numEpisode)->get()->first()!=null) {
+            return redirect()->back()
+                ->withInput(['id'=> $id])
+                ->withErrors(['numEpisode' => "Epizoda sa ovim rednim brojem već postoji!"]);
+        }
         $episode = new Episode();
         $content = new Content();
         $content->name = $request->name;

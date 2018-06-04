@@ -106,7 +106,7 @@
         </div>
             <div class="row justify-content-center">
                 <input type="submit" class="btn btn-transparent" value="Dalje">
-                <a href="/"><button class="btn btn-transparent">Odustani</button></a>
+                <a class="btn btn-transparent" href="{{route('userProfile')}}">Odustani</a>
             </div>
         </form>
     </div>
