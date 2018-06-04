@@ -10,10 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('home.index');
 });
+*/
 //PODELJENO JE PO IMENIMA KOJE SU CIJE RUTE
 // KAKO SE NE BISMO POGUBILI, PISITE SAMO ISPOD SVOJE:
 
@@ -79,15 +80,15 @@ Route::get('/addSeries','AdminController@seriesInput')->name('addseries');
 
 Route::post('/confirmSeries', 'AdminController@makeSeries')->name('confirmSeries');
 
-Route::post('/addActor/{id}', 'AdminController@addActor')->name('addActor');
+Route::post('/addActor/{id}', 'AdminController@addActorWrapper')->name('addActor');
 
-Route::post('/addDirector/{id}','AdminController@addDirector')->name('addDirector');
+Route::post('/addDirector/{id}','AdminController@addDirectorWrapper')->name('addDirector');
 
-Route::post('/addSeason/{id}', 'AdminController@seasonInput')->name('addSeason');
+Route::get('/addSeason/{id}', 'AdminController@seasonInput')->name('addSeason');
 
 Route::post('/confirmSeason/{id}','AdminController@makeSeason')->name('confirm_season');
 
-Route::post('/addEpisode/{id}', 'AdminController@episodeInput')->name('addepisode');
+Route::get('/addEpisode/{id}', 'AdminController@episodeInput')->name('addepisode');
 
 Route::post('/confirmEpisode/{id}','AdminController@makeEpisode')->name('confirm_episode');
 
@@ -147,14 +148,27 @@ Route::post('/series/{content}/rate','UserController@rateContent')->name('ratese
 Route::post('/season/{content}/rate','UserController@rateContent')->name('rateseason');
 Route::post('/episode/{content}/rate','UserController@rateContent')->name('rateepisode');
 
-Route::get('/search','GuestController@search');
+Route::get('/search','GuestController@search')->name('search');
 
 Route::get('/episode/{episode}/edit','AdminController@editEpisode');
 Route::post('/episode/{episode}/edit/changeData','AdminController@changeEpisodeData');
 
+Route::get('/season/{season}/edit','AdminController@editSeason');
+Route::post('/season/{season}/edit/changeData','AdminController@changeSeasonData');
+
+Route::get('/series/{tvshow}/edit','AdminController@editTVShow');
+Route::post('/series/{tvshow}/edit/changeGenres','AdminController@changeGenres');
+
+
 Route::post('/episode/{content}/edit/changeAvatar','AdminController@changeAvatar');
 Route::post('/episode/{content}/edit/deletePictures','AdminController@deletePictures');
 Route::post('/episode/{content}/edit/addPictures','AdminController@addPictures');
+Route::post('/season/{content}/edit/changeAvatar','AdminController@changeAvatar');
+Route::post('/season/{content}/edit/deletePictures','AdminController@deletePictures');
+Route::post('/season/{content}/edit/addPictures','AdminController@addPictures');
+Route::post('/series/{content}/edit/changeAvatar','AdminController@changeAvatar');
+Route::post('/series/{content}/edit/deletePictures','AdminController@deletePictures');
+Route::post('/series/{content}/edit/addPictures','AdminController@addPictures');
 
 
 
@@ -162,6 +176,9 @@ Route::post('/episode/{content}/edit/addPictures','AdminController@addPictures')
 //END ALEKSA
 
 // FILIP
+Route::get('mostPopular','HomeController@mostPopular')->name('mostpopular');
+Route::get('upcoming','HomeController@upcoming')->name('upcoming');
+
 Route::group(['middleware' => 'UserMiddleware'], function () {
 
     // any route here will only be accessible for logged in users

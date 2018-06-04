@@ -1,4 +1,4 @@
-<footer id="footer" class="bg-one">
+<footer id="footer" class="bg-one footer">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

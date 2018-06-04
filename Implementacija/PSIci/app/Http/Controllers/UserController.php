@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -56,13 +57,13 @@ class UserController extends Controller
 
     public function rateContent(Content $content,Request $request)
     {
-        $rate = Rating::where('user_id','=',Auth::user()->username)
+        $rate = Rating::where('user_id','=',Auth::user()->id)
             ->where('content_id','=',$content->id)->first();
         $ratingScore = $request->ratedNum;
         $ratingScore = intval($ratingScore);
         if ($ratingScore <= 0 || $ratingScore > 10) return view('home.index');
         if ($rate == null) {
-            $rate = new Rating(['user_id'=>Auth::user()->username,
+            $rate = new Rating(['user_id'=>Auth::user()->id,
                     'content_id'=>$content->id,
                     'rate'=>$ratingScore
                 ]);
@@ -115,8 +116,9 @@ class UserController extends Controller
                 ->get();
             }else {
                 $lastRated = DB::table('tvshows')
+                    ->join('contents','contents.id','=','tvshows.content_id')
                     ->select('tvshows.*')
-                    ->orderBy('tvshows.updated_at', 'asc')
+                    ->orderBy('contents.updated_at', 'asc')
                     ->limit(3)
                     ->get();
             }
@@ -175,20 +177,12 @@ class UserController extends Controller
                     array_push($picturesLA, Episode::mainPictureId($tvshow->content_id));
                 }
 
+
+
             }
 
-<<<<<<< HEAD
 
-
-
-
-
-            return view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR,'lastAdded'=>$lastAdded,'picturesLA'=>$picturesLA]);
-
-=======
-
->>>>>>> a28b661de57d085bb5de4dfdf6de03027dcde910
-            return response()->view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR]);
+            return response()->view('profile.user', ['user' => $user, 'lastRated' => $lastRated, 'lastWatched' => $lastWatched,'picturesLW'=>$picturesLW,'picturesLR'=>$picturesLR,'lastAdded'=>$lastAdded,'picturesLA'=>$picturesLA]);
 
 
         }
@@ -204,6 +198,35 @@ class UserController extends Controller
     }
 
     public function postUpdateInfo(Request $request){
+
+
+
+        $rules = array(
+
+            'name' => 'max:20',
+            'surname' => 'max:30',
+            'email' => 'required|email|max:40'
+        );
+
+
+        $messages = array(
+            'name.max' => 'Ime ne sme biti duže od :max slova',
+            'surname.max' => 'Prezime ne sme biti duže od :max slova',
+            'email.max'=>'E-mail ne sme biti duži od :max karaktera',
+        );
+
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
+
+
         $user =  Auth::user();
         //stare vrijednosti za polja
         $oldusername = $user->username;
@@ -225,19 +248,14 @@ class UserController extends Controller
         //provjera da li je email jedinstven
         if($oldemail != $newemail) {
             $existingMailUser = DB::table('users')//user sa istim e-mailom kao novi
-            ->where('email', $newemail)
-                ->get();
+                                ->where('email', $newemail)
+                                ->get();
 
             if (count($existingMailUser) != 0) {
                 return redirect()->back()->withInput()->withErrors(array('email' => 'Ovaj email je vec zauzet!'));
             }
         }
-            $this->validate($request, [
 
-                'name' => 'max:20',
-                'surname' => 'max:30',
-                'email' => 'email|max:30'
-            ]);
 
 
 
@@ -276,12 +294,7 @@ class UserController extends Controller
 
             return redirect()->route('userProfile');
 
-
-
         }
-
-
-
 
 }
 

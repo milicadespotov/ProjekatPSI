@@ -18,12 +18,6 @@ use App\Category;
 
                 <div class="blog-title">
                     <h1>{{$content->name}}</h1>
-                </div>
-
-            </div>
-            <div class="col-lg-8">
-                <div class="blog-title">
-                    @include('rating.rate')
                     @if(Auth::check() && Auth::user()->is_admin==true)
                         <a href="#myModal3" data-toggle="modal">
                             <input type="submit" value="Obrisi seriju" class="btn btn-transparent">
@@ -31,6 +25,14 @@ use App\Category;
                     @endif
                 </div>
 
+            </div>
+            <div class="col-lg-4">
+                <div class="blog-title">
+                    @include('rating.rate')
+                </div>
+            </div>
+            <div clas="col-lg-4">
+                &nbsp;
             </div>
             <!-- End col-lg-12 -->
         </div>
@@ -68,12 +70,19 @@ use App\Category;
 
             <div class="col-md-5">
                 <!--Glavna slika	-->
-                <center>
+                <center><?php $flag=false; ?>
                     @foreach($content->pictures as $picture)
-                        @if($picture->main_picture==true)
-                    <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
-                        @endif
+                        <?php if($picture->main_picture==true){ $flag=true;?>
+
+                             <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:100%;height:auto">
+
+                        <?php }?>
                         @endforeach
+                        <?php if(!$flag) { ?>
+
+                  <img src="{{ asset('img/default_content.png')}}" style="width:60%;height:auto">
+
+                            <?php } ?>
                 </center>
                 <br>
                 <!--Glavna slika serije-->
@@ -126,6 +135,7 @@ use App\Category;
                             @if($series->length!=null)
                                 {{$series->length}}
                                 @endif
+                            min
                         </td>
                     </tr>
                     <tr>
@@ -184,7 +194,7 @@ use App\Category;
                 </table>
                 @if (Auth::check() && Auth::user()->is_admin==true)
                 <center>
-                    <form method="post" action="{{route('addSeason',['id'=>$content->id])}}">
+                    <form method="get" action="{{route('addSeason',['id'=>$content->id])}}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @csrf
                         <input type="submit" value="Dodaj sezonu" class="btn btn-transparent">
@@ -194,28 +204,36 @@ use App\Category;
             </div>
 
 
-
         </div>
         <br>
         <div class="row">
             <div class="col-md-6">
                 <center>
                     <h2>Opis:</h2>
+                    <br>
+                    <br>
                 </center>
                 <!--Opis-->
-                {{$content->description}}
+                <p style="width:100%;word-wrap: break-word;font-size:16px;">
+                    {{$content->description}}
+                </p>
 
             </div>
             <div class="col-md-6">
                 <!--Trejler-->
                 <center>
-                    <h2>Trejler</h2>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$content->trailer}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+                        <h2>Trejler</h2>
+
                     @if(Auth::check() && Auth::user()->is_admin==true)
-                    <a href="#">
-                        <input type="submit" value="Dodaj trejler" class="btn btn-transparent">
-                    </a>
-                        @endif
+                        <a href="#">
+                            <input type="submit" value="Dodaj trejler" class="btn btn-transparent">
+                        </a>
+                    @endif
+                    <br>
+                    <br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$content->trailer}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
                 </center>
 
             </div>
@@ -225,9 +243,19 @@ use App\Category;
         <div class="row">
             <div class="col-md-12">
                 <center>
+                    @if($content->pictures != null)
                     <h2>Slike</h2>
-                    <br>
+                    @endif
+                    @if (Auth::check() && Auth::user()->is_admin==true)
+                        <center>
+                            <a href="#">
+                                <input type="submit" value="Dodaj sliku" class="btn btn-transparent">
+                            </a>
+                        </center>
+                    @endif
                 </center>
+                <br>
+                <br>
             </div>
             <!--Galerija-->
             <div class="col-md-12">
@@ -236,18 +264,12 @@ use App\Category;
                     @foreach($content->pictures as $picture)
                         <div class="col-md-3" style="margin-bottom:10px;">
                     <a href="{{ asset('img/img/content/'.$picture->path) }}" data-lightbox="movie">
-                        <img src="{{ asset('img/img/content/'.$picture->path) }}" style="max-width:95%;height:auto;">
+                        <img src="{{ asset('img/img/content/'.$picture->path) }}" style="max-width:95%;height:auto;margin-top:15px">
                     </a>
                         </div>
                   @endforeach
 
-                @if (Auth::check() && Auth::user()->is_admin==true)
-                <center>
-                    <a href="#">
-                        <input type="submit" value="Dodaj sliku" class="btn btn-transparent">
-                    </a>
-                </center>
-                    @endif
+
             </div>
         </div>
 

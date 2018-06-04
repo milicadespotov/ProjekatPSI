@@ -185,7 +185,8 @@
         });
     });
 </script>
-Broj glasova:&nbsp;{{$content->number_of_rates}}&nbsp;&nbsp; &nbsp; <img src="{{ asset('img/star_rating.png') }}" style="width:30px;margin-bottom:5px">&nbsp;{{$content->rating}}/10 <br> Ocenite:
+&nbsp; <img src="{{ asset('img/star_rating.png') }}" style="width:30px;margin-bottom:5px"> &nbsp; {{$content->rating}}/10 <br>
+Broj glasova:&nbsp;{{$content->number_of_rates}}<br>
 @if (Auth::check())
 
 <?php

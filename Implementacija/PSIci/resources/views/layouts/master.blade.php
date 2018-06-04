@@ -43,6 +43,7 @@
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{asset('css/footer.css')}}">
     <!--
         Google Font
         =========================== -->
@@ -71,16 +72,21 @@
 
 @include ('layouts.header')
 
-
+<div class="container-fluid demo">
+    <div class="row">
+        <div class="col-md-12">
 @yield('content')
+    </div>
+    </div>
+</div>
 
-
+@include('layouts.footer')
 <!-- end section -->
 
 <!-- end Contact Area
     ========================================== -->
 
-@include('layouts.footer')
+
 <!-- end footer -->
 
 <!-- Back to Top
@@ -144,5 +150,7 @@
 <script src="{{ asset('js/custom.js') }}"></script>
 
 </body>
+
+
 
 </html>

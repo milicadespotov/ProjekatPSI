@@ -71,18 +71,18 @@
                 <div class="row">
                 <!--Glavna slika	-->
                     <div class="col-md-6">
-                <center>
-                    @if(count($content->pictures)==0)
+                <center><?php $flag=false; ?>
 
-                            <img src="{{ asset('img/no_image.png') }}" style="width:100%;height:auto">
-                    @else
                     @foreach($content->pictures as $picture)
-                        @if($picture->main_picture==true)
-                            <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
-                            @endif
+                        <?php if($picture->main_picture==true){ $flag=true; ?>
+                            <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:90%;height:auto">
+                            <?php } ?>
                     @endforeach
-                    @endif
-                    <!--treba da ide path do glavne slike -->
+
+                    <?php if(!$flag) { ?>
+                    <img src="{{ asset('img/default_content.png') }}" style="width:60%;height:auto">
+
+                    <?php }?>
 
 
                     @if(Auth::check() && Auth::user()->is_admin==true)
@@ -103,7 +103,7 @@
 
                     <div class="col-md-6">
                 <h4>Opis: </h4>
-                <p style="width:100%;word-wrap: break-word;">
+                <p style="width:100%;word-wrap: break-word;font-size:16px;">
                     {{$content->description}}
                 </p>
 
@@ -250,13 +250,15 @@
 
             <div class="col-md-4" style="font-weight: bold">
                 <center>
+                    @if($content->pictures !=null)
                     <h3>Slike</h3>
+                        @endif
                 </center>
                 <center>
 
                     @foreach($content->pictures as $picture)
-                        <a href="{{ asset('img/'.$picture->path) }}" data-lightbox="pics">
-                                <img src="{{ asset('img/'.$picture->path) }}" style="width:300px;height:auto;margin-bottom:20px">
+                        <a href="{{ asset('img/img/content/'.$picture->path) }}" data-lightbox="pics">
+                                <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:300px;height:auto;margin-bottom:20px">
                         </a>
 
                     @endforeach
