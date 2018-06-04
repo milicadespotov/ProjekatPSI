@@ -10,9 +10,9 @@
 
         <div class="col-md-4">
             @if ($pictures[$i]==null)
-                <img style="width:100%" src="{{asset('img/no_image.png')}}">
+                <img style="width:100%" src="{{asset('img/default_content.png')}}">
             @else
-                <img style="width:100%" src="{{asset('img/content/'.$pictures[$i]->path)}}">
+                <img style="width:100%" src="{{asset('img/img/content/'.$pictures[$i]->path)}}">
             @endif
         </div>
         <div class="col-md-8" >
