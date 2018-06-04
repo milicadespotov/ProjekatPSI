@@ -40,4 +40,11 @@ class Director extends Model
             ->distinct()
             ->get();
     }
+    public static function getDirectorsNamesIds($id) {
+        return DB::table('directings')
+            ->join('directors','directings.director_id','=','directors.category_id')
+            ->join('categories','categories.id','=','directors.category_id')
+            ->where('directings.tvshow_id','=',$id)
+            ->select('categories.name','categories.id')->get();
+    }
 }

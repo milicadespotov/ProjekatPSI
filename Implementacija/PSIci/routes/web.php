@@ -150,15 +150,18 @@ Route::post('/episode/{content}/rate','UserController@rateContent')->name('ratee
 
 Route::get('/search','GuestController@search')->name('search');
 
-Route::get('/episode/{episode}/edit','AdminController@editEpisode');
+Route::get('/episode/{episode}/edit','AdminController@editEpisode')->name('editepisode');
 Route::post('/episode/{episode}/edit/changeData','AdminController@changeEpisodeData');
 
-Route::get('/season/{season}/edit','AdminController@editSeason');
+Route::get('/season/{season}/edit','AdminController@editSeason')->name('editseason');
 Route::post('/season/{season}/edit/changeData','AdminController@changeSeasonData');
 
-Route::get('/series/{tvshow}/edit','AdminController@editTVShow');
+Route::get('/series/{tvshow}/edit','AdminController@editTVShow')->name('editseries');
 Route::post('/series/{tvshow}/edit/changeGenres','AdminController@changeGenres');
-
+Route::post('/series/{tvshow}/edit/addActor','AdminController@addEditActor');
+Route::post('/series/{tvshow}/edit/addDirector','AdminController@addEditDirector');
+Route::post('/series/{tvshow}/edit/deleteActors','AdminController@deleteActors');
+Route::post('/series/{tvshow}/edit/deleteDirectors','AdminController@deleteDirectors');
 
 Route::post('/episode/{content}/edit/changeAvatar','AdminController@changeAvatar');
 Route::post('/episode/{content}/edit/deletePictures','AdminController@deletePictures');

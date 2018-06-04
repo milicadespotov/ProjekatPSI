@@ -13,11 +13,11 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="main_picture" style = "font-size: 18px" class="col-form-label text-md-right color">Naslovna slika:</label><br>
-                    <input type="file" name="mainImage" class="form-control" id="mainImage">
+                    <input type="file" name="mainImage" value="{{ old('main_picture') }}" class="form-control" id="mainImage">
                 </div>
                 <div class="form-group">
                     <label for="pictures" style = "font-size: 18px" class="col-form-label text-md-right color">Ostale slike:</label><br>
-                    <input type="file" name="pictures[]" multiple class="form-control" id="pictures">
+                    <input type="file" name="pictures[]" value="{{ old('pictures') }}" multiple class="form-control" id="pictures">
                 </div>
                 <div class="form-group">
                     <label for="trailer" style="font-size:18px" class="col-form-label text-md-right color">Trejler:</label>
@@ -42,7 +42,7 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="releaseDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum izlaska:</label>
-                    <input type="date" name="releaseDate" class="form-control">
+                    <input type="date" name="releaseDate" value="{{ old('releaseDate') }}" class="form-control">
                 </div>
 
                 <div class="form-group">

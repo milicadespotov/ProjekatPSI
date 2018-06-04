@@ -46,6 +46,7 @@ class GuestController extends Controller
 
 
 
+
         //dd($contents);
         return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
 

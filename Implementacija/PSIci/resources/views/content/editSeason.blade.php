@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         <label for="trailer" style = "font-size: 18px" class="col-form-label text-md-right color">Trejler:</label>
-                        <input type="text" id="trailer" name="trailer" class="form-control">
+                        <input type="text" value="{{$content->trailer}}"id="trailer" name="trailer" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="description" style = "font-size: 18px" class="col-form-label text-md-right color">Opis:</label>

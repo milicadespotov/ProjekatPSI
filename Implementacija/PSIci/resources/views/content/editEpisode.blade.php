@@ -51,19 +51,19 @@
                         </div>
                         <div class="form-group">
                             <label for="trailer" style = "font-size: 18px" class="col-form-label text-md-right color">Trejler:</label>
-                            <input type="text" id="trailer" name="trailer" class="form-control">
+                            <input type="text" value={{$content->trailer}} id="trailer" name="trailer" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="description" style = "font-size: 18px" class="col-form-label text-md-right color">Opis:</label>
-                            <textarea name="description" id="description" class="form-control" value="{{$content->description}}"></textarea>
+                            <textarea name="description" id="description" class="form-control">{{$content->description}}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="duration" style = "font-size: 18px" class="col-form-label text-md-right color">Trajanje epizode: (u minutima)</label>
-                            <input type="text" id="duration" name="duration" class="form-control">
+                            <input type="text" value="{{$episode->episode_number}}" id="duration" name="duration" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="releaseDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum izlaska:</label>
-                            <input type="date" name="releaseDate" class="form-control" id="releaseDate">
+                            <input type="date" name="releaseDate" class="form-control" id="releaseDate" value="<?php echo substr($content->release_date,0,10);?>">
                         </div>
                         <input type="submit" class="btn btn-transparent" value="Izmeni detalje">
                     </form>
