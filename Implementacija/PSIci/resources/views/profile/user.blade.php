@@ -84,7 +84,7 @@
                         @if(Auth::check() && Auth::user()->is_admin==true)
                             Poslednje modifikovane serije
                             @endif
-                        <br>
+
                         @if(Auth::check() && Auth::user()->is_admin==false)
                             Poslednje ocenjene serije
                         @endif
@@ -93,7 +93,8 @@
                 <br>
                 <div>
                     <center><!--Sve ocijenjene serije-->
-                        @if(count($lastRated)==0)
+                        <div class = "row">
+                        @if (count($lastRated) == 0)       
                             <h4>Nemate ocenjenih/modifikovanih serija!</h4>
                         @else
 
@@ -104,8 +105,8 @@
                              </a>
                                 </div>
                             @endfor
-
                         @endif
+                        </div>
                     </center>
                 </div>
                 <br>
@@ -113,13 +114,14 @@
 
                 <br>
                 <br>
+
                 <center>
                     <h3>
-                        <br>
+
                     @if(Auth::check() && Auth::user()->is_admin==true)
                             Poslednje dodate serije
                         @endif
-                        <br>
+
 
                     @if(Auth::check() && Auth::user()->is_admin==false)
                             Poslednje odgledane epizode serije
@@ -129,12 +131,13 @@
                 <br>
                 <div>
                     <center><!--Sve odgledane epizode-->
-
+                        <div class = "row">
                         @if(Auth::check() && Auth::user()->is_admin==false)
 
                         @if(count($lastWatched)==0)
                             <h4>Nemate odgledanih epizoda!</h4>
                         @else
+
                         @for($i=0;$i<sizeof($lastWatched);$i++)
                                     <div class = "col-md-4">
                             <a href="{{route('showepisode',['id'=>$lastWatched[$i]->content_id])}}" >
@@ -144,13 +147,14 @@
                                     </div>
                         @endfor
                         @endif
-                        @endif
 
+                        @endif
+                        </div>
 
                         @if(Auth::check() && Auth::user()->is_admin==true)
 
 
-
+                            <div class = "row">
                             @if(count($lastAdded)==0)
                                 <h4>Nema dodatih serija!</h4>
                             @else
@@ -165,6 +169,7 @@
                                     </div>
                                 @endfor
                             @endif
+                            </div>
                         @endif
 
 
