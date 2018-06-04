@@ -5,9 +5,11 @@
 
     <br>
     <div class="container-fluid">
+        <div class="row">
         <div class="col-md-6">
             <center>
                 <h2>Najpopularnije serije</h2>
+                <br>
                 <br>
             </center>
             <div class="row">
@@ -21,7 +23,7 @@
                         @if($picturesMP[$i]!=null)
                             <img src="{{asset('img/img/content/'.$picturesMP[$i]->path)}}" style="width:100%">
                         @else
-                            <img src="{{asset('img/no_image.png')}}" style="width:100%">
+                            <img src="{{asset('img/default_content.png')}}" style="width:100%">
                         @endif
 
 
@@ -42,27 +44,24 @@
 
                 @endfor
 
-                <center>
-                    <a href="{{route('mostpopular')}}">
-                        <input type="submit" value="Pogledaj vise" class="btn btn-transparent">
-                    </a>
-                </center>
+
             </div>
         </div>
         <div class="col-md-6">
             <center>
                 <h2>Predstojeće serije</h2>
                 <br>
+                <br>
             </center>
             <div class="row">
 
-                @for($i=0;$i<sizeof($mostPopular);$i++)
+                @for($i=0;$i<sizeof($upcoming);$i++)
                 <div class="col-md-12" style="margin-bottom:10px">
                     <div class="col-md-4">
                         @if($picturesUpcoming[$i]!=null)
                             <img src="{{asset('img/img/content/'.$picturesUpcoming[$i]->path)}}" style="width:100%">
                         @else
-                            <img src="{{asset('img/no_image.png')}}" style="width:100%">
+                            <img src="{{asset('img/default_content.png')}}" style="width:100%">
                         @endif
                     </div>
                     <div class="col-md-8">
@@ -77,8 +76,22 @@
 
 
                 @endfor
+
+            </div>
+        </div>
+
+    </div>
+        <div class="row">
+            <div class="col-md-6">
                 <center>
-                    <a href="#">
+                    <a href="{{route('mostpopular')}}">
+                        <input type="submit" value="Pogledaj vise" class="btn btn-transparent">
+                    </a>
+                </center>
+            </div>
+            <div class="col-md-6">
+                <center>
+                    <a href="{{route('upcoming')}}">
                         <input type="submit" value="Pogledaj vise" class="btn btn-transparent">
                     </a>
                 </center>

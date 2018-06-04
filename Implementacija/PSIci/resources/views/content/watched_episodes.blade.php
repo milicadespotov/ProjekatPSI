@@ -39,13 +39,9 @@
 
                        <br>
 
-                        <blockquote>
-                            <p style="word-wrap: break-word;">
-                                {{$episode->description}}
-                            </p>
-                        </blockquote>
 
-                        <p> {{$episode->description}} </p>
+
+                        <p style="word-wrap: break-word;"> {{$episode->description}} </p>
                     </div>
                     <div class="post-meta">
                         <span class="post-date">
@@ -70,7 +66,7 @@
 
                 </div>
                 <br><br>
-            <br><br>
+
                 <hr>
             @endforeach
 

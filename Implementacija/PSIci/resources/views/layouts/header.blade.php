@@ -30,7 +30,7 @@
                     <a href="{{route('mostpopular')}}">Najpopularnije</a>
                 </li>
                 <li>
-                    <a href="#">Predstojeće</a>
+                    <a href="{{route('upcoming')}}">Predstojeće</a>
                 </li>
 
                  <!--UKLONJEN DIO OPCIJE ODAVDE-->
