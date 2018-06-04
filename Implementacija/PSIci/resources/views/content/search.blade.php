@@ -9,6 +9,7 @@
     <div class="row">
 
         <div class="col-md-4">
+
             @if ($pictures[$i]==null)
                 <img style="width:100%" src="{{asset('img/default_content.png')}}">
             @else
@@ -17,7 +18,7 @@
         </div>
         <div class="col-md-8" >
 
-            <table >
+            <table style="border-collapse: separate;border-spacing: 1.5em;">
                 <tr colspan="2">
                     <td>
                         <h2>
@@ -31,10 +32,13 @@
                 </tr>
                 <tr>
                     <td >
+                        <!-- Privremeno rjesenje za prelom teksta-->
+                        <div class="col-md-6">
 
-                        <p style="width:100%;word-wrap: break-word;">
+                            <p style="width:100%;word-wrap: break-word;">
                                 {{$contents[$i]->description}}
-                        </p>
+                            </p>
+                        </div>
 
                     </td>
                 </tr>
@@ -71,6 +75,8 @@
     </div>
     <br>
 @endfor
+    
 </div>
+
 <br> <br> <br>
 @endsection
