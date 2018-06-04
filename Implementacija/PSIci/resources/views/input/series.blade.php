@@ -84,7 +84,7 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="releaseDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum izlaska:</label>
-                    <input type="date" name="releaseDate" class="form-control" id="releaseDate">
+                    <input type="date" name="releaseDate" class="form-control" id="releaseDate" value="{{ old('releaseDate') }}">
                 </div>
                 <div class="form-group">
                     <label for="country" style = "font-size: 18px" class="col-form-label text-md-right color">Zemlja porekla:</label>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="form-group">
                     <label for="endDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum završetka:</label>
-                    <input type="date" name="endDate" class="form-control" id="endDate">
+                    <input type="date" name="endDate" class="form-control" id="endDate" value="{{ old('endDate') }}">
                 </div>
                 <div class="form-group">
                     <label for="episodes" style = "font-size: 18px" class="col-form-label text-md-right color">Broj epizoda:</label>

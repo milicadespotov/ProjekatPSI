@@ -319,7 +319,11 @@ class AdminController extends Controller
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
-                ->withInput(['id'=>$id]);
+                ->withInput(['id'=>$id, 'trailer'=>$request->trailer, 'name'=>$request->name,
+                    'description'=>$request->description, 'releaseDate'=>$request->releaseDate,
+                    'episodes'=>$request->episodes, 'numSeason'=>$request->numSeason
+
+                    ]);
         }
 
         if (Season::where('tvshow_id','=',$id)->where('season_number','=',$request->numSeason)->get()->first()!=null) {
@@ -402,7 +406,11 @@ class AdminController extends Controller
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
-                ->withInput(['id'=>$id]);
+                ->withInput(['id'=>$id, 'trailer'=>$request->trailer, 'name'=>$request->name,
+                    'description'=>$request->description, 'releaseDate'=>$request->releaseDate,
+                    'duration'=>$request->duration, 'numEpisode'=>$request->numEpisode
+
+                ]);
         }
         if (Episode::where('season_id','=',$id)->where('episode_number','=',$request->numEpisode)->get()->first()!=null) {
             return redirect()->back()
