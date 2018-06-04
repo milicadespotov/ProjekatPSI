@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class = "backgroundLoginI">
+    <div class = "backgroundLoginI" style="width:100%">
     <br> <br> <br> <br>
-<div class="container">
+<div class="container-fluid" style="width:100%">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
