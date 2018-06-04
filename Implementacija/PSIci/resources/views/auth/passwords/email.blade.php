@@ -55,7 +55,7 @@
                                 <input id="answer" type="text" class="form-control{{ $errors->has('answer') ? ' is-invalid' : '' }}" style = "{{$errors->has('answer')? 'border-color: pink' : ''}}" name="answer" required>
 
                                 @if ($errors->has('answer'))
-                                    <span class="invalid-feedback" style = "color:pink">
+                                        <span class="invalid-feedback" style = "color:pink">
                                         {{ $errors->first('answer') }}
                                     </span>
                                 @endif

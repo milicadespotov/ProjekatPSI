@@ -5,108 +5,93 @@
 
     <br>
     <div class="container-fluid">
+        <div class="row">
         <div class="col-md-6">
             <center>
-                <h2>Najpopularnije</h2>
+                <h2>Najpopularnije serije</h2>
+                <br>
                 <br>
             </center>
             <div class="row">
 
 
-                <div class="col-md-12" style="margin-bottom:10px">
-                    <div class="col-md-4">
-                        <img src="{{ asset('img/got.jpg') }}" style="width:100%">
-                    </div>
-                    <div class="col-md-8">
-                        <h4>Naziv Serije</h4>
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-
-                    </div>
-
-                </div>
+                @for($i=0;$i<sizeof($mostPopular);$i++)
 
                 <div class="col-md-12" style="margin-bottom:10px">
                     <div class="col-md-4">
-                        <img src="{{ asset('img/got.jpg') }}" style="width:100%">
+
+                        @if($picturesMP[$i]!=null)
+                            <img src="{{asset('img/img/content/'.$picturesMP[$i]->path)}}" style="width:100%">
+                        @else
+                            <img src="{{asset('img/default_content.png')}}" style="width:100%">
+                        @endif
+
+
+
                     </div>
                     <div class="col-md-8">
-                        <h4>Naziv serije</h4>
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-                    </div>
-
-                </div>
-
-
-                <div class="col-md-12" style="margin-bottom:10px">
-                    <div class="col-md-4">
-                        <img src="{{ asset('img/got.jpg') }}" style="width:100%">
-                    </div>
-                    <div class="col-md-8">
-                        <h4>Naziv serije</h4>
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
+                        <h4><a href="{{route('showseries',['id'=>$mostPopular[$i]->id])}}">{{$mostPopular[$i]->name}}</a></h4>
+                       <p style="width:100%;word-wrap: break-word;">
+                           {{$mostPopular[$i]->description}}
+                       </p>
 
                     </div>
 
                 </div>
 
 
-                <center>
-                    <a href="#">
-                        <input type="submit" value="Pogledaj vise" class="btn btn-transparent">
-                    </a>
-                </center>
+
+
+                @endfor
+
+
             </div>
         </div>
         <div class="col-md-6">
             <center>
-                <h2>Predstojeće</h2>
+                <h2>Predstojeće serije</h2>
+                <br>
                 <br>
             </center>
             <div class="row">
 
-
+                @for($i=0;$i<sizeof($upcoming);$i++)
                 <div class="col-md-12" style="margin-bottom:10px">
                     <div class="col-md-4">
-                        <img src="{{ asset('img/got.jpg') }}" style="width:100%">
+                        @if($picturesUpcoming[$i]!=null)
+                            <img src="{{asset('img/img/content/'.$picturesUpcoming[$i]->path)}}" style="width:100%">
+                        @else
+                            <img src="{{asset('img/default_content.png')}}" style="width:100%">
+                        @endif
                     </div>
                     <div class="col-md-8">
-                        <h4>Naziv Serije</h4>
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
+                        <h4><a href="{{route('showseries',['id'=>$upcoming[$i]->id])}}">{{$upcoming[$i]->name}}</a></h4>
+                        <p style="width:100%;word-wrap: break-word;">
+                            {{$upcoming[$i]->description}}
+                        </p>
 
                     </div>
 
                 </div>
 
 
+                @endfor
 
-                <div class="col-md-12" style="margin-bottom:10px">
-                    <div class="col-md-4">
-                        <img src="{{ asset('img/got.jpg') }}" style="width:100%">
-                    </div>
-                    <div class="col-md-8">
-                        <h4>Naziv serije</h4>
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-                    </div>
+            </div>
+        </div>
 
-                </div>
-
-
-
-                <div class="col-md-12" style="margin-bottom:10px">
-                    <div class="col-md-4">
-                        <img src="{{ asset('img/got.jpg') }}" style="width:100%">
-                    </div>
-                    <div class="col-md-8">
-                        <h4>Naziv serije</h4>
-                        Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-
-                    </div>
-
-                </div>
-
-
+    </div>
+        <div class="row">
+            <div class="col-md-6">
                 <center>
-                    <a href="#">
+                    <a href="{{route('mostpopular')}}">
+                        <input type="submit" value="Pogledaj vise" class="btn btn-transparent">
+                    </a>
+                </center>
+            </div>
+            <div class="col-md-6">
+                <center>
+                    <a href="{{route('upcoming')}}">
                         <input type="submit" value="Pogledaj vise" class="btn btn-transparent">
                     </a>
                 </center>

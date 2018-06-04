@@ -22,37 +22,18 @@
         <!-- main nav -->
         <nav class="collapse navbar-collapse navbar-right" role="Navigation">
             <ul id="nav" class="nav navbar-nav">
-                <li class="current">
-                    <a href="#">Početna</a>
+                <li >
+                    <a href="{{route('home')}}">Početna</a>
                 </li>
 
                 <li>
-                    <a href="#">Najpopularnije</a>
+                    <a href="{{route('mostpopular')}}">Najpopularnije</a>
                 </li>
                 <li>
-                    <a href="#">Predstojeće</a>
+                    <a href="{{route('upcoming')}}">Predstojeće</a>
                 </li>
 
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown">Opcije
-                        <span class="fa fa-caret-down"></span>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-item">
-                            <a href="#"> MESTA PROJEKCIJE </a>
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="#"> FILMOVI </a>
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="#"> PRODAJNA MESTA </a>
-                        </li>
-
-
-
-                    </ul>
-                </li>
+                 <!--UKLONJEN DIO OPCIJE ODAVDE-->
                 @if(!Auth::check())
                 <li>
                     <a href="{{route('login')}}">Uloguj se</a>
@@ -70,6 +51,9 @@
                             </a>
 
                             <ul class="dropdown-menu">
+                                <li class="dropdown-item">
+                                    <a href="{{route('userProfile')}}"> PROFIL </a>
+                                </li>
                                 <li class="dropdown-item">
                                     <a href="{{route('addseries')}}"> DODAVANJE NOVIH SERIJA </a>
                                 </li>
@@ -97,6 +81,9 @@
 
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-item">
+                                        <a href="{{route('userProfile')}}"> PROFIL </a>
+                                    </li>
+                                    <li class="dropdown-item">
                                         <a href="#myModal" data-toggle="modal"> UKLONI NALOG </a>
                                     </li>
 
@@ -117,7 +104,7 @@
                 <li style="padding-top:15px;margin-left:20px">
                     <div class="widget-content">
 
-                        <form action="/search" id="search-form" method="get" role="search">
+                        <form action="{{route('search')}}" id="search-form" method="get" role="search">
 
                             <table>
                                 <tr>

@@ -21,7 +21,7 @@
                         <center>
 
 
-                            <form method="post" action="{{ route('addepisode',['id'=>$content->id]) }}">
+                            <form method="get" action="{{ route('addepisode',['id'=>$content->id]) }}">
                                 <a href="#myModal2" data-toggle="modal">
                                     <input type="submit" value="Obrisi sezonu" class="btn btn-transparent">
                                 </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -42,6 +42,10 @@
             </div>
             <div class="col-lg-4">
 
+                    <a href="{{route('editseason',['season'=>$content->id])}}">
+                        <input type="submit" value="Izmeni podatke" class="btn btn-transparent">
+                    </a>
+
                 &nbsp;
             </div>
             <!-- End col-lg-12 -->
@@ -53,15 +57,15 @@
 
         <div class="row">
 
-            <div class="col-md-8">
+            <div class="col-md-7">
                 @for($i=0;$i<count($contents);$i++)
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom:30px">
                         <div class="col-md-4">
                             @if($episodes[$i]->mainPicture()->first()!=null)
-                                <img src="{{asset('img/'.$episodes[$i]->mainPicture()->first()->path)}}" style="width:100%">
+                                <img src="{{asset('img/img/content/'.$episodes[$i]->mainPicture()->first()->path)}}" style="width:100%">
                             @else
-                                <img src="{{asset('img/no_image.png')}}" style="width:100%">
+                                <img src="{{asset('img/default_content.png')}}" style="width:100%;height:auto;">
                             @endif
 
                         </div>
@@ -106,7 +110,7 @@
                 </div>
             @endif
 
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <!--Trejler-->
                 <center>
                     <h2>Trejler</h2>
@@ -115,6 +119,10 @@
                         <input type="submit" value="Dodaj trejler " class="btn btn-transparent">
                     </a>
                         @endif
+                    <br>
+                    <br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$content->trailer}}" style="width:100%;" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
                 </center>
             </div>
 
@@ -123,20 +131,23 @@
         <div class="row">
             <div class="col-md-12">
                 <center>
+                    @if($content->pictures !=null )
                     <h2>Slike</h2>
+                    @endif
                     <br>
                 </center>
             </div>
             <!--Galerija-->
             <div class="col-md-12">
+                <center>
                 @foreach($content->pictures as $picture)
                     <div class="col-md-3" style="margin-bottom:10px;">
                         <a href="{{ asset('img/img/content/'.$picture->path) }}" data-lightbox="movie">
-                            <img src="{{ asset('img/'.$picture->path) }}" style="max-width:95%;height:auto;">
+                            <img src="{{ asset('img/img/content/'.$picture->path) }}" style="max-width:95%;height:auto;">
                         </a>
                     </div>
-                    @endforeach
-
+                 @endforeach
+                </center>
 
 
                 </center>

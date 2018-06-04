@@ -21,7 +21,7 @@ class OnlyUserMiddleware
         }
         else if (Auth::user()->is_admin)
         {
-            return response()->view ('home.index');
+            return redirect()->route ('home');
         }
         else {
             return $next($request);

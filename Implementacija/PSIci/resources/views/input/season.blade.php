@@ -13,47 +13,62 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="main_picture" style = "font-size: 18px" class="col-form-label text-md-right color">Naslovna slika:</label><br>
-                    <input type="file" name="mainImage" class="form-control" id="mainImage">
+                    <input type="file" name="mainImage" value="{{ old('main_picture') }}" class="form-control" id="mainImage">
                 </div>
                 <div class="form-group">
                     <label for="pictures" style = "font-size: 18px" class="col-form-label text-md-right color">Ostale slike:</label><br>
-                    <input type="file" name="pictures[]" multiple class="form-control" id="pictures">
+                    <input type="file" name="pictures[]" value="{{ old('pictures') }}" multiple class="form-control" id="pictures">
                 </div>
                 <div class="form-group">
                     <label for="trailer" style="font-size:18px" class="col-form-label text-md-right color">Trejler:</label>
-                    <input type="text" name="trailer" class="form-control" id="trailer">
+                    <input type="text" name="trailer" class="form-control" id="trailer" value="{{ old('trailer') }}">
                 </div>
                 <div class="form-group">
                     <label for="name" style = "font-size: 18px" class="col-form-label text-md-right color">Ime sezone:</label>
-                    <input type="text" name="name" class="form-control">
+                    <input type="text" name="name" value="{{ old('name') }}" class="form-control" style = "{{$errors->has('name') ? 'border-color: deeppink' : ''}}">
+                    @if ($errors->has('name'))
+                        <span class="invalid-feedback" style="color:deeppink">
+                                        {{ $errors->first('name') }}
+                                    </span>
+                    @endif
                 </div>
 
                 <div class="form-group">
                     <label for="description" style = "font-size: 18px" class="col-form-label text-md-right color">Kratak opis:</label>
-                    <textarea name="description" class="form-control"></textarea>
+                    <textarea name="description" class="form-control" value="{{ old('description') }}"></textarea>
                 </div>
 
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="releaseDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum izlaska:</label>
-                    <input type="date" name="releaseDate" class="form-control">
+                    <input type="date" name="releaseDate" value="{{ old('releaseDate') }}" class="form-control">
                 </div>
 
                 <div class="form-group">
                     <label for="episodes" style = "font-size: 18px" class="col-form-label text-md-right color">Broj epizoda:</label>
-                    <input type="text" name="episodes" class="form-control">
+                    <input type="text" name="episodes" class="form-control" value="{{ old('episodes') }}" style = "{{$errors->has('episodes') ? 'border-color: deeppink' : ''}}">
+                    @if ($errors->has('episodes'))
+                        <span class="invalid-feedback" style="color:deeppink">
+                                        {{ $errors->first('episodes') }}
+                                    </span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="numSeason"style = "font-size: 18px" class="col-form-label text-md-right color">Redni broj sezone:</label>
-                    <input type="text" name="numSeason" class="form-control">
+                    <input type="text" name="numSeason" value="{{ old('numSeason') }}" class="form-control" style = "{{$errors->has('numSeason') ? 'border-color: deeppink' : ''}}">
+                    @if ($errors->has('numSeason'))
+                        <span class="invalid-feedback" style="color:deeppink">
+                                        {{ $errors->first('numSeason') }}
+                                    </span>
+                    @endif
                 </div>
 
             </div>
         </div>
         <div class="row justify-content-center">
             <input type="submit" class="btn btn-transparent" value="Potvrdi">
-            <a href="/"><button class="btn btn-transparent">Odustani</button></a>
+            <a class="btn btn-transparent" href="{{route('showseries', ['content_id'=>$content->id])}}">Odustani</a>
         </div>
     </form>
 </div>

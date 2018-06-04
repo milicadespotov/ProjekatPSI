@@ -18,11 +18,11 @@
                             <label for="username" style = "font-size: 18px" class="col-sm-4 col-form-label text-md-right color">{{ __('Username: ') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username"  placeholder="unesite korisniko ime" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+                                <input id="username"  placeholder="unesite korisniko ime" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" style = "border-color: {{ $errors->has('username') ? 'deeppink' : '' }}" autofocus>
 
                                 @if ($errors->has('username'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('username') }}</strong>
+                                    <span class="invalid-feedback" style ="color: deeppink">
+                                        {{ $errors->first('username') }}
                                     </span>
                                 @endif
                             </div>
@@ -32,7 +32,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right color" style = "font-size: 18px;">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" placeholder =  "unesite lozinku" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input id="password" type="password" placeholder =  "unesite lozinku" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" >
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">

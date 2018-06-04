@@ -70,16 +70,19 @@ use App\Category;
 
             <div class="col-md-5">
                 <!--Glavna slika	-->
-                <center>
+                <center><?php $flag=false; ?>
                     @foreach($content->pictures as $picture)
-                        @if($picture->main_picture==true)
-<<<<<<< HEAD
-                            <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
-=======
-                    <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:100%;height:auto">
->>>>>>> 1e87be95b7f3b43af6802bc9efdf0f0959dc4fea
-                        @endif
+                        <?php if($picture->main_picture==true){ $flag=true;?>
+
+                             <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:100%;height:auto">
+
+                        <?php }?>
                         @endforeach
+                        <?php if(!$flag) { ?>
+
+                  <img src="{{ asset('img/default_content.png')}}" style="width:60%;height:auto">
+
+                            <?php } ?>
                 </center>
                 <br>
                 <!--Glavna slika serije-->
@@ -146,10 +149,10 @@ use App\Category;
                     <tr>
                         <td>
                             @if (Auth::check() && Auth::user()->is_admin==true)
-                            <a href="#">
+                            <a href="{{route('editseries',['tvshow'=>$series->content_id])}}">
                                 <input type="submit" value="Izmeni podatke" class="btn btn-transparent">
                             </a>
-                                @else
+
                             &nbsp;
                                 @endif
                         </td>
@@ -191,7 +194,7 @@ use App\Category;
                 </table>
                 @if (Auth::check() && Auth::user()->is_admin==true)
                 <center>
-                    <form method="post" action="{{route('addSeason',['id'=>$content->id])}}">
+                    <form method="get" action="{{route('addSeason',['id'=>$content->id])}}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @csrf
                         <input type="submit" value="Dodaj sezonu" class="btn btn-transparent">
@@ -199,7 +202,6 @@ use App\Category;
                 </center>
                     @endif
             </div>
-
 
 
         </div>
@@ -212,7 +214,7 @@ use App\Category;
                     <br>
                 </center>
                 <!--Opis-->
-                <p style="width:100%;word-wrap: break-word;">
+                <p style="width:100%;word-wrap: break-word;font-size:16px;">
                     {{$content->description}}
                 </p>
 
@@ -220,7 +222,9 @@ use App\Category;
             <div class="col-md-6">
                 <!--Trejler-->
                 <center>
-                    <h2>Trejler</h2>
+
+                        <h2>Trejler</h2>
+
                     @if(Auth::check() && Auth::user()->is_admin==true)
                         <a href="#">
                             <input type="submit" value="Dodaj trejler" class="btn btn-transparent">
@@ -239,8 +243,9 @@ use App\Category;
         <div class="row">
             <div class="col-md-12">
                 <center>
+                    @if($content->pictures != null)
                     <h2>Slike</h2>
-
+                    @endif
                     @if (Auth::check() && Auth::user()->is_admin==true)
                         <center>
                             <a href="#">
@@ -259,7 +264,7 @@ use App\Category;
                     @foreach($content->pictures as $picture)
                         <div class="col-md-3" style="margin-bottom:10px;">
                     <a href="{{ asset('img/img/content/'.$picture->path) }}" data-lightbox="movie">
-                        <img src="{{ asset('img /'.$picture->path) }}" style="max-width:95%;height:auto;margin-top:15px">
+                        <img src="{{ asset('img/img/content/'.$picture->path) }}" style="max-width:95%;height:auto;margin-top:15px">
                     </a>
                         </div>
                   @endforeach

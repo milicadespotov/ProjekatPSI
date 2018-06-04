@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Comment;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
@@ -131,9 +132,26 @@ class AdminController extends Controller
     public function makeSeries(Request $request)
     {
 
-        $this->validate(request(), [
-            'name' => 'required'
-        ]);
+        $rules=array(
+            'name' => 'required',
+            'duration' => 'integer|min:1',
+            'episodes' => 'integer|min:1'
+        );
+        $messages = array(
+            'name.required'=>'Ovo polje je obavezno!',
+            'duration.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'duration.min' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $tvshow = new Tvshow();
         $content = new Content();
         $content->name = $request->name;
@@ -156,7 +174,7 @@ class AdminController extends Controller
             $picture->content_id = $content->id;
             $picture->save();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img\content', $filename);
+            $file = $request->file('mainImage')->storeAs('img/content', $filename);
 
             $picture->path = $filename;
 
@@ -171,7 +189,7 @@ class AdminController extends Controller
                 $picture->main_picture = false;
                 $picture->save();
                 $filename = $content->id . '-' . $picture->id . '.jpg';
-                $file = $file->storeAs('img\content', $filename);
+                $file = $file->storeAs('img/content', $filename);
                 $picture->path = $filename;
 
 
@@ -283,10 +301,36 @@ class AdminController extends Controller
 
     public function makeSeason(Request $request, $id)
     {
-        $this->validate(request(), [
+        $rules=array(
             'name' => 'required',
-            'numSeason' => 'required'
-        ]);
+            'numSeason' => 'required|integer|min:1',
+            'episodes' => 'integer|min:1'
+        );
+        $messages = array(
+            'name.required'=>'Ovo polje je obavezno!',
+            'numSeason.required' => 'Ovo polje je obavezno!',
+            'numSeason.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'numSeason.min' =>'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput(['id'=>$id, 'trailer'=>$request->trailer, 'name'=>$request->name,
+                    'description'=>$request->description, 'releaseDate'=>$request->releaseDate,
+                    'episodes'=>$request->episodes, 'numSeason'=>$request->numSeason
+
+                    ]);
+        }
+
+        if (Season::where('tvshow_id','=',$id)->where('season_number','=',$request->numSeason)->get()->first()!=null) {
+            return redirect()->back()
+                ->withInput(['id'=> $id])
+                ->withErrors(['numSeason' => "Sezona sa ovim rednim brojem već postoji!"]);
+        }
         $season = new Season();
         $content = new Content();
         $content->name = $request->name;
@@ -307,7 +351,7 @@ class AdminController extends Controller
             $picture->content_id = $content->id;
             $picture->save();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img\content', $filename);
+            $file = $request->file('mainImage')->storeAs('img/content', $filename);
 
             $picture->path = $filename;
 
@@ -322,7 +366,7 @@ class AdminController extends Controller
                 $picture->main_picture = false;
                 $picture->save();
                 $filename = $content->id . '-' . $picture->id . '.jpg';
-                $file = $file->storeAs('img\content', $filename);
+                $file = $file->storeAs('img/content', $filename);
                 $picture->path = $filename;
 
 
@@ -343,10 +387,48 @@ class AdminController extends Controller
 
     public function makeEpisode(Request $request, $id)
     {
-        $this->validate(request(), [
+        $rules=array(
             'name' => 'required',
-            'numEpisode' => 'required'
-        ]);
+            'numEpisode' => 'required|integer|min:1',
+            'duration' =>'integer|min:1'
+        );
+        $messages = array(
+            'name.required'=>'Ovo polje je obavezno!',
+            'numEpisode.required' => 'Ovo polje je obavezno!',
+            'numEpisode.integer' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'numEpisode.min' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'duration.integer' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'duration.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput(['id'=>$id, 'trailer'=>$request->trailer, 'name'=>$request->name,
+                    'description'=>$request->description, 'releaseDate'=>$request->releaseDate,
+                    'duration'=>$request->duration, 'numEpisode'=>$request->numEpisode
+
+                ]);
+        }
+        if (Episode::where('season_id','=',$id)->where('episode_number','=',$request->numEpisode)->get()->first()!=null) {
+            return redirect()->back()
+                ->withInput(['id'=> $id])
+                ->withErrors(['numEpisode' => "Epizoda sa ovim rednim brojem već postoji!"]);
+        }
+
+        $messages = array(
+          'name.required'=>'Ovo polje je obavezno!',
+          'numEpisode.required'=>'Ovo polje je obavezno!'
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput(['id'=>$id]);
+        }
         $episode = new Episode();
         $content = new Content();
         $content->name = $request->name;
@@ -367,7 +449,7 @@ class AdminController extends Controller
             $picture->content_id = $content->id;
             $picture->save();
             $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img\content', $filename);
+            $file = $request->file('mainImage')->storeAs('img/content', $filename);
 
             $picture->path = $filename;
 
@@ -382,7 +464,7 @@ class AdminController extends Controller
                 $picture->main_picture = false;
                 $picture->save();
                 $filename = $content->id . '-' . $picture->id . '.jpg';
-                $file = $file->storeAs('img\content', $filename);
+                $file = $file->storeAs('img/content', $filename);
                 $picture->path = $filename;
 
 
