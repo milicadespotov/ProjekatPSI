@@ -45,27 +45,26 @@ class GuestController extends Controller
         $contents = DB::table('contents')->join('episodes','episodes.content_id','=','contents.id')->where('episodes.season_id','=',$id)->select('contents.*')->get();
 
 
-<<<<<<< HEAD
+
         //dd($contents);
         return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
 
           return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
 
 
-=======
+
 
           return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
 
->>>>>>> 1e87be95b7f3b43af6802bc9efdf0f0959dc4fea
 
 
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 1e87be95b7f3b43af6802bc9efdf0f0959dc4fea
+
+
+
     }
 
     public function showEpisode($id){
