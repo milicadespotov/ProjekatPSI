@@ -544,7 +544,6 @@ class AdminController extends Controller
 
             }
         }
-
         return redirect()->back();
     }
     public function deletePictures(Request $request, Content $content){
@@ -558,6 +557,7 @@ class AdminController extends Controller
                 ->delete();
             File::delete('img\img\content\\'.$path);
         }
+        $content->update();
         return redirect()->back();
     }
 
@@ -576,6 +576,7 @@ class AdminController extends Controller
             $picture->path = $filename;
             $picture->update();
         }
+        $content->update();
         return redirect()->back();
     }
 
@@ -772,6 +773,8 @@ class AdminController extends Controller
         $picturePaths = Picture::notMainPictures($tvshow->content_id);
         $avatarPath = Picture::mainPicture($tvshow->content_id);
 
+        $actors = Actor::getActorsNamesIds($tvshow->content_id);
+        $directors = Director::getDirectorsNamesIds($tvshow->content_id);
         //checkbox
         $checkBoxArr = array();
         $allGenres = Genre::getGenresForCheckbox($tvshow->content_id);
@@ -779,7 +782,7 @@ class AdminController extends Controller
             $check = TypeOf::checkTVShow($tvshow->content_id,$genre->id);
             array_push($checkBoxArr,['name'=>$genre->name,'check'=>$check,'id'=>$genre->id]);
         }
-        return view('content.editSeries',compact('checkBoxArr', 'tvshow','content','picturePaths','avatarPath'));
+        return view('content.editSeries',compact('directors', 'actors', 'checkBoxArr', 'tvshow','content','picturePaths','avatarPath'));
     }
     public function changeGenres(Request $request, Tvshow $tvshow) {
         TypeOf::deleteGenres($tvshow->content_id);
@@ -789,6 +792,68 @@ class AdminController extends Controller
                 $type->genre_id = $genre;
                 $type->tvshow_id = $tvshow->content_id;
                 $type->save();
+            }
+        }
+        return redirect()->back();
+    }
+    public function addEditActor(Request $request, Tvshow $tvshow) {
+        $this->validate(request(), [
+            'actor' => 'required|max:30'
+        ]);
+        $this->addActor($request, $tvshow->content_id);
+        return redirect()->back();
+    }
+    public function addEditDirector(Request $request, Tvshow $tvshow) {
+        $this->validate(request(), [
+            'director' => 'required|max:30'
+        ]);
+        $this->addDirector($request, $tvshow->content_id);
+        return redirect()->back();
+    }
+    public function deleteActors(Request $request, Tvshow $tvshow) {
+        $this->validate(request(), [
+            'actors' => 'required'
+        ]);
+        DB::table('actings')
+            ->where('actings.tvshow_id','=',$tvshow->content_id)
+            ->whereIn('actings.actor_id',$request->actors)
+            ->delete();
+        foreach($request->actors as $actor) {
+            $check = DB::table('actings')
+                ->where('actings.actor_id','=',$actor)
+                ->get()
+                ->first();
+            if ($check==null) {
+                DB::table('actors')
+                    ->where('actors.category_id','=',$actor)
+                    ->delete();
+                DB::table('categories')
+                    ->where('id','=',$actor)
+                    ->delete();
+            }
+        }
+        return redirect()->back();
+    }
+    public function deleteDirectors(Request $request, Tvshow $tvshow) {
+        $this->validate(request(), [
+            'directors' => 'required'
+        ]);
+        DB::table('directings')
+            ->where('directings.tvshow_id','=',$tvshow->content_id)
+            ->whereIn('directings.director_id',$request->directors)
+            ->delete();
+        foreach($request->directors as $director) {
+            $check = DB::table('directings')
+                ->where('directings.director_id','=',$director)
+                ->get()
+                ->first();
+            if ($check==null) {
+                DB::table('directors')
+                    ->where('directors.category_id','=',$director)
+                    ->delete();
+                DB::table('categories')
+                    ->where('id','=',$director)
+                    ->delete();
             }
         }
         return redirect()->back();
