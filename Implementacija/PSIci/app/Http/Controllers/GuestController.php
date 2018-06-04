@@ -116,6 +116,8 @@ class GuestController extends Controller
                 break;
             }
         }
+
+        
         $actors = array();
         $actors = array();
         $genres = array();

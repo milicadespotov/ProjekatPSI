@@ -147,7 +147,7 @@ Route::post('/series/{content}/rate','UserController@rateContent')->name('ratese
 Route::post('/season/{content}/rate','UserController@rateContent')->name('rateseason');
 Route::post('/episode/{content}/rate','UserController@rateContent')->name('rateepisode');
 
-Route::get('/search','GuestController@search');
+Route::get('/search','GuestController@search')->name('search');
 
 Route::get('/episode/{episode}/edit','AdminController@editEpisode');
 Route::post('/episode/{episode}/edit/changeData','AdminController@changeEpisodeData');

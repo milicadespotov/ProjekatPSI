@@ -117,7 +117,7 @@
                 <li style="padding-top:15px;margin-left:20px">
                     <div class="widget-content">
 
-                        <form action="/search" id="search-form" method="get" role="search">
+                        <form action="{{route('search')}}" id="search-form" method="get" role="search">
 
                             <table>
                                 <tr>

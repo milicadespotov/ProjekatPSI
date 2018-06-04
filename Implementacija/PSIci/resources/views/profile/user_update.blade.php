@@ -6,7 +6,7 @@
     <br>
     <br>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" style="font-size:18px;color:#8A2BE2">
             <form id="info-form" enctype= "multipart/form-data" method="post" action="{{ route('postinfoupdate')}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                 @csrf
                 <fieldset>

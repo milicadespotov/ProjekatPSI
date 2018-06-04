@@ -73,11 +73,11 @@ use App\Category;
                 <center>
                     @foreach($content->pictures as $picture)
                         @if($picture->main_picture==true)
-<<<<<<< HEAD
+
                             <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
-=======
+
                     <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:100%;height:auto">
->>>>>>> 1e87be95b7f3b43af6802bc9efdf0f0959dc4fea
+
                         @endif
                         @endforeach
                 </center>

@@ -1,13 +1,16 @@
 @extends('layouts.master')
 
 @section('content')
-
+<div class="container-fluid">
+    <br>
+    <br>
+    <br>
 @for($i=0;$i<sizeof($tvshows);$i++)
     <div class="row">
 
         <div class="col-md-4">
             @if ($pictures[$i]==null)
-                <img style="width:100%" src="{{asset('img/content/favicon.png')}}">
+                <img style="width:100%" src="{{asset('img/no_image.png')}}">
             @else
                 <img style="width:100%" src="{{asset('img/content/'.$pictures[$i]->path)}}">
             @endif
@@ -17,16 +20,17 @@
                 <tr colspan="2">
                     <td>
                         <h2>
-                            <a href="/series/{{$contents[$i]->id}}">{{$contents[$i]->name}}
-                            </a>
+                            <a href="{{route('showseries',['content_id'=>$contents[$i]->id])}}">{{$contents[$i]->name}}</a>
+
+
                         </h2>
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <div style="word-wrap: break-word;">
-                            {{$contents[$i]->description}}
-                        </div>
+                    <td >
+                        <p style="width:100%;word-wrap: break-word;">
+                                {{$contents[$i]->description}}
+                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -60,7 +64,8 @@
         </div>
 
     </div>
-
+    <br>
 @endfor
-
+</div>
+<br> <br> <br>
 @endsection
