@@ -133,16 +133,11 @@ class AdminController extends Controller
     {
 
         $rules=array(
-            'name' => 'required',
-            'duration' => 'integer|min:1',
-            'episodes' => 'integer|min:1'
+            'name' => 'required'
+
         );
         $messages = array(
-            'name.required'=>'Ovo polje je obavezno!',
-            'duration.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
-            'duration.min' => 'Ovo polje mora biti pozitivan ceo broj!',
-            'episodes.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
-            'episodes.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+            'name.required'=>'Ovo polje je obavezno!'
         );
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -151,6 +146,18 @@ class AdminController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        if ((!(ctype_digit($request->episodes)) || (ctype_digit($request->episodes) && ($request->episodes<0))) && $request->episodes!=null){
+            return redirect()->back()
+                ->withErrors(['episodes'=>"Ovo polje mora biti pozitivan ceo broj!"])
+                ->withInput();
+        }
+
+        if ((!ctype_digit($request->duration) || (ctype_digit($request->duration) && $request->duration<0)) && $request->duration!=null){
+            return redirect()->back()
+                ->withErrors(['duration'=>"Ovo polje mora biti pozitivan ceo broj!"])
+                ->withInput();
+        }
+
 
         $tvshow = new Tvshow();
         $content = new Content();
@@ -240,7 +247,7 @@ class AdminController extends Controller
     {
         $content = Content::find($id);
         $tvshow = Tvshow::where('content_id','=',$id)->first();
-        $actor = DB::table('categories')->where('categories.name', '=', $request->actor)->select('categories.*')->get()->first();
+        $actor = DB::table('actors')->join('categories','actors.category_id','=','categories.id')->where('categories.name', '=', $request->actor)->select('categories.*')->get()->first();
         if ($actor != null) {
             if (DB::table('actings')->where('actings.actor_id','=',$actor->id)->where('actings.tvshow_id','=',$id)->select('actings.*')->get()->first()==null) {
                 $acting = new Acting();
@@ -269,7 +276,7 @@ class AdminController extends Controller
     {
         $content = Content::find($id);
         $tvshow = Tvshow::where('content_id','=',$id)->first();
-        $director = DB::table('categories')->where('categories.name', '=', $request->director)->select('categories.*')->get()->first();
+        $director = DB::table('directors')->join('categories','directors.category_id','=','categories.id')->where('categories.name', '=', $request->director)->select('categories.*')->get()->first();
         if ($director != null) {
             if (DB::table('directings')->where('directings.director_id','=',$director->id)->where('directings.tvshow_id','=',$id)->select('directings.*')->get()->first()==null) {
                 $directing = new Directing();
@@ -304,15 +311,12 @@ class AdminController extends Controller
         $rules=array(
             'name' => 'required',
             'numSeason' => 'required|integer|min:1',
-            'episodes' => 'integer|min:1'
         );
         $messages = array(
             'name.required'=>'Ovo polje je obavezno!',
             'numSeason.required' => 'Ovo polje je obavezno!',
             'numSeason.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
-            'numSeason.min' =>'Ovo polje mora biti pozitivan ceo broj!',
-            'episodes.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
-            'episodes.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+            'numSeason.min' =>'Ovo polje mora biti pozitivan ceo broj!'
         );
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -326,9 +330,23 @@ class AdminController extends Controller
                     ]);
         }
 
+        if ((!ctype_digit($request->episodes) || (ctype_digit($request->episodes) && $request->episodes<0)) && $request->episodes!=null){
+            return redirect()->back()
+                ->withErrors(['episodes'=>"Ovo polje mora biti pozitivan ceo broj!"])
+                ->withInput(['id'=>$id, 'trailer'=>$request->trailer, 'name'=>$request->name,
+                    'description'=>$request->description, 'releaseDate'=>$request->releaseDate,
+                    'episodes'=>$request->episodes, 'numSeason'=>$request->numSeason
+
+                ]);
+        }
+
         if (Season::where('tvshow_id','=',$id)->where('season_number','=',$request->numSeason)->get()->first()!=null) {
             return redirect()->back()
-                ->withInput(['id'=> $id])
+                ->withInput(['id'=>$id, 'trailer'=>$request->trailer, 'name'=>$request->name,
+                    'description'=>$request->description, 'releaseDate'=>$request->releaseDate,
+                    'episodes'=>$request->episodes, 'numSeason'=>$request->numSeason
+
+                ])
                 ->withErrors(['numSeason' => "Sezona sa ovim rednim brojem već postoji!"]);
         }
         $season = new Season();
@@ -389,18 +407,14 @@ class AdminController extends Controller
     {
         $rules=array(
             'name' => 'required',
-            'numEpisode' => 'required|integer|min:1',
-            'duration' =>'integer|min:1'
+
         );
         $messages = array(
             'name.required'=>'Ovo polje je obavezno!',
-            'numEpisode.required' => 'Ovo polje je obavezno!',
-            'numEpisode.integer' => 'Ovo polje mora biti pozitivan ceo broj!',
-            'numEpisode.min' => 'Ovo polje mora biti pozitivan ceo broj!',
-            'duration.integer' => 'Ovo polje mora biti pozitivan ceo broj!',
-            'duration.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+
 
         );
+
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
@@ -412,23 +426,39 @@ class AdminController extends Controller
 
                 ]);
         }
+
+        if ((!ctype_digit($request->numEpisode) || (ctype_digit($request->numEpisode) && $request->numEpisode<0)) && $request->numEpisode!=null){
+            return redirect()->back()
+                ->withErrors(['numEpisode'=>"Ovo polje mora biti pozitivan ceo broj!"])
+                ->withInput(['id'=>$id, 'trailer'=>$request->trailer, 'name'=>$request->name,
+                    'description'=>$request->description, 'releaseDate'=>$request->releaseDate,
+                    'episodes'=>$request->episodes, 'numSeason'=>$request->numSeason
+
+                ]);
+        }
+
+        if ((!ctype_digit($request->duration) || (ctype_digit($request->duration) && $request->duration<0)) && $request->duration!=null){
+            return redirect()->back()
+                ->withErrors(['duration'=>"Ovo polje mora biti pozitivan ceo broj!"])
+                ->withInput(['id'=>$id, 'trailer'=>$request->trailer, 'name'=>$request->name,
+                    'description'=>$request->description, 'releaseDate'=>$request->releaseDate,
+                    'episodes'=>$request->episodes, 'numSeason'=>$request->numSeason
+
+                ]);
+        }
+
+
         if (Episode::where('season_id','=',$id)->where('episode_number','=',$request->numEpisode)->get()->first()!=null) {
             return redirect()->back()
-                ->withInput(['id'=> $id])
+                ->withInput(['id'=>$id, 'trailer'=>$request->trailer, 'name'=>$request->name,
+                    'description'=>$request->description, 'releaseDate'=>$request->releaseDate,
+                    'duration'=>$request->duration, 'numEpisode'=>$request->numEpisode
+
+                ])
                 ->withErrors(['numEpisode' => "Epizoda sa ovim rednim brojem već postoji!"]);
         }
 
-        $messages = array(
-          'name.required'=>'Ovo polje je obavezno!',
-          'numEpisode.required'=>'Ovo polje je obavezno!'
-        );
 
-        $validator = Validator::make($request->all(), $rules, $messages);
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput(['id'=>$id]);
-        }
         $episode = new Episode();
         $content = new Content();
         $content->name = $request->name;
