@@ -94,7 +94,7 @@
                 <div>
                     <center><!--Sve ocijenjene serije-->
                         <div class = "row">
-                        @if (count($lastRated) == 0)
+                        @if (count($lastRated) == 0)   
                             <h4>Nemate ocenjenih/modifikovanih serija!</h4>
                         @else
 
