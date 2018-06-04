@@ -57,7 +57,7 @@ class UserController extends Controller
 
     public function rateContent(Content $content,Request $request)
     {
-        $rate = Rating::where('user_id','=',Auth::user()->username)
+        $rate = Rating::where('user_id','=',Auth::user()->id)
             ->where('content_id','=',$content->id)->first();
         $ratingScore = $request->ratedNum;
         $ratingScore = intval($ratingScore);
