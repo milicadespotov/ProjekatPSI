@@ -18,12 +18,6 @@ use App\Category;
 
                 <div class="blog-title">
                     <h1>{{$content->name}}</h1>
-                </div>
-
-            </div>
-            <div class="col-lg-8">
-                <div class="blog-title">
-                    @include('rating.rate')
                     @if(Auth::check() && Auth::user()->is_admin==true)
                         <a href="#myModal3" data-toggle="modal">
                             <input type="submit" value="Obrisi seriju" class="btn btn-transparent">
@@ -31,6 +25,14 @@ use App\Category;
                     @endif
                 </div>
 
+            </div>
+            <div class="col-lg-4">
+                <div class="blog-title">
+                    @include('rating.rate')
+                </div>
+            </div>
+            <div clas="col-lg-4">
+                &nbsp;
             </div>
             <!-- End col-lg-12 -->
         </div>
@@ -71,7 +73,11 @@ use App\Category;
                 <center>
                     @foreach($content->pictures as $picture)
                         @if($picture->main_picture==true)
-                    <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
+<<<<<<< HEAD
+                            <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
+=======
+                    <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:100%;height:auto">
+>>>>>>> 1e87be95b7f3b43af6802bc9efdf0f0959dc4fea
                         @endif
                         @endforeach
                 </center>
@@ -126,6 +132,7 @@ use App\Category;
                             @if($series->length!=null)
                                 {{$series->length}}
                                 @endif
+                            min
                         </td>
                     </tr>
                     <tr>
@@ -201,21 +208,28 @@ use App\Category;
             <div class="col-md-6">
                 <center>
                     <h2>Opis:</h2>
+                    <br>
+                    <br>
                 </center>
                 <!--Opis-->
-                {{$content->description}}
+                <p style="width:100%;word-wrap: break-word;">
+                    {{$content->description}}
+                </p>
 
             </div>
             <div class="col-md-6">
                 <!--Trejler-->
                 <center>
                     <h2>Trejler</h2>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$content->trailer}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     @if(Auth::check() && Auth::user()->is_admin==true)
-                    <a href="#">
-                        <input type="submit" value="Dodaj trejler" class="btn btn-transparent">
-                    </a>
-                        @endif
+                        <a href="#">
+                            <input type="submit" value="Dodaj trejler" class="btn btn-transparent">
+                        </a>
+                    @endif
+                    <br>
+                    <br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$content->trailer}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
                 </center>
 
             </div>
@@ -226,8 +240,17 @@ use App\Category;
             <div class="col-md-12">
                 <center>
                     <h2>Slike</h2>
-                    <br>
+
+                    @if (Auth::check() && Auth::user()->is_admin==true)
+                        <center>
+                            <a href="#">
+                                <input type="submit" value="Dodaj sliku" class="btn btn-transparent">
+                            </a>
+                        </center>
+                    @endif
                 </center>
+                <br>
+                <br>
             </div>
             <!--Galerija-->
             <div class="col-md-12">
@@ -236,18 +259,12 @@ use App\Category;
                     @foreach($content->pictures as $picture)
                         <div class="col-md-3" style="margin-bottom:10px;">
                     <a href="{{ asset('img/img/content/'.$picture->path) }}" data-lightbox="movie">
-                        <img src="{{ asset('img/img/content/'.$picture->path) }}" style="max-width:95%;height:auto;">
+                        <img src="{{ asset('img /'.$picture->path) }}" style="max-width:95%;height:auto;margin-top:15px">
                     </a>
                         </div>
                   @endforeach
 
-                @if (Auth::check() && Auth::user()->is_admin==true)
-                <center>
-                    <a href="#">
-                        <input type="submit" value="Dodaj sliku" class="btn btn-transparent">
-                    </a>
-                </center>
-                    @endif
+
             </div>
         </div>
 

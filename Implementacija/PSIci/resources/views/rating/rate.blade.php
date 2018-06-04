@@ -185,10 +185,21 @@
         });
     });
 </script>
-Broj glasova:&nbsp;{{$content->number_of_rates}}&nbsp;Prosecna ocena:{{$content->rating}} Ocenite:
+&nbsp; <img src="{{ asset('img/star_rating.png') }}" style="width:30px;margin-bottom:5px"> &nbsp; {{$content->rating}}/10 <br>
+Broj glasova:&nbsp;{{$content->number_of_rates}}<br>
 @if (Auth::check())
 
-<form action="/{{$type}}/{{$content->id}}/rate" method="post" id="rateForm">
+<?php
+$route = null;
+if($type=='series')
+    $route = 'rateseries';
+else if($type=='season')
+    $route = 'rateseason';
+else
+    $route = 'rateepisode'
+?>
+
+<form action="{{route($route,['content'=>$content->id])}}" method="post" id="rateForm">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     @csrf
 

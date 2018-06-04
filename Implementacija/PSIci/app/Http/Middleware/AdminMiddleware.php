@@ -17,7 +17,7 @@ class AdminMiddleware
     {
         if (Auth::check() == false) {
 
-            return response()->view('login');
+            return response()->view('auth.login');
         }
         else if (Auth::user()->is_admin == false) {
             return response()->view('home.index');
