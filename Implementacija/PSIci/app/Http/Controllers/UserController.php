@@ -63,7 +63,7 @@ class UserController extends Controller
         $ratingScore = intval($ratingScore);
         if ($ratingScore <= 0 || $ratingScore > 10) return view('home.index');
         if ($rate == null) {
-            $rate = new Rating(['user_id'=>Auth::user()->username,
+            $rate = new Rating(['user_id'=>Auth::user()->id,
                     'content_id'=>$content->id,
                     'rate'=>$ratingScore
                 ]);

@@ -22,6 +22,7 @@ class CreateSeasonsTable extends Migration
            $table->integer('season_number')->unsigned();
            $table->primary('content_id');
            $table->timestamps();
+           $table->unique(['tvshow_id','season_number']);
         });
     }
 
