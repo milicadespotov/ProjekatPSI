@@ -75,7 +75,7 @@
 
                     @foreach($content->pictures as $picture)
                         <?php if($picture->main_picture==true){ $flag=true; ?>
-                            <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:60%;height:auto">
+                            <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:90%;height:auto">
                             <?php } ?>
                     @endforeach
 
