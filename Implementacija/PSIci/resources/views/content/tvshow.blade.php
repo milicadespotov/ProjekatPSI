@@ -70,16 +70,19 @@ use App\Category;
 
             <div class="col-md-5">
                 <!--Glavna slika	-->
-                <center>
+                <center><?php $flag=false; ?>
                     @foreach($content->pictures as $picture)
-                        @if($picture->main_picture==true)
+                        <?php if($picture->main_picture==true){ $flag=true;?>
 
-                            <img src="{{ asset('img/'.$picture->path) }}" style="width:100%;height:auto">
+                             <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:100%;height:auto">
 
-                    <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:100%;height:auto">
-
-                        @endif
+                        <?php }?>
                         @endforeach
+                        <?php if(!$flag) { ?>
+
+                    <img src="{{ asset('img/no_image.png')}}" style="width:100%;height:auto">
+
+                            <?php } ?>
                 </center>
                 <br>
                 <!--Glavna slika serije-->
@@ -201,7 +204,6 @@ use App\Category;
             </div>
 
 
-
         </div>
         <br>
         <div class="row">
@@ -259,7 +261,7 @@ use App\Category;
                     @foreach($content->pictures as $picture)
                         <div class="col-md-3" style="margin-bottom:10px;">
                     <a href="{{ asset('img/img/content/'.$picture->path) }}" data-lightbox="movie">
-                        <img src="{{ asset('img /'.$picture->path) }}" style="max-width:95%;height:auto;margin-top:15px">
+                        <img src="{{ asset('img/img/content/'.$picture->path) }}" style="max-width:95%;height:auto;margin-top:15px">
                     </a>
                         </div>
                   @endforeach

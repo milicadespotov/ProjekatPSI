@@ -71,18 +71,21 @@
                 <div class="row">
                 <!--Glavna slika	-->
                     <div class="col-md-6">
-                <center>
+                <center><?php $flag=false; ?>
                     @if(count($content->pictures)==0)
 
                             <img src="{{ asset('img/no_image.png') }}" style="width:100%;height:auto">
                     @else
                     @foreach($content->pictures as $picture)
-                        @if($picture->main_picture==true)
+                        <?php if($picture->main_picture==true){ $flag=true; ?>
                             <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:100%;height:auto">
-                            @endif
+                            <?php } ?>
                     @endforeach
                     @endif
-                    <!--treba da ide path do glavne slike -->
+                    <?php if(!$flag) { ?>
+                    <img src="{{ asset('img/no_image.png') }}" style="width:100%;height:auto">
+
+                    <?php }?>
 
 
                     @if(Auth::check() && Auth::user()->is_admin==true)
