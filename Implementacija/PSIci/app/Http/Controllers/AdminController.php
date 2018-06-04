@@ -21,6 +21,7 @@ use App\Director;
 use App\Acting;
 use App\Directing;
 use App\Category;
+use App\Genre;
 use App\Season;
 
 class AdminController extends Controller
@@ -617,4 +618,68 @@ class AdminController extends Controller
             File::delete('img/img/content/'.$picture->path);
         }
     }
+
+    public function editSeason(Season $season) {
+        $content = Content::find($season->content_id);
+        $picturePaths = Picture::notMainPictures($season->content_id);
+        $avatarPath = Picture::mainPicture($season->content_id);
+        return response()->view('content.editSeason',compact('avatarPath', 'season','picturePaths','content'));
+    }
+
+    public function changeSeasonData(Request $request, Season $season) {
+        $this->validate(request(), [
+            'name' => 'required|max:30',
+            'description' => 'max:255',
+            'trailer' => 'max:255'
+        ]);
+        if ($request->numOfEpisodes!=null) {
+            //errori
+        }
+        $content = Content::find($season->content_id);
+        if ($request->name!=null) {
+            $content->name = $request->name;
+        }
+        if ($request->description) {
+            $content->description = $request->description;
+        }
+        if ($request->trailer) {
+            $content->trailer = $request->trailer;
+        }
+        if ($request->numOfEpisodes) {
+            $season->number_of_episodes = $request->numOfEpisodes;
+        }
+        $content->update();
+        $season->update();
+        return redirect()->route('season',['id'=>$season->content_id]);
+    }
+    public function prepareCategoriesTVShow($id) {
+
+    }
+    public function editTVShow(Tvshow $tvshow) {
+        $content = Content::find($tvshow->content_id);
+        $picturePaths = Picture::notMainPictures($tvshow->content_id);
+        $avatarPath = Picture::mainPicture($tvshow->content_id);
+
+        //checkbox
+        $checkBoxArr = array();
+        $allGenres = Genre::getGenresForCheckbox($tvshow->content_id);
+        foreach($allGenres as $genre) {
+            $check = TypeOf::checkTVShow($tvshow->content_id,$genre->id);
+            array_push($checkBoxArr,['name'=>$genre->name,'check'=>$check,'id'=>$genre->id]);
+        }
+        return view('content.editSeries',compact('checkBoxArr', 'tvshow','content','picturePaths','avatarPath'));
+    }
+    public function changeGenres(Request $request, Tvshow $tvshow) {
+        TypeOf::deleteGenres($tvshow->content_id);
+        if ($request->has('genre')) {
+            foreach($request->genre as $genre) {
+                $type = new TypeOf();
+                $type->genre_id = $genre;
+                $type->tvshow_id = $tvshow->content_id;
+                $type->save();
+            }
+        }
+        return redirect()->back();
+    }
+
 }

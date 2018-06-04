@@ -15,7 +15,7 @@
                         @if ($avatarPath!=null)
                             <img src="{{ asset('img/img/content/'.$avatarPath->path) }}" style="width:100%">
                         @else
-                            <img src="{{asset('img/img/content/24-27.jpg')}}" style="width:100%">
+                            <img src="{{asset('img/img/content/episode_default.jpg')}}" style="width:100%">
                         @endif
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="name" style = "font-size: 18px" class="col-form-label text-md-right color">Naziv epizode:</label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{$content->name}}">
+                            <input type="text" id="name" name="name" class="form-control" value="{{$content->name}}" required>
                         </div>
                         <div class="form-group">
                             <label for="trailer" style = "font-size: 18px" class="col-form-label text-md-right color">Trejler:</label>
@@ -72,7 +72,7 @@
         <div class="row justify-content-center" style="margin-top:20px;">
             <div class="col-lg-12">
             <div class="form-group">
-                <label for="genre" style = "font-size: 18px" class="col-form-label text-md-right color">Odaberi slike za brisanje:</label>
+                <label style = "font-size: 18px" class="col-form-label text-md-right color">Odaberi slike za brisanje:</label>
                 <form method="post" enctype="multipart/form-data" action="/episode/{{$episode->content_id}}/edit/deletePictures" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                     <div class="row">
                         <?php $i=0; ?>
@@ -99,5 +99,5 @@
             </div>
         </div>
     </div>
-
+</div>
 @endsection

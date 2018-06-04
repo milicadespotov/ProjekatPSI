@@ -152,9 +152,22 @@ Route::get('/search','GuestController@search');
 Route::get('/episode/{episode}/edit','AdminController@editEpisode');
 Route::post('/episode/{episode}/edit/changeData','AdminController@changeEpisodeData');
 
+Route::get('/season/{season}/edit','AdminController@editSeason');
+Route::post('/season/{season}/edit/changeData','AdminController@changeSeasonData');
+
+Route::get('/series/{tvshow}/edit','AdminController@editTVShow');
+Route::post('/series/{tvshow}/edit/changeGenres','AdminController@changeGenres');
+
+
 Route::post('/episode/{content}/edit/changeAvatar','AdminController@changeAvatar');
 Route::post('/episode/{content}/edit/deletePictures','AdminController@deletePictures');
 Route::post('/episode/{content}/edit/addPictures','AdminController@addPictures');
+Route::post('/season/{content}/edit/changeAvatar','AdminController@changeAvatar');
+Route::post('/season/{content}/edit/deletePictures','AdminController@deletePictures');
+Route::post('/season/{content}/edit/addPictures','AdminController@addPictures');
+Route::post('/series/{content}/edit/changeAvatar','AdminController@changeAvatar');
+Route::post('/series/{content}/edit/deletePictures','AdminController@deletePictures');
+Route::post('/series/{content}/edit/addPictures','AdminController@addPictures');
 
 
 

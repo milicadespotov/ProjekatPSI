@@ -18,6 +18,10 @@ class Genre extends Model
             ->select('categories.name')->get();
     }
 
+    public static function getGenresInTVShow($id) {
+        return DB::table('genres');
+    }
+
     public static function getTVShowsSearch($cat, $text) {
         return DB::table('categories')
             ->join('genres','genres.category_id','=','categories.id')
@@ -40,9 +44,16 @@ class Genre extends Model
             ->join('contents','contents.id','=','tvshows.content_id')
             ->where('contents.name','like','%'.$text.'%')
             ->where('categories.name','like','%'.$cat.'%')
-            ->orderby('tvshows.content_id','desc')
+            ->orderby('contents.id','desc')
             ->select('contents.*')
             ->distinct()
+            ->get();
+    }
+
+    public static function getGenresForCheckbox($id) {
+        return DB::table('categories')
+            ->join('genres','categories.id','=','genres.category_id')
+            ->select('categories.name','categories.id')
             ->get();
     }
 }
