@@ -44,7 +44,7 @@ class UserController extends Controller
         }
         Auth::logout();
         DB::table('users')->where('id', '=', $id)->delete();
-        return response()->view('home.index');
+        return redirect()->route('home');
 
     }
 
