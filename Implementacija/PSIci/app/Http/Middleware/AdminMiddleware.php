@@ -20,7 +20,7 @@ class AdminMiddleware
             return response()->view('auth.login');
         }
         else if (Auth::user()->is_admin == false) {
-            return response()->view('home.index');
+            return redirect()->route('home');
         }
         else {
             return $next($request);
