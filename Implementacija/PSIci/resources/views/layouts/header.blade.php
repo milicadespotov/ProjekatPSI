@@ -52,6 +52,9 @@
 
                             <ul class="dropdown-menu">
                                 <li class="dropdown-item">
+                                    <a href="{{route('userProfile')}}"> PROFIL </a>
+                                </li>
+                                <li class="dropdown-item">
                                     <a href="{{route('addseries')}}"> DODAVANJE NOVIH SERIJA </a>
                                 </li>
                                 <li class="dropdown-item">
@@ -77,6 +80,9 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    <li class="dropdown-item">
+                                        <a href="{{route('userProfile')}}"> PROFIL </a>
+                                    </li>
                                     <li class="dropdown-item">
                                         <a href="#myModal" data-toggle="modal"> UKLONI NALOG </a>
                                     </li>
