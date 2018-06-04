@@ -162,8 +162,10 @@ class AdminController extends Controller
         $tvshow = new Tvshow();
         $content = new Content();
         $content->name = $request->name;
+        if ($request->trailer) {
         $trailer = explode('=', $request->trailer);
-        $content->trailer = $trailer[1];
+        $content->trailer = $trailer[1];} else
+            $content->trailer = $request->trailer;
         $content->release_date = $request->releaseDate;
         $content->description = $request->description;
         $content->save();
@@ -353,8 +355,10 @@ class AdminController extends Controller
         $season = new Season();
         $content = new Content();
         $content->name = $request->name;
-        $trailer = explode('=', $request->trailer);
-        $content->trailer = $trailer[1];
+        if ($request->trailer) {
+            $trailer = explode('=', $request->trailer);
+            $content->trailer = $trailer[1];} else
+            $content->trailer = $request->trailer;
         $content->release_date = $request->releaseDate;
         $content->description = $request->description;
         $content->save();
@@ -464,8 +468,10 @@ class AdminController extends Controller
         $episode = new Episode();
         $content = new Content();
         $content->name = $request->name;
-        $trailer = explode('=', $request->trailer);
-        $content->trailer = $trailer[1];
+        if ($request->trailer) {
+            $trailer = explode('=', $request->trailer);
+            $content->trailer = $trailer[1];} else
+            $content->trailer = $request->trailer;
         $content->release_date = $request->releaseDate;
         $content->description = $request->description;
         $content->save();
