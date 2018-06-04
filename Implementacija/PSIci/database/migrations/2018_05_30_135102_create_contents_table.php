@@ -15,7 +15,7 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 30);
+            $table->string('name');
             $table->string('trailer')->nullable();
             $table->timestamp('release_date')->nullable();
             $table->string('description')->nullable();
