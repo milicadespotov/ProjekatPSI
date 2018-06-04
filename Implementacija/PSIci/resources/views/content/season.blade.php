@@ -11,7 +11,7 @@
             <div class="col-lg-4 ">
 
                 <div class="blog-title">
-                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{$season->seriesName()}}-{{$season->season_number}}.{{$content->name}}
+                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;<a href="{{route('showseries',['content_id'=>$season->seriesId()])}}">{{$season->seriesName()}}</a> - {{$season->season_number}}. {{$content->name}}
 
 
 
@@ -49,6 +49,31 @@
                 &nbsp;
             </div>
             <!-- End col-lg-12 -->
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <?php $flag=false; ?>
+
+                @foreach($content->pictures as $picture)
+                    <?php if($picture->main_picture==true){ $flag=true; ?>
+                    <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:80%;height:auto">
+                    <?php } ?>
+                @endforeach
+
+                <?php if(!$flag) { ?>
+                <img src="{{ asset('img/default_content.png') }}" style="width:60%;height:auto">
+
+                <?php }?>
+
+            </div>
+            <div class="col-lg-6">
+                <h2>Opis</h2>
+                <p style="width:100%;word-wrap: break-word;font-size:16px;">
+                    {{$content->description}}
+                </p>
+            </div>
         </div>
         <br>
         <br>

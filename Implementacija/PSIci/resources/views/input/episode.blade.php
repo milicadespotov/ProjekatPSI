@@ -42,7 +42,7 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="releaseDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum izlaska:</label>
-                        <input type="date" name="releaseDate" class="form-control">
+                        <input type="date" name="releaseDate" class="form-control" value="{{ old('releaseDate') }}">
                     </div>
 
                     <div class="form-group">

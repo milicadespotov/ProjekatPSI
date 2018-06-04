@@ -10,11 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('home.index');
+
+Route::get('/',function(){
+    redirect()->route('home');
 });
-*/
+
 //PODELJENO JE PO IMENIMA KOJE SU CIJE RUTE
 // KAKO SE NE BISMO POGUBILI, PISITE SAMO ISPOD SVOJE:
 
@@ -158,7 +158,10 @@ Route::post('/season/{season}/edit/changeData','AdminController@changeSeasonData
 
 Route::get('/series/{tvshow}/edit','AdminController@editTVShow')->name('editseries');
 Route::post('/series/{tvshow}/edit/changeGenres','AdminController@changeGenres');
-
+Route::post('/series/{tvshow}/edit/addActor','AdminController@addEditActor');
+Route::post('/series/{tvshow}/edit/addDirector','AdminController@addEditDirector');
+Route::post('/series/{tvshow}/edit/deleteActors','AdminController@deleteActors');
+Route::post('/series/{tvshow}/edit/deleteDirectors','AdminController@deleteDirectors');
 
 Route::post('/episode/{content}/edit/changeAvatar','AdminController@changeAvatar');
 Route::post('/episode/{content}/edit/deletePictures','AdminController@deletePictures');

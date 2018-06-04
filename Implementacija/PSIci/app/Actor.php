@@ -41,4 +41,12 @@ class Actor extends Model
             ->distinct()
             ->get();
     }
+
+    public static function getActorsNamesIds($id) {
+        return DB::table('actings')
+            ->join('actors','actings.actor_id','=','actors.category_id')
+            ->join('categories','categories.id','=','actors.category_id')
+            ->where('actings.tvshow_id','=',$id)
+            ->select('categories.name','categories.id')->get();
+    }
 }

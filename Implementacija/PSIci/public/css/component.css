@@ -4,6 +4,21 @@
 	color: #8A2BE2 !important;
 }
 
+.info-name
+{
+	font-family: oswald;
+	font-weight: 400;
+	display: inline-block;
+	font-size: 18px;
+}
+
+.info-value
+{
+	font-family: oswald;
+	display: inline-block;
+	font-size: 18px;
+	color: #8A2BE2;
+}
 
 
 .backgroundLogin
@@ -13,8 +28,9 @@
 
 }
 
-
-
+.unbold{
+	font-weight: normal;
+}
 
 .backgroundLoginI
 {
