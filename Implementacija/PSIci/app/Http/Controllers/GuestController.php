@@ -42,7 +42,7 @@ class GuestController extends Controller
 
 
         $type = 'season';
-        $contents = DB::table('contents')->join('episodes','episodes.content_id','=','contents.id')->where('episodes.season_id','=',$id)->select('contents.*')->get();
+        $contents = DB::table('contents')->join('episodes','episodes.content_id','=','contents.id')->where('episodes.season_id','=',$id)->select('contents.*')->orderBy('episodes.episode_number')->get();
 
 
 

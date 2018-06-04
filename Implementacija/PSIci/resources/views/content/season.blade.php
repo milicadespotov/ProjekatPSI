@@ -11,7 +11,7 @@
             <div class="col-lg-4 ">
 
                 <div class="blog-title">
-                    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;<a href="{{route('showseries',['content_id'=>$season->seriesId()])}}">{{$season->seriesName()}}</a> - {{$season->season_number}}. {{$content->name}}
+                    <h1><a href="{{route('showseries',['content_id'=>$season->seriesId()])}}">{{$season->seriesName()}}</a> - {{$season->season_number}}. {{$content->name}}
 
 
 
@@ -41,11 +41,11 @@
 
             </div>
             <div class="col-lg-4">
-
+                    @if (Auth::check() && Auth::user()->is_admin==true)
                     <a href="{{route('editseason',['season'=>$content->id])}}">
                         <input type="submit" value="Izmeni podatke" class="btn btn-transparent">
                     </a>
-
+                    @endif
                 &nbsp;
             </div>
             <!-- End col-lg-12 -->

@@ -33,16 +33,17 @@
 
                     </p>
                     <p>
-                        @if(Auth::check() && Auth::user()->is_admin==false)
+                        @if(Auth::check() && Auth::user()->is_admin==true)
+                            <a href="{{route('addseries')}}">
+                                <input type="submit" value="Dodavanje novih serija" class="btn btn-transparent">
+                            </a>
+                        @endif
+
                         <a href="{{route('watchedepisodes')}}">
                             <input type="submit" value="Odgledano" class="btn btn-transparent">
                         </a>
-                        @endif
-                            @if(Auth::check() && Auth::user()->is_admin==true)
-                                <a href="{{route('addseries')}}">
-                                    <input type="submit" value="Dodavanje novih serija" class="btn btn-transparent">
-                                </a>
-                            @endif
+                        
+
                     </p>
                 </div>
                 <div class="col-md-6">

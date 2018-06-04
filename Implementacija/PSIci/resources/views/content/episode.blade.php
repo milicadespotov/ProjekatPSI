@@ -90,11 +90,11 @@
                             <input type="submit" value="Izmeni informacije" class="btn btn-transparent">
                         </a>
                     @endif
-                    @if(Auth::check() && Auth::user()->is_admin==false)
+
                         <a href="{{route('updatewatched',['id'=>$episode->content_id])}}">
                             <input type="submit" value="Označi kao odgledano" class="btn btn-transparent">
                         </a>
-                    @endif
+
 
                 </center>
                 <br>

@@ -11,7 +11,7 @@ class Season extends Model
 
     protected $primaryKey = 'content_id';
     public function episodes(){
-        return Episode::where('season_id','=', $this->content_id)->get();
+        return Episode::where('season_id','=', $this->content_id)->orderBy('episode_number')->get();
     }
 
     public function watched_seasons(){
