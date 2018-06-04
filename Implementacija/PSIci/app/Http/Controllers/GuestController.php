@@ -93,6 +93,7 @@ class GuestController extends Controller
             }
             default: {
                 $tvshows = Genre::getTVShowsSearch($type, $text);
+
                 $contents = Genre::getContentsSearch($type, $text);
                 break;
             }
