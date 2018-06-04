@@ -27,7 +27,7 @@
                 </li>
 
                 <li>
-                    <a href="#">Najpopularnije</a>
+                    <a href="{{route('mostpopular')}}">Najpopularnije</a>
                 </li>
                 <li>
                     <a href="#">Predstojeće</a>
