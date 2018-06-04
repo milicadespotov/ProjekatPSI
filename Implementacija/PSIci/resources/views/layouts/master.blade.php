@@ -72,7 +72,7 @@
 
 @include ('layouts.header')
 
-<div class="container-fluid demo">
+<div class="container=fluid demo" style="width:100%">
     <div class="row">
         <div class="col-md-12">
 @yield('content')

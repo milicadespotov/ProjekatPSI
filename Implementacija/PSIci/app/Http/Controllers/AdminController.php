@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Comment;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
@@ -131,9 +132,20 @@ class AdminController extends Controller
     public function makeSeries(Request $request)
     {
 
-        $this->validate(request(), [
+        $rules=array(
             'name' => 'required'
-        ]);
+        );
+        $messages = array(
+          'name.required'=>'Ovo polje je obavezno!'
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $tvshow = new Tvshow();
         $content = new Content();
         $content->name = $request->name;
@@ -283,10 +295,22 @@ class AdminController extends Controller
 
     public function makeSeason(Request $request, $id)
     {
-        $this->validate(request(), [
+        $rules=array(
             'name' => 'required',
             'numSeason' => 'required'
-        ]);
+        );
+        $messages = array(
+            'name.required'=>'Ovo polje je obavezno!',
+            'numSeason.required' => 'Ovo polje je obavezno!'
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput(['id'=>$id]);
+        }
+
         if (Season::where('tvshow_id','=',$id)->where('season_number','=',$request->numSeason)->get()->first()!=null) {
             return redirect()->back()
                 ->withInput(['id'=> $id])
@@ -348,14 +372,37 @@ class AdminController extends Controller
 
     public function makeEpisode(Request $request, $id)
     {
-        $this->validate(request(), [
+        $rules=array(
             'name' => 'required',
             'numEpisode' => 'required'
-        ]);
+        );
+        $messages = array(
+            'name.required'=>'Ovo polje je obavezno!',
+            'numEpisode.required' => 'Ovo polje je obavezno!'
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput(['id'=>$id]);
+        }
         if (Episode::where('season_id','=',$id)->where('episode_number','=',$request->numEpisode)->get()->first()!=null) {
             return redirect()->back()
                 ->withInput(['id'=> $id])
                 ->withErrors(['numEpisode' => "Epizoda sa ovim rednim brojem već postoji!"]);
+        }
+
+        $messages = array(
+          'name.required'=>'Ovo polje je obavezno!',
+          'numEpisode.required'=>'Ovo polje je obavezno!'
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput(['id'=>$id]);
         }
         $episode = new Episode();
         $content = new Content();

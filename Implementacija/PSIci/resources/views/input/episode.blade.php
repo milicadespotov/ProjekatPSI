@@ -25,7 +25,12 @@
                     </div>
                     <div class="form-group">
                         <label for="name" style = "font-size: 18px" class="col-form-label text-md-right color">Ime epizode:</label>
-                        <input type="text" name="name" class="form-control">
+                        <input type="text" name="name" class="form-control" style = "{{$errors->has('name') ? 'border-color: pink' : ''}}">
+                        @if ($errors->has('name'))
+                            <span class="invalid-feedback" style="color:pink">
+                                        {{ $errors->first('name') }}
+                                    </span>
+                        @endif
                     </div>
 
                     <div class="form-group">
