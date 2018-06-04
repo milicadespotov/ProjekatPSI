@@ -26,7 +26,7 @@ class EpisodeController extends Controller
     public function comment(Request $request){
 
             $comment  = new Comment;
-            $comment->user_id = Auth::user()->username;
+            $comment->user_id = Auth::user()->id;
             $comment->episode_id = Input::get('episode_id');
             $comment->description = Input::get('comment');
 
