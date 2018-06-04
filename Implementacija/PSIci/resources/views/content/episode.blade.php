@@ -86,7 +86,7 @@
 
 
                     @if(Auth::check() && Auth::user()->is_admin==true)
-                        <a href="#">
+                        <a href="{{route('editepisode',['episode'=>$episode->content_id])}}">
                             <input type="submit" value="Izmeni informacije" class="btn btn-transparent">
                         </a>
                     @endif

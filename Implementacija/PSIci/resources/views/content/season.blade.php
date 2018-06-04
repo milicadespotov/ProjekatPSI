@@ -42,6 +42,10 @@
             </div>
             <div class="col-lg-4">
 
+                    <a href="{{route('editseason',['season'=>$content->id])}}">
+                        <input type="submit" value="Izmeni podatke" class="btn btn-transparent">
+                    </a>
+
                 &nbsp;
             </div>
             <!-- End col-lg-12 -->

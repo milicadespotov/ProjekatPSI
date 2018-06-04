@@ -22,7 +22,7 @@
         <!-- main nav -->
         <nav class="collapse navbar-collapse navbar-right" role="Navigation">
             <ul id="nav" class="nav navbar-nav">
-                <li class="current">
+                <li >
                     <a href="{{route('home')}}">Početna</a>
                 </li>
 
