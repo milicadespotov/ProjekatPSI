@@ -80,7 +80,7 @@ class GuestController extends Controller
         if (Auth::check()) {
             $watched = DB::table('watched_episodes')->where('episode_id', '=', $id)->where('user_id', '=', Auth::user()->id)->select('episode_id')->get();
         }
-        if (count($watched) != 0)
+        if (count($isWatched) != 0)
         {
             $isWatched = 1;
         }
