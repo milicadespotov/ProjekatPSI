@@ -10,6 +10,7 @@
 namespace App\Http\Controllers;
 use App\Comment;
 
+use App\WatchedSeason;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
@@ -103,6 +104,25 @@ class EpisodeController extends Controller
 
         $watchedepisode->save();
 
+        //EPIZODA KOJA JE ODGLEDANA
+        $episode = Episode::find($episode_id);
+
+        $episodes = DB::table('episodes')
+            ->where('season_id','=',$watchedepisode->season_id)
+            ->get();
+
+        $watchedepisodes = DB::table('episodes')
+            ->join('watched_episodes','episodes.content_id','=','watched_episodes.episode_id')
+            ->where('watched_episodes.user_id','=',Auth::user()->id)
+            ->where('episodes.season_id','=',$watchedepisode->season_id)
+            ->get();
+
+        if(count($episodes)==count($watchedepisodes)){
+            $watchedSeason = new WatchedSeason();
+            $watchedSeason->user_id = Auth::user()->id;
+            $watchedSeason->season_id = $episode->season_id;
+            $watchedSeason->save();
+        }
 
         //PROVJERITI DA LI SU ODGLEDANE SVE EPIZODE TE SEZONE I UPDATE U SEZONU!!!
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
