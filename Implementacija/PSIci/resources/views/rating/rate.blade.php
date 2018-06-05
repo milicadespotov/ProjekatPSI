@@ -11,7 +11,6 @@
         <?php
             if ($content->currentRate()==null) echo 0;
             else echo $content->currentRate()->rate;
-
         ?>;
         if (startRate==0) {
             for (i=1;i<=10;i++)

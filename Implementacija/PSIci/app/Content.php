@@ -60,7 +60,7 @@ class Content extends Model
     }
 
     public function currentRate(){
-        $rate = Rating::where('user_id','=',Auth::user()->id)->where('content_id','=',$this->id);
+        $rate = Rating::where('user_id','=',Auth::user()->username)->where('content_id','=',$this->id);
         $rate = $rate->first();
 
         return $rate;

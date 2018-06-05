@@ -62,13 +62,13 @@ class UserController extends Controller
         ]);
         if (is_numeric($request->ratedNum)==false)
             return route()->back();
-        $rate = Rating::where('user_id','=',Auth::user()->id)
+        $rate = Rating::where('user_id','=',Auth::user()->username)
             ->where('content_id','=',$content->id)->first();
         $ratingScore = $request->ratedNum;
         $ratingScore = intval($ratingScore);
         if ($ratingScore <= 0 || $ratingScore > 10) return view('home.index');
         if ($rate == null) {
-            $rate = new Rating(['user_id'=>Auth::user()->id,
+            $rate = new Rating(['user_id'=>Auth::user()->username,
                     'content_id'=>$content->id,
                     'rate'=>$ratingScore
                 ]);
@@ -90,7 +90,6 @@ class UserController extends Controller
                     'updated_at'=>(new \Carbon\Carbon())::now()]);
 
         }
-
         return redirect()->back();
     }
 
