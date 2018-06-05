@@ -170,7 +170,7 @@ use App\Category;
 
                     @for($i=0;$i<count($seasons);$i++)
                         <tr>
-                            <td style="width:30%"><a href="/season/{{$contents[$i]->id}}">{{$contents[$i]->name}}</a></td>
+                            <td style="width:30%"><a href="{{route('season',['id'=>$contents[$i]->id])}}">{{$contents[$i]->name}}</a></td>
                             <td style="padding-top:16px">
                                 @if(Auth::check())
                                     <div class="progress">
