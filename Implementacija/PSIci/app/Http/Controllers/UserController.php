@@ -113,7 +113,7 @@ class UserController extends Controller
             if(Auth::check() && Auth::user()->is_admin==false){
             $lastRated = DB::table('tvshows')
                 ->join('ratings', 'tvshows.content_id', '=', 'ratings.content_id')
-                ->where('ratings.user_id','=',Auth::user()->username)
+                ->where('ratings.user_id','=',Auth::user()->id)
                 ->select('tvshows.*')
                 ->orderBy('ratings.updated_at', 'asc')
                 ->limit(3)
@@ -147,7 +147,7 @@ class UserController extends Controller
             if(Auth::check() && Auth::user()->is_admin==false){
             $lastWatched = DB::table('episodes')
                 ->join('watched_episodes', 'episodes.content_id', '=', 'watched_episodes.episode_id')
-                ->where('watched_episodes.user_id','=',Auth::user()->username)
+                ->where('watched_episodes.user_id','=',Auth::user()->id)
                 ->select('episodes.*')
                 ->orderBy('watched_episodes.created_at', 'asc')
                 ->limit(3)
