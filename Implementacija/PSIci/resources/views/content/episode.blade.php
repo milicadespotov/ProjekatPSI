@@ -132,7 +132,10 @@
                                                     <!--Ime korisnika-->
                                                     <cite class="pull-left">
                                                         <!-- DODATI LINK KA PROFILU KORISNIKA -->
-                                                        <a href="#">{{ $comment->user_id}}</a>
+                                                        <a href="#">
+                                                            @php  $user = App\User::find($comment->user_id)  @endphp
+                                                            {{$user->username}}
+                                                        </a>
                                                     </cite>
                                                     @if(Auth::check() && Auth::user()->is_admin==true)
 
@@ -140,7 +143,7 @@
                                                         <a href="{{ route('updatespoiler',['id'=>$comment->id]) }}" class="replay pull-right">Sadrzi spojlere</a>
                                                     @endif
                                                 <!-- PRIAKZI MU KOMENTAR AKO JE ON NJEGOV KREATOR-->
-                                                    @if(Auth::check() && Auth::user()->is_admin==false && Auth::user()->username==$comment->user_id)
+                                                    @if(Auth::check() && Auth::user()->is_admin==false && Auth::user()->id==$comment->user_id)
 
                                                         <a href="{{ route('deletecomment',['id'=>$comment->id]) }}" class="replay pull-right">Ukloni komentar</a>
                                                     @endif
@@ -169,8 +172,11 @@
                                                 <div class="author-comment">
                                                     <!--Ime korisnika-->
                                                     <cite class="pull-left">
-                                                        <!-- DODATI LINK KA PROFILU KORISNIKA -->
-                                                        <a href="#">{{ $comment->user_id}}</a>
+
+                                                        <a href="#">
+                                                            @php  $user = App\User::find($comment->user_id) @endphp
+                                                            {{$user->username}}
+                                                        </a>
                                                     </cite>
                                                     @if(Auth::check() && Auth::user()->is_admin==true)
 
@@ -178,28 +184,34 @@
                                                         <br>
                                                         <a href="{{ route('updatespoilerremove',['id'=>$comment->id]) }}" class="replay pull-right">Ne sadrzi spojlere</a>
                                                         <br>
-                                                        <a href="#{{$comment->id}}" data-toggle="collapse" class="replay pull-right">Prikazi komentar</a>
+                                                        <a href="#{{$comment->id}}{{$comment->user_id}}" data-toggle="collapse" class="replay pull-right">Prikazi komentar</a>
                                                     @endif
                                                 <!-- PRIAKZI MU KOMENTAR AKO JE ON NJEGOV KREATOR-->
-                                                    @if(Auth::check() && Auth::user()->is_admin==false && Auth::user()->username==$comment->user_id)
+                                                    @if(Auth::check() && Auth::user()->is_admin==false && Auth::user()->id==$comment->user_id)
 
                                                         <a href="{{ route('deletecomment',['id'=>$comment->id]) }}" class="replay pull-right">Ukloni komentar</a>
                                                         <br>
 
-                                                        <a href="#{{$comment->id}}" data-toggle="collapse" class="replay pull-right">Spoiler! Prikazi komentar</a>
-                                                    @endif
 
+                                                    @endif
+                                                    @if(Auth::check() && Auth::user()->is_admin==false)
+                                                        <a href="#{{$comment->id}}{{$comment->user_id}}" data-toggle="collapse" class="replay pull-right">Spoiler! Prikazi komentar</a>
+                                                    @endif
                                                     <div style="clear:both"></div>
                                                     <div class="comment-meta">
                                                         <!--Datum komentara-->
                                                         <i class="fa fa-calendar"></i> {{$comment->created_at->format('m/d/Y')}}
                                                     </div>
+                                                    <div class="comment-content"  >
+
+                                                        <p class="collapse" id="{{$comment->id}}{{$comment->user_id}}"  style="width:100%;word-wrap: break-word;">
+                                                            {{$comment->description}}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                                <div class="comment-content">
-                                                    <p id="{{$comment->id}}" class="collapse" style="width:100%;word-wrap: break-word;">
-                                                        {{$comment->description}}
-                                                    </p>
-                                                </div>
+
+
+
                                             </div>
                                             <br>
 
