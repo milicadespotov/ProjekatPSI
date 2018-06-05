@@ -53,4 +53,6 @@ class User extends Authenticatable
     public function ratings(){
         return DB::table('ratings')->where('ratings.user_id','=',$this->id)->select('ratings.*')->get();
     }
+
+
 }

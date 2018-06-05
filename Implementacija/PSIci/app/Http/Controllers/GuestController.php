@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\WatchedEpisode;
 use Illuminate\Http\Request;
 use App\Comment;
 use Illuminate\Support\Facades\Input;
@@ -75,7 +76,17 @@ class GuestController extends Controller
 
         $numcomments = count($comments);
         $type = 'episode';
-        return response()->view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type','pictures','numcomments']));
+        $isWatched = null;
+        if (Auth::check()) {
+            $watched = DB::table('watched_episodes')->where('episode_id', '=', $id)->where('user_id', '=', Auth::user()->id)->select('episode_id')->get();
+        }
+        if (count($watched) != 0)
+        {
+            $isWatched = 1;
+        }
+        //dd($isWatched);
+
+        return response()->view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type','pictures','numcomments','isWatched']));
     }
 
     public function search(Request $request) {

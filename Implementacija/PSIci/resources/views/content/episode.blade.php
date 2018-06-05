@@ -90,11 +90,25 @@
                             <input type="submit" value="Izmeni informacije" class="btn btn-transparent">
                         </a>
                     @endif
+                    @if (Auth::check())
+                            @if ($isWatched == null)
 
-                        <a href="{{route('updatewatched',['id'=>$episode->content_id])}}">
-                            <input type="submit" value="Označi kao odgledano" class="btn btn-transparent">
-                        </a>
+                                <a href="{{route('updatewatched',['id'=>$episode->content_id])}}">
+                                    <img src = "{{asset('img/check.png')}}" style = "width: 100px; height: auto">
+                                 </a>
 
+                            @else
+
+
+                                <a href="{{route('updatewatched',['id'=>$episode->content_id])}}">
+                                    <img  class = "img-fluid" src = "{{asset('img/w.png')}}" style = "width: 50px; height:auto">
+                                </a>
+
+                            @endif
+
+
+
+                    @endif
 
                 </center>
                 <br>
