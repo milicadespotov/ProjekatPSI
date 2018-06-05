@@ -185,8 +185,13 @@
         });
     });
 </script>
-&nbsp; <img src="{{ asset('img/star_rating.png') }}" style="width:30px;margin-bottom:5px"> &nbsp; {{$content->rating}}/10 <br>
-Broj glasova:&nbsp;{{$content->number_of_rates}}<br>
+&nbsp; <table>
+    <tr><td rowspan="2"><img src="{{ asset('img/star_rating.png') }}" style="width:30px;margin-bottom:5px"></td>
+    <td><center>{{$content->rating}}/10 </center></td>
+    </tr> &nbsp;
+    <tr>
+    <td><center>Broj glasova: {{$content->number_of_rates}}</center></td></tr>
+</table>
 @if (Auth::check())
 
 <?php
@@ -200,13 +205,7 @@ else
 ?>
 
 <form action="{{route($route,['content'=>$content->id])}}" method="post" id="rateForm">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    @csrf
 
-<form action="{{$type}}/{{$content->id}}/rate" method="post" id="rateForm">
-    {{ csrf_field() }}
-
-<form action="/{{$type}}/{{$content->id}}/rate" method="post" id="rateForm">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     @csrf
     <div id="stars_data">

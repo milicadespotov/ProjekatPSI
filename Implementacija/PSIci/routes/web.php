@@ -151,27 +151,28 @@ Route::post('/episode/{content}/rate','UserController@rateContent')->name('ratee
 Route::get('/search','GuestController@search')->name('search');
 
 Route::get('/episode/{episode}/edit','AdminController@editEpisode')->name('editepisode');
-Route::post('/episode/{episode}/edit/changeData','AdminController@changeEpisodeData');
+Route::post('/episode/{episode}/edit/changeData','AdminController@changeEpisodeData')->name('change_episode');
 
 Route::get('/season/{season}/edit','AdminController@editSeason')->name('editseason');
-Route::post('/season/{season}/edit/changeData','AdminController@changeSeasonData');
+Route::post('/season/{season}/edit/changeData','AdminController@changeSeasonData')->name('change_season');
 
 Route::get('/series/{tvshow}/edit','AdminController@editTVShow')->name('editseries');
-Route::post('/series/{tvshow}/edit/changeGenres','AdminController@changeGenres');
-Route::post('/series/{tvshow}/edit/addActor','AdminController@addEditActor');
-Route::post('/series/{tvshow}/edit/addDirector','AdminController@addEditDirector');
-Route::post('/series/{tvshow}/edit/deleteActors','AdminController@deleteActors');
-Route::post('/series/{tvshow}/edit/deleteDirectors','AdminController@deleteDirectors');
+Route::post('/series/{tvshow}/edit/changeData','AdminController@changeTvshowData')->name('change_tvshow');
+Route::post('/series/{tvshow}/edit/changeGenres','AdminController@changeGenres')->name('tvshow_genre');
+Route::post('/series/{tvshow}/edit/addActor','AdminController@addEditActor')->name('tvshow_actor_add');
+Route::post('/series/{tvshow}/edit/addDirector','AdminController@addEditDirector')->name('tvshow_director_add');
+Route::post('/series/{tvshow}/edit/deleteActors','AdminController@deleteActors')->name('tvshow_actor_delete');
+Route::post('/series/{tvshow}/edit/deleteDirectors','AdminController@deleteDirectors')->name('tvshow_director_delete');
 
-Route::post('/episode/{content}/edit/changeAvatar','AdminController@changeAvatar');
-Route::post('/episode/{content}/edit/deletePictures','AdminController@deletePictures');
-Route::post('/episode/{content}/edit/addPictures','AdminController@addPictures');
-Route::post('/season/{content}/edit/changeAvatar','AdminController@changeAvatar');
-Route::post('/season/{content}/edit/deletePictures','AdminController@deletePictures');
-Route::post('/season/{content}/edit/addPictures','AdminController@addPictures');
-Route::post('/series/{content}/edit/changeAvatar','AdminController@changeAvatar');
-Route::post('/series/{content}/edit/deletePictures','AdminController@deletePictures');
-Route::post('/series/{content}/edit/addPictures','AdminController@addPictures');
+Route::post('/episode/{content}/edit/changeAvatar','AdminController@changeAvatar')->name('avatar_episode');
+Route::post('/episode/{content}/edit/deletePictures','AdminController@deletePictures')->name('delete_pic_episode');
+Route::post('/episode/{content}/edit/addPictures','AdminController@addPictures')->name('add_pic_episode');
+Route::post('/season/{content}/edit/changeAvatar','AdminController@changeAvatar')->name('avatar_season');
+Route::post('/season/{content}/edit/deletePictures','AdminController@deletePictures')->name('delete_pic_season');
+Route::post('/season/{content}/edit/addPictures','AdminController@addPictures')->name('add_pic_season');
+Route::post('/series/{content}/edit/changeAvatar','AdminController@changeAvatar')->name('avatar_tvshow');
+Route::post('/series/{content}/edit/deletePictures','AdminController@deletePictures')->name('add_pic_tvshow');
+Route::post('/series/{content}/edit/addPictures','AdminController@addPictures')->name('delete_pic_tvshow');
 
 
 
