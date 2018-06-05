@@ -122,7 +122,7 @@ class UserController extends Controller
                 $lastRated = DB::table('tvshows')
                     ->join('contents','contents.id','=','tvshows.content_id')
                     ->select('tvshows.*')
-                    ->orderBy('contents.updated_at', 'asc')
+                    ->orderBy('contents.updated_at', 'desc')
                     ->limit(3)
                     ->get();
             }
