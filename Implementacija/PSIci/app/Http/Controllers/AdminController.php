@@ -583,7 +583,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
     public function deletePictures(Request $request, Content $content){
-        $this->validate(request(),[
+        /*$this->validate(request(),[
             'paths'=>'required'
         ]);
 
@@ -594,7 +594,7 @@ class AdminController extends Controller
             File::delete('img\img\content\\'.$path);
         }
         $content->update();
-        return redirect()->back();
+        return redirect()->back();*/
     }
 
     public function addPictures(Request $request, Content $content) {

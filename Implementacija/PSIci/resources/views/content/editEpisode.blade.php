@@ -42,6 +42,9 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
+                    <div class="form-group">
+                        <a href="{{route('showepisode',['id' => $content->id])}}"><center><button type="button" class="btn btn-transparent" value="">Vrati se na epizodu</button></center></a>
+                    </div>
                     <form enctype="multipart/form-data" method="post" action="{{route('change_episode',['episode' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @csrf
