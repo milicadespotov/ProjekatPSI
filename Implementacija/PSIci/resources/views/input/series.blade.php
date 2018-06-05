@@ -77,7 +77,7 @@
 
                         <div class="form-group">
                            <label for="description" style = "font-size: 18px" class="col-form-label text-md-right color">Kratak opis:</label>
-                            <textarea value="{{ old('decription') }}" name="description" class="form-control" id="description"></textarea>
+                            <textarea name="description" class="form-control" id="description">{{ old('description') }}</textarea>
                         </div>
 
             </div>
