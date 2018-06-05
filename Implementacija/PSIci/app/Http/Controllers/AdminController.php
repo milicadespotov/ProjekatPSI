@@ -168,6 +168,15 @@ class AdminController extends Controller
             $content->trailer = $request->trailer;
         $content->release_date = $request->releaseDate;
         $content->description = $request->description;
+        if (Input::has('mainImage'))
+        {
+            $content->number_of_pictures++;
+        }
+        if ($request->pictures) {
+            foreach ($request->file('pictures') as $file) {
+                $content->number_of_pictures++;
+            }
+        }
         $content->save();
         $tvshow->content_id = $content->id;
         $tvshow->country = $request->country;
@@ -361,6 +370,15 @@ class AdminController extends Controller
             $content->trailer = $request->trailer;
         $content->release_date = $request->releaseDate;
         $content->description = $request->description;
+        if (Input::has('mainImage'))
+        {
+            $content->number_of_pictures++;
+        }
+        if ($request->pictures) {
+            foreach ($request->file('pictures') as $file) {
+                $content->number_of_pictures++;
+            }
+        }
         $content->save();
         $season->content_id = $content->id;
         $season->tvshow_id = $id;
@@ -474,6 +492,15 @@ class AdminController extends Controller
             $content->trailer = $request->trailer;
         $content->release_date = $request->releaseDate;
         $content->description = $request->description;
+        if (Input::has('mainImage'))
+        {
+            $content->number_of_pictures++;
+        }
+        if ($request->pictures) {
+            foreach ($request->file('pictures') as $file) {
+                $content->number_of_pictures++;
+            }
+        }
         $content->save();
         $episode->content_id = $content->id;
         $episode->season_id = $id;
@@ -561,7 +588,7 @@ class AdminController extends Controller
         ]);
 
         foreach($request->paths as $path) {
-            DB::table('pictures')
+            $content->number_of_pictures--;
                 ->where('pictures.path','=',$path)
                 ->delete();
             File::delete('img\img\content\\'.$path);
@@ -575,6 +602,7 @@ class AdminController extends Controller
             'pictures'=>'required'
         ]);
         foreach ($request->file('pictures') as $file) {
+            $content->number_of_pictures++;
             $picture = new Picture();
             $picture->path = '1';
             $picture->content_id = $content->id;
