@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="container">
+  <div class="container">
         <br>
         <div class="row">
             <div class="col-md-12 ">
@@ -26,8 +26,8 @@
                     <div class="post-thumb" >
                         <a href="#">
                             <!-- PROVJERITI U KOM FOLDERU JE SLIKA I PROMIJENITI PUTANJU -->
-                            <a href=<?php $path = 'img/'.$episode->path; echo $path; ?> data-lightbox="movie">
-                            <img src=<?php $path = 'img/'.$episode->path; echo $path; ?>  style="width:400px;height:auto" class="img-responsive">
+                            <a href=<?php $path = 'img/img/content/'.$episode->path; echo $path; ?> data-lightbox="movie">
+                            <img src=<?php $path = 'img/img/content/'.$episode->path; echo $path; ?>  style="width:400px;height:auto" class="img-responsive">
                             </a>
                         </a>
                     </div>
@@ -78,6 +78,6 @@
                 </center>
             </div>
         </div>
-    </div>
+  </div>
 
 @endsection

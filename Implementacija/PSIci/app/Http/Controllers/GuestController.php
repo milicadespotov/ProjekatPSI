@@ -42,7 +42,15 @@ class GuestController extends Controller
 
 
         $type = 'season';
-        $contents = DB::table('contents')->join('episodes','episodes.content_id','=','contents.id')->where('episodes.season_id','=',$id)->select('contents.*')->get();
+        $contents = DB::table('contents')->join('episodes','episodes.content_id','=','contents.id')->where('episodes.season_id','=',$id)->select('contents.*')->orderBy('episodes.episode_number')->get();
+
+
+
+
+        //dd($contents);
+        return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
+
+          return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
 
 
           return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));

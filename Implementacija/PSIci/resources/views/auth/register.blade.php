@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class = "backgroundLoginI">
-        <div class="container">
+    <div class = "backgroundLoginI" style="width:100%">
+        <div class="container-fluid" style="width:100%">
 
 
 

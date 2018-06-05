@@ -10,11 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('home.index');
+
+Route::get('/',function(){
+    redirect()->route('home');
 });
-*/
+
 //PODELJENO JE PO IMENIMA KOJE SU CIJE RUTE
 // KAKO SE NE BISMO POGUBILI, PISITE SAMO ISPOD SVOJE:
 
@@ -191,6 +191,9 @@ Route::post('/addComment','EpisodeController@comment')->name('addcomment');
 Route::get('/deleteComment/{id}','EpisodeController@deleteComment')->name('deletecomment');
 Route::get('/updateInfo','UserController@updateInfo')->name('infoupdate');
 Route::post('/postUpdateInfo','UserController@postUpdateInfo')->name('postinfoupdate');
+
+Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
+Route::get('/watchedEpisodes','EpisodeController@watched')->name('watchedepisodes');
 });
 
 
@@ -206,8 +209,7 @@ Route::group(['middleware' => 'AdminMiddleware'], function()
 
 Route::group(['middleware' => 'OnlyUserMiddleware'], function ()
 {
-    Route::get('/updateWatched/{id}','EpisodeController@updateWatched')->name('updatewatched');
-    Route::get('/watchedEpisodes','EpisodeController@watched')->name('watchedepisodes');
+
 });
 // END FILIP
 

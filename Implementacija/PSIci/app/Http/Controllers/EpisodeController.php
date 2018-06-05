@@ -26,7 +26,7 @@ class EpisodeController extends Controller
     public function comment(Request $request){
 
             $comment  = new Comment;
-            $comment->user_id = Auth::user()->username;
+            $comment->user_id = Auth::user()->id;
             $comment->episode_id = Input::get('episode_id');
             $comment->description = Input::get('comment');
 
@@ -88,7 +88,7 @@ class EpisodeController extends Controller
 
         //provjera da li je vec odgledao seriju
         //dovlacenje odgovarajuceg record-a
-        $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->username)->where('episode_id',$episode_id)->first();
+        $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode_id)->first();
 
 
 
@@ -98,7 +98,7 @@ class EpisodeController extends Controller
 
 
         $watchedepisode = new WatchedEpisode();
-        $watchedepisode->user_id = Auth::user()->username;
+        $watchedepisode->user_id = Auth::user()->id;
         $watchedepisode->episode_id = $episode_id;
 
         $watchedepisode->save();

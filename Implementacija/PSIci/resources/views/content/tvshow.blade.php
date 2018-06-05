@@ -174,7 +174,11 @@ use App\Category;
                             <td style="padding-top:16px">
                                 @if(Auth::check())
                                     <div class="progress">
+                                        @if ($seasons[$i]->number_of_episodes == 0 || $seasons[$i]->number_of_episodes==null)
+                                            <div class="progress-bar" style="width:0%"><font style="color:#2B2C30">0%</font></div>
+                                        @else
                                         <div class="progress-bar" style="width:{{$seasons[$i]->watchedPercentage()/$seasons[$i]->number_of_episodes*100}}%"><font style="color:#2B2C30">{{$seasons[$i]->watchedPercentage()/$seasons[$i]->number_of_episodes*100}}%</font></div>
+                                    @endif
                                     </div>
                                 @else
                                     <div class="progress">
@@ -184,9 +188,15 @@ use App\Category;
                             </td>
                             <td style="width:15%;padding-left:5px">
                                 @if(Auth::check())
-                                    {{ $seasons[$i]->watchedPercentage()}}/{{$seasons[$i]->number_of_episodes}}
+                                    {{ $seasons[$i]->watchedPercentage()}}/@if ($seasons[$i]->number_of_episodes ==0 || $seasons[$i]->number_of_episodes==null)0
+                                    @else
+                                        {{$seasons[$i]->number_of_episodes}}
+                                    @endif
                                 @else
+                                    @if ($seasons[$i]->number_of_episodes ==0 || $seasons[$i]->number_of_episodes==null)0/0
+                                    @else
                                     0/{{$seasons[$i]->number_of_episodes}}
+                                        @endif
                                 @endif
                             </td>
                         </tr>
