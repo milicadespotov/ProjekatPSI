@@ -62,13 +62,13 @@ class UserController extends Controller
         ]);
         if (is_numeric($request->ratedNum)==false)
             return route()->back();
-        $rate = Rating::where('user_id','=',Auth::user()->username)
+        $rate = Rating::where('user_id','=',Auth::user()->id)
             ->where('content_id','=',$content->id)->first();
         $ratingScore = $request->ratedNum;
         $ratingScore = intval($ratingScore);
         if ($ratingScore <= 0 || $ratingScore > 10) return view('home.index');
         if ($rate == null) {
-            $rate = new Rating(['user_id'=>Auth::user()->username,
+            $rate = new Rating(['user_id'=>Auth::user()->id,
                     'content_id'=>$content->id,
                     'rate'=>$ratingScore
                 ]);
@@ -84,7 +84,7 @@ class UserController extends Controller
             $rate->rate = $ratingScore;
             $content->update();
             DB::table('ratings')
-                ->where('user_id','=',Auth::user()->username)
+                ->where('user_id','=',Auth::user()->id)
                 ->where('content_id','=',$content->id)
                 ->update(['ratings.rate'=>$ratingScore,
                     'updated_at'=>(new \Carbon\Carbon())::now()]);
