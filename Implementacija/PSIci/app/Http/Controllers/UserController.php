@@ -57,6 +57,11 @@ class UserController extends Controller
 
     public function rateContent(Content $content,Request $request)
     {
+        $this->validate(request(), [
+            'ratedNum' => 'required'
+        ]);
+        if (is_numeric($request->ratedNum)==false)
+            return route()->back();
         $rate = Rating::where('user_id','=',Auth::user()->id)
             ->where('content_id','=',$content->id)->first();
         $ratingScore = $request->ratedNum;

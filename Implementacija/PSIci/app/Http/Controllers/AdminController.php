@@ -553,28 +553,45 @@ class AdminController extends Controller
 
     public function changeEpisodeData(Request $request, Episode $episode)
     {
-        $this->validate(request(), [
-            'name' => 'required|max:30',
-            'description' => 'max:255',
-            'trailer' => 'max:255'
-        ]);
-        if ($request->duration != null && is_numeric($request->duration) == false)
-            return redirect()->back();
+        $rules=array(
+            'name' => 'required',
+            'numEpisode' => 'required|integer|min:1',
+            'duration' =>'integer|min:1'
+        );
+        $messages = array(
+            'name.required'=>'Ovo polje je obavezno!',
+            'numEpisode.required' => 'Ovo polje je obavezno!',
+            'numEpisode.integer' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'numEpisode.min' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'duration.integer' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'duration.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         $content = Content::find($episode->content_id);
         if ($request->name != null) {
             $content->name = $request->name;
         }
         if ($request->trailer != null) {
-            $content->name = $request->trailer;
+            $content->trailer = $request->trailer;
         }
         if ($request->description != null) {
             $content->description = $request->description;
         }
-        if ($request->duration == null) {
+        if ($request->duration != null) {
             $episode->length = intval($request->duration);
         }
-        if ($request->releaseDate) {
+        if ($request->releaseDate!=null) {
             $content->release_date = $request->releaseDate;
+        }
+        if ($request->numEpisode!=null) {
+            $episode->episode_number=$request->numEpisode;
         }
         $episode->update();
         $content->update();
@@ -710,26 +727,44 @@ class AdminController extends Controller
     }
 
     public function changeSeasonData(Request $request, Season $season) {
-        $this->validate(request(), [
-            'name' => 'required|max:30',
-            'description' => 'max:255',
-            'trailer' => 'max:255'
-        ]);
-        if ($request->numOfEpisodes!=null) {
-            //errori
+        $rules=array(
+            'name' => 'required',
+            'numSeason' => 'required|integer|min:1',
+            'episodes' => 'integer|min:1'
+        );
+        $messages = array(
+            'name.required'=>'Ovo polje je obavezno!',
+            'numSeason.required' => 'Ovo polje je obavezno!',
+            'numSeason.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'numSeason.min' =>'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+        );
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }
         $content = Content::find($season->content_id);
         if ($request->name!=null) {
             $content->name = $request->name;
         }
-        if ($request->description) {
+        if ($request->description!=null) {
             $content->description = $request->description;
         }
-        if ($request->trailer) {
+        if ($request->trailer!=null) {
             $content->trailer = $request->trailer;
         }
-        if ($request->numOfEpisodes) {
-            $season->number_of_episodes = $request->numOfEpisodes;
+        if ($request->releaseDate!=null) {
+            $content->release_date = $request->releaseDate;
+        }
+        if ($request->episodes!=null) {
+            $season->number_of_episodes = $request->episodes;
+        }
+        if ($request->numSeason!=null) {
+            $season->season_number = $request->numSeason;
         }
         $content->update();
         $season->update();
@@ -828,5 +863,56 @@ class AdminController extends Controller
         }
         return redirect()->back();
     }
+    public function changeTvshowData(Request $request, Tvshow $tvshow) {
+        $rules=array(
+            'name' => 'required',
+            'duration' => 'integer|min:1',
+            'episodes' => 'integer|min:1'
+        );
+        $messages = array(
+            'name.required'=>'Ovo polje je obavezno!',
+            'duration.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'duration.min' => 'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
+            'episodes.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+        );
 
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $content = Content::find($tvshow->content_id);
+        if ($request->name!=null) {
+            $content->name = $request->name;
+        }
+        if ($request->description!=null) {
+            $content->description = $request->description;
+        }
+        if ($request->trailer!=null) {
+            $content->trailer = $request->trailer;
+        }
+        if ($request->releaseDate!=null) {
+            $content->release_date = $request->releaseDate;
+        }
+        if ($request->country!=null) {
+            $tvshow->country = $request->country;
+        }
+        if ($request->language!=null) {
+            $tvshow->language = $request->language;
+        }
+        if ($request->duration!=null) {
+            $tvshow->length = $request->duration;
+        }
+        if ($request->endDate!=null) {
+            $tvshow->end_date = $request->endDate;
+        }
+        if ($request->episodes!=null) {
+            $tvshow->number_of_episodes=$request->episodes;
+        }
+        $content->save();
+        $tvshow->save();
+
+    }
 }

@@ -15,13 +15,13 @@
                         @if ($avatarPath!=null)
                             <img src="{{ asset('img/img/content/'.$avatarPath->path) }}" style="width:100%">
                         @else
-                            <img src="{{asset('img/img/content/episode_default.jpg')}}" style="width:100%">
+                            <img src="{{asset('img/img/content/default_content.png')}}" style="width:100%">
                         @endif
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="mainImage" style = "font-size: 18px" class="col-form-label text-md-right color">Naslovna slika:</label><br>
-                    <form enctype="multipart/form-data" method="post" id="changePictureForm" action="/series/{{$tvshow->content_id}}/edit/changeAvatar" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                    <form enctype="multipart/form-data" method="post" id="changePictureForm" action="{{route('avatar_tvshow',['tvshow' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @csrf
                         <input type="file" name="mainImage" class="form-control input-file" id="mainImage">
@@ -31,7 +31,7 @@
                     </form>
                 </div>
                 <div class="form-group">
-                    <form enctype="multipart/form-data" method="post" action="/series/{{$tvshow->content_id}}/edit/addPictures" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                    <form enctype="multipart/form-data" method="post" action="{{route('add_pic_tvshow',['tvshow' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                         <label for="pictures" style = "font-size: 18px" class="col-form-label text-md-right color">Dodaj ostale slike:</label><br>
                         <input type="file" style="margin-top:3px;" name="pictures[]" multiple class="form-control input-file" id="pictures">
                         <br>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
 
-                    <form enctype="multipart/form-data" method="post" action="/series/{{$tvshow->content_id}}/edit/changeGenres" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                    <form enctype="multipart/form-data" method="post" action="{{route('tvshow_genre',['tvshow' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
 
                         <label for="genre" style = "font-size: 18px" class="col-form-label text-md-right color">Žanr:</label>
 
@@ -73,7 +73,7 @@
                         <input type="submit" class="btn btn-transparent" value="Promeni žanr">
                     </form>
                 </div>
-                <form method="POST" enctype="multipart/form-data" action="/series/{{$tvshow->content_id}}/edit/addActor" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                <form method="POST" enctype="multipart/form-data" action="{{route('tvshow_actor_add',['tvshow' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     @csrf
                     <div class="form-group">
@@ -83,7 +83,7 @@
                     </div>
 
                 </form>
-                <form method="POST" enctype="multipart/form-data" action="/series/{{$tvshow->content_id}}/edit/addDirector" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                <form method="POST" enctype="multipart/form-data" action="{{route('tvshow_director_add',['tvshow' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     @csrf
                     <div class="form-group">
@@ -95,42 +95,61 @@
                 </form>
             </div>
             <div class="col-lg-6">
-            <form enctype="multipart/form-data" method="post" action="/series/{{$tvshow->content_id}}/edit/addActor" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+            <form enctype="multipart/form-data" method="post" action="{{route('change_tvshow',['tvshow' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @csrf
                 <div class="form-group">
-                    <label for="name" style = "font-size: 18px" class="col-form-label text-md-right color">Naziv serije:</label>
-                    <input type="text" id="name" name="name" class="form-control" value="{{$content->name}}" required>
+                    <label for="name" style = "font-size: 18px" class="col-form-label text-md-right color">Ime serije:</label>
+                    <input type="text" name="name" value="<?php if (old('name')==null) echo $content->name; else echo old('name');?>" class="form-control" style="{{$errors->has('name')?'border-color: deeppink': ''}};" id="name">
+                    @if ($errors->has('name'))
+                        <span class="invalid-feedback" style = "color: deeppink">
+                                            {{ $errors->first('name') }}
+                                    </span>
+                    @endif
                 </div>
                 <div class="form-group">
-                    <label for="trailer" style = "font-size: 18px" class="col-form-label text-md-right color">Trejler:</label>
-                    <input type="text" id="trailer" name="trailer" class="form-control">
+                    <label for="trailer" style="font-size:18px" class="col-form-label text-md-right color">Trejler:</label>
+                    <input type="text" name="trailer" class="form-control" id="trailer" value="<?php if (old('trailer')==null) echo $content->trailer; else echo old('trailer');?>">
                 </div>
                 <div class="form-group">
-                    <label for="description" style = "font-size: 18px" class="col-form-label text-md-right color">Opis:</label>
-                    <textarea name="description" id="description" class="form-control" value="{{$content->description}}"></textarea>
+                    <label for="description" style = "font-size: 18px" class="col-form-label text-md-right color">Kratak opis:</label>
+                    <textarea name="description" class="form-control" id="description"><?php if (old('description')==null) echo $content->description; else echo old('description');?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="releaseDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum izlaska:</label>
-                    <input type="date" name="releaseDate" class="form-control" id="releaseDate" value="<?php echo substr($content->release_date,0,10);?>">
+                    <input type="date" value="<?php if (old('releaseDate')==null) echo substr($content->release_date,0,10); else echo substr(old('releaseDate'),0,10);?>"name="releaseDate" class="form-control" id="releaseDate" >
                 </div>
                 <div class="form-group">
-                    <label for="endDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum izlaska:</label>
-                    <input type="date" name="endDate" class="form-control" id="endDate" value="<?php echo substr($tvshow->end_date,0,10);?>">
+                    <label for="country" style = "font-size: 18px" class="col-form-label text-md-right color">Zemlja porekla:</label>
+                    <input type="text" name="country" class="form-control" id="country" value="<?php if (old('country')==null) echo $tvshow->country; else echo old('country');?>">
                 </div>
                 <div class="form-group">
-                    <label for="country" style = "font-size: 18px" class="col-form-label text-md-right color">Zemlja:</label>
-                    <input type="text" id="country" name="country" class="form-control">
+                    <label for="language" style = "font-size: 18px" class="col-form-label text-md-right color">Jezik:</label>
+                    <input type="text" name="language" value="<?php if (old('language')==null) echo $tvshow->language; else echo old('language');?>"class="form-control" id="language">
                 </div>
                 <div class="form-group">
-                    <label for="length" style = "font-size: 18px" class="col-form-label text-md-right color">Trajanje:</label>
-                    <input type="text" id="length" name="length" class="form-control">
+                    <label for="duration" style = "font-size: 18px" class="col-form-label text-md-right color">Trajanje epizode: (u minutima)</label>
+                    <input type="text" name="duration" value="<?php if (old('duration')==null) echo $tvshow->length; else echo old('duration');?>" class="form-control" style="{{$errors->has('duration')?'border-color: deeppink': ''}}" id="duration">
+                    @if ($errors->has('duration'))
+                        <span class="invalid-feedback" style = "color: deeppink">
+                                            {{ $errors->first('duration') }}
+                                    </span>
+                    @endif
                 </div>
                 <div class="form-group">
-                    <label for="numOfEpisodes" style = "font-size: 18px" class="col-form-label text-md-right color">Broj epizoda:</label>
-                    <input type="text" id="numOfEpisodes" name="numOfEpisodes" value="{{$tvshow->number_of_episodes}}"class="form-control">
+                    <label for="endDate" style = "font-size: 18px" class="col-form-label text-md-right color">Datum završetka:</label>
+                    <input type="date" name="endDate" class="form-control" id="endDate" value="<?php if (old('endDate')==null) echo substr($tvshow->end_date,0,10); else echo substr(old('endDate'),0,10);?>">
                 </div>
-                <input type="submit" class="btn btn-transparent" value="Izmeni detalje">
+                <div class="form-group">
+                    <label for="episodes" style = "font-size: 18px" class="col-form-label text-md-right color">Broj epizoda:</label>
+                    <input type="text" name="episodes" value="<?php if (old('episodes')==null) echo $tvshow->number_of_episodes; else echo old('episodes');?>" class="form-control" style="{{$errors->has('episodes')?'border-color: deeppink': ''}}" id="episodes">
+                    @if ($errors->has('episodes'))
+                        <span class="invalid-feedback" style = "color: deeppink">
+                                            {{ $errors->first('episodes') }}
+                                    </span>
+                    @endif
+                </div>
+                <input type="submit" class="btn btn-lg btn-transparent" value="Izmeni detalje">
             </form>
 
             </div>
@@ -138,8 +157,9 @@
         <div class="row justify-content-center" style="margin-top:20px;">
             <div class="col-lg-12">
                 <div class="form-group">
-                    <label style = "font-size: 18px" class="col-form-label text-md-right color">Odaberi slike za brisanje:</label>
-                    <form method="post" enctype="multipart/form-data" action="/series/{{$tvshow->content_id}}/edit/deletePictures" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                    <form method="post" enctype="multipart/form-data" action="{{route('delete_pic_tvshow',['tvshow' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <label style = "font-size: 18px" class="col-form-label text-md-right color">Odaberi slike za brisanje:</label>
+
                         <div class="row">
                             <?php $i=0; ?>
                             @foreach($picturePaths as $picPath)
@@ -157,14 +177,14 @@
                                 ?>
                             @endforeach
                         </div>
-                        <input type="submit" class="btn btn-transparent" value="Obriši slike">
+                        <input type="submit" style="margin-left:20px" class="btn btn-transparent" value="Obriši slike">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @csrf
                     </form>
                 </div>
                 <div class="form-group">
 
-                    <form enctype="multipart/form-data" method="post" action="/series/{{$tvshow->content_id}}/edit/deleteActors" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                    <form enctype="multipart/form-data" method="post" action="{{route('tvshow_actor_delete',['tvshow' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
 
                         <label for="genre" style = "font-size: 18px" class="col-form-label text-md-right color">Odaberi glumce za brisanje:</label>
 
@@ -194,7 +214,7 @@
                     </form>
                 </div>
                 <div class="form-group">
-                    <form method="post" enctype="multipart/form-data" action="/series/{{$tvshow->content_id}}/edit/deleteDirectors" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                    <form method="post" enctype="multipart/form-data" action="{{route('tvshow_director_delete',['tvshow' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                         <label style = "font-size: 18px" class="col-form-label text-md-right color">Odaberi režisere za brisanje:</label>
 
                             <table cell-padding="20px">
