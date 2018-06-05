@@ -72,22 +72,24 @@ class UserController extends Controller
                     'content_id'=>$content->id,
                     'rate'=>$ratingScore
                 ]);
-            $sum = $content->number_of_rates * $content->rating + $ratingScore;
-            $content->number_of_rates = $content->number_of_rates + 1;
-            $content->rating = $sum / $content->number_of_rates;
             $rate->save();
+
+            $content->number_of_rates = $content->numberOfRates();
+            $content->rating = $content->averageRate();
+
             $content->update();
         } else {
             $oldRate = $rate->rate;
-            $sum = $content->number_of_rates * $content->rating - $oldRate + $ratingScore;
-            $content->rating = $sum / $content->number_of_rates;
             $rate->rate = $ratingScore;
-            $content->update();
             DB::table('ratings')
                 ->where('user_id','=',Auth::user()->id)
                 ->where('content_id','=',$content->id)
                 ->update(['ratings.rate'=>$ratingScore,
                     'updated_at'=>(new \Carbon\Carbon())::now()]);
+            $content->rating = $content->averageRate();
+
+            $content->update();
+
 
         }
         return redirect()->back();

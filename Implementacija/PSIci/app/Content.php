@@ -34,7 +34,7 @@ class Content extends Model
 
 
     public function ratings(){
-        return $this->hasMany('App\Rating', 'content_id');
+        return Rating::where('content_id','=',$this->id)->get();
     }
 
     public function averageRate()
@@ -47,7 +47,7 @@ class Content extends Model
         return $sum / count($ratings);
     }
     public function numberOfRates(){
-        $ratings = $this->ratings;
+        $ratings = $this->ratings();
         return count($ratings);
     }
 
