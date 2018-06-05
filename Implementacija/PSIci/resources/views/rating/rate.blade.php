@@ -191,7 +191,7 @@
     <td><center>{{$content->rating}}/10 </center></td>
     </tr> &nbsp;
     <tr>
-    <td><center>Broj glasova: {{$content->number_of_rates}}</center></td></tr>
+    <td><center>Broj glasova: {{$content->numberOfRates()}}</center></td></tr>
 </table>
 @if (Auth::check())
 

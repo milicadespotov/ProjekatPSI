@@ -15,7 +15,7 @@
                         @if ($avatarPath!=null)
                             <img src="{{ asset('img/img/content/'.$avatarPath->path) }}" style="width:100%">
                         @else
-                            <img src="{{asset('img/img/content/default_content.png')}}" style="width:100%">
+                            <img src="{{asset('img/default_content.png')}}" style="width:100%">
                         @endif
                     </div>
                 </div>
