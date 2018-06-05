@@ -163,7 +163,7 @@ class EpisodeController extends Controller
         //brisanje iz content
         Content::where('id',$episode->content_id)->delete();
 
-        return view('home.index');
+        return redirect()->route('home');
 
 
     }

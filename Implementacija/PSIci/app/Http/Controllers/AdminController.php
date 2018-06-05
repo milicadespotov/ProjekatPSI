@@ -697,7 +697,7 @@ class AdminController extends Controller
         //brisanje iz content
         Content::where('id',$season->content_id)->delete();
 
-        return view('home.index');
+        return redirect()->route('home');
     }
 
 
@@ -773,7 +773,7 @@ class AdminController extends Controller
         Content::where('id',$series->content_id)->delete();
 
 
-        return view('home.index');
+        return redirect()->route('home');
     }
 
 
