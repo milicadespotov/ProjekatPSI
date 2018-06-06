@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+
+
 @section('content')
     <div class = "backgroundLoginI" style="width:100%">
         <div class="container-fluid" style="width:100%">
@@ -162,9 +164,22 @@
 
                         <div class = "form-group row" >
                             <label for="picture" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px;">{{ __('Profilna fotografija: ') }}</label>
+                            <br>
                             <div class="col-md-6">
-                                <input id="picture" name = "picture" type="file" class = "form-control input-file"  value="{{ Request::old('picture') }}">
+                                <table>
+                                    <tr>
+                                        <td>
 
+                                            <input id="picture" name = "picture" type="file" class = "form-control input-file"  value="{{ Request::old('picture') }}" style = "display: none;">
+                                            <img src = "{{asset('img/default_content.png')}}" id = "img" class = "img" style = "width: 140px; height: 150px; background-color: #2B2C30">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type = "button" name = "" id = "browse_file" class = "btn btn-dark form-control" style = "background-color: #0a0a0a" value = "Dodaj fotografiju">
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
 

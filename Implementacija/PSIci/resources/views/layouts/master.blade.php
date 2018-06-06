@@ -59,6 +59,7 @@
 
 
 
+
 </head>
 
 <body id="body">
@@ -146,6 +147,27 @@
 <script src="{{ asset('js/grid.js') }}"></script>
 <!-- Custom js -->
 <script src="{{ asset('js/custom.js') }}"></script>
+
+<script type = "text/javascript">
+    $('#browse_file').on('click', function(e)
+    {
+        $('#picture').click();
+    })
+    $('#picture').on('change', function (e) {
+        var fileInput = this;
+        if (fileInput.files[0])
+        {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#img').attr('src', e.target.result);
+
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    })
+
+
+</script>
 
 </body>
 
