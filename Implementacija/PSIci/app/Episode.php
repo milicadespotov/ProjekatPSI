@@ -9,10 +9,15 @@ use App\Comment;
 class Episode extends Model
 {
 
-
      protected $primaryKey = 'content_id';
 
-
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja vraća glavnu sliku epizode
+     *
+     * @param integer $id
+     * @return Picture
+     */
     public static function mainPictureId($id){
         $picture = DB::table('pictures')->where('pictures.content_id','=',$id)->where('pictures.main_picture','=',1)->select('pictures.*')->get()->first();
 

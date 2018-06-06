@@ -675,6 +675,8 @@ class AdminController extends Controller
         }
         return redirect()->back();
     }
+
+
     public function deletePictures(Request $request, Content $content){
         /*$this->validate(request(),[
             'paths'=>'required'
@@ -764,6 +766,13 @@ class AdminController extends Controller
 
 
 
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija uklanja sezonu iz baze zajedno sa njenim slikama
+     *
+     * @param integer $id
+     * @return Redirect
+     */
     public function removeSeason($id){
         $season = Season::find($id);
 
@@ -798,7 +807,13 @@ class AdminController extends Controller
     }
 
 
-
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja brise sezonu za potrebe serije
+     *
+     * @param integer $id
+     * @return Void
+     */
     public static function removeSeasonForSeries($id){
         $season = Season::find($id);
 
@@ -832,7 +847,13 @@ class AdminController extends Controller
     }
 
 
-
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja brise seriju iz baze zajedno sa svim njenim slikama
+     *
+     * @param integer $id
+     * @return Redirect
+     */
     public function removeSeries($id){
 
         $series = Tvshow::find($id);
@@ -875,7 +896,13 @@ class AdminController extends Controller
 
 
 
-
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja brise slike proslijedjene kao parametar
+     *
+     * @param Picture $pictures
+     * @return View
+     */
     public static function deletePictureFiles($pictures){
 
         foreach($pictures as $picture){
