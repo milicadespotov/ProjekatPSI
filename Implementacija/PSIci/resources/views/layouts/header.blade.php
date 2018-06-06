@@ -39,7 +39,7 @@
                     <a href="{{route('login')}}">Uloguj se</a>
                 </li>
                 <li>
-                    <a href="{{route('register')}}">Prijavi se</a>
+                    <a href="{{route('register')}}">Registruj se</a>
                 </li>
                 @endif
                 @if(Auth::check())
