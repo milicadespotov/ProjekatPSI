@@ -20,6 +20,13 @@ use App\Genre;
 use Carbon\Carbon;
 class GuestController extends Controller
 {
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja preusmerava na stranicu sa prikazom određene serije
+     *
+     * @param integer $content_id
+     * @return Response
+     */
     public function showSeries($content_id){
         $series = Tvshow::where('content_id', '=',$content_id);
         $series = $series->first();
@@ -31,6 +38,14 @@ class GuestController extends Controller
         $contents = DB::table('contents')->join('seasons','seasons.content_id','=','contents.id')->where('seasons.tvshow_id', '=', $series->content_id)->select('contents.*')->get();
         return response()->view('content.tvshow', compact(['series', 'content', 'seasons', 'contents', 'type','genres']));
     }
+
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja preusmerava na stranicu sa prikazom određene sezone
+     *
+     * @param integer $id
+     * @return Response
+     */
 
     public function showSeason($id){
         $season = Season::where('content_id','=',$id);
@@ -56,6 +71,7 @@ class GuestController extends Controller
         }
 
         //dd($contents);
+
         return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type', 'isWatched']));
 
           return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type', 'isWatched']));
@@ -63,11 +79,22 @@ class GuestController extends Controller
 
           return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type', 'isWatched']));
 
+        return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
+
+
 
 
 
 
     }
+
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja preusmerava na stranicu sa prikazom određene epizode
+     *
+     * @param integer $id
+     * @return Response
+     */
 
     public function showEpisode($id){
         $episode = Episode::where('content_id','=',$id);

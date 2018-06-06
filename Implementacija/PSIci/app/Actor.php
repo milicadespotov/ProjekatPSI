@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class Actor extends Model
 {
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja vraća sve veze sa serijama u kojima glumac glumi
+     *
+     * @param
+     * @return Acting
+     */
     public function actings(){
         return $this->hasMany('App\Acting', 'actor_id');
     }

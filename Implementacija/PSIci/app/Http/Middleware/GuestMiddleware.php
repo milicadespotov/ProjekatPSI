@@ -8,8 +8,14 @@ use Illuminate\Support\Facades\Auth;
 class GuestMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Author: Despotović Milica
+     *      ---- Preusmeravanje zahteva koji je dostupan samo gostu ----
+     *      U slučaju da korisnik koji nije gost (korisnik koji je prijavljen na sistem
+     *      kao admin ili kao korisnik) pokuša da pristupi nekoj ruti kojoj samo gost sme
+     *      da pristupi biva preusmeren na početnu stranicu. Ukoliko je korisnik gost stranica
+     *      kojoj je hteo da pristupi biće učitana.
      *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed

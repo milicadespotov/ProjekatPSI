@@ -25,6 +25,11 @@ use App\Category;
 use App\Genre;
 use App\Season;
 
+/** AdminController - kontroler za funkcionalnosti dostupne samo administratoru
+ *
+ * @version 1.0
+ */
+
 class AdminController extends Controller
 {
     /**
@@ -117,6 +122,14 @@ class AdminController extends Controller
         return response()->view('home.users', compact('users'));
     }
 
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja unapredjuje korisnika u administratora
+     *
+     * @param integer $id
+     * @return Redirect
+     */
+
     public function makeAdmin($id)
     {
         $user = User::find($id);
@@ -124,10 +137,26 @@ class AdminController extends Controller
         return redirect()->route('accountManager');
     }
 
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja prikazuje administratoru formu za unos informacija o novoj seriji
+     *
+     * @param
+     * @return Response
+     */
+
     public function seriesInput()
     {
         return response()->view('input.series');
     }
+
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja kreira novu seriju i ubacuje je u bazu
+     *
+     * @param Request $request
+     * @return Redirect
+     */
 
     public function makeSeries(Request $request)
     {
@@ -234,6 +263,14 @@ class AdminController extends Controller
 
     }
 
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja poziva funkciju za dodavanje glumca u bazu i preusmerava na dalji unos glumaca i režisera
+     *
+     * @param Request $request, integer $id
+     * @return Response
+     */
+
     public function addActorWrapper(Request $request, $id){
         $this->addActor($request, $id);
         $content = Content::find($id);
@@ -245,6 +282,14 @@ class AdminController extends Controller
 
     }
 
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja poziva funkciju za dodavanje režisera u bazu i preusmerava na dalji unos glumaca i režisera
+     *
+     * @param Request $request, integer $id
+     * @return Response
+     */
+
     public function addDirectorWrapper(Request $request, $id){
         $this->addDirector($request, $id);
         $content = Content::find($id);
@@ -254,6 +299,14 @@ class AdminController extends Controller
         return response()->view('input.actorsAndDirectors', compact('content', 'tvshow', 'actors', 'directors'));
 
     }
+
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija za dodavanje glumca u bazu
+     *
+     * @param Request $request, integer $id
+     * @return void
+     */
 
     public function addActor(Request $request, $id)
     {
@@ -284,6 +337,14 @@ class AdminController extends Controller
 
     }
 
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija za dodavanje režisera u bazu
+     *
+     * @param Request $request, integer $id
+     * @return void
+     */
+
     public function addDirector(Request $request, $id)
     {
         $content = Content::find($id);
@@ -311,12 +372,28 @@ class AdminController extends Controller
 
     }
 
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja preusmerava na stranicu za unos informacija o novoj sezoni
+     *
+     * @param integer $id
+     * @return Response
+     */
+
     public function seasonInput($id)
     {
         $content = Content::find($id);
         return response()->view('input.season', compact('content'));
 
     }
+
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja kreira novu sezonu i ubacuje je u bazu
+     *
+     * @param Request $request, integer $id
+     * @return Redirect
+     */
 
     public function makeSeason(Request $request, $id)
     {
@@ -420,12 +497,28 @@ class AdminController extends Controller
         return redirect()->route('season', $content->id);
 }
 
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja preusmerava na stranicu za unos informacija o novoj epizodi
+     *
+     * @param integer $id
+     * @return Response
+     */
+
     public function episodeInput($id)
     {
         $content = Content::find($id);
         return response()->view('input.episode', compact('content'));
 
     }
+
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja kreira novu epizodu i ubacuje je u bazu
+     *
+     * @param Request $request, integer $id
+     * @return Redirect
+     */
 
     public function makeEpisode(Request $request, $id)
     {

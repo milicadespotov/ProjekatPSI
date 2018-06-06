@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class Director extends Model
 {
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja vraća sve veze sa serijama koje su režirali
+     *
+     * @param
+     * @return Directing
+     */
     public function directings(){
         return $this->hasMany('App\Directing', 'director_id');
     }
