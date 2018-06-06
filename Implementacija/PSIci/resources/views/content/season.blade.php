@@ -157,7 +157,7 @@
                 <center>
                     <h2>Trejler</h2>
                     @if(Auth::check() && Auth::user()->is_admin==true)
-                    <a href="#">
+                    <a href="{{route('addtrailer',['id'=>$season->content_id])}}">
                         <input type="submit" value="Dodaj trejler " class="btn btn-transparent">
                     </a>
                         @endif

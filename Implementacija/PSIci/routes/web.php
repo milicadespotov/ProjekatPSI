@@ -207,6 +207,9 @@ Route::group(['middleware' => 'AdminMiddleware'], function()
     Route::post('/removeEpisode/{id}','EpisodeController@removeEpisode')->name('episoderemove');
     Route::post('/removeSeason/{id}','AdminController@removeSeason')->name('seasonremove');
     Route::post('/removeSeries/{id}','AdminController@removeSeries')->name('seriesremove');
+    Route::get('/addTrailerContent/{id}','AdminController@addTrailer')->name('addtrailer');
+    Route::post('/addTrailerContentPost/{id}','AdminController@addTrailerPost')->name('addtrailerpost');
+
 });
 
 

@@ -1115,4 +1115,71 @@ class AdminController extends Controller
         $tvshow->save();
 
     }
+
+
+
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja vraca formu za dodavanje trejlera za sezonu/seriju
+     *
+     * @param integer $id
+     * @return View
+     */
+
+    public function addTrailer($id){
+
+        $content = Content::find($id);
+
+        return view('content.addtrailer',compact('content'));
+        
+    }
+
+
+
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja azurira trejler za sezonu/seriju
+     *
+     * @param Request $request
+     * @return Redirect
+     */
+
+    public function addTrailerPost(Request $request){
+
+        $rules = array(
+            'trailer' => 'required'
+        );
+
+
+
+        $messages = array(
+            'trailer.required' => 'Niste uneli link do trejlera!',
+        );
+
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
+        $trailer = explode('=', $request->trailer);
+
+        $content = Content::find($request->id);
+
+        $content->trailer = $trailer[1];
+
+        $content->save();
+
+        $id = $request->id;
+
+        $season = Season::find($id);
+        if($season!=null)
+            return redirect()->route('season',compact('id'));
+        else
+            return redirect()->route('showseries',compact('id'));
+    }
 }

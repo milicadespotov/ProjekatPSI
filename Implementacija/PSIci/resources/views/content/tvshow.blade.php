@@ -236,7 +236,7 @@ use App\Category;
                         <h2>Trejler</h2>
 
                     @if(Auth::check() && Auth::user()->is_admin==true)
-                        <a href="#">
+                        <a href="{{route('addtrailer',['id'=>$content->id])}}">
                             <input type="submit" value="Dodaj trejler" class="btn btn-transparent">
                         </a>
                     @endif
