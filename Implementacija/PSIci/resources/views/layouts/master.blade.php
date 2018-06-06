@@ -148,6 +148,7 @@
 <!-- Custom js -->
 <script src="{{ asset('js/custom.js') }}"></script>
 
+
 <script type = "text/javascript">
     $('#browse_file').on('click', function(e)
     {
@@ -168,6 +169,7 @@
 
 
 </script>
+
 
 </body>
 

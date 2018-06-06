@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 
-
 @section('content')
     <div class = "backgroundLoginI" style="width:100%">
         <div class="container-fluid" style="width:100%">
@@ -176,7 +175,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type = "button" name = "" id = "browse_file" class = "btn btn-dark form-control" style = "background-color: #0a0a0a" value = "Dodaj fotografiju">
+                                            <input type = "button" name = "browse_file" id = "browse_file" class = "btn btn-transparent form-control"  value = "Dodaj fotografiju">
                                         </td>
                                     </tr>
                                 </table>
@@ -200,4 +199,8 @@
 
         <br> <br> <br> <br>user
     </div>
+
+
+
+
 @endsection
