@@ -700,18 +700,19 @@ class AdminController extends Controller
 
 
     public function deletePictures(Request $request, Content $content){
-        /*$this->validate(request(),[
+        $this->validate(request(),[
             'paths'=>'required'
         ]);
 
         foreach($request->paths as $path) {
-            $content->number_of_pictures--;
+            DB::table('pictures')
+                ->where('pictures.content_id','=',$content->id)
                 ->where('pictures.path','=',$path)
                 ->delete();
             File::delete('img\img\content\\'.$path);
         }
         $content->update();
-        return redirect()->back();*/
+        return redirect()->back();
     }
 
     public function addPictures(Request $request, Content $content) {

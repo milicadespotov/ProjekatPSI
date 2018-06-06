@@ -179,7 +179,7 @@
                                 ?>
                             @endforeach
                         </div>
-                        <input type="submit" style="margin-left:20px" class="btn btn-transparent" value="Obriši slike">
+                        <input type="submit" style="margin-left:0px" class="btn btn-transparent" value="Obriši slike">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @csrf
                     </form>
