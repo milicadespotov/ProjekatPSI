@@ -24,12 +24,28 @@ class Season extends Model
         return $count;
     }
 
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja vraća naziv serije sezone
+     *
+     * @param
+     * @return String
+     */
+
     public function seriesName(){
         $series = DB::table('tvshows')->where('tvshows.content_id','=',$this->tvshow_id)->first();
         $content = DB::table('contents')->where('contents.id','=',$series->content_id)->first();
         return $content->name;
 
     }
+
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja vraća id sezone epizode
+     *
+     * @param
+     * @return Integer
+     */
 
     public function seriesId(){
         $series = DB::table('tvshows')->where('tvshows.content_id','=',$this->tvshow_id)->first();

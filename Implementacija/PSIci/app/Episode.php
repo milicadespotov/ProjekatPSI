@@ -40,6 +40,14 @@ class Episode extends Model
 
     }
 
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja vraća naziv serije epizode
+     *
+     * @param
+     * @return String
+     */
+
     public function seriesName(){
         $series = DB::table('contents')
             ->join('tvshows', 'contents.id','=','tvshows.content_id')
@@ -48,6 +56,13 @@ class Episode extends Model
             ->select('contents.name')->get();
         return $series->first()->name;
     }
+
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja vraća id serije epizode
+     *
+     * @return Integer
+     */
 
     public function seriesId(){
         $series = DB::table('contents')
@@ -58,6 +73,14 @@ class Episode extends Model
         return $series->first()->id;
     }
 
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja vraća naziv sezone epizode
+     *
+     * @param
+     * @return String
+     */
+
     public function seasonName(){
         $season = DB::table('contents')
             ->join('seasons','contents.id','=','seasons.content_id')
@@ -65,6 +88,14 @@ class Episode extends Model
             ->select('contents.name')->get();
         return $season->first()->name;
     }
+
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja vraća id sezone epizode
+     *
+     * @param
+     * @return Integer
+     */
 
     public function seasonId(){
         $season = DB::table('contents')

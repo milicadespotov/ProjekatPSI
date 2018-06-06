@@ -26,6 +26,14 @@ class UserController extends Controller
         $this->middleware('UserMiddleware');
     }
 
+    /**
+     * Autor: Tijana Jovanović 0008/2015
+     * Funkcija koja uklanja korisnikov nalog iz baze
+     *
+     * @param integer $id
+     * @return Redirect
+     */
+
     public function remove($id)
     {
         $user = User::where('id','=',$id);
