@@ -6,16 +6,16 @@
 
 .info-name
 {
-	font-family: oswald;
-	font-weight: 400;
-	display: inline-block;
-	font-size: 18px;
+	font-family: oswald !important;
+	font-weight: 400 !important;
+	display: inline-block !important;
+	font-size: 18px !important;
 }
 
 .info-value
 {
-	font-family: oswald;
-	display: inline-block;
+	font-family: oswald !important;
+	display: inline-block !important;
 	font-size: 18px;
 	color: #8A2BE2;
 }
