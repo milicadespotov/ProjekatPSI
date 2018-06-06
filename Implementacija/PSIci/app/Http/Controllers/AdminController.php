@@ -765,9 +765,10 @@ class AdminController extends Controller
         if ($request->name != null) {
             $content->name = $request->name;
         }
-        if ($request->trailer != null) {
+        if ($request->trailer) {
+            $trailer = explode('=', $request->trailer);
+            $content->trailer = $trailer[1];} else
             $content->trailer = $request->trailer;
-        }
         if ($request->description != null) {
             $content->description = $request->description;
         }
@@ -969,9 +970,10 @@ class AdminController extends Controller
         if ($request->description!=null) {
             $content->description = $request->description;
         }
-        if ($request->trailer!=null) {
+        if ($request->trailer) {
+            $trailer = explode('=', $request->trailer);
+            $content->trailer = $trailer[1];} else
             $content->trailer = $request->trailer;
-        }
         if ($request->releaseDate!=null) {
             $content->release_date = $request->releaseDate;
         }
@@ -1111,9 +1113,10 @@ class AdminController extends Controller
         if ($request->description!=null) {
             $content->description = $request->description;
         }
-        if ($request->trailer!=null) {
+        if ($request->trailer) {
+            $trailer = explode('=', $request->trailer);
+            $content->trailer = $trailer[1];} else
             $content->trailer = $request->trailer;
-        }
         if ($request->releaseDate!=null) {
             $content->release_date = $request->releaseDate;
         }
