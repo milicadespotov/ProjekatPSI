@@ -294,7 +294,7 @@
                 </center>
                 @if(Auth::check() && Auth::user()->is_admin==true)
                     <center>
-                        <a href="#">
+                        <a href="{{route('addpictures',['id'=>$content->id])}}">
                             <input type="submit" value="Dodaj sliku" class="btn btn-transparent">
                         </a>
                     </center>

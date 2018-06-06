@@ -19,7 +19,7 @@
             <br>
             <div class="row" style="font-size:22px;color:#8A2BE2">
                 <div class="col-md-12">
-                <form id="info-form" enctype= "multipart/form-data" method="post" action="{{ route('addtrailerpost',['id'=>$content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                <form id="info-form" enctype= "multipart/form-data" method="post" action="{{ route('addtrailerpost')}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                     @csrf
                     <fieldset>
                         <div class="col-md-2">
@@ -42,6 +42,9 @@
 
                                 <center>
                                     <button type="submit" class="btn btn-transparent">Potvrdi</button>
+                                    <a href="{{route('redirectback',['id' => $content->id])}}">
+                                        <button type="button" class="btn btn-transparent" value="">Nazad</button>
+                                    </a>
                                 </center>
 
                             </div>

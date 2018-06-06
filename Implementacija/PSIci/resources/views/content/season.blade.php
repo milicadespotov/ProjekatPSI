@@ -177,7 +177,17 @@
                     <h2>Slike</h2>
                     @endif
                     <br>
+                        @if(Auth::check() && Auth::user()->is_admin==true)
+                            <center>
+                                <a href="{{route('addpictures',['id'=>$content->id])}}">
+                                    <input type="submit" value="Dodaj sliku" class="btn btn-transparent">
+                                </a>
+
+                            </center>
+                        @endif
                 </center>
+                <br>
+                <br>
             </div>
             <!--Galerija-->
             <div class="col-md-12">
@@ -193,13 +203,7 @@
 
 
                 </center>
-                @if(Auth::check() && Auth::user()->is_admin==true)
-                <center>
-                    <a href="#">
-                        <input type="submit" value="Dodaj sliku" class="btn btn-transparent">
-                    </a>
-                    @endif
-                </center>
+
             </div>
         </div>
         <br>

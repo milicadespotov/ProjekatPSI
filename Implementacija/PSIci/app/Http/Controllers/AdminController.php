@@ -24,6 +24,7 @@ use App\Directing;
 use App\Category;
 use App\Genre;
 use App\Season;
+use PharIo\Manifest\RequiresElementTest;
 
 /** AdminController - kontroler za funkcionalnosti dostupne samo administratoru
  *
@@ -1181,5 +1182,88 @@ class AdminController extends Controller
             return redirect()->route('season',compact('id'));
         else
             return redirect()->route('showseries',compact('id'));
+    }
+
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja prikazuje formu za dodavanje slika za epizodu/sezonu/seriju
+     *
+     * @param integer $id
+     * @return View
+     */
+
+    public function addPicturesContent($id){
+
+        $content = Content::find($id);
+
+        return view('content.addpictures',compact('content'));
+
+    }
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja dodaje slike za epizodu/sezonu/seriju
+     *
+     * @param Request $request
+     * @return Redirect
+     */
+
+    public function addPicturesContentPost(Request $request){
+
+        $content = Content::find($request->id);
+        $id = $request->id;
+
+
+        //ako nije dodata nijedna slika vracamo se nazad
+        if(empty($request->pictures)){
+            return redirect()->route('redirectback',compact('id'));
+        }
+
+
+        foreach ($request->file('pictures') as $file) {
+            $content->number_of_pictures++;
+            $picture = new Picture();
+            $picture->path = 'dummy';
+            $picture->content_id = $content->id;
+            $picture->main_picture = false;
+            $picture->save();
+            $filename = $content->id . '-' . $picture->id . '.jpg';
+            $file = $file->storeAs('img/content', $filename);
+            $picture->path = $filename;
+            $picture->update();
+        }
+
+        $content->update();
+
+        $episode = Episode::find($request->id);
+
+        $season = Season::find($request->id);
+
+
+
+        return redirect()->route('redirectback',compact('id'));
+    }
+
+
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja dodaje redirektuje na seriju/sezonu/epizodu
+     *
+     * @param integer $id
+     * @return Redirect
+     */
+    public function redirectBackContent($id){
+        $episode = Episode::find($id);
+
+        $season = Season::find($id);
+
+
+
+        if($episode!=null){//epizoda
+            return redirect()->route('showepisode',compact('id'));
+        }else if($season!=null){//sezona
+            return redirect()->route('season',compact('id'));
+        }else{//serija
+            return redirect()->route('showseries',compact('id'));
+        }
     }
 }
