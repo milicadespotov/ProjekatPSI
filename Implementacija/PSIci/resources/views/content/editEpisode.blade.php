@@ -10,21 +10,22 @@
     <div class="container">
             <div class="row justify-content-center" style="margin-top:20px;">
                 <div class="col-lg-6">
-                    <div class="row">
-                        <div class="col-lg-12">
-                        @if ($avatarPath!=null)
-                            <img src="{{ asset('img/img/content/'.$avatarPath->path) }}" style="width:100%">
-                        @else
-                            <img src="{{asset('img/default_content.png')}}" style="width:100%">
-                        @endif
-                        </div>
-                    </div>
+
                     <div class="form-group">
-                        <label for="mainImage" style = "font-size: 18px" class="col-form-label text-md-right color">Naslovna slika:</label><br>
+
                         <form enctype="multipart/form-data" method="post" id="changePictureForm" action="{{route('avatar_episode',['episode' => $content->id])}}" class = "contact-form fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             @csrf
-                            <input type="file" name="mainImage" class="form-control input-file" id="mainImage">
+                            <label for="main_picture" style = "font-size: 18px" class="col-form-label text-md-right color">Naslovna slika:</label><br>
+                            @if ($avatarPath!=null)
+                                <img src="{{ asset('img/img/content/'.$avatarPath->path) }}" id="img" style="width:50%">
+                            @else
+                                <img src="{{asset('img/default_content.png')}}" style="width:50%" id="img">
+                            @endif
+                            <input type="file" name="mainImage" class="form-control input-file" id="picture" style = "display: none;"><br>
+                            <input type = "button" name = "browse_file" id = "browse_file" class = "btn btn-transparent form-control" style = "width: 30%" value = "Dodaj fotografiju">
+
+                            <br>
                             <input type="button" onclick="submitVal(1)" class="btn btn-transparent" value="Promeni">
                             <input type="button" onclick="submitVal(0)" class="btn btn-transparent" value="Resetuj">
                             <input type="text" name="typeOfOperation" value="" id="setPictureOption" hidden>
