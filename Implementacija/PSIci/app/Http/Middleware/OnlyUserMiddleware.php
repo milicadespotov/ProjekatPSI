@@ -7,7 +7,12 @@ use Closure;
 class OnlyUserMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Author: Despotović Milica
+     *
+     *   ---- Preusmeravanje zahteva koji je dostupan samo korisniku koji je prijavljen i nije administrator ----
+     *        Ukoliko korisnik koji ne pripada gorenavedenoj grupi korisnika pokuša pristup
+     *        ruti iz grupe koju pokriva ovaj middleware, biće preusmeren, administrator na
+     *        home stranicu, gost na stranicu za prijavu na sistem.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next

@@ -7,7 +7,13 @@ use Illuminate\Support\Facades\Auth;
 class UserMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Author: Despotović Milica
+     *          --- Preusmeravanje zahteva koji je dostupan samo registrovanom korisniku ----
+     *          U slučaju da korisnik koji nije registrovan korisnik pokuša pristup nekoj od ruta
+     *          koja je dostupna samo registrovanom korisniku  biće preusmeren, ukoliko je gost
+     *          na stranicu login.
+     *          Ukoliko je korisnik registrovan, biće mu odobren pristup stranici.
+     *
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
