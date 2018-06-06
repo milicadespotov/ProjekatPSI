@@ -114,15 +114,6 @@
                 $("#"+i).removeClass("checked");
             }
         });
-        $("#2").mouseenter(function(){
-            $("#1").addClass("checked");
-        });
-        $("#1").mouseenter(function(){
-            $("#1").addClass("checked");
-        });
-        $("#1").mouseenter(function(){
-            $("#1").addClass("checked");
-        });
         $("#1").click(function() {
             document.getElementById("rating-num").value="1";
             startRate=1;
