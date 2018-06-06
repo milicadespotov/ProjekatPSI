@@ -222,12 +222,20 @@ class AdminController extends Controller
             $picture->main_picture = true;
             $picture->content_id = $content->id;
             $picture->save();
-            $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img/content', $filename);
+            $file = $request->mainImage;
+            if ($request->hasFile('mainImage')) {
 
-            $picture->path = $filename;
+                $filename = $content->id . '-' . $picture->id . '.jpg';
+                $file = $file->storeAs('img/content', $filename);
+                $picture->path = $filename;
+                $picture->update();
+            }
 
-            $picture->update();
+
+
+
+
+
 
         }
         if ($request->pictures) {
@@ -470,12 +478,14 @@ class AdminController extends Controller
             $picture->main_picture = true;
             $picture->content_id = $content->id;
             $picture->save();
-            $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img/content', $filename);
+            $file = $request->mainImage;
+            if ($request->hasFile('mainImage')) {
 
-            $picture->path = $filename;
-
-            $picture->update();
+                $filename = $content->id . '-' . $picture->id . '.jpg';
+                $file = $file->storeAs('img/content', $filename);
+                $picture->path = $filename;
+                $picture->update();
+            }
 
         }
         if ($request->pictures) {
@@ -608,12 +618,14 @@ class AdminController extends Controller
             $picture->main_picture = true;
             $picture->content_id = $content->id;
             $picture->save();
-            $filename = $content->id . '-' . $picture->id . '.jpg';
-            $file = $request->file('mainImage')->storeAs('img/content', $filename);
+            $file = $request->mainImage;
+            if ($request->hasFile('mainImage')) {
 
-            $picture->path = $filename;
-
-            $picture->update();
+                $filename = $content->id . '-' . $picture->id . '.jpg';
+                $file = $file->storeAs('img/content', $filename);
+                $picture->path = $filename;
+                $picture->update();
+            }
 
         }
         if ($request->pictures) {
@@ -665,12 +677,21 @@ class AdminController extends Controller
                 $picture->content_id = $content->id;
                 $picture->main_picture = true;
                 $picture->save();
-                $filename = $content->id . '-' . $picture->id . '.jpg';
-                $file=$request->file('mainImage')->storeAs('img\content', $filename);
-                $picture->path = $filename;
-                $picture->update();
+                $file = $request->mainImage;
+                if ($request->hasFile('mainImage')) {
+
+                    $filename = $content->id . '-' . $picture->id . '.jpg';
+                    $file = $file->storeAs('img/content', $filename);
+                    $picture->path = $filename;
+                    $picture->update();
+                }
             } else {
-                $file=$request->file('mainImage')->storeAs('img\content', $imageExists->path);
+                $file = $request->mainImage;
+                if ($request->hasFile('mainImage')) {
+
+                    $file=$request->file('mainImage')->storeAs('img\content', $imageExists->path);
+
+                }
 
             }
         }

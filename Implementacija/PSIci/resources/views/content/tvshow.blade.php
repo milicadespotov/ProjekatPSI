@@ -38,7 +38,14 @@ use App\Category;
         </div>
         <br>
         <br>
+        <td>
 
+            <div class = "info-value" style = "padding: 5px; padding-left: 10px ; font-family: 'Lucida Sans Unicode' !important">|
+                @foreach($genres as $genre)
+                    {{$genre->name}} |
+                @endforeach
+            </div>
+        </td>
         @if(Auth::check())
 
             <div class="modal" id="myModal3" style="margin-top:15%;color:black;">
@@ -87,23 +94,29 @@ use App\Category;
                 <br>
                 <!--Glavna slika serije-->
                 <div class="col-md-12">
-                    <b>Režiseri: </b><br>
+                    <div class = "info-name"> Režiseri: </div>
+                    <div class = "info-value">
                     @foreach($series->directors() as $director)
-                        {{$director->name}}<br>
+                        {{$director->name}} |
                         @endforeach
+                    </div>
                 </div>
                 <div class="col-md-12">
-                    <b>Glumci: </b><br>
+
+                    <div class ="info-name"> <div class = "info-name"> Glumci: </div> </div>
+                    <div class ="info-value">   
                     @foreach($series->actors() as $actor)
-                        {{$actor->name}}<br>
+                        {{$actor->name}} |
                     @endforeach
+                    </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <table style="border-collapse: separate;border-spacing:25px">
                     <tr>
                         <td>
-                            <b> TV Serija: </b>
+                            <div class = "info-name">TV Serija: &nbsp;  </div>
+                            <div class = "info-value">
                             @if($content->release_date!=null)
                                 {{Carbon::createFromFormat('Y-m-d H:i:s', $content->release_date)->year}}
                             @endif
@@ -111,39 +124,41 @@ use App\Category;
                             @if ($series->end_date!=null)
                                 {{Carbon::createFromFormat('Y-m-d H:i:s', $series->end_date)->year}}
                             @endif
+                            </div>
                         </td>
                     </tr>
+
                     <tr>
                         <td>
-                            <b>Žanr: </b><br>
-                            @foreach($genres as $genre)
-                                {{$genre->name}}<br>
-                                @endforeach
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Zemlja: </b>
+                            <div class = "info-name"> Zemlja: </div>
+                            <div class = "info-value">
                             @if ($series->country!=null)
                                 {{$series->country}}
                                 @endif
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <b>Trajanje: </b>
+                            <div class = "info-name">
+                                Trajanje:
+                            </div>
+                            <div class = "info-value">
                             @if($series->length!=null)
                                 {{$series->length}}
                                 @endif
                             min
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <b>Jezik: </b>
+                            <div class = "info-name"> Jezik: </div>
+                            <div class = "info-value">
                             @if($series->language!=null)
                                 {{$series->language}}
                                 @endif
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -182,7 +197,7 @@ use App\Category;
                                     </div>
                                 @else
                                     <div class="progress">
-                                        <div class="progress-bar" style="width:0%">0%</div>
+                                        <div class="progress-bar progress-bar-striped"  style="width:0%; background-color: #8A2BE2" >0%</div>
                                     </div>
                                 @endif
                             </td>
