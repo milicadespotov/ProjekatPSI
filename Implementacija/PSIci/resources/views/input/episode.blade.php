@@ -13,7 +13,10 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="main_picture" style = "font-size: 18px" class="col-form-label text-md-right color">Naslovna slika:</label><br>
-                        <input type="file" name="mainImage" class="form-control" id="mainImage">
+                        <img src="{{asset('img/default_content.png')}}" id="img" style="width:50%;height:auto;">
+                        <input type="file" name="mainImage" class="form-control input-file" id="picture" style = "display: none;">
+                        <input type = "button" name = "browse_file" id = "browse_file" class = "btn btn-transparent form-control" style = "width: 50%" value = "Dodaj fotografiju">
+
                     </div>
                     <div class="form-group">
                         <label for="pictures" style = "font-size: 18px" class="col-form-label text-md-right color">Ostale slike:</label><br>
