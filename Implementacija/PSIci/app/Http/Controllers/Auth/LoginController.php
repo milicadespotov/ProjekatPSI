@@ -17,15 +17,16 @@ use App\User;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
+    /* Author: Despotović Milica
+    |-------------------------------------------------------------------------------------------------|
+    | Login Controller                                                                                |
+    |-------------------------------------------------------------------------------------------------|
+    |                                                                                                 |
+    | Ovaj kontroler pravi autentifikaciju za jednog korisnika (ukoliko su kredencijali koje je uneo  |
+    | u redu) i preusmerava ga na profil. U ovom kontroleru se kreira autentifikacija koja biva       |
+    | globalno dostupna, odnosno preko koje se svakog trenutnka može proveriti da li postoji trenutno |
+    | registrovan korisnik i preko koje se isti može dohvatiti (njegov model).                        |
+    |-------------------------------------------------------------------------------------------------|
     */
 
     use AuthenticatesUsers;
@@ -42,11 +43,25 @@ class LoginController extends Controller
      *
      * @return void
      */
+
+    /* Author: Despotović Milica
+    *
+     *      Konstruktor kontrolera koji zabranjuje da bilo kojoj
+     *      funkciji ovog kotnrolera pristupi neko ko nema status gosta.
+     *
+     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
+
+
+     /* Author: Despotović Milica
+      *
+      *     Funkciija koja odjavljuje korisnika i preusmerava na početnu stranicu
+      *
+      */
     public function logout()
     {
         Auth::logout();
@@ -54,7 +69,11 @@ class LoginController extends Controller
 
     }
 
-
+    /* Author: Despotović Milica
+    *
+    *    Funkcija koja prijavljuje korisnika na sistem ukoliko
+     *   je uneo ispravne kredencijale.
+    */
     public function login(Request $request)
     {
 
@@ -72,7 +91,12 @@ class LoginController extends Controller
 
     }
 
-
+    /* Author: Despotović Milica
+    *
+    *   Funkcija koja proverava da li korisnik koji se prijavljuje na sistem
+    *   postoji u bazi.
+    *   Takođe, proverava da li je uneo dobre kredencijale.
+    */
     public function userLogin(Request $request)
     {
 

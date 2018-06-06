@@ -155,11 +155,15 @@ class EpisodeController extends Controller
             ->where('episodes.season_id','=',$watchedepisode->season_id)
             ->get();
 
-        if(count($episodes)==count($watchedepisodes)){
-            $watchedSeason = new WatchedSeason();
-            $watchedSeason->user_id = Auth::user()->id;
-            $watchedSeason->season_id = $episode->season_id;
-            $watchedSeason->save();
+        $watchedseason = DB::table('watched_seasons')->where('user_id','=',Auth::user()->id)->where('season_id','=',$watchedepisode->season_id)->first();
+
+        if ($watchedseason != null) {
+            if (count($episodes) == count($watchedepisodes)) {
+                $watchedSeason = new WatchedSeason();
+                $watchedSeason->user_id = Auth::user()->id;
+                $watchedSeason->season_id = $episode->season_id;
+                $watchedSeason->save();
+            }
         }
 
 
@@ -175,19 +179,90 @@ class EpisodeController extends Controller
         $season_id = $request->id;
 
 
+
+        //provjera da li je vec odgledao seriju
+        //dovlacenje odgovarajuceg record-a
+        $watched = DB::table('watched_seasons')->where('user_id','=',Auth::user()->id)->where('season_id',$season_id)->first();
+
+        if(count($watched)!=0){
+            return redirect()->back();
+        }
+
+        $watchedseason = new WatchedSeason();
+        $watchedseason->user_id = Auth::user()->id;
+        $watchedseason->season_id = $season_id;
+
+        $watchedseason->save();
+
+        //EPIZODA KOJA JE ODGLEDANA
+
+        $episodes = Episode::where('season_id','=', $season_id)->orderBy('episode_number')->get();
+
+
+        foreach ($episodes as $episode)
+        {
+            $watchedEpisode = $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id','=',$episode->content_id)->first();
+            if ($watchedEpisode == null)
+            {
+
+                $watchedepisode = new WatchedEpisode();
+                $watchedepisode->user_id = Auth::user()->id;
+                $watchedepisode->episode_id = $episode->content_id;
+
+                $watchedepisode->save();
+            }
+        }
+        return redirect()->back();
     }
 
+    public function updateUnwatchedSeason(Request $request)
+    {
+        $season_id = $request->id;
+
+        $watchedseason = DB::table('watched_seasons')->where('user_id','=',Auth::user()->id)->where('season_id','=',$season_id)->first();
+
+        if ($watchedseason == null)
+        {
+            return redirect()->back();
+        }
+
+        //dd($watchedseason);
+
+        $episodes = Episode::where('season_id','=', $season_id)->orderBy('episode_number')->get();
+
+        foreach ($episodes as $episode)
+        {
+            $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode->content_id)->get();
+
+            if (count($watched) != 0)
+            {
+                $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode->content_id)->delete();
+            }
+
+
+        }
+        $watchedseason = DB::table('watched_seasons')->where('user_id','=',Auth::user()->id)->where('season_id','=',$season_id)->delete();
+        return redirect()->back();
+    }
 
     public function updateUnwatched(Request $request)
     {
         $episode_id = $request->id;
-       $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode_id)->get();
+        $episode = Episode::where('content_id', '=', $episode_id)->first();
 
-       if (count($watched) != 0)
-       {
-           $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode_id)->delete();
+        $season_id = $episode->season_id;
+       $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode_id)->first();
+
+       if ($watched != null) {
+
+           $watched = DB::table('watched_episodes')->where('user_id', '=', Auth::user()->id)->where('episode_id', $episode_id)->delete();
+
+
+           $watchedseason = DB::table('watched_seasons')->where('user_id', '=', Auth::user()->id)->where('season_id', '=', $season_id)->first();
+           if ($watchedseason) {
+               $watchedseason = DB::table('watched_seasons')->where('user_id', '=', Auth::user()->id)->where('season_id', '=', $season_id)->delete();
+           }
        }
-
         return redirect()->back();
 
     }

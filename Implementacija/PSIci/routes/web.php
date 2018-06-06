@@ -122,6 +122,8 @@ Route::group(['middleware' => 'UserMiddleware'], function()
     Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm');
     Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset');
     Route::get('/updateUnwatched/{id}', '\App\Http\Controllers\EpisodeController@updateUnwatched')->name('updateunwatched');
+    Route::get('/updateWatchedSeason/{id}', '\App\Http\Controllers\EpisodeController@updateWatchedSeason')->name('update_watched_season');
+    Route::get('/updateUnwatchedSeason/{id}', '\App\Http\Controllers\EpisodeController@updateUnwatchedSeason')->name('update_unwatched_season');
 });
 
 ROute::group(['middleware' => 'GuestMiddleware'], function()
