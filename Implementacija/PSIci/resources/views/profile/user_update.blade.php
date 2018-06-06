@@ -15,10 +15,12 @@
                     </div>
                     <div class="col-md-4">
 
-                        <img src=<?php if(is_null($user->picture_path)){ echo 'img/avatar.png' ;} else {$path = 'img/img/users/'.$user->picture_path; echo $path; } ?> style="width:400px;margin-bottom:25px;">
+
 
                         <center>
-                            <input id="picture" name="picture" class="input-file" type="file" value="{{ Request::old('picture') }}">
+                            <img id = "img" src=<?php if(is_null($user->picture_path)){ echo 'img/avatar.png' ;} else {$path = 'img/img/users/'.$user->picture_path; echo $path; } ?> style="width:400px;margin-bottom:25px;">
+                            <input id="picture" name="picture" class="input-file" type="file" value="{{ Request::old('picture') }}" style = "display: none">
+                            <input type = "button" name = "browse_file" id = "browse_file" class = "btn btn-transparent form-control" style = "width: 50%" value = "Izmeni fotografiju">
                             <div style="color:deeppink">  {{ $errors->first('picture') }}</div>
                         </center>
                     </div>
