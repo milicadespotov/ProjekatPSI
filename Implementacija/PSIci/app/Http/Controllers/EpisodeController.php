@@ -115,6 +115,28 @@ class EpisodeController extends Controller
         return redirect()->back();
     }
 
+    public function updateWatchedSeason(Request $request)
+    {
+        $season_id = $request->id;
+
+
+    }
+
+
+    public function updateUnwatched(Request $request)
+    {
+        $episode_id = $request->id;
+       $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode_id)->get();
+
+       if (count($watched) != 0)
+       {
+           $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode_id)->delete();
+       }
+
+        return redirect()->back();
+
+    }
+
 
 
     public function watched(){

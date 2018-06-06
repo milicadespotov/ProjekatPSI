@@ -121,6 +121,7 @@ Route::group(['middleware' => 'UserMiddleware'], function()
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
     Route::post('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@resetPassword')->name('password_reset_confirm');
     Route::get('/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password_reset');
+    Route::get('/updateUnwatched/{id}', '\App\Http\Controllers\EpisodeController@updateUnwatched')->name('updateunwatched');
 });
 
 ROute::group(['middleware' => 'GuestMiddleware'], function()
