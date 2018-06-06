@@ -46,15 +46,22 @@ class GuestController extends Controller
         $contents = DB::table('contents')->join('episodes','episodes.content_id','=','contents.id')->where('episodes.season_id','=',$id)->select('contents.*')->orderBy('episodes.episode_number')->get();
 
 
-
+        $isWatched = null;
+        if (Auth::check()) {
+            $watched = DB::table('watched_seasons')->where('season_id', '=', $id)->where('user_id', '=', Auth::user()->id)->select('season_id')->get();
+        }
+        if (count($watched) != 0)
+        {
+            $isWatched = 1;
+        }
 
         //dd($contents);
-        return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
+        return view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type', 'isWatched']));
 
-          return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
+          return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type', 'isWatched']));
 
 
-          return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type']));
+          return response()->view('content.season', compact(['season', 'content', 'episodes', 'contents', 'type', 'isWatched']));
 
 
 

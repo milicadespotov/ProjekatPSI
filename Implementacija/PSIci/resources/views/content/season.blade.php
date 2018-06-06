@@ -37,6 +37,23 @@
             <div class="col-lg-4">
                 <div class="blog-title">
                     @include('rating.rate')
+
+                    @if ($isWatched == null)
+
+                        <a href="{{route('update_watched_season',['id'=>$season->content_id])}}">
+                            <img src = "{{asset('img/w.png')}}" style = "width: 20px; height: auto">
+                            Označi kao odgledano
+                        </a>
+
+                    @else
+
+
+                        <a href="{{route('update_unwatched_season',['id'=>$season->content_id])}}">
+                            <img  class = "img-fluid" src = "{{asset('img/ww.png')}}" style = "width: 20px; height:auto">
+                            <i> Odgledano </i>
+                        </a>
+
+                    @endif
                 </div>
 
             </div>
