@@ -24,6 +24,14 @@ use App\Content;
 
 class EpisodeController extends Controller
 {
+
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja dodaje komentar na epizodu
+     *
+     * @param Request $request
+     * @return Redirect
+     */
     public function comment(Request $request){
 
             $comment  = new Comment;
@@ -50,6 +58,13 @@ class EpisodeController extends Controller
             return redirect('episode/'.$episode->content_id);//Vraca nas na izgled epizode
     }
 
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja brise komentar sa epizode
+     *
+     * @param Request $request
+     * @return Redirect
+     */
     public function deleteComment(Request $request){
         //PROVJERITI DA LI JE $request['id'] ILI $request->id!!!!!
         DB::table('comments')->where('id',$request->id)->delete();
@@ -57,6 +72,14 @@ class EpisodeController extends Controller
         return redirect()->back();//vraca na prethodnu stranu sa koje smo dosli
     }
 
+
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja dodaje spoiler na komentar
+     *
+     * @param Request $request
+     * @return Redirect
+     */
 
     public function updateSpoiler(Request $request){
         //PROVJERITI DA LI JE $request['id'] ILI $request->id!!!!!
@@ -71,6 +94,14 @@ class EpisodeController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja sklanja spoiler sa komentara
+     *
+     * @param Request $request
+     * @return Redirect
+     */
+
     public function updateSpoilerRemove(Request $request){
         //PROVJERITI DA LI JE $request['id'] ILI $request->id!!!!!
         $comment = Comment::where('id',$request->id)->first();
@@ -83,6 +114,13 @@ class EpisodeController extends Controller
         $comment->update();//update-ovanje
         return redirect()->back();
     }
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja epizodu oznacava kao odgledanu
+     *
+     * @param Request $request
+     * @return Redirect
+     */
 
     public function updateWatched(Request $request){
         $episode_id = $request->id;
@@ -128,16 +166,13 @@ class EpisodeController extends Controller
             }
         }
 
-        //PROVJERITI DA LI SU ODGLEDANE SVE EPIZODE TE SEZONE I UPDATE U SEZONU!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //ostavljeno za kasnije---->DORADITI!!!!
 
 
 
 
         return redirect()->back();
     }
+
 
     public function updateWatchedSeason(Request $request)
     {
@@ -233,7 +268,13 @@ class EpisodeController extends Controller
     }
 
 
-
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja vraća sve odgledane epizode korisnika koji je ulogovan
+     *
+     * @param
+     * @return View
+     */
     public function watched(){
 
 
@@ -256,6 +297,14 @@ class EpisodeController extends Controller
     }
 
 
+
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja brise epizodu zajedno sa njenim slikama iz baze
+     *
+     * @param integer $id
+     * @return Redirect
+     */
 
     public function removeEpisode($id){
 
@@ -284,7 +333,13 @@ class EpisodeController extends Controller
 
 
     }
-
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja brise epizodu za potrebe sezone
+     *
+     * @param integer $id
+     * @return Void
+     */
 
     public static function removeEpisodeForSeason($id){
         $episode = Episode :: find($id);

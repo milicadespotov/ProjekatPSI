@@ -104,6 +104,13 @@ class UserController extends Controller
     }
 
 
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja dohvata podatke za trenutno ulogovanog korisnika
+     *
+     * @param
+     * @return View
+     */
 
     public function userProfile()
     {
@@ -204,13 +211,27 @@ class UserController extends Controller
 
 
 
-
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja vodi na formu za azuriranje informacija o korisniku
+     *
+     * @param
+     * @return View
+     */
 
     public function updateInfo(){
         $user = Auth::user();
         return view('profile.user_update',['user'=>$user]);
     }
 
+
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja azurira informacije o korisniku na osnovu podataka proslijedjenih u formi
+     *
+     * @param Request $request
+     * @return Redirect
+     */
     public function postUpdateInfo(Request $request){
 
 

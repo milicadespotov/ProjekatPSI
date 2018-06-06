@@ -35,6 +35,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja vraća najpopularnije i predstojece serije za potrebe pccetne stranice
+     *
+     * @param
+     * @return View
+     */
     public function index()
     {
         //najpopularnije serije
@@ -91,7 +100,13 @@ class HomeController extends Controller
     }
 
 
-
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja vraća najbolje ocijenjene serije
+     *
+     * @param
+     * @return View
+     */
         public function mostPopular(){
 
             $mostPopular = DB::table('contents')
@@ -119,6 +134,13 @@ class HomeController extends Controller
         }
 
 
+    /**
+     * Autor: Filip Đukić 0006/2015
+     * Funkcija koja vraća predstojece serije
+     *
+     * @param integer $id
+     * @return Picture
+     */
         public function upcoming(){
 
             $currentDate = \Carbon\Carbon::now();
