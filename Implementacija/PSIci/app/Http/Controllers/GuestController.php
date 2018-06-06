@@ -97,7 +97,7 @@ class GuestController extends Controller
         $type = $request->selectionForm;
         switch($type) {
             case "na": {
-                return view('home.index');
+                return redirect()->route('home');
             }
             case "serija": {
                 $tvshows = Tvshow::getTvShowsSearch($text);

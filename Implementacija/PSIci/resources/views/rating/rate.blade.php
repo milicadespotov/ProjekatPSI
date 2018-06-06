@@ -9,9 +9,10 @@
     $(document).ready(function(){
         var startRate =
         <?php
-            if ($content->currentRate()==null) echo 0;
-            else echo $content->currentRate()->rate;
-
+            if (Auth::user()) {
+                if ($content->currentRate()==null) echo 0;
+                else echo $content->currentRate()->rate;
+            } else echo 0;
         ?>;
         if (startRate==0) {
             for (i=1;i<=10;i++)
@@ -190,7 +191,7 @@
     <td><center>{{$content->rating}}/10 </center></td>
     </tr> &nbsp;
     <tr>
-    <td><center>Broj glasova: {{$content->number_of_rates}}</center></td></tr>
+    <td><center>Broj glasova: {{$content->numberOfRates()}}</center></td></tr>
 </table>
 @if (Auth::check())
 

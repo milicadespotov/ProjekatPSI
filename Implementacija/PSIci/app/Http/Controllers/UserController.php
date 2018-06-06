@@ -72,25 +72,26 @@ class UserController extends Controller
                     'content_id'=>$content->id,
                     'rate'=>$ratingScore
                 ]);
-            $sum = $content->number_of_rates * $content->rating + $ratingScore;
-            $content->number_of_rates = $content->number_of_rates + 1;
-            $content->rating = $sum / $content->number_of_rates;
             $rate->save();
+
+            $content->number_of_rates = $content->numberOfRates();
+            $content->rating = $content->averageRate();
+
             $content->update();
         } else {
             $oldRate = $rate->rate;
-            $sum = $content->number_of_rates * $content->rating - $oldRate + $ratingScore;
-            $content->rating = $sum / $content->number_of_rates;
             $rate->rate = $ratingScore;
-            $content->update();
             DB::table('ratings')
-                ->where('user_id','=',Auth::user()->username)
+                ->where('user_id','=',Auth::user()->id)
                 ->where('content_id','=',$content->id)
                 ->update(['ratings.rate'=>$ratingScore,
                     'updated_at'=>(new \Carbon\Carbon())::now()]);
+            $content->rating = $content->averageRate();
+
+            $content->update();
+
 
         }
-
         return redirect()->back();
     }
 
@@ -114,7 +115,7 @@ class UserController extends Controller
             if(Auth::check() && Auth::user()->is_admin==false){
             $lastRated = DB::table('tvshows')
                 ->join('ratings', 'tvshows.content_id', '=', 'ratings.content_id')
-                ->where('ratings.user_id','=',Auth::user()->username)
+                ->where('ratings.user_id','=',Auth::user()->id)
                 ->select('tvshows.*')
                 ->orderBy('ratings.updated_at', 'asc')
                 ->limit(3)
@@ -123,7 +124,7 @@ class UserController extends Controller
                 $lastRated = DB::table('tvshows')
                     ->join('contents','contents.id','=','tvshows.content_id')
                     ->select('tvshows.*')
-                    ->orderBy('contents.updated_at', 'asc')
+                    ->orderBy('contents.updated_at', 'desc')
                     ->limit(3)
                     ->get();
             }
@@ -148,7 +149,7 @@ class UserController extends Controller
             if(Auth::check() && Auth::user()->is_admin==false){
             $lastWatched = DB::table('episodes')
                 ->join('watched_episodes', 'episodes.content_id', '=', 'watched_episodes.episode_id')
-                ->where('watched_episodes.user_id','=',Auth::user()->username)
+                ->where('watched_episodes.user_id','=',Auth::user()->id)
                 ->select('episodes.*')
                 ->orderBy('watched_episodes.created_at', 'asc')
                 ->limit(3)

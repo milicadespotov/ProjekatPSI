@@ -622,16 +622,15 @@ class AdminController extends Controller
     {
         $rules=array(
             'name' => 'required',
-            'numEpisode' => 'required|integer|min:1',
-            'duration' =>'integer|min:1'
+            'numEpisode' => 'required|integer|min:1'
+
         );
         $messages = array(
             'name.required'=>'Ovo polje je obavezno!',
             'numEpisode.required' => 'Ovo polje je obavezno!',
             'numEpisode.integer' => 'Ovo polje mora biti pozitivan ceo broj!',
-            'numEpisode.min' => 'Ovo polje mora biti pozitivan ceo broj!',
-            'duration.integer' => 'Ovo polje mora biti pozitivan ceo broj!',
-            'duration.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+            'numEpisode.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+
 
         );
 
@@ -639,6 +638,11 @@ class AdminController extends Controller
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
+                ->withInput();
+        }
+        if ((!(ctype_digit($request->duration)) || (ctype_digit($request->duration) && ($request->duration<0))) && $request->duration!=null){
+            return redirect()->back()
+                ->withErrors(['duration'=>"Ovo polje mora biti pozitivan ceo broj!"])
                 ->withInput();
         }
         $content = Content::find($episode->content_id);
@@ -697,7 +701,7 @@ class AdminController extends Controller
         //brisanje iz content
         Content::where('id',$season->content_id)->delete();
 
-        return view('home.index');
+        return redirect()->route('home');
     }
 
 
@@ -773,7 +777,7 @@ class AdminController extends Controller
         Content::where('id',$series->content_id)->delete();
 
 
-        return view('home.index');
+        return redirect()->route('home');
     }
 
 
@@ -796,22 +800,25 @@ class AdminController extends Controller
     public function changeSeasonData(Request $request, Season $season) {
         $rules=array(
             'name' => 'required',
-            'numSeason' => 'required|integer|min:1',
-            'episodes' => 'integer|min:1'
+            'numSeason' => 'required|integer|min:1'
         );
         $messages = array(
             'name.required'=>'Ovo polje je obavezno!',
             'numSeason.required' => 'Ovo polje je obavezno!',
             'numSeason.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
-            'numSeason.min' =>'Ovo polje mora biti pozitivan ceo broj!',
-            'episodes.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
-            'episodes.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+            'numSeason.min' =>'Ovo polje mora biti pozitivan ceo broj!'
+
         );
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
+                ->withInput();
+        }
+        if ((!(ctype_digit($request->episodes)) || (ctype_digit($request->episodes) && ($request->episodes<0))) && $request->episodes!=null){
+            return redirect()->back()
+                ->withErrors(['episodes'=>"Ovo polje mora biti pozitivan ceo broj!"])
                 ->withInput();
         }
         $content = Content::find($season->content_id);
@@ -932,22 +939,28 @@ class AdminController extends Controller
     }
     public function changeTvshowData(Request $request, Tvshow $tvshow) {
         $rules=array(
-            'name' => 'required',
-            'duration' => 'integer|min:1',
-            'episodes' => 'integer|min:1'
+            'name' => 'required'
+
         );
         $messages = array(
-            'name.required'=>'Ovo polje je obavezno!',
-            'duration.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
-            'duration.min' => 'Ovo polje mora biti pozitivan ceo broj!',
-            'episodes.integer'=>'Ovo polje mora biti pozitivan ceo broj!',
-            'episodes.min' => 'Ovo polje mora biti pozitivan ceo broj!'
+            'name.required'=>'Ovo polje je obavezno!'
+
         );
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
+                ->withInput();
+        }
+        if ((!(ctype_digit($request->episodes)) || (ctype_digit($request->episodes) && ($request->episodes<0))) && $request->episodes!=null){
+            return redirect()->back()
+                ->withErrors(['episodes'=>"Ovo polje mora biti pozitivan ceo broj!"])
+                ->withInput();
+        }
+        if ((!(ctype_digit($request->duration)) || (ctype_digit($request->duration) && ($request->duration<0))) && $request->duration!=null){
+            return redirect()->back()
+                ->withErrors(['duration'=>"Ovo polje mora biti pozitivan ceo broj!"])
                 ->withInput();
         }
         $content = Content::find($tvshow->content_id);
