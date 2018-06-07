@@ -177,7 +177,7 @@ Route::post('/series/{content}/edit/changeAvatar','AdminController@changeAvatar'
 Route::post('/series/{content}/edit/deletePictures','AdminController@deletePictures')->name('delete_pic_tvshow');
 Route::post('/series/{content}/edit/addPictures','AdminController@addPictures')->name('add_pic_tvshow');
 
-
+Route::get('/content/rate','AjaxController@rate')->name('ratings');
 
 
 //END ALEKSA

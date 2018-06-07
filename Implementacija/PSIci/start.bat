@@ -1,1 +1,1 @@
-php artisan serve
+php artisan make:controller AjaxController --plain
