@@ -127,9 +127,9 @@ class EpisodeController extends Controller
 
         //provjera da li je vec odgledao seriju
         //dovlacenje odgovarajuceg record-a
-        $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode_id)->first();
+        $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode_id)->get();
 
-
+        //dd($watched);
 
         if(count($watched)!=0){
             return redirect()->back();
