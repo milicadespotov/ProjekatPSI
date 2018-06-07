@@ -12,7 +12,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        var route = '/content/rate';
+        var route = <?php echo '\''.route('ratings').'\''?>;
         var contentId = <?php echo $content->id?>;
         var startRate =
             <?php
