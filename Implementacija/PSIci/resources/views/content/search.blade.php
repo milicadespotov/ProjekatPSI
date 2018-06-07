@@ -46,16 +46,15 @@
                     <td><strong>Glumci:</strong></td>
                     <td width="30%">
                         @foreach($actors[$i] as $actor)
-                            |<a href="/search?selectionForm=glumci&search={{$actor->name}}">{{$actor->name}}</a>
-                        @endforeach
-                        |
+                            |<a href="{{route('search')}}?selectionForm=glumci&search={{$actor->name}}">{{$actor->name}}</a>
+                        @endforeach|
                     </td>
                 </tr>
                 <tr>
                     <td><strong>Režiseri:</strong></td>
                     <td>
                         @foreach($directors[$i] as $director)
-                            |<a href="/search?selectionForm=reziseri&search={{$director->name}}">{{$director->name}}</a>
+                            |<a href="{{route('search')}}?selectionForm=reziseri&search={{$director->name}}">{{$director->name}}</a>
                         @endforeach
                         |
                     </td>
@@ -64,7 +63,7 @@
                     <td><strong>Žanr:</strong></td>
                     <td>
                         @foreach($genres[$i] as $genre)
-                            |<a href="/search?selectionForm={{$genre->name}}&search=">{{$genre->name}}</a>
+                            |<a href="{{route('search')}}?selectionForm={{$genre->name}}&search=">{{$genre->name}}</a>
                         @endforeach
                         |
                     </td>

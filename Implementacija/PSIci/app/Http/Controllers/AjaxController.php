@@ -7,9 +7,19 @@ use App\Content;
 use App\Rating;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+/** AdminController - kontroler za funkcionalnosti koje koriste AJAX
+ *
+ * @version 1.0
+ */
 class AjaxController extends Controller
 {
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje ažuran prikaz informacija o ocenama serije/sezone/epizode, kao i samo ocenjivanje serije/sezone/epizode.
+     *
+     * @param Request $request
+     * @return Json
+     */
     public function rate(Request $request) {
         $this->validate(request(), [
             'ratedNum' => 'required',

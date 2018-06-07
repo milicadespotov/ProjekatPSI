@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use App\Comment;
 use Illuminate\Support\Facades\Input;
@@ -648,13 +649,28 @@ class AdminController extends Controller
         return redirect()->route('showepisode', $content->id);
     }
 
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje ažuran prikaz trenutnog stanja epizode koju administrator želi da menja.
+     *
+     * @param Request $request
+     * @param Episode $episode
+     * @return Response
+     */
     public function editEpisode(Request $request, Episode $episode) {
         $content = Content::find($episode->content_id);
         $picturePaths = Picture::notMainPictures($episode->content_id);
         $avatarPath = Picture::mainPicture($episode->content_id);
         return response()->view('content.editEpisode',compact('avatarPath', 'episode','picturePaths','content'));
     }
-
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje promenu naslovne slike epizode, sezone ili serije.
+     *
+     * @param Request $request
+     * @param Content $content
+     * @return Redirect
+     */
     public function changeAvatar(Request $request, Content $content) {
 
         if ($request->typeOfOperation==0) {
@@ -698,7 +714,14 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje brisanje slika koje je administrator dodao epizodi, sezoni ili seriji.
+     *
+     * @param Request $request
+     * @param Content $content
+     * @return Redirect
+     */
     public function deletePictures(Request $request, Content $content){
         $this->validate(request(),[
             'paths'=>'required'
@@ -714,7 +737,14 @@ class AdminController extends Controller
         $content->update();
         return redirect()->back();
     }
-
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje dodavanje slika epizodi, sezoni ili seriji.
+     *
+     * @param Request $request
+     * @param Content $content
+     * @return Response
+     */
     public function addPictures(Request $request, Content $content) {
         $this->validate(request(),[
             'pictures'=>'required'
@@ -735,7 +765,14 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje promenu trenutnog stanja epizode.
+     *
+     * @param Request $request
+     * @param Episode $episode
+     * @return Redirect
+     */
     public function changeEpisodeData(Request $request, Episode $episode)
     {
         $rules=array(
@@ -932,14 +969,26 @@ class AdminController extends Controller
             File::delete('img/img/content/'.$picture->path);
         }
     }
-
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje prikaz trenutnog stanja sezone koju administrator želi da menja.
+     * @param Season $season
+     * @return Response
+     */
     public function editSeason(Season $season) {
         $content = Content::find($season->content_id);
         $picturePaths = Picture::notMainPictures($season->content_id);
         $avatarPath = Picture::mainPicture($season->content_id);
         return response()->view('content.editSeason',compact('avatarPath', 'season','picturePaths','content'));
     }
-
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje ažuran promenu stanja sezone.
+     *
+     * @param Request $request
+     * @param Season $season
+     * @return Response
+     */
     public function changeSeasonData(Request $request, Season $season) {
         $rules=array(
             'name' => 'required',
@@ -987,9 +1036,14 @@ class AdminController extends Controller
         $season->update();
         return redirect()->route('season',['id'=>$season->content_id]);
     }
-    public function prepareCategoriesTVShow($id) {
-
-    }
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje ažuran prikaz trenutnog stanja serije koju administrator želi da menja.
+     *
+     * @param Request $request
+     * @param Tvshow $tvshow
+     * @return Response
+     */
     public function editTVShow(Tvshow $tvshow) {
         $content = Content::find($tvshow->content_id);
         $picturePaths = Picture::notMainPictures($tvshow->content_id);
@@ -1006,6 +1060,14 @@ class AdminController extends Controller
         }
         return view('content.editSeries',compact('directors', 'actors', 'checkBoxArr', 'tvshow','content','picturePaths','avatarPath'));
     }
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje izmenu žanrova serije.
+     *
+     * @param Request $request
+     * @param Tvshow
+     * @return Redirect
+     */
     public function changeGenres(Request $request, Tvshow $tvshow) {
         TypeOf::deleteGenres($tvshow->content_id);
         if ($request->has('genre')) {
@@ -1018,6 +1080,14 @@ class AdminController extends Controller
         }
         return redirect()->back();
     }
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje dodavanje glumca seriji.
+     *
+     * @param Request $request
+     * @param Episode $episode
+     * @return Redirect
+     */
     public function addEditActor(Request $request, Tvshow $tvshow) {
         $this->validate(request(), [
             'actor' => 'required|max:30'
@@ -1025,6 +1095,14 @@ class AdminController extends Controller
         $this->addActor($request, $tvshow->content_id);
         return redirect()->back();
     }
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje dodavanje režisera seriji.
+     *
+     * @param Request $request
+     * @param Tvshow $tvshow
+     * @return Redirect
+     */
     public function addEditDirector(Request $request, Tvshow $tvshow) {
         $this->validate(request(), [
             'director' => 'required|max:30'
@@ -1032,6 +1110,14 @@ class AdminController extends Controller
         $this->addDirector($request, $tvshow->content_id);
         return redirect()->back();
     }
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje brisanje glumaca dodeljenih seriji.
+     *
+     * @param Request $request
+     * @param Tvshow $tvshow
+     * @return Redirect
+     */
     public function deleteActors(Request $request, Tvshow $tvshow) {
         $this->validate(request(), [
             'actors' => 'required'
@@ -1056,6 +1142,14 @@ class AdminController extends Controller
         }
         return redirect()->back();
     }
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje brisanje režisera dodeljenih seriji.
+     *
+     * @param Request $request
+     * @param Tvshow $tvshow
+     * @return Redirect
+     */
     public function deleteDirectors(Request $request, Tvshow $tvshow) {
         $this->validate(request(), [
             'directors' => 'required'
@@ -1080,6 +1174,14 @@ class AdminController extends Controller
         }
         return redirect()->back();
     }
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja omogućuje promenu stanja serije.
+     *
+     * @param Request $request
+     * @param Tvshow $tvshow
+     * @return Redirect
+     */
     public function changeTvshowData(Request $request, Tvshow $tvshow) {
         $rules=array(
             'name' => 'required'
@@ -1137,6 +1239,7 @@ class AdminController extends Controller
         $content->save();
         $tvshow->save();
 
+        return redirect()->route('showseries',['content->id'=>$tvshow->content_id]);
     }
 
 

@@ -18,6 +18,10 @@ use App\Picture;
 use App\Director;
 use App\Genre;
 use Carbon\Carbon;
+/** GuestController - kontroler za funkcionalnosti dostupne neulogovanom korisniku
+ *
+ * @version 1.0
+ */
 class GuestController extends Controller
 {
     /**
@@ -112,7 +116,13 @@ class GuestController extends Controller
 
         return response()->view('content.episode', compact(['comments', 'episode', 'content', 'path', 'type','pictures','numcomments','isWatched']));
     }
-
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja izvršava pretragu i prikazuje rezultat pretrage.
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function search(Request $request) {
         $this->validate(request(), [
             'selectionForm'=>'required'
