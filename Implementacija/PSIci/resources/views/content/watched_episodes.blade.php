@@ -41,7 +41,7 @@
 
 
 
-                        <p style="word-wrap: break-word;"> {{$episode->description}} </p>
+                        <p style="word-wrap: break-word;"> {{ substr($episode->description,0,380) }}... </p>
                     </div>
                     <div class="post-meta">
                         <span class="post-date">

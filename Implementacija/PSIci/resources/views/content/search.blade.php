@@ -17,26 +17,26 @@
             @endif
         </div>
         <div class="col-md-8" >
+            <div class="row">
 
+            </div>
             <table style="border-collapse: separate;border-spacing: 1.5em;">
-                <tr colspan="2">
-                    <td>
+                <tr >
+                    <td colspan="2">
                         <h2>
                            <strong>
                                <a href="{{route('showseries',['content_id'=>$contents[$i]->id])}}">{{$contents[$i]->name}}</a>
                            </strong>
-
-
                         </h2>
                     </td>
                 </tr>
                 <tr>
-                    <td >
+                    <td colspan="2" width=80%">
                         <!-- Privremeno rjesenje za prelom teksta-->
-                        <div class="col-md-6">
+                        <div class="col-md-12">
 
                             <p style="width:100%;word-wrap: break-word;">
-                                {{$contents[$i]->description}}
+                                {{ substr($contents[$i]->description,0,350) }}...
                             </p>
                         </div>
 
@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                     <td><strong>Glumci:</strong></td>
-                    <td width="30%">
+                    <td width="70%">
                         @foreach($actors[$i] as $actor)
                             |<a href="{{route('search')}}?selectionForm=glumci&search={{$actor->name}}">{{$actor->name}}</a>
                         @endforeach|
@@ -52,7 +52,7 @@
                 </tr>
                 <tr>
                     <td><strong>Režiseri:</strong></td>
-                    <td>
+                    <td width="70%">
                         @foreach($directors[$i] as $director)
                             |<a href="{{route('search')}}?selectionForm=reziseri&search={{$director->name}}">{{$director->name}}</a>
                         @endforeach
@@ -70,9 +70,8 @@
                 </tr>
             </table>
         </div>
-
     </div>
-    <br>
+    <hr>
 @endfor
     
 </div>

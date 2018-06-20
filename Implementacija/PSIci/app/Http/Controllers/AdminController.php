@@ -536,10 +536,12 @@ class AdminController extends Controller
     {
         $rules=array(
             'name' => 'required',
+            'numEpisode' => 'required'
 
         );
         $messages = array(
             'name.required'=>'Ovo polje je obavezno!',
+            'numEpisode.required'=>'Ovo polje je obavezno!'
 
 
         );

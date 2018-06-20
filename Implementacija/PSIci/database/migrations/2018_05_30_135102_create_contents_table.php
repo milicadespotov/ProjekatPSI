@@ -18,7 +18,7 @@ class CreateContentsTable extends Migration
             $table->string('name');
             $table->string('trailer')->nullable();
             $table->timestamp('release_date')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->integer('number_of_rates')->default(0);
             $table->float('rating',4, 2 )->default(0);
             $table->integer('number_of_pictures')->default(0);
