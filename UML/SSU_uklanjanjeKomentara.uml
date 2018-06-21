@@ -568,7 +568,7 @@
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="1xnjAwA9ikK1DND6nrBd/wAA">
 <XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">10</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">3 : deleteComment()()</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">3 : deleteComment()</XPD:ATTR>
 <XPD:REF name="Model">2pjv/FFnpkWfd+FoGKrVgwAA</XPD:REF>
 <XPD:REF name="HostEdge">TxVISEz6eEqXxDMXGOo4BAAA</XPD:REF>
 </XPD:OBJ>
@@ -805,7 +805,7 @@
 <XPD:REF name="Views[3]">BsaWqx/YoE+zrcoJQTETuQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingStimuli[2]" type="UMLStimulus" guid="2pjv/FFnpkWfd+FoGKrVgwAA">
-<XPD:ATTR name="Name" type="string">deleteComment()</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">deleteComment</XPD:ATTR>
 <XPD:REF name="Sender">hRug0WdF4EavsgK6igzMvwAA</XPD:REF>
 <XPD:REF name="Receiver">OPFaT/gXoUOwAAcoZXYI5QAA</XPD:REF>
 <XPD:OBJ name="Action" type="UMLCallAction" guid="wK8nEDVo+Umubjx9k/b1hAAA">

@@ -36,7 +36,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="ZPaUA6F5CEiAnA9DUxwG2QAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="5sQRP+0V3kKcNsueLIKNAwAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">Brisanje epizode</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">Brisanje serije</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="gpVlM1JljEW6SOOPmumLTgAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -234,7 +234,7 @@
 </XPD:OBJ>
 <XPD:ATTR name="#OwnedElements" type="integer">5</XPD:ATTR>
 <XPD:OBJ name="OwnedElements[0]" type="UMLUseCase" guid="tFPBIWZaBEONVUIs/MUL+wAA">
-<XPD:ATTR name="Name" type="string">Brisanje epizode</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Brisanje serije</XPD:ATTR>
 <XPD:REF name="Namespace">ddwWoEC2DUC8hA0JvJW3IAAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">fJ+S66L06U2k2RGQ93sRTAAA</XPD:REF>
@@ -350,7 +350,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="GeFlH69ICEGljdn9m/ciqwAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="DkMOh8B7x0iOBn+IdRYfewAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">spEpisode</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">spTvShow</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="pZO1geOrS0CIV+L9WK8J9wAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -382,7 +382,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="rI2ZI4hEekC+GX1PeZxHfQAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="HQmbmDWblUGMTDN2TYBNDAAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">cpEpisode</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">cpTvShow</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="SxJaZi0vek6+BnB/h5oQKgAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -701,7 +701,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="d83boUstK0S0F6OAgcFxrgAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="6fQtPUXDEEOQTcn/QKq6CgAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">episodeModel</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">tvshowModel</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="UEeTlJyFVUetDbgvz4k/ygAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -724,8 +724,8 @@
 <XPD:OBJ name="OwnedViews[7]" type="UMLSubsystemView" guid="q7spzPxpUUKquHC6a3ol4wAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">752</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">436</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">808</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">200</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">120</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">70</XPD:ATTR>
 <XPD:REF name="Model">3dwZM05Z1USIudhh2d07CQAA</XPD:REF>
@@ -832,7 +832,8 @@
 <XPD:OBJ name="OwnedViews[9]" type="UMLDependencyView" guid="16W55tgL7k6OvfB/be53hwAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">255,471;752,470</XPD:ATTR>
+<XPD:ATTR name="LineStyle" type="LineStyleKind">lsRectilinear</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">255,468;864,468;864,269</XPD:ATTR>
 <XPD:REF name="Model">E/QXKSLpZkiS3yrE0FshwgAA</XPD:REF>
 <XPD:REF name="Head">q7spzPxpUUKquHC6a3ol4wAA</XPD:REF>
 <XPD:REF name="Tail">YhIe/DkhDky3OSNPRIIyaAAA</XPD:REF>
@@ -858,8 +859,8 @@
 <XPD:OBJ name="OwnedViews[10]" type="UMLClassView" guid="YEha7J7roUCJ/ZAG8k09+gAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">772</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">80</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">688</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">528</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">158</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">96</XPD:ATTR>
 <XPD:ATTR name="StereotypeDisplay" type="UMLStereotypeDisplayKind">sdkIcon</XPD:ATTR>
@@ -892,7 +893,7 @@
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="ShowExtendedNotation" type="boolean">True</XPD:ATTR>
 <XPD:ATTR name="LineStyle" type="LineStyleKind">lsRectilinear</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">180,68;180,44;850,44;850,80</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">172,68;172,44;44,44;44,580;688,580</XPD:ATTR>
 <XPD:REF name="Model">UXnjUe1gKEetD7g17bQTGAAA</XPD:REF>
 <XPD:REF name="Head">YEha7J7roUCJ/ZAG8k09+gAA</XPD:REF>
 <XPD:REF name="Tail">DKKkvjamJ0+HhvNr3SGt6QAA</XPD:REF>
@@ -903,8 +904,8 @@
 <XPD:REF name="Model">UXnjUe1gKEetD7g17bQTGAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="EdgeLabelView" guid="wtFU9tfDT0WNx9VWzpxVDQAA">
-<XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
-<XPD:ATTR name="Distance" type="real">30</XPD:ATTR>
+<XPD:ATTR name="Alpha" type="real">0.551334259374129</XPD:ATTR>
+<XPD:ATTR name="Distance" type="real">612.800946474465</XPD:ATTR>
 <XPD:ATTR name="Text" type="string">&lt;&lt;builds&gt;&gt;</XPD:ATTR>
 <XPD:REF name="Model">UXnjUe1gKEetD7g17bQTGAAA</XPD:REF>
 </XPD:OBJ>
@@ -977,7 +978,7 @@
 </XPD:OBJ>
 <XPD:ATTR name="#OwnedElements" type="integer">12</XPD:ATTR>
 <XPD:OBJ name="OwnedElements[0]" type="UMLClass" guid="vghUsviZEkKG6iIwdhBcTQAA">
-<XPD:ATTR name="Name" type="string">spEpisode</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">spTvShow</XPD:ATTR>
 <XPD:ATTR name="StereotypeProfile" type="string">WAE</XPD:ATTR>
 <XPD:ATTR name="StereotypeName" type="string">server page (stereotype)</XPD:ATTR>
 <XPD:REF name="Namespace">DFfhwxgUtEuWgXi0hSzxzwAA</XPD:REF>
@@ -993,7 +994,7 @@
 <XPD:REF name="Associations[3]">RL9onaF1UEu9gbyaOGi+3wAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[1]" type="UMLClass" guid="O/OkWFrtbkGkQbhJei+35AAA">
-<XPD:ATTR name="Name" type="string">cpEpisode</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">cpTvShow</XPD:ATTR>
 <XPD:ATTR name="StereotypeProfile" type="string">WAE</XPD:ATTR>
 <XPD:ATTR name="StereotypeName" type="string">client page (stereotype)</XPD:ATTR>
 <XPD:REF name="Namespace">DFfhwxgUtEuWgXi0hSzxzwAA</XPD:REF>
@@ -1122,7 +1123,7 @@
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[6]" type="UMLClass" guid="QbCvX4Yfx0GYiufYKBWprQAA">
-<XPD:ATTR name="Name" type="string">episodeModel</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">tvshowModel</XPD:ATTR>
 <XPD:ATTR name="StereotypeProfile" type="string">WAE</XPD:ATTR>
 <XPD:ATTR name="StereotypeName" type="string">server page (stereotype)</XPD:ATTR>
 <XPD:REF name="Namespace">DFfhwxgUtEuWgXi0hSzxzwAA</XPD:REF>
@@ -1267,7 +1268,7 @@
 <XPD:OBJ name="OwnedViews[1]" type="UMLSeqObjectView" guid="bUgIiRaG40u5fbjsZ3WWPwAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">152</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">148</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">12</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">70</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">489</XPD:ATTR>
@@ -1275,7 +1276,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="F2S+kZ69LESnBiL3/W14ogAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="KrqRJATtKka1bCIqyo1FawAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">cpEpisode</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">cpTvShow</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="z4v4Lf6MM0+RxLIQy+yWLwAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -1323,7 +1324,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="NtkdKtvoJUeaQAT+Jos+6wAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="RSmpsQsS0EqQOLs1F7bIIAAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">spEpisode</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">spTvShow</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="wHkMkNN2XkKv7w0ZmfzXUwAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -1347,7 +1348,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="GusprcMEB0e+tmDDFS+wxgAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="t+VP0/Q76kqEWqx914cLGgAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">episodeModel</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">tvshowModel</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="yzywSRAznk+H+6XN3dJI6QAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -1412,7 +1413,7 @@
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="LineStyle" type="LineStyleKind">lsRectilinear</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">51,108;180,108</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">51,108;176,108</XPD:ATTR>
 <XPD:REF name="Model">H+pSNCN0bUyuWZGa5j08+wAA</XPD:REF>
 <XPD:REF name="Head">5CXWB7Gwi0ma4XU2EIIvAQAA</XPD:REF>
 <XPD:REF name="Tail">mtnwaiQM3Uiz/gYdFeOrHAAA</XPD:REF>
@@ -1438,7 +1439,7 @@
 <XPD:REF name="HostEdge">HGCVUIkAj0yCezhF37ZA9QAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Activation" type="UMLActivationView" guid="5ixQWfr34kq7ahCR7qX/AQAA">
-<XPD:ATTR name="Left" type="integer">180</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">176</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">108</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">14</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">29</XPD:ATTR>
@@ -1448,7 +1449,7 @@
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="LineStyle" type="LineStyleKind">lsRectilinear</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">193,116;328,116</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">189,116;328,116</XPD:ATTR>
 <XPD:REF name="Model">uBEOdSAOoU29mZm2XlarLgAA</XPD:REF>
 <XPD:REF name="Head">KLyiRzYAT0mVaVu0kwAAyAAA</XPD:REF>
 <XPD:REF name="Tail">5CXWB7Gwi0ma4XU2EIIvAQAA</XPD:REF>
@@ -1976,7 +1977,7 @@
 <XPD:REF name="ReceivingStimuli[0]">tFUjDRZCn0qtmPOpYvFuwwAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingInstances[1]" type="UMLObject" guid="yjsNlqn8QE24C/CP0+xZpwAA">
-<XPD:ATTR name="Name" type="string">cpEpisode</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">cpTvShow</XPD:ATTR>
 <XPD:REF name="CollaborationInstanceSet">3CUq6xasqUe9AA0uAZh86wAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
 <XPD:REF name="Views[0]">bUgIiRaG40u5fbjsZ3WWPwAA</XPD:REF>
@@ -2002,7 +2003,7 @@
 <XPD:REF name="ReceivingStimuli[2]">P4mrDz0hfE6IbGTU8juuRgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingInstances[3]" type="UMLObject" guid="AkmrdAiS006lfnqGtY7wawAA">
-<XPD:ATTR name="Name" type="string">spEpisode</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">spTvShow</XPD:ATTR>
 <XPD:REF name="CollaborationInstanceSet">3CUq6xasqUe9AA0uAZh86wAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
 <XPD:REF name="Views[0]">JZFxiZnGgUKpiM1FingrpwAA</XPD:REF>
@@ -2015,7 +2016,7 @@
 <XPD:REF name="ReceivingStimuli[1]">mRlguZcR9keqFBUwTReCHAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingInstances[4]" type="UMLObject" guid="tmzCE90560C2RDWGYs2omwAA">
-<XPD:ATTR name="Name" type="string">episodeModel</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">tvshowModel</XPD:ATTR>
 <XPD:REF name="CollaborationInstanceSet">3CUq6xasqUe9AA0uAZh86wAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
 <XPD:REF name="Views[0]">9IVdlGkStk+1cE4xX/KFNgAA</XPD:REF>
@@ -2097,7 +2098,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="J+9eZgrTZUOWUYBkEiNndQAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="dVDkCe3V9kCOjCPyL/zBkwAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">cpEpisode</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">cpTvShow</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="WTxvPeKVZ0yYI0bIt7j6pgAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -2351,7 +2352,7 @@
 <XPD:REF name="ReceivingStimuli[0]">m3YZtAKrQkywaGKthJfbNwAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingInstances[1]" type="UMLObject" guid="vAnBvJfHTUW0MjUQJ9Vt+QAA">
-<XPD:ATTR name="Name" type="string">cpEpisode</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">cpTvShow</XPD:ATTR>
 <XPD:REF name="CollaborationInstanceSet">WvDm5XgL20OfchzmazXfgwAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
 <XPD:REF name="Views[0]">VIXOahPk6UqIFT57xNAtdAAA</XPD:REF>
