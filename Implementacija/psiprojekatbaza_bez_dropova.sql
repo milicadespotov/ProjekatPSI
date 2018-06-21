@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 21, 2018 at 09:12 AM
+-- Generation Time: Jun 21, 2018 at 09:15 AM
 -- Server version: 5.7.20-log
 -- PHP Version: 7.1.9
 
@@ -738,7 +738,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `name`, `surname`, `gender`, `email`, `password`, `birth_date`, `is_admin`, `security_question`, `answer`, `picture_path`, `registration_date`, `admin_since`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'leksa', 'Aleksa', 'Simovic', 'm', 'fico1996@hotmail.com', '$2y$10$xtkoPL0hlVL1e13oqUp66./tzt5iADXCuVSKqIR7qVfy5qnFy2zY2', '2018-06-13 22:00:00', 1, 'Sta se radi', 'Na estradi', 'Aleksa-leksa.jpg', '2018-06-20 17:35:45', NULL, 'lmAdhrXhrcxCW1h7lAXRcFof5Z4EBsOGzoO0nXB91o9uswFRGb05GSWGTeyi', '2018-06-20 15:35:45', '2018-06-20 15:35:45'),
 (2, 'fipa', 'Filip', 'Djukic', 'm', 'fipa@gmail.com', '$2y$10$xMfjnT/7kP7x9lZgYCGRzu0m8oBSZ5ooxXBueEZ4m9EVak6Ewq86O', '2016-08-10 22:00:00', 1, 'Sta se radi', 'Na estradi', 'Filip-fipa.jpg', '2018-06-20 23:32:54', NULL, 'x2xeGmdgqr278q5hL2eh4DyXoMIG3412Bkc7teiEQXwKftLagG1L3J9jU5vL', '2018-06-20 21:32:54', '2018-06-20 21:32:54'),
-(3, 'tiksi', 'Tijana', 'Jovanovic', 'z', 'tica_ubica@gmai.com', '$2y$10$6N.Sa7CBF23btlIY3FOQQ.ytxCiCua91KucwDWpuwFFRQ7/N9Vpae', NULL, 0, 'Sta se radi', 'Na estradi', 'Tijana-tiksi.jpg', '2018-06-20 23:35:21', NULL, 'd7h15h5yeGOYvmNChgOMjPF76k4E7sViUm9n4WKQZlYTCgGsPZnbp405QWvS', '2018-06-20 21:35:21', '2018-06-20 21:39:35'),
+(3, 'tiksi', 'Tijana', 'Jovanovic', 'f', 'tica_ubica@gmai.com', '$2y$10$6N.Sa7CBF23btlIY3FOQQ.ytxCiCua91KucwDWpuwFFRQ7/N9Vpae', NULL, 0, 'Sta se radi', 'Na estradi', 'Tijana-tiksi.jpg', '2018-06-20 23:35:21', NULL, 'd7h15h5yeGOYvmNChgOMjPF76k4E7sViUm9n4WKQZlYTCgGsPZnbp405QWvS', '2018-06-20 21:35:21', '2018-06-20 21:39:35'),
 (4, 'milica', 'Milica', 'Despotovic', 'f', 'milica@gmai.com', '$2y$10$JZ6BAFWLLP0YTXrWGB635uCQhuDAh5f4g3HscHqk8kOTU8A3RxUQ2', '2018-06-03 22:00:00', 0, 'Sta se radi', 'Na estradi', 'Milica-milica.jpg', '2018-06-21 09:11:01', NULL, NULL, '2018-06-21 07:11:01', '2018-06-21 07:11:01');
 
 -- --------------------------------------------------------
