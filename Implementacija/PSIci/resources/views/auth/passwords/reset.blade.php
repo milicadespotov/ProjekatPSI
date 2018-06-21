@@ -18,10 +18,10 @@
                             <label for="old_password" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px;">{{ __('Lozinka stara:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="old_password" type="password" class="form-control{{ $errors->has('old_password') ? ' is-invalid' : '' }}" name="old_password" required autofocus>
+                                <input id="old_password" type="password" class="form-control{{ $errors->has('old_password') ? ' is-invalid' : '' }}" style = "{{ $errors->has('old_password') ? 'deeppink' : '' }}" name="old_password"  autofocus>
 
                                 @if ($errors->has('old_password'))
-                                    <span class="invalid-feedback">
+                                    <span class="invalid-feedback" style = "color: deeppink">
                                         <strong>{{ $errors->first('old_password') }}</strong>
                                     </span>
                                 @endif
@@ -29,13 +29,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px;">{{ __('Nova lozinka: ') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right " style = "font-size: 18px;">{{ __('Nova lozinka: ') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"  style =  "{{$errors->has('password')?'border-color: deeppink':''}}"name="password"  >
 
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
+                                    <span class="invalid-feedback" style = "color: deeppink">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
@@ -43,10 +43,17 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password_confirm" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px">{{ __('Potvrdite novu lozinku:') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px;"> {{ __('Loznka Ponovljena:*') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password_confirm" type="password" class="form-control" name="password_confirm" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirm" style = "{{$errors->has('password_confirm')?'border-color: deeppink':''}}"  >
+                                @if ($errors->has('password_confirm'))
+                                    <span class="invalid-feedback" style = "color: deeppink">
+                                                {{ $errors->first('password_confirm') }}
+
+                                            </span>
+                                @endif
+
                             </div>
                         </div>
 

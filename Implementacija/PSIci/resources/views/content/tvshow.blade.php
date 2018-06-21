@@ -104,7 +104,7 @@ use App\Category;
                 <div class="col-md-12">
 
                     <div class ="info-name"> <div class = "info-name"> Glumci: </div> </div>
-                    <div class ="info-value">   
+                    <div class ="info-value">
                     @foreach($series->actors() as $actor)
                         {{$actor->name}} |
                     @endforeach

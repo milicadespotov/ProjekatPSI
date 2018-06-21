@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
+use  Illuminate\Support\Facades\Validator;
 use  Illuminate\Support\Facades\DB;
 class ForgotPasswordController extends Controller
 {
@@ -59,7 +60,7 @@ class ForgotPasswordController extends Controller
         }
         else
         {
-            return redirect()->route('/login');
+            return redirect()->route('login');
         }
     }
 

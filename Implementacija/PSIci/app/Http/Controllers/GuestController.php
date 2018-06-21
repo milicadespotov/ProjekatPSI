@@ -66,10 +66,12 @@ class GuestController extends Controller
 
 
         $isWatched = null;
+        $tmp = -1;
         if (Auth::check()) {
             $watched = DB::table('watched_seasons')->where('season_id', '=', $id)->where('user_id', '=', Auth::user()->id)->select('season_id')->get();
+            $tmp=0;
         }
-        if (count($watched) != 0)
+        if ($tmp!=-1 && count($watched) != 0)
         {
             $isWatched = 1;
         }
@@ -105,10 +107,12 @@ class GuestController extends Controller
         $numcomments = count($comments);
         $type = 'episode';
         $isWatched = null;
+        $tmp=-1;
         if (Auth::check()) {
             $watched = DB::table('watched_episodes')->where('episode_id', '=', $id)->where('user_id', '=', Auth::user()->id)->select('episode_id')->get();
+            $tmp=0;
         }
-        if (count($watched) != 0)
+        if ($tmp!=-1 && count($watched) != 0)
         {
             $isWatched = 1;
         }

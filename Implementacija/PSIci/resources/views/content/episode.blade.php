@@ -248,6 +248,9 @@
                                 </center>
                             </div>
                         <!-- Forma za postavljanje komentara-->
+
+
+                        @if(Auth::check())
                         <div class="col-md-12">
                             <h3>Ostavi komentar</h3>
                             <form id="comment-form" method="post" action="{{route('addcomment')}}">
@@ -267,6 +270,10 @@
                                 <!-- End .form-group -->
                             </form>
                         </div>
+                        @endif
+
+
+
 
                     </div>
 

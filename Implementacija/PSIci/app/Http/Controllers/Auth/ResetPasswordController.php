@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\User;
 
 class ResetPasswordController extends Controller
@@ -49,14 +50,26 @@ class ResetPasswordController extends Controller
 
     public function resetPassword(Request $request)
     {
-        $request->validate([
-            'old_password => required|min:6|alpha_dash',
-            'password => required|min:6|alpha_dash',
-            'password_confirm => required|min:6|alpha_dash'
-        ]);
+        $rules = array(
+            'old_password' => 'required|min:6|alpha_dash',
+            'password' => 'required|min:6|alpha_dash',
+            'password_confirm' => 'required_with:password|same:password'
+            );
 
-
-       $password = Hash::make($request->old_password);
+        $messages = array(
+            'password.required' => 'Ovo polje je obavezno',
+            'password.min' => 'Lozinka ne sme biti manja od :min',
+            'password.alpha_dash' => 'Lozinka sme sadržati samo alpa_dash karaktere',
+            'password_confirm.required_with' => 'Ovo polje je obavezno',
+            'password_confirm.same' => 'Ponovljena lozinka mora biti ista kao inicijalno unesena'
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $password = Hash::make($request->old_password);
         if (!Hash::check($request->old_password, Auth::user()->password))
         {
 
@@ -66,6 +79,7 @@ class ResetPasswordController extends Controller
         }
         else
         {
+
             if ($request->password != $request->password_confirm)
             {
 
