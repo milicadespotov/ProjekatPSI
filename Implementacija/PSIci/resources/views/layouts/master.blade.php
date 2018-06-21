@@ -11,7 +11,7 @@
     <meta name="description" content="Meghna One page parallax responsive HTML Template ">
 
 
-    <title>PSI projekat</title>
+    <title>WhySoSeries</title>
 
     <!-- Mobile Specific Meta
         ================================================== -->
