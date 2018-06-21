@@ -13,7 +13,7 @@
             <!-- logo -->
             <a class="navbar-brand pull-left" href="#body">
                 <h1 id="logo">
-                    <img src="{{ asset('img/probni_logo.png') }}" style="width:175px;height:auto" alt="WSS" />
+                    <a href="{{route('home')}}"><img src="{{ asset('img/probni_logo.png') }}" style="width:175px;height:auto" alt="WSS" /></a>
                 </h1>
             </a>
             <!-- /logo -->

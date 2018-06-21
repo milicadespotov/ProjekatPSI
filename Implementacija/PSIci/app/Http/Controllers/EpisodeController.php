@@ -127,9 +127,9 @@ class EpisodeController extends Controller
 
         //provjera da li je vec odgledao seriju
         //dovlacenje odgovarajuceg record-a
-        $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode_id)->first();
+        $watched = DB::table('watched_episodes')->where('user_id','=',Auth::user()->id)->where('episode_id',$episode_id)->get();
 
-
+        //dd($watched);
 
         if(count($watched)!=0){
             return redirect()->back();
@@ -154,6 +154,8 @@ class EpisodeController extends Controller
             ->where('watched_episodes.user_id','=',Auth::user()->id)
             ->where('episodes.season_id','=',$watchedepisode->season_id)
             ->get();
+
+
 
         $watchedseason = DB::table('watched_seasons')->where('user_id','=',Auth::user()->id)->where('season_id','=',$watchedepisode->season_id)->first();
 
@@ -285,12 +287,10 @@ class EpisodeController extends Controller
                 ->join('watched_episodes', 'episodes.content_id', '=', 'watched_episodes.episode_id')
                 ->join('pictures','pictures.content_id','=','contents.id')
                 ->where('pictures.main_picture','=','1')
-                ->where('watched_episodes.user_id','=',Auth::user()->username)
+                ->where('watched_episodes.user_id','=',Auth::user()->id)
                 ->select('episodes.content_id','episodes.season_id','episodes.episode_number','contents.name','contents.release_date','contents.description','contents.rating','contents.number_of_pictures','pictures.path')
                 ->orderBy('episodes.episode_number', 'asc')
                 ->paginate(3);
-
-
 
         //mora se proslijediti varijabla view-u
         return view('content.watched_episodes',compact('watched'));

@@ -15,6 +15,10 @@ use App\Content;
 use App\Episode;
 use App\User;
 
+/** AdminController - kontroler za standardne funkcionalnosti koje mogu da koriste svi registrovani korisnici.
+ *
+ * @version 1.0
+ */
 
 class UserController extends Controller
 {
@@ -60,9 +64,14 @@ class UserController extends Controller
 
 
 
-
-
-
+    /**
+     * Autor: Simović Aleksa 0018/2015
+     * Funkcija koja izvršava ocenjivanje sadržaja.
+     *
+     * @param Content $content
+     * @param Request $request
+     * @return Redirect
+     */
     public function rateContent(Content $content,Request $request)
     {
         $this->validate(request(), [

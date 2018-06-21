@@ -70,23 +70,34 @@
 
         <br>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-md-4" >
                 <?php $flag=false; ?>
 
                 @foreach($content->pictures as $picture)
                     <?php if($picture->main_picture==true){ $flag=true; ?>
-                    <img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:80%;height:auto">
+                    <table width="100%">
+                        <tr>
+                            <td width="15%">&nbsp;</td>
+                            <td><img src="{{ asset('img/img/content/'.$picture->path) }}" style="width:95%;height:auto;"></td>
+                        </tr>
+                    </table>
                     <?php } ?>
                 @endforeach
 
                 <?php if(!$flag) { ?>
-                <img src="{{ asset('img/default_content.png') }}" style="width:60%;height:auto">
-
+                    <table width="100%">
+                        <tr>
+                            <td width="15%">&nbsp;</td>
+                            <td><img src="{{ asset('img/default_content.png') }}" style="width:95%;height:auto"></td>
+                        </tr>
+                    </table>
                 <?php }?>
 
             </div>
-            <div class="col-lg-6">
+            <div class="col-md-7" >
+                <br>
                 <h2>Opis</h2>
+                <br>
                 <p style="width:100%;word-wrap: break-word;font-size:16px;">
                     {{$content->description}}
                 </p>
@@ -100,6 +111,8 @@
         <div class="row">
 
             <div class="col-md-7">
+                <center><h2>Epizode</h2></center>
+                <br>
                 @for($i=0;$i<count($contents);$i++)
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom:30px">
@@ -114,7 +127,7 @@
                         <div class="col-md-8">
                             <a href="{{ route('showepisode',['id'=>$contents[$i]->id]) }}"><h4>{{$contents[$i]->name}}</h4></a>
                             <p style="width:100%;word-wrap: break-word;">
-                                {{$contents[$i]->description}}
+                                {{substr($contents[$i]->description,0,300)}}...
                             </p>
 
                         </div>
@@ -190,20 +203,24 @@
                 <br>
             </div>
             <!--Galerija-->
-            <div class="col-md-12">
-                <center>
-                @foreach($content->pictures as $picture)
-                    <div class="col-md-3" style="margin-bottom:10px;">
-                        <a href="{{ asset('img/img/content/'.$picture->path) }}" data-lightbox="movie">
-                            <img src="{{ asset('img/img/content/'.$picture->path) }}" style="max-width:95%;height:auto;">
+
+            <div>
+                <?php $i=0; ?>
+                @foreach($content->pictures as $picPath)
+                    <?php
+                    if ($i%4==0) echo '<div class="row">';
+                    ?>
+                    <div class="col-lg-3">
+                        <a href="{{ asset('img/img/content/'.$picPath->path) }}" data-lightbox="movie">
+                            <center><img src="{{ asset('img/img/content/'.$picPath->path) }}" style="max-width:100%;height:auto;margin-bottom:10px;align:center">
+                            </center>
                         </a>
                     </div>
-                 @endforeach
-                </center>
-
-
-                </center>
-
+                    <?php
+                    $i=$i+1;
+                    if ($i%4==0) echo '</div>';
+                    ?>
+                @endforeach
             </div>
         </div>
         <br>

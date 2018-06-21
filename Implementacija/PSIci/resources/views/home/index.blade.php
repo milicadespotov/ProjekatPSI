@@ -32,7 +32,7 @@
                     <div class="col-md-8">
                         <h4><a href="{{route('showseries',['id'=>$mostPopular[$i]->id])}}">{{$mostPopular[$i]->name}}</a></h4>
                        <p style="width:100%;word-wrap: break-word;">
-                           {{$mostPopular[$i]->description}}
+                           {{ substr($mostPopular[$i]->description,0,255) }}...
                        </p>
 
                     </div>
@@ -67,7 +67,7 @@
                     <div class="col-md-8">
                         <h4><a href="{{route('showseries',['id'=>$upcoming[$i]->id])}}">{{$upcoming[$i]->name}}</a></h4>
                         <p style="width:100%;word-wrap: break-word;">
-                            {{$upcoming[$i]->description}}
+                            {{substr($upcoming[$i]->description,0,255) }} ...
                         </p>
 
                     </div>

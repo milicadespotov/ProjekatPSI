@@ -45,7 +45,7 @@
 
 
 
-                                <p style="word-wrap: break-word;"> {{$upcoming[$i]->description}} </p>
+                                <p style="word-wrap: break-word;"> {{ substr($upcoming[$i]->description,0,350) }}... </p>
                             </div>
                             <div class="post-meta">
                                  <span class="post-date">

@@ -192,7 +192,7 @@ use App\Category;
                                         @if ($seasons[$i]->number_of_episodes == 0 || $seasons[$i]->number_of_episodes==null)
                                             <div class="progress-bar" style="width:0%"><font style="color:#2B2C30">0%</font></div>
                                         @else
-                                        <div class="progress-bar" style="width:{{$seasons[$i]->watchedPercentage()/$seasons[$i]->number_of_episodes*100}}%"><font style="color:#2B2C30">{{$seasons[$i]->watchedPercentage()/$seasons[$i]->number_of_episodes*100}}%</font></div>
+                                        <div class="progress-bar" style="width:{{$seasons[$i]->watchedPercentage()/$seasons[$i]->number_of_episodes*100}}%"><font style="color:#2B2C30"></font></div>
                                     @endif
                                     </div>
                                 @else
@@ -283,18 +283,23 @@ use App\Category;
                 <br>
             </div>
             <!--Galerija-->
-            <div class="col-md-12">
-
-
-                    @foreach($content->pictures as $picture)
-                        <div class="col-md-3" style="margin-bottom:10px;">
-                    <a href="{{ asset('img/img/content/'.$picture->path) }}" data-lightbox="movie">
-                        <img src="{{ asset('img/img/content/'.$picture->path) }}" style="max-width:95%;height:auto;margin-top:15px">
-                    </a>
-                        </div>
-                  @endforeach
-
-
+            <div>
+                <?php $i=0; ?>
+                @foreach($content->pictures as $picPath)
+                    <?php
+                    if ($i%4==0) echo '<div class="row">';
+                    ?>
+                    <div class="col-lg-3">
+                        <a href="{{ asset('img/img/content/'.$picPath->path) }}" data-lightbox="movie">
+                            <center><img src="{{ asset('img/img/content/'.$picPath->path) }}" style="max-width:100%;height:auto;margin-bottom:10px;align:center">
+                            </center>
+                        </a>
+                    </div>
+                    <?php
+                    $i=$i+1;
+                    if ($i%4==0) echo '</div>';
+                    ?>
+                @endforeach
             </div>
         </div>
 

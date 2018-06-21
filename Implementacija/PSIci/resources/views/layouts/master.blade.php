@@ -11,7 +11,6 @@
     <meta name="description" content="Meghna One page parallax responsive HTML Template ">
 
 
-
     <title>PSI projekat</title>
 
     <!-- Mobile Specific Meta
@@ -19,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.png" />
+    <link rel="icon" href="{{asset('img/img/favicon.png')}}" type="image/gif" sizes="16x16">
 
     <!-- CSS
         ================================================== -->
