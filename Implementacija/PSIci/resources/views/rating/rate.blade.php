@@ -265,7 +265,7 @@
                     id: contentId,
                     ratedNum: 10},
                 success:function(data){
-                    document.getElementById("setData").innerHTML = data.rating+"/10";
+                    document.getElementById("setData").innerHTML = data.rating.toFixed(2)+"/10";
                     document.getElementById("numData").innerHTML = "Broj glasova: "+data.num;
                 }
             });
@@ -285,7 +285,7 @@
 </script>
 &nbsp; <table>
     <tr><td rowspan="2"><img src="{{ asset('img/star_rating.png') }}" style="width:30px;margin-bottom:5px"></td>
-        <td><center><div id="setData">{{$content->rating}}/10</div> </center></td>
+        <td><center><div id="setData">{{round($content->rating, 2)}}/10</div> </center></td>
     </tr> &nbsp;
     <tr>
         <td><center><div id="numData">Broj glasova: {{$content->numberOfRates()}}</div></center></td></tr>

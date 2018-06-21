@@ -60,6 +60,6 @@ class AjaxController extends Controller
             $content->rating = $content->averageRate();
             $content->update();
         }
-        return response()->json(array('rating'=>$content->rating,'num'=>$content->number_of_rates));
+        return response()->json(array('rating'=>round($content->rating,2),'num'=>$content->number_of_rates));
     }
 }

@@ -141,7 +141,7 @@ class UserController extends Controller
                 ->join('ratings', 'tvshows.content_id', '=', 'ratings.content_id')
                 ->where('ratings.user_id','=',Auth::user()->id)
                 ->select('tvshows.*')
-                ->orderBy('ratings.updated_at', 'asc')
+                ->orderBy('ratings.updated_at', 'desc')
                 ->limit(3)
                 ->get();
             }else {
@@ -175,7 +175,7 @@ class UserController extends Controller
                 ->join('watched_episodes', 'episodes.content_id', '=', 'watched_episodes.episode_id')
                 ->where('watched_episodes.user_id','=',Auth::user()->id)
                 ->select('episodes.*')
-                ->orderBy('watched_episodes.created_at', 'asc')
+                ->orderBy('watched_episodes.created_at', 'desc')
                 ->limit(3)
                 ->get();
 
@@ -197,7 +197,7 @@ class UserController extends Controller
 
                 $lastAdded = DB::table('tvshows')
                     ->select('tvshows.*')
-                    ->orderBy('tvshows.created_at', 'asc')
+                    ->orderBy('tvshows.created_at', 'desc')
                     ->limit(3)
                     ->get();
 
