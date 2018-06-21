@@ -5,6 +5,7 @@
 <div class="container-fluid" style="width:100%">
 
     <div class="row justify-content-center">
+        <div class = "col-md-2"></div>
         <div class="col-md-8">
             <div class="card" style = "margin-top: 40px;">
                 <div class="card-header color" > <h1> {{ __('Jednu prijavu ste daleko od galaksije serija: ') }} </h1> </div>

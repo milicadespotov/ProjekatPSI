@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use  Illuminate\Support\Facades\Validator;
+use  Illuminate\Support\Facades\Input;
+use  Illuminate\Support\Facades\Mail;
 use  Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 class ForgotPasswordController extends Controller
 {
     /*Author: Despotović Milica
@@ -60,6 +64,16 @@ class ForgotPasswordController extends Controller
         }
         else
         {
+
+            $random = str_random(8);
+            //$random = "123123";
+            $user = User::where('username', '=', $user->username)->first();
+            $user->password = Hash::make($random);
+            $user->update();
+            Mail::send('auth/passwords/mailers', array('name'=>$user->name, 'hashed_random' => $random ), function($message)
+            {
+                $message->to(Input::get('email'), Input::get('email'))->subject('Why So Series');
+            });
             return redirect()->route('login');
         }
     }
