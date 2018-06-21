@@ -63,7 +63,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="aAyG32ARSEmKIZ3ffFZY8AAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="Z7VrY4tjQkud6ydL9OLoaAAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">Izmena informacija o epizodi</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">Izmena informacija o sezoni</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="eBX6D2wtkEWZ/OQmxPIyagAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -421,7 +421,7 @@
 <XPD:REF name="Instances[0]">+Ugf19K9i0WxynHSBnAMrgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[1]" type="UMLUseCase" guid="NDojJVAvG0iewslYGlKKvwAA">
-<XPD:ATTR name="Name" type="string">Izmena informacija o epizodi</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Izmena informacija o sezoni</XPD:ATTR>
 <XPD:REF name="Namespace">7Ul674QymUaDR4jmNDSeGgAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">LXcB3q6pzkeWSKbD6NV4KQAA</XPD:REF>
@@ -605,7 +605,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="3rlngonJfUub1Z7yof7jewAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="4iEUnm6Tak+p5ROfO7kNogAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">cpEpisodeInfo</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">cpSeasonInfo</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="rR/7EHZ/qkm6tqAQXGZtzgAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -753,7 +753,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="bc6o3vM18E6yB/kDeKz76wAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="f4GmZyNrB0yufU7H5fEdNQAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">cpEditEpisodeInfo</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">cpEditSeasonInfo</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="Mz8Pfy59TkWa73Jmsp0psAAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -785,7 +785,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="lYrSqEUkwUCSmeEY53fkMAAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="7HsxAv8VE0Gdyf0ETZA2qgAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">cpEditEpisodeError</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">cpEditSeasonError</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="C2eJUvYnWUqLaMJnjVpeoQAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -1490,7 +1490,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="9FjbfUfPx0OvTet5VLk6rgAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="CQVq+OvCoUSm4DUJGoaj7AAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">spEpisode</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">spSeason</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="q+47bFnzT0CjcMw7q1wOZQAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -2365,7 +2365,7 @@
 </XPD:OBJ>
 <XPD:ATTR name="#OwnedElements" type="integer">33</XPD:ATTR>
 <XPD:OBJ name="OwnedElements[0]" type="UMLClass" guid="uxe1+CcKJUKJExTEW5SAEgAA">
-<XPD:ATTR name="Name" type="string">cpEpisodeInfo</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">cpSeasonInfo</XPD:ATTR>
 <XPD:ATTR name="StereotypeProfile" type="string">WAE</XPD:ATTR>
 <XPD:ATTR name="StereotypeName" type="string">client page (stereotype)</XPD:ATTR>
 <XPD:REF name="Namespace">QMUMS8BBNUmBni2xNHxAcgAA</XPD:REF>
@@ -2473,7 +2473,7 @@
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[3]" type="UMLClass" guid="Mw8dRCFXMUenvglbD6jqbwAA">
-<XPD:ATTR name="Name" type="string">cpEditEpisodeInfo</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">cpEditSeasonInfo</XPD:ATTR>
 <XPD:ATTR name="StereotypeProfile" type="string">WAE</XPD:ATTR>
 <XPD:ATTR name="StereotypeName" type="string">client page (stereotype)</XPD:ATTR>
 <XPD:REF name="Namespace">QMUMS8BBNUmBni2xNHxAcgAA</XPD:REF>
@@ -2514,7 +2514,7 @@
 <XPD:REF name="Instances[0]">n0dnWtktEUWyY55k2lQpjgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[4]" type="UMLClass" guid="ldc8qKpRw0+VkjonmnoTzgAA">
-<XPD:ATTR name="Name" type="string">cpEditEpisodeError</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">cpEditSeasonError</XPD:ATTR>
 <XPD:ATTR name="StereotypeProfile" type="string">WAE</XPD:ATTR>
 <XPD:ATTR name="StereotypeName" type="string">client page (stereotype)</XPD:ATTR>
 <XPD:REF name="Namespace">QMUMS8BBNUmBni2xNHxAcgAA</XPD:REF>
@@ -2657,11 +2657,11 @@
 <XPD:REF name="Owner">E5MfwylTEUCyz87YtaPBaAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[3]" type="UMLAttribute" guid="/aowx1KA4UyPDXYVGju2CAAA">
-<XPD:ATTR name="Name" type="string">epNumber</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">seasonNumber</XPD:ATTR>
 <XPD:REF name="Owner">E5MfwylTEUCyz87YtaPBaAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[4]" type="UMLAttribute" guid="ihXoGKqaVEm7Mo2HcocjbAAA">
-<XPD:ATTR name="Name" type="string">length</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">episodeCount</XPD:ATTR>
 <XPD:REF name="Owner">E5MfwylTEUCyz87YtaPBaAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[5]" type="UMLAttribute" guid="/XA5MMsq00CFRQjT0I656QAA">
@@ -2835,7 +2835,7 @@
 <XPD:REF name="Associations[1]">CRSal8x+7ESRxdeNs7McDAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[18]" type="UMLClass" guid="mKlDlP5AJEiH1TzVL2BptwAA">
-<XPD:ATTR name="Name" type="string">spEpisode</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">spSeason</XPD:ATTR>
 <XPD:ATTR name="StereotypeProfile" type="string">WAE</XPD:ATTR>
 <XPD:ATTR name="StereotypeName" type="string">server page (stereotype)</XPD:ATTR>
 <XPD:REF name="Namespace">QMUMS8BBNUmBni2xNHxAcgAA</XPD:REF>
@@ -3071,8 +3071,8 @@
 <XPD:REF name="Participant">x+2o2oeN5EqzRBelKd8A1AAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">K8OYUnaEC0GAfo/ZL1UtRwAA</XPD:REF>
-<XPD:REF name="Views[1]">bjOKnLE1K0mHWus5jLSdSQAA</XPD:REF>
-<XPD:REF name="Views[2]">UQ8tbGLCLU+BIpine7iJnAAA</XPD:REF>
+<XPD:REF name="Views[1]">UQ8tbGLCLU+BIpine7iJnAAA</XPD:REF>
+<XPD:REF name="Views[2]">bjOKnLE1K0mHWus5jLSdSQAA</XPD:REF>
 <XPD:REF name="Views[3]">JaCnVDSxbkqt5niVh2aB1AAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="x+4njdvTGUC8eYFYaKA9vwAA">
@@ -3081,8 +3081,8 @@
 <XPD:REF name="Participant">Mw8dRCFXMUenvglbD6jqbwAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">b/KVR3k0lkmhNwBsznQYEQAA</XPD:REF>
-<XPD:REF name="Views[1]">GoSX7a486U2j6r0rhywJwwAA</XPD:REF>
-<XPD:REF name="Views[2]">WJ6zPZ67/0+8zKneeArVpAAA</XPD:REF>
+<XPD:REF name="Views[1]">WJ6zPZ67/0+8zKneeArVpAAA</XPD:REF>
+<XPD:REF name="Views[2]">GoSX7a486U2j6r0rhywJwwAA</XPD:REF>
 <XPD:REF name="Views[3]">Dlf23yP1oU2PQa7qRT3+hwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -3100,8 +3100,8 @@
 <XPD:REF name="Participant">x+2o2oeN5EqzRBelKd8A1AAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">ugU/aL7q0EmW+tBeC7wstQAA</XPD:REF>
-<XPD:REF name="Views[1]">bdGOP+4TsUarreU8BKLKKAAA</XPD:REF>
-<XPD:REF name="Views[2]">JpkfVyfQBkGNPPWz1MReywAA</XPD:REF>
+<XPD:REF name="Views[1]">JpkfVyfQBkGNPPWz1MReywAA</XPD:REF>
+<XPD:REF name="Views[2]">bdGOP+4TsUarreU8BKLKKAAA</XPD:REF>
 <XPD:REF name="Views[3]">oc317wfnME67nLqaayIaMQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="rtdJtU5tzEivD+A4WO6feAAA">
@@ -3109,8 +3109,8 @@
 <XPD:REF name="Participant">nemVDKQxxkOLqIX6e52L8wAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">on7u1PChTUqRuPXvrMnD7QAA</XPD:REF>
-<XPD:REF name="Views[1]">8OwhR5PYzEKIvMgncp8dNgAA</XPD:REF>
-<XPD:REF name="Views[2]">vrrcC3uGukyezAdBuBv5CwAA</XPD:REF>
+<XPD:REF name="Views[1]">vrrcC3uGukyezAdBuBv5CwAA</XPD:REF>
+<XPD:REF name="Views[2]">8OwhR5PYzEKIvMgncp8dNgAA</XPD:REF>
 <XPD:REF name="Views[3]">6j1ynyL/M0CJJgz9aQ+rLgAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -3176,8 +3176,8 @@
 <XPD:REF name="Participant">+Y38DKTmPUiX6he7l/42DAAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">FHo2XwW99UqHib/q9uzgkAAA</XPD:REF>
-<XPD:REF name="Views[1]">atl/DysGukmT0RQ00Tt08wAA</XPD:REF>
-<XPD:REF name="Views[2]">0l9Y5prAQUuRNC7C5K1cogAA</XPD:REF>
+<XPD:REF name="Views[1]">0l9Y5prAQUuRNC7C5K1cogAA</XPD:REF>
+<XPD:REF name="Views[2]">atl/DysGukmT0RQ00Tt08wAA</XPD:REF>
 <XPD:REF name="Views[3]">6MHHgxwFhU+1xXHFcn97XQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="JvxrOykm3E+rFG0VSSn82wAA">
@@ -3186,8 +3186,8 @@
 <XPD:REF name="Participant">Mw8dRCFXMUenvglbD6jqbwAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">901jeFgVd0Guhe4dV7dOsAAA</XPD:REF>
-<XPD:REF name="Views[1]">G6ofcrFhGkK8i4tN4Ew+MAAA</XPD:REF>
-<XPD:REF name="Views[2]">nW51vocqxUeOIKQHSCbYVgAA</XPD:REF>
+<XPD:REF name="Views[1]">nW51vocqxUeOIKQHSCbYVgAA</XPD:REF>
+<XPD:REF name="Views[2]">G6ofcrFhGkK8i4tN4Ew+MAAA</XPD:REF>
 <XPD:REF name="Views[3]">nhD/2+TLTkO411+EjDDwngAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -3205,8 +3205,8 @@
 <XPD:REF name="Participant">+Y38DKTmPUiX6he7l/42DAAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">sVniKmbKNkG/DjjSHhzcQgAA</XPD:REF>
-<XPD:REF name="Views[1]">D+K7k97dHESpHOYjNSSg/wAA</XPD:REF>
-<XPD:REF name="Views[2]">v9CBFS0vg0iY9fsd7S9Q+gAA</XPD:REF>
+<XPD:REF name="Views[1]">v9CBFS0vg0iY9fsd7S9Q+gAA</XPD:REF>
+<XPD:REF name="Views[2]">D+K7k97dHESpHOYjNSSg/wAA</XPD:REF>
 <XPD:REF name="Views[3]">bz1SsKSNeE+d3sg3KfN2jgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="AXeNRGim+EGV/gYg5pyBGAAA">
@@ -3214,8 +3214,8 @@
 <XPD:REF name="Participant">nemVDKQxxkOLqIX6e52L8wAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">wciX0RteiUer7Wmsd7geAAAA</XPD:REF>
-<XPD:REF name="Views[1]">M1Tr+ZbrIEarKJAFIWbmUgAA</XPD:REF>
-<XPD:REF name="Views[2]">dkGCDHK+9UKL/OHr001q8QAA</XPD:REF>
+<XPD:REF name="Views[1]">dkGCDHK+9UKL/OHr001q8QAA</XPD:REF>
+<XPD:REF name="Views[2]">M1Tr+ZbrIEarKJAFIWbmUgAA</XPD:REF>
 <XPD:REF name="Views[3]">ryx8R10b0UKox6aAHff42AAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -3420,7 +3420,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="H/V5mZeKekKaCXgYbKoXEAAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="Sq0CbE7/w0K7H/fDo8ni3QAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string"> : cpEpisodeInfo</XPD:ATTR>
+<XPD:ATTR name="Text" type="string"> : cpSeasonInfo</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="v1UgizwICUa7P117dEVbHgAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -3469,7 +3469,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="9C0+NS4NtUqKBrMSp5WlrgAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="PSvDk57JFUqkWpCRYGQT5QAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string"> : cpEditEpisodeInfo</XPD:ATTR>
+<XPD:ATTR name="Text" type="string"> : cpEditSeasonInfo</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="pPL16m4K00KEa+BI5C9D5gAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -3569,7 +3569,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="8BeydzbbMUKlgerOU8MHOwAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="W5NnnusmoEOJ9risF9/hRAAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string"> : cpEditEpisodeError</XPD:ATTR>
+<XPD:ATTR name="Text" type="string"> : cpEditSeasonError</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="nIDkwPzyjUuNYDp7Yozq0gAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -3594,7 +3594,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="O/h2i2PYqUqwf+2KQwl8RgAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="JQV5/GCwzkG/RotMW//etwAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string"> : spEpisode</XPD:ATTR>
+<XPD:ATTR name="Text" type="string"> : spSeason</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="Twiz9zHML023oMjg3EqoXgAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -3619,7 +3619,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="ChKNNm8Br029Wgzu6VlKkwAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="yr4bbX4L30OxRRESB4hKdQAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string"> : cpEpisodeInfo</XPD:ATTR>
+<XPD:ATTR name="Text" type="string"> : cpSeasonInfo</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="+NW6eopKjU6n+0q4j1+3dgAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
