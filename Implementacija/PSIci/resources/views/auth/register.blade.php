@@ -149,7 +149,7 @@
                         </div>
 
                         <div class = "form-group row">
-                            <label for="birth_date" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px;">{{ __('Rođenje:*') }}</label>
+                            <label for="birth_date" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px;">{{ __('Datum rođenja:*') }}</label>
                             <div class="col-md-6">
                                 <input id="date" type="date" name = "birth_date"  style = "{{$errors->has('birth_date')?'border-color: deeppink':''}}" class = "form-control">
                                 @if ($errors->has('birth_date'))

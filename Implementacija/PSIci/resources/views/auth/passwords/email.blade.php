@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="answer" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px">{{ __('Sigurnosno pitanje ') }}</label>
+                            <label for="answer" class="col-md-4 col-form-label text-md-right" style = "font-size: 18px">{{ __('Odgovor:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="answer" type="text" class="form-control{{ $errors->has('answer') ? ' is-invalid' : '' }}" style = "{{$errors->has('answer')? 'border-color: pink' : ''}}" name="answer" required>
