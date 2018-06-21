@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"> <h3> {{ __('Resetovanje Password') }} </h3></div>
+                <div class="card-header"> <h3> {{ __('Resetovanje lozinke: ') }} </h3></div>
                 <br> <br> <br>
                 <div class="card-body">
                     <form method="POST" action="{{ route('password_reset_confirm') }}"  class = "contact-form fadeInUp color"  data-wow-duration="500ms" data-wow-delay="300ms">

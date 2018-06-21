@@ -5,9 +5,11 @@
     <br> <br> <br> <br>
 <div class="container-fluid" style="width:100%">
     <div class="row justify-content-center">
+        <div class = "col-md-2"></div>
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header" style = "color: grey"><h3>{{ __('Resetovanje password') }}</h3></div> <br> <br> <br>
+                <div class="card-header" style = "color: grey"><h3>{{ __('Resetovanje lozinke: ') }}</h3></div> <br>
+                <p> Lozinka će biti poslata na Vašu e-mail adresu</p>
 
                 <div class="card-body">
                     @if (session('status'))
