@@ -11,7 +11,7 @@
 </XPD:HEADER>
 <XPD:BODY>
 <XPD:OBJ name="DocumentElement" type="UMLProject" guid="GguM4ZyyWEOuNjwQi53H1QAA">
-<XPD:ATTR name="Title" type="string">Untitled</XPD:ATTR>
+<XPD:ATTR name="Title" type="string">SSU_dodavanjeKomentara</XPD:ATTR>
 <XPD:ATTR name="#OwnedElements" type="integer">4</XPD:ATTR>
 <XPD:OBJ name="OwnedElements[0]" type="UMLModel" guid="5du8U8EpeE2+QBjJnSXatwAA">
 <XPD:ATTR name="Name" type="string">UseCaseView</XPD:ATTR>
